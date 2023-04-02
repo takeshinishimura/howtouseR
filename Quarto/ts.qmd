@@ -1,0 +1,139 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "時系列データ"
+date: "`r format(Sys.time(), '%Y-%m-%d') `"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 2
+    number-sections: true
+    theme: Journal
+lang: "ja"
+---
+
+時系列データではPOSIXct，POSIXtというクラスを使う。
+必須のパッケージは[xts: eXtensible Time Series](https://cran.r-project.org/web/packages/xts/index.html){target="_blank"}と[zoo: S3 Infrastructure for Regular and Irregular Time Series (Z's Ordered Observations)](https://cran.r-project.org/web/packages/zoo/index.html){target="_blank"}である。
+
+ここでは，時系列データとしてSwitchBot温湿度計からエクスポートしたデータを用いる
+（参考：[SwitchBot温湿度計 | 履歴データをエクスポートする方法 – SwitchBotサポート](https://support.switch-bot.com/hc/ja/articles/360037754674-SwitchBot%E6%B8%A9%E6%B9%BF%E5%BA%A6%E8%A8%88-%E5%B1%A5%E6%AD%B4%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E3%82%A8%E3%82%AF%E3%82%B9%E3%83%9D%E3%83%BC%E3%83%88%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95){target="_blank"}）。
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+library(zoo)
+library(xts)
+
+d <- read.csv("../data/Meter_data.csv")
+dts <- xts::as.xts(zoo::read.zoo(d))
+head(dts)
+dim(dts)
+```
+
+## plot
+
+温度と湿度を別々にプロットすると @fig-plot のようになる。
+年や月，日などで期間を指定できる。
+@fig-plot-year は2022年だけの図，@fig-plot-month は月単位で期間を指定した場合の図である。
+また，@fig-plot-monthlymean のように月ごとに最大値，最小値，平均値を描画することも簡単にできる。
+
+```{r}
+#| label: fig-plot
+#| fig-cap: "列を指定した温度と湿度の折れ線グラフ"
+layout(matrix(1:2, ncol = 1))
+plot(dts[, "Temperature_Celsius"], main = "Temperature Celsius")
+plot(dts[, "Relative_Humidity"], main = "Relative Humidity")
+```
+
+:::{.panel-tabset}
+## 年を指定
+```{r}
+#| label: fig-plot-year
+#| fig-cap: "年を指定した温度の折れ線グラフ"
+plot(dts["2022", "Temperature_Celsius"], main = "Temperature Celsius")
+```
+
+## 期間を指定
+```{r}
+#| label: fig-plot-month
+#| fig-cap: "月単位で期間を指定した温度の折れ線グラフ"
+plot(dts["2022-12/2023-01", "Temperature_Celsius"], main = "Temperature Celsius")
+```
+:::
+
+```{r}
+#| label: fig-plot-monthlymean
+#| fig-cap: "月ごとの温度の最大値と最小値（上），平均値（下）の折れ線グラフ"
+layout(matrix(1:2, ncol=1))
+plot(cbind(apply.monthly(dts[, "Temperature_Celsius"], min), apply.monthly(dts[, "Temperature_Celsius"], max)), main = "Temperature Celsius")
+plot(apply.monthly(dts[, "Temperature_Celsius"], mean), main = "Temperature Celsius")
+```
+
+## ggplot2.zoo
+
+[ggplot2](https://ggplot2.tidyverse.org/){target="_blank"}で描画する場合，データフレームをそのまま引数に入れてよい。
+ggplot2を用いると，温度と湿度の折れ線グラフは @fig-plot-ggplot2 のようになる。
+
+```{r}
+#| label: fig-plot-ggplot2
+#| fig-cap: "ggplot2のautoplotを用いた温度と湿度の折れ線グラフ"
+ggplot2::autoplot(dts, geom = "line")
+```
+
+## Plotly
+
+[Plotly](https://plotly.com/r/){target="_blank"}は時系列データを扱うこともできるが，描画前にデータをデータフレームに変換しなければならない。
+Plotlyを用いると，温度の折れ線グラフは @fig-plot-plotly のようになる。
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| label: fig-plot-plotly
+#| fig-cap: "plotlyを用いた温度の折れ線グラフ"
+library(plotly)
+
+dts2 <- as.data.frame(dts)
+dts2$index <- zoo::index(dts)
+fig <- plotly::plot_ly(dts2, x = ~index, y = ~Temperature_Celsius, type = 'scatter', mode = 'lines')
+fig
+```
+
+## dygraphs
+
+[dygraphs](https://rstudio.github.io/dygraphs/){target="_blank"}は時系列データをそのまま描画できる。
+dygraphsを用いると，温度と湿度の折れ線グラフは @fig-plot-dygraphs のようになる。
+温度と湿度の軸が同じなのは奇妙である。
+別々のグラフにしたければ，@fig-plot-dygraphs2-1 のようにすればよい。
+
+```{r}
+#| echo: true
+#| warning: false
+#| message: false
+#| label: fig-plot-dygraphs
+#| fig-cap: "dygraphsを用いた温度と湿度の折れ線グラフ"
+library(dygraphs)
+
+dygraphs::dygraph(dts) %>%
+  dyEvent("2022-01-01", "2022", labelLoc = "bottom") %>%
+  dyEvent("2023-01-01", "2023", labelLoc = "bottom") %>%
+  dyHighlight(highlightCircleSize = 5,
+              highlightSeriesBackgroundAlpha = 0.2,
+              hideOnMouseOut = TRUE) %>%
+  dyRangeSelector()
+```
+
+```{r}
+#| label: fig-plot-dygraphs2
+#| fig-cap: "dygraphsを用いた温度と湿度の折れ線グラフ"
+dateWindow <- c("2022-01-01", "2022-12-31")
+dg1 <- dygraphs::dygraph(dts[, 1], group = "homedata") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+dg2 <- dygraphs::dygraph(dts[, 2], group = "homedata") %>%
+  dyRangeSelector(dateWindow = dateWindow)
+dg1; dg2
+```
