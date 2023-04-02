@@ -1,0 +1,126 @@
+---
+title: "第xx回xx"
+date: "`r format(Sys.time(), '%Y/%m/%d') `"
+output:
+  html_document:
+    toc: false
+    toc_float: true
+    code_folding: hide
+    theme: default
+  word_document:
+    toc: true
+  pdf_document:
+    toc: true
+    keep_tex: true
+    highlight: default
+    latex_engine: xelatex
+mainfont: Hiragino Kaku Gothic Pro
+monofont: Hiragino Kaku Gothic Pro
+---
+
+
+```{r results = "markup", echo = TRUE}
+# データの読み込み
+library(gsheet)
+
+url <- 'docs.google.com/spreadsheets/d/hoge'
+d0 <- gsheet2text(url, format='tsv')
+d1 <- read.csv(text = d0, sep = "\t", stringsAsFactors = FALSE, check.names = FALSE)
+# d1 <- read.delim(text = d0, sep = "\t", head = TRUE, row.names = NULL, stringsAsFactors = FALSE, fileEncoding = "UTF-8", check.names = FALSE)
+
+# 採点者ごとに分解
+d2 <- d1[numeric(0), c(2, 4:8)]
+
+for (i in 1:nrow(d1)) {
+  d2 <- rbind(d2, d1[i, c(2, 4:8)])
+  d2 <- rbind(d2, d1[i, c(2, 9:13)])
+  d2 <- rbind(d2, d1[i, c(2, 14:18)])
+  d2 <- rbind(d2, d1[i, c(2, 19:23)])
+  d2 <- rbind(d2, d1[i, c(2, 24:28)])
+}
+
+d2 <- d2[d2[, "報告番号"] != "", ]
+d2 <- d2[!is.na(d2[, "報告番号"]), ]
+d2$合計 <- rowSums(d2[, 3:5])
+
+d3 <- d2[, c(1:5, 7, 6)]
+
+## TSVデータの書き出し
+outdir <- "./output"
+if (!file.exists(outdir)) {
+  dir.create(outdir)
+}
+
+write.table(d3, file = file.path(outdir, "yuushuu.tsv"), sep = "\t", na = "", row.names = FALSE, col.names = TRUE, fileEncoding = "UTF-8")
+```
+
+# 各報告の得点（平均値）
+
+```{r results = "markup", echo = TRUE}
+# データの読み込み
+filedir <- "./output"
+filename <- file.path(filedir, "yuushuu.tsv")
+
+d0 <- read.delim(filename, sep = "\t", head = TRUE, row.names = NULL, stringsAsFactors = FALSE, fileEncoding = "UTF-8", check.names = FALSE)
+d1 <- d0
+
+# 報告ごとの平均の計算
+No <- unique(d1[, "報告番号"])
+d5 <- data.frame(No, "平均" = NA)
+
+for (i in No) {
+  d5[d5[, "No"] == i, "平均"] <- round(mean(d1[d1[, "報告番号"] == i, "合計"]), 1)
+}
+
+# 得点順にソート
+(d6 <- d5[order(d5[, "平均"], decreasing = TRUE), ])
+```
+
+# 集計結果
+
+```{r results = "markup", echo = TRUE}
+d00 <- cbind(d1, 平均 = NA)[numeric(0), ]
+
+for (i in d6$No) {
+  d00 <- rbind(d00, cbind(d1[d1[, "報告番号"] == i, ], 平均 = d6[d6$No == i, "平均"]))
+}
+
+d01 <- d00[, c(1:6, 8, 7)]
+d01[, -8]
+```
+
+# 集計結果表
+
+```{r results = "markup", echo = TRUE}
+# DT
+library(DT)
+# library(htmlwidgets)
+
+# データの書き出し
+outdir <- "./table"
+if (!file.exists(outdir)) {
+  dir.create(outdir)
+}
+
+x <- DT::datatable(
+  d01, rownames = FALSE, filter = 'top',
+  extensions = c('Buttons', 'RowGroup'),
+# extensions = 'Buttons',
+  options = list(
+    pageLength = 25,
+    dom = 'Blfrtip',
+    buttons = list(
+      c('csv', 'excel'),
+      I('colvis')
+    ),
+    rowGroup = list(dataSrc = 1)
+  )
+) %>%
+formatStyle('報告番号', fontWeight = 'bold') %>%
+formatStyle('合計', fontWeight = 'bold') %>%
+formatStyle('平均', color = 'red', fontWeight = 'bold')
+
+DT::saveWidget(x, file = file.path(outdir, "yushusho.html"), selfcontained = FALSE, libdir = "libs")
+
+x
+```
