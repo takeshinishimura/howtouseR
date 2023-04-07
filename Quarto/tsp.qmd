@@ -2,14 +2,14 @@
 project:
   type: website
   output-dir: docs
-title: "巡回セールスマン問題のようなもの"
+title: "単純な巡回セールスマン問題"
 date: "`r format(Sys.time(), '%Y-%m-%d') `"
 format:
   html:
     toc: true
     toc-title: 目次
     toc_float: true
-    toc-depth: 2
+    toc-depth: 3
     number-sections: true
     theme: Journal
 lang: ja
@@ -104,9 +104,9 @@ ggplot(ehime_map[[1]]) +
   theme(text = element_text(family = "HiraKakuProN-W3"))
 ```
 
-たかしくんはここで重大な問題に気づいた。
+たかしくんはここで重大な問題に気がついた。
 この地図は動かせないし，拡大もできないではないか。
-Google マップに慣れたたかしくんには，地図を動かせた方が便利なのである。
+Google マップに慣れ親しんでいるたかしくんにとって，地図は動かせた方が便利なのである。
 そこで，[Leaflet](https://leafletjs.com/){target="_blank"}を使うことにする。
 
 ```{r}
@@ -125,7 +125,7 @@ leaflet::leaflet(office_map[[1]]) %>%
 # addMarkers(label = ~ P34_003)
 ```
 
-あ，みきゃんだ。
+みきゃんだ。
 
 ```{r}
 library(mapview)
@@ -134,16 +134,15 @@ mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
   mapview::mapview(office_map[[1]], legend = FALSE)
 ```
 
-訪問場所が多いなぁ。
-何とか減らせないかと考える。
+訪問場所が多いので，何とか減らせないかとたかしくんは考え始めた。
 松山市内だけにするか，あるいは，市町村役場だけにするか。
-前者だとすぐに回れるが，後者の方がいろいろ行けて楽しそうである。
-たかしくんは，両方のルートに必要な時間と移動距離を計算してから，どちらにするか考えることにした。
+前者だとすぐに回れるが，後者の方がいろいろ行けて楽しそうだ。
+たかしくんは，両方のルートに必要な移動時間と移動距離を計算してから，どちらにするか考えることにした。
 
 
 ## ルートの探索
 
-### 松山市内だけ回る場合
+### 松山市内だけを回るルート
 
 ```{r}
 #| warning: false
@@ -151,13 +150,13 @@ mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
 library(osrm)
 
 matsuyama <- office_map[[1]][grep("松山市", office_map[[1]]$P34_004), ]
-matsuyama_tsp <- osrm::osrmTrip(loc = matsuyama, returnclass = "sf")
+matsuyama_tsp <- osrm::osrmTrip(loc = matsuyama, returnclass = "sf", osrm.profile = "foot")
 
 mapview::mapview(matsuyama, legend = FALSE) +
   mapview::mapview(matsuyama_tsp[[1]]$trip, color = "black", legend = FALSE)
 ```
 
-ルート全体の移動時間は`r round(matsuyama_tsp[[1]]$summary$duration, 1)`，移動距離は`r round(matsuyama_tsp[[1]]$summary$distance, 1)`であった。
+ルート全体の移動時間は`r round(matsuyama_tsp[[1]]$summary$duration, 1)`分，移動距離は`r round(matsuyama_tsp[[1]]$summary$distance, 1)`kmであった。
 
 ```{r}
 #| eval: false
@@ -204,24 +203,24 @@ edges <- data.frame(
   color = "black", arrows = "to",
   shadow = TRUE
 )
-visNetwork(nodes, edges) %>%
+visNetwork::visNetwork(nodes, edges) %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
 ```
+（この図は拡大できます。）
 
-### 市町村役場だけ回る場合
+### 市町村役場だけを回るルート
 
 ```{r}
 #| warning: false
 #| message: false
 cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003),]
-cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf")
+cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf", osrm.profile = "car")
 
 mapview::mapview(cityhall, legend = FALSE) +
   mapview::mapview(cityhall_tsp[[1]]$trip, color = "black", legend = FALSE)
 ```
 
-ルート全体の移動時間は`r round(cityhall_tsp[[1]]$summary$duration, 1)`，移動距離は`r round(cityhall_tsp[[1]]$summary$distance, 1)`であった。
-
+ルート全体の移動時間は`r round(cityhall_tsp[[1]]$summary$duration, 1)`分，移動距離は`r round(cityhall_tsp[[1]]$summary$distance, 1)`kmであった。
 
 ```{r}
 library(visNetwork)
@@ -242,7 +241,17 @@ edges <- data.frame(
   color = "black", arrows = "to",
   shadow = TRUE
 )
-visNetwork(nodes, edges) %>%
+visNetwork::visNetwork(nodes, edges) %>%
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
 ```
-たかしくんは図を描いて満足しました。
+
+### ルートの比較
+
+これら2つのルートを比較しながら，たかしくんは考え込んでしまった。
+移動距離が短い方が移動時間が長い？
+どうしてこうなったか考えてみよう。
+
+| | 移動時間 | 移動距離 | 訪問場所 |
+|:---:|:---:|:---:|:---:|
+| 松山市内だけを回るルート | `r sprintf("%.1f", round(matsuyama_tsp[[1]]$summary$duration, 1))` 分<br>（= `r sprintf("%.1f", round(matsuyama_tsp[[1]]$summary$duration / 60, 1))` 時間） | `r sprintf("%.1f", round(matsuyama_tsp[[1]]$summary$distance, 1))` km | `r nrow(matsuyama)` か所 |
+| 市町村役場だけを回るルート | `r sprintf("%.1f", round(cityhall_tsp[[1]]$summary$duration, 1))` 分<br>（= `r sprintf("%.1f", round(cityhall_tsp[[1]]$summary$duration / 60, 1))`時間） | `r sprintf("%.1f", round(cityhall_tsp[[1]]$summary$distance, 1))` km | `r nrow(cityhall)` か所 |
