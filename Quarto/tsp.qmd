@@ -1,0 +1,248 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "巡回セールスマン問題のようなもの"
+date: "`r format(Sys.time(), '%Y-%m-%d') `"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 2
+    number-sections: true
+    theme: Journal
+lang: ja
+---
+
+この春，たかしくんは愛媛県庁に入庁した。
+これから市町村役場の方々と一緒に仕事をする機会も増えるだろう。
+さっそくみんなに顔を覚えてもらうために，愛媛県内にある市区町村役場等の施設にあいさつ回りに行こうと考えた。
+それでは，どのようなルートで訪問すればよいだろうか。
+
+
+## データの取得
+
+まず，愛媛県の地図データと市町村役場等の施設の位置情報に関するデータをダウンロードすることから始めよう。
+国土交通省国土数値情報ダウンロードサイトから，[行政区域データ](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html){target="_blank"}と[市区町村役場データ](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P34.html){target="_blank"}をダウンロードする。
+ファイル名はそれぞれ，N03-190101_38_GML.zipとP34-14_38_GML.zipである。
+
+ダウンロードしたZIPファイルを解凍し，Rでシェープファイルを読み込む。
+
+```{r}
+#| eval: false
+library(sf)
+
+ehime_map0 <- sf::read_sf("N03-190101_38_GML/N03-19_38_190101.shp", options = "ENCODING=CP932")
+office_map0 <- sf::read_sf("P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
+```
+```{r}
+#| include: false
+library(sf)
+
+ehime_map0 <- sf::read_sf("../data/N03-190101_38_GML/N03-19_38_190101.shp", options = "ENCODING=CP932")
+office_map0 <- sf::read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
+```
+
+このようにしてもよいが，[kokudosuuchi](https://github.com/yutannihilation/kokudosuuchi){target="_blank"}パッケージを使うとZIPファイルを解凍する必要がなく，便利である。
+
+```{r}
+#| eval: false
+library(kokudosuuchi)
+
+ehime_map <- kokudosuuchi::readKSJData("N03-190101_38_GML.zip")
+office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip")
+```
+```{r}
+#| include: false
+library(kokudosuuchi)
+
+ehime_map <- kokudosuuchi::readKSJData("../data/N03-190101_38_GML.zip")
+office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip")
+```
+
+なお，いずれの方法でも同じデータが読み込まれるわけではないことに注意が必要である。
+後者はリストのリストとして読み込まれる。
+
+```{r}
+is.list(ehime_map0[[1]])
+is.list(ehime_map[[1]])
+```
+
+
+## 地図のプロット
+
+Rにデータを読み込めたので，さっそく地図をプロットしてみる。
+
+```{r}
+# plot(ehime_map[[1]])# 処理に非常に時間がかかるため，避けた方がよい
+# plot(sf::st_geometry(ehime_map[[1]]))
+library(rmapshaper)
+
+ehime_map_shrink = rmapshaper::ms_simplify(ehime_map[[1]], keep = 0.001, keep_shapes = TRUE)
+
+par(mar=c(0, 0, 0, 0)) 
+plot(sf::st_geometry(ehime_map_shrink))
+par(new = TRUE)
+plot(sf::st_geometry(office_map[[1]]), pch = 16, add = TRUE)
+```
+
+ぜんぜん悪くない。
+ただし，たかしくんはggplot2を用いた地図の方が好みである。
+
+```{r}
+library(ggplot2)
+
+# 市町村名の順番を固定しておくと，凡例の順番がおかしくならない
+ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_map[[1]]$N03_004))
+
+ggplot(ehime_map[[1]]) +
+  geom_sf(aes(fill = N03_004)) +
+  geom_sf(data = office_map[[1]], colour = "black") +
+  guides(fill = guide_legend(title = "市町村")) +
+  theme_void() +
+  theme(text = element_text(family = "HiraKakuProN-W3"))
+```
+
+たかしくんはここで重大な問題に気づいた。
+この地図は動かせないし，拡大もできないではないか。
+Google マップに慣れたたかしくんには，地図を動かせた方が便利なのである。
+そこで，[Leaflet](https://leafletjs.com/){target="_blank"}を使うことにする。
+
+```{r}
+#| warning: false
+library(leaflet)
+
+micanfIcon <- makeIcon(
+  iconUrl = "https://www.pref.ehime.jp/h12200/mican-kanzume/images/img_dance02.png",
+# iconUrl = "https://www.pref.ehime.jp/h12200/mican-kanzume/images/img_dance03.png",
+  iconWidth = 40, iconHeight = 40,
+  iconAnchorX = 20, iconAnchorY = 0,
+)
+leaflet::leaflet(office_map[[1]]) %>%
+  addTiles() %>%
+  addMarkers(~sf::st_coordinates(office_map[[1]])[, 1], ~sf::st_coordinates(office_map[[1]])[, 2], icon = micanfIcon)
+# addMarkers(label = ~ P34_003)
+```
+
+あ，みきゃんだ。
+
+```{r}
+library(mapview)
+
+mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
+  mapview::mapview(office_map[[1]], legend = FALSE)
+```
+
+訪問場所が多いなぁ。
+何とか減らせないかと考える。
+松山市内だけにするか，あるいは，市町村役場だけにするか。
+前者だとすぐに回れるが，後者の方がいろいろ行けて楽しそうである。
+たかしくんは，両方のルートに必要な時間と移動距離を計算してから，どちらにするか考えることにした。
+
+
+## ルートの探索
+
+### 松山市内だけ回る場合
+
+```{r}
+#| warning: false
+#| message: false
+library(osrm)
+
+matsuyama <- office_map[[1]][grep("松山市", office_map[[1]]$P34_004), ]
+matsuyama_tsp <- osrm::osrmTrip(loc = matsuyama, returnclass = "sf")
+
+mapview::mapview(matsuyama, legend = FALSE) +
+  mapview::mapview(matsuyama_tsp[[1]]$trip, color = "black", legend = FALSE)
+```
+
+ルート全体の移動時間は`r round(matsuyama_tsp[[1]]$summary$duration, 1)`，移動距離は`r round(matsuyama_tsp[[1]]$summary$distance, 1)`であった。
+
+```{r}
+#| eval: false
+# Graphviz（ここでは図示しない。）
+library(DiagrammeR)
+
+nodes_df <- DiagrammeR::create_node_df(
+  n = nrow(matsuyama),
+  label = matsuyama$P34_003,
+  shape = "plaintext",
+  color = "black",
+  fillcolor = "white")
+edges_df <- DiagrammeR::create_edge_df(
+  from = matsuyama_tsp[[1]]$trip$start,
+  to = matsuyama_tsp[[1]]$trip$end,
+  color = "black")
+edges_df$label <- paste(
+  paste("duration", round(matsuyama_tsp[[1]]$trip$duration, 1), sep = ": "),
+  paste("distance", round(matsuyama_tsp[[1]]$trip$distance, 1), sep = ": "),
+  sep = "\n")
+g <- DiagrammeR::create_graph(
+  nodes_df = nodes_df,
+  edges_df = edges_df,
+  attr_theme = "lr")
+DiagrammeR::render_graph(g)
+```
+
+```{r}
+library(visNetwork)
+
+nodes <- data.frame(
+  id = rownames(matsuyama),
+  label = matsuyama$P34_003,
+  shape = "text"
+)
+edges <- data.frame(
+  from = matsuyama_tsp[[1]]$trip$start,
+  to = matsuyama_tsp[[1]]$trip$end,
+  label = paste(
+    paste("duration", round(matsuyama_tsp[[1]]$trip$duration, 1), sep = ": "),
+    paste("distance", round(matsuyama_tsp[[1]]$trip$distance, 1), sep = ": "),
+    sep = "\n"
+  ),
+  color = "black", arrows = "to",
+  shadow = TRUE
+)
+visNetwork(nodes, edges) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+```
+
+### 市町村役場だけ回る場合
+
+```{r}
+#| warning: false
+#| message: false
+cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003),]
+cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf")
+
+mapview::mapview(cityhall, legend = FALSE) +
+  mapview::mapview(cityhall_tsp[[1]]$trip, color = "black", legend = FALSE)
+```
+
+ルート全体の移動時間は`r round(cityhall_tsp[[1]]$summary$duration, 1)`，移動距離は`r round(cityhall_tsp[[1]]$summary$distance, 1)`であった。
+
+
+```{r}
+library(visNetwork)
+
+nodes <- data.frame(
+  id = rownames(cityhall),
+  label = cityhall$P34_003,
+  shape = "text"
+)
+edges <- data.frame(
+  from = cityhall_tsp[[1]]$trip$start,
+  to = cityhall_tsp[[1]]$trip$end,
+  label = paste(
+    paste("duration", round(cityhall_tsp[[1]]$trip$duration, 1), sep = ": "),
+    paste("distance", round(cityhall_tsp[[1]]$trip$distance, 1), sep = ": "),
+    sep = "\n"
+  ),
+  color = "black", arrows = "to",
+  shadow = TRUE
+)
+visNetwork(nodes, edges) %>%
+  visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
+```
+たかしくんは図を描いて満足しました。

@@ -12,7 +12,7 @@ format:
     toc-depth: 2
     number-sections: true
     theme: Journal
-lang: "ja"
+lang: ja
 ---
 
 時系列データではPOSIXct，POSIXtというクラスを使う。
