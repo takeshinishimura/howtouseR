@@ -61,7 +61,7 @@ ehime_map <- kokudosuuchi::readKSJData("../data/N03-190101_38_GML.zip")
 office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip")
 ```
 
-なお，いずれの方法でも同じデータが読み込まれるわけではないことに注意が必要である。
+なお，それぞれの方法で読み込まれるデータはまったく同じではないことに注意が必要である。
 後者はリストのリストとして読み込まれる。
 
 ```{r}
@@ -83,8 +83,7 @@ ehime_map_shrink = rmapshaper::ms_simplify(ehime_map[[1]], keep = 0.001, keep_sh
 
 par(mar=c(0, 0, 0, 0)) 
 plot(sf::st_geometry(ehime_map_shrink))
-par(new = TRUE)
-plot(sf::st_geometry(office_map[[1]]), pch = 16, add = TRUE)
+plot(sf::st_geometry(office_map[[1]]), pch = 16, col = "orange", add = TRUE)
 ```
 
 ぜんぜん悪くない。
@@ -92,21 +91,24 @@ plot(sf::st_geometry(office_map[[1]]), pch = 16, add = TRUE)
 
 ```{r}
 library(ggplot2)
+# カラーパレット
+library(viridis)
 
 # 市町村名の順番を固定しておくと，凡例の順番がおかしくならない
 ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_map[[1]]$N03_004))
 
 ggplot(ehime_map[[1]]) +
   geom_sf(aes(fill = N03_004)) +
-  geom_sf(data = office_map[[1]], colour = "black") +
+  geom_sf(data = office_map[[1]], colour = "orange") +
+  scale_fill_viridis_d(option = "mako", direction = 1) + 
   guides(fill = guide_legend(title = "市町村")) +
   theme_void() +
   theme(text = element_text(family = "HiraKakuProN-W3"))
 ```
 
 たかしくんはここで重大な問題に気がついた。
-この地図は動かせないし，拡大もできないではないか。
-Google マップに慣れ親しんでいるたかしくんにとって，地図は動かせた方が便利なのである。
+この地図は動かせないし，拡大もできない。
+Google マップに慣れ親しんでいるたかしくんにとって，地図は動かせた方が便利である。
 そこで，[Leaflet](https://leafletjs.com/){target="_blank"}を使うことにする。
 
 ```{r}
@@ -117,12 +119,12 @@ micanfIcon <- makeIcon(
   iconUrl = "https://www.pref.ehime.jp/h12200/mican-kanzume/images/img_dance02.png",
 # iconUrl = "https://www.pref.ehime.jp/h12200/mican-kanzume/images/img_dance03.png",
   iconWidth = 40, iconHeight = 40,
-  iconAnchorX = 20, iconAnchorY = 0,
+  iconAnchorX = 20, iconAnchorY = 20,
 )
 leaflet::leaflet(office_map[[1]]) %>%
   addTiles() %>%
-  addMarkers(~sf::st_coordinates(office_map[[1]])[, 1], ~sf::st_coordinates(office_map[[1]])[, 2], icon = micanfIcon)
 # addMarkers(label = ~ P34_003)
+  addMarkers(~sf::st_coordinates(office_map[[1]])[, 1], ~sf::st_coordinates(office_map[[1]])[, 2], icon = micanfIcon)
 ```
 
 みきゃんだ。
@@ -131,7 +133,7 @@ leaflet::leaflet(office_map[[1]]) %>%
 library(mapview)
 
 mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
-  mapview::mapview(office_map[[1]], legend = FALSE)
+  mapview(office_map[[1]], col.regions = "orange", legend = FALSE)
 ```
 
 訪問場所が多いので，何とか減らせないかとたかしくんは考え始めた。
@@ -153,7 +155,7 @@ matsuyama <- office_map[[1]][grep("松山市", office_map[[1]]$P34_004), ]
 matsuyama_tsp <- osrm::osrmTrip(loc = matsuyama, returnclass = "sf", osrm.profile = "foot")
 
 mapview::mapview(matsuyama, legend = FALSE) +
-  mapview::mapview(matsuyama_tsp[[1]]$trip, color = "black", legend = FALSE)
+  mapview(matsuyama_tsp[[1]]$trip, color = "black", homebutton = FALSE, legend = FALSE)
 ```
 
 ルート全体の移動時間は`r round(matsuyama_tsp[[1]]$summary$duration, 1)`分，移動距離は`r round(matsuyama_tsp[[1]]$summary$distance, 1)`kmであった。
@@ -196,8 +198,8 @@ edges <- data.frame(
   from = matsuyama_tsp[[1]]$trip$start,
   to = matsuyama_tsp[[1]]$trip$end,
   label = paste(
-    paste("duration", round(matsuyama_tsp[[1]]$trip$duration, 1), sep = ": "),
-    paste("distance", round(matsuyama_tsp[[1]]$trip$distance, 1), sep = ": "),
+    paste("時間", sprintf("%.1f", round(matsuyama_tsp[[1]]$trip$duration, 1)), sep = ": "),
+    paste0("距離", ": ", sprintf("%.1f", round(matsuyama_tsp[[1]]$trip$distance, 1)), " "),
     sep = "\n"
   ),
   color = "black", arrows = "to",
@@ -216,8 +218,13 @@ visNetwork::visNetwork(nodes, edges) %>%
 cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003),]
 cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf", osrm.profile = "car")
 
-mapview::mapview(cityhall, legend = FALSE) +
-  mapview::mapview(cityhall_tsp[[1]]$trip, color = "black", legend = FALSE)
+mapview::mapview(
+  list(cityhall, cityhall_tsp[[1]]$trip),
+  color = list("black", "black"),
+  col.regions = list("red", NA),
+  legend = list(FALSE, FALSE),
+  homebutton = list(TRUE, FALSE)
+)
 ```
 
 ルート全体の移動時間は`r round(cityhall_tsp[[1]]$summary$duration, 1)`分，移動距離は`r round(cityhall_tsp[[1]]$summary$distance, 1)`kmであった。
@@ -234,8 +241,8 @@ edges <- data.frame(
   from = cityhall_tsp[[1]]$trip$start,
   to = cityhall_tsp[[1]]$trip$end,
   label = paste(
-    paste("duration", round(cityhall_tsp[[1]]$trip$duration, 1), sep = ": "),
-    paste("distance", round(cityhall_tsp[[1]]$trip$distance, 1), sep = ": "),
+    paste("時間", sprintf("%.1f", round(cityhall_tsp[[1]]$trip$duration, 1)), sep = ": "),
+    paste("距離", sprintf("%.1f", round(cityhall_tsp[[1]]$trip$distance, 1)), sep = ": "),
     sep = "\n"
   ),
   color = "black", arrows = "to",
