@@ -92,6 +92,7 @@ plot(sf::st_geometry(office_map[[1]]), pch = 16, col = "orange", add = TRUE)
 ただし，たかしくんはggplot2を用いた地図の方が好みである。
 
 ```{r}
+#| message: false
 library(ggplot2)
 # カラーパレット
 library(viridis)
