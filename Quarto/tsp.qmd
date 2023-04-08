@@ -230,8 +230,6 @@ mapview::mapview(
 ルート全体の移動時間は`r round(cityhall_tsp[[1]]$summary$duration, 1)`分，移動距離は`r round(cityhall_tsp[[1]]$summary$distance, 1)`kmであった。
 
 ```{r}
-library(visNetwork)
-
 nodes <- data.frame(
   id = rownames(cityhall),
   label = cityhall$P34_003,
