@@ -44,7 +44,7 @@ ehime_map0 <- sf::read_sf("../data/N03-20220101_38_GML/N03-22_38_220101.shp", op
 office_map0 <- sf::read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
 ```
 
-このようにしてもよいが，[kokudosuuchi](https://github.com/yutannihilation/kokudosuuchi){target="_blank"}パッケージを使うとZIPファイルを解凍する必要がなく，便利である。
+このようにしてもよいが，[kokudosuuchi](https://github.com/yutannihilation/kokudosuuchi){target="_blank"}を使うとZIPファイルを解凍する必要がなく，便利である。
 
 ```{r}
 #| eval: false
@@ -85,8 +85,8 @@ ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_m
 table(is.na(ehime_map[[1]]$N03_004))
 ```
 
-これを修正しておかないと以下の図の凡例にNAという名前の市町村が現れる。
-これをどう処理するか考える必要があるが，たかしくんは強引にもレコードごと削除した。
+この部分を残したままだと，以下の図の凡例にNAという名前の市町村が現れる。
+これをどう処理するかは考える必要があるが，たかしくんは強引にもレコードごと削除した。
 
 ```{r}
 ehime_map[[1]] <- ehime_map[[1]][-which(is.na(ehime_map[[1]]$N03_004)), ]
@@ -109,7 +109,7 @@ plot(sf::st_geometry(office_map[[1]]), pch = 16, col = "orange", add = TRUE)
 ```
 
 ぜんぜん悪くない。
-ただし，たかしくんはggplot2を用いた地図の方が好みである。
+ただし，たかしくんはggplot2を用いた図の方が好みである。
 
 ```{r}
 #| message: false
