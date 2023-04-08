@@ -52,7 +52,7 @@ library(kokudosuuchi)
 
 ehime_map <- kokudosuuchi::readKSJData("N03-190101_38_GML.zip")
 office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip") |>
-  kokudosuuchi::translateKSJData()
+  translateKSJData()
 ```
 ```{r}
 #| include: false
@@ -60,7 +60,7 @@ library(kokudosuuchi)
 
 ehime_map <- kokudosuuchi::readKSJData("../data/N03-190101_38_GML.zip")
 office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip") |>
-  kokudosuuchi::translateKSJData()
+  translateKSJData()
 ```
 
 なお，それぞれの方法で読み込まれるデータはまったく同じではないことに注意が必要である。
@@ -124,8 +124,8 @@ micanfIcon <- makeIcon(
   iconWidth = 40, iconHeight = 40,
   iconAnchorX = 20, iconAnchorY = 20,
 )
-leaflet::leaflet(office_map[[1]]) %>%
-  addTiles() %>%
+leaflet::leaflet(office_map[[1]]) |>
+  addTiles() |>
 # addMarkers(label = ~ P34_003)
   addMarkers(~sf::st_coordinates(office_map[[1]])[, 1], ~sf::st_coordinates(office_map[[1]])[, 2], icon = micanfIcon)
 ```
@@ -208,7 +208,7 @@ edges <- data.frame(
   color = "black", arrows = "to",
   shadow = TRUE
 )
-visNetwork::visNetwork(nodes, edges) %>%
+visNetwork::visNetwork(nodes, edges) |>
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
 ```
 （この図は拡大できます。）
@@ -249,7 +249,7 @@ edges <- data.frame(
   color = "black", arrows = "to",
   shadow = TRUE
 )
-visNetwork::visNetwork(nodes, edges) %>%
+visNetwork::visNetwork(nodes, edges) |>
   visOptions(highlightNearest = TRUE, nodesIdSelection = TRUE)
 ```
 
