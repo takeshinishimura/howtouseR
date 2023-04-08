@@ -215,7 +215,7 @@ visNetwork::visNetwork(nodes, edges) %>%
 ```{r}
 #| warning: false
 #| message: false
-cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003),]
+cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003), ]
 cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf", osrm.profile = "car")
 
 mapview::mapview(
