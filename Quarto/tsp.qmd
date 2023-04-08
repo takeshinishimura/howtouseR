@@ -51,14 +51,16 @@ office_map0 <- sf::read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENC
 library(kokudosuuchi)
 
 ehime_map <- kokudosuuchi::readKSJData("N03-190101_38_GML.zip")
-office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip")
+office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip") |>
+  kokudosuuchi::translateKSJData()
 ```
 ```{r}
 #| include: false
 library(kokudosuuchi)
 
 ehime_map <- kokudosuuchi::readKSJData("../data/N03-190101_38_GML.zip")
-office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip")
+office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip") |>
+  kokudosuuchi::translateKSJData()
 ```
 
 なお，それぞれの方法で読み込まれるデータはまったく同じではないことに注意が必要である。
@@ -132,7 +134,7 @@ leaflet::leaflet(office_map[[1]]) %>%
 ```{r}
 library(mapview)
 
-mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
+mapview::mapview(ehime_map[[1]], zcol = "N03_004", layer.name = "市町村") +
   mapview(office_map[[1]], col.regions = "orange", legend = FALSE)
 ```
 
@@ -151,7 +153,7 @@ mapview::mapview(ehime_map[[1]], zcol = "N03_004") +
 #| message: false
 library(osrm)
 
-matsuyama <- office_map[[1]][grep("松山市", office_map[[1]]$P34_004), ]
+matsuyama <- office_map[[1]][grep("松山市", office_map[[1]]$所在地), ]
 matsuyama_tsp <- osrm::osrmTrip(loc = matsuyama, returnclass = "sf", osrm.profile = "foot")
 
 mapview::mapview(matsuyama, legend = FALSE) +
@@ -167,7 +169,7 @@ library(DiagrammeR)
 
 nodes_df <- DiagrammeR::create_node_df(
   n = nrow(matsuyama),
-  label = matsuyama$P34_003,
+  label = matsuyama$名称,
   shape = "plaintext",
   color = "black",
   fillcolor = "white")
@@ -191,7 +193,7 @@ library(visNetwork)
 
 nodes <- data.frame(
   id = rownames(matsuyama),
-  label = matsuyama$P34_003,
+  label = matsuyama$名称,
   shape = "text"
 )
 edges <- data.frame(
@@ -215,7 +217,7 @@ visNetwork::visNetwork(nodes, edges) %>%
 ```{r}
 #| warning: false
 #| message: false
-cityhall <- office_map[[1]][grep("市役所$|役場$", office_map[[1]]$P34_003), ]
+cityhall <- office_map[[1]][grep("役所$|役場$", office_map[[1]]$名称), ]
 cityhall_tsp <- osrm::osrmTrip(loc = cityhall, returnclass = "sf", osrm.profile = "car")
 
 mapview::mapview(
@@ -232,7 +234,7 @@ mapview::mapview(
 ```{r}
 nodes <- data.frame(
   id = rownames(cityhall),
-  label = cityhall$P34_003,
+  label = cityhall$名称,
   shape = "text"
 )
 edges <- data.frame(
