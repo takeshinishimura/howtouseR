@@ -94,7 +94,7 @@ library(ggplot2)
 # カラーパレット
 library(viridis)
 
-# 市町村名の順番を固定しておくと，凡例の順番がおかしくならない
+# 市町村名をfactorにしておくと，凡例の順番がおかしくならない
 ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_map[[1]]$N03_004))
 
 ggplot(ehime_map[[1]]) +
