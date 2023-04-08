@@ -25,7 +25,7 @@ lang: ja
 
 まず，愛媛県の地図データと市町村役場等の施設の位置情報に関するデータをダウンロードすることから始めよう。
 国土交通省国土数値情報ダウンロードサイトから，[行政区域データ](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-N03-v3_1.html){target="_blank"}と[市区町村役場データ](https://nlftp.mlit.go.jp/ksj/gml/datalist/KsjTmplt-P34.html){target="_blank"}をダウンロードする。
-ファイル名はそれぞれ，N03-190101_38_GML.zipとP34-14_38_GML.zipである。
+ファイル名はそれぞれ，N03-20220101_38_GML.zipとP34-14_38_GML.zipである。
 
 ダウンロードしたZIPファイルを解凍し，Rでシェープファイルを読み込む。
 
@@ -33,14 +33,14 @@ lang: ja
 #| eval: false
 library(sf)
 
-ehime_map0 <- sf::read_sf("N03-190101_38_GML/N03-19_38_190101.shp", options = "ENCODING=CP932")
+ehime_map0 <- sf::read_sf("N03-20220101_38_GML/N03-22_38_220101.shp", options = "ENCODING=CP932")
 office_map0 <- sf::read_sf("P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
 ```
 ```{r}
 #| include: false
 library(sf)
 
-ehime_map0 <- sf::read_sf("../data/N03-190101_38_GML/N03-19_38_190101.shp", options = "ENCODING=CP932")
+ehime_map0 <- sf::read_sf("../data/N03-20220101_38_GML/N03-22_38_220101.shp", options = "ENCODING=CP932")
 office_map0 <- sf::read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
 ```
 
@@ -50,7 +50,7 @@ office_map0 <- sf::read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENC
 #| eval: false
 library(kokudosuuchi)
 
-ehime_map <- kokudosuuchi::readKSJData("N03-190101_38_GML.zip")
+ehime_map <- kokudosuuchi::readKSJData("N03-20220101_38_GML.zip")
 office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip") |>
   translateKSJData()
 ```
@@ -58,12 +58,12 @@ office_map <- kokudosuuchi::readKSJData("P34-14_38_GML.zip") |>
 #| include: false
 library(kokudosuuchi)
 
-ehime_map <- kokudosuuchi::readKSJData("../data/N03-190101_38_GML.zip")
+ehime_map <- kokudosuuchi::readKSJData("../data/N03-20220101_38_GML.zip")
 office_map <- kokudosuuchi::readKSJData("../data/P34-14_38_GML.zip") |>
   translateKSJData()
 ```
 
-なお，それぞれの方法で読み込まれるデータはまったく同じではないことに注意が必要である。
+それぞれの方法で読み込まれるデータはまったく同じではないことに注意が必要である。
 後者はリストのリストとして読み込まれる。
 
 ```{r}
@@ -71,6 +71,26 @@ is.list(ehime_map0[[1]])
 is.list(ehime_map[[1]])
 ```
 
+市町村名をfactorにしておくと，図を描いたときの凡例の順序がおかしくならずにすむ。
+
+```{r}
+ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_map[[1]]$N03_004))
+```
+
+### データの修正
+
+先ほどダウンロードした愛媛の令和4年の行政区域データには，市区町村名（N03_004の列）がNAとなっているレコードが存在する。
+
+```{r}
+table(is.na(ehime_map[[1]]$N03_004))
+```
+
+これを修正しておかないと以下の図の凡例にNAという名前の市町村が現れる。
+これをどう処理するか考える必要があるが，たかしくんは強引にもレコードごと削除した。
+
+```{r}
+ehime_map[[1]] <- ehime_map[[1]][-1, ]
+```
 
 ## 地図のプロット
 
@@ -97,14 +117,11 @@ library(ggplot2)
 # カラーパレット
 library(viridis)
 
-# 市町村名をfactorにしておくと，凡例の順番がおかしくならない
-ehime_map[[1]]$N03_004 <- factor(ehime_map[[1]]$N03_004, levels = unique(ehime_map[[1]]$N03_004))
-
 ggplot(ehime_map[[1]]) +
   geom_sf(aes(fill = N03_004)) +
   geom_sf(data = office_map[[1]], colour = "orange") +
   scale_fill_viridis_d(option = "mako", direction = 1) + 
-  guides(fill = guide_legend(title = "市町村")) +
+  guides(fill = guide_legend(title = "市町村名")) +
   theme_void() +
   theme(text = element_text(family = "HiraKakuProN-W3"))
 ```
@@ -126,8 +143,7 @@ micanfIcon <- makeIcon(
 )
 leaflet::leaflet(office_map[[1]]) |>
   addTiles() |>
-# addMarkers(label = ~ P34_003)
-  addMarkers(~sf::st_coordinates(office_map[[1]])[, 1], ~sf::st_coordinates(office_map[[1]])[, 2], icon = micanfIcon)
+  addMarkers(icon = micanfIcon)
 ```
 
 みきゃんだ。
@@ -135,7 +151,7 @@ leaflet::leaflet(office_map[[1]]) |>
 ```{r}
 library(mapview)
 
-mapview::mapview(ehime_map[[1]], zcol = "N03_004", layer.name = "市町村") +
+mapview::mapview(ehime_map[[1]], zcol = "N03_004", layer.name = "市町村名") +
   mapview(office_map[[1]], col.regions = "orange", legend = FALSE)
 ```
 
