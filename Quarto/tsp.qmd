@@ -89,7 +89,7 @@ table(is.na(ehime_map[[1]]$N03_004))
 これをどう処理するか考える必要があるが，たかしくんは強引にもレコードごと削除した。
 
 ```{r}
-ehime_map[[1]] <- ehime_map[[1]][-1, ]
+ehime_map[[1]] <- ehime_map[[1]][-which(is.na(ehime_map[[1]]$N03_004)), ]
 ```
 
 ## 地図のプロット
