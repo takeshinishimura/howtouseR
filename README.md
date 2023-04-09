@@ -13,7 +13,7 @@ Rの使い方を使用例とともに紹介する。
 ## 遺物
 
 - [JST-RISTEXフューチャー・アース構想の推進事業「日本が取り組むべき国際的優先テーマの抽出及び 研究開発のデザインに関する調査研究」最終報告書，2017年（pp. 69–96）](https://www.chikyu.ac.jp/future_earth/ristex/outputs/ABCDE-2_finalreport.pdf) （WebブラウザではPDFが正しく表示されないことがある。WoSのテキストマイニング，高速処理のためのtipsなど。）
-- [R Markdown](https://rmarkdown.rstudio.com/)
+- R Markdown
   + [ヒートマップ](https://www.chikyu.ac.jp/future_earth/ristex/WoS/cluster/noun+name_abstract_each_freqtop1000_k10_20_allauthors_tfidf/)
   + [表](https://www.chikyu.ac.jp/future_earth/ristex/handout/DT21A.html)
   + [スライド](https://takeshinishimura.github.io/)
