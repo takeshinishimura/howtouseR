@@ -11,7 +11,7 @@ format:
     toc_float: true
     toc-depth: 2
     number-sections: true
-    theme: Journal
+    theme: journal
 lang: ja
 ---
 
