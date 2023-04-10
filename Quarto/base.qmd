@@ -30,6 +30,7 @@ tapply(iris$Sepal.Length, iris$Species, sum)
 
 ```{r}
 str(iris)
+attributes(iris)
 ```
 
 Objects | class | mode | typeof |
