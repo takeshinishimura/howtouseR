@@ -1,0 +1,45 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "baseに関するメモ"
+date: "`r format(Sys.time(), '%Y-%m-%d') `"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 2
+    number-sections: true
+    theme: sketchy
+lang: ja
+---
+
+よく忘れるコマンドについて思い出せるようにするためのメモです。
+コードを見れば分かるため，細かい説明はしない。
+
+## base::apply()
+
+```{r}
+lapply(split(iris$Sepal.Length, iris$Species), sum)
+sapply(split(iris$Sepal.Length, iris$Species), sum)
+tapply(iris$Sepal.Length, iris$Species, sum)
+```
+
+## base::class()とbase::mode()とbase::typeof()
+
+```{r}
+str(iris)
+```
+
+Variables | class | mode | typeof |
+|:---|:---:|:---:|:---:|
+iris | `r class(iris)` | `r mode(iris)` | `r typeof(iris)`
+iris$Sepal.Length | `r class(iris$Sepal.Length)` | `r mode(iris$Sepal.Length)` | `r typeof(iris$Sepal.Length)`
+iris[, 1] | `r class(iris[, 1])` | `r mode(iris[, 1])` | `r typeof(iris[, 1])`
+iris["Sepal.Length"] | `r class(iris["Sepal.Length"])` | `r mode(iris["Sepal.Length"])` | `r typeof(iris["Sepal.Length"])`
+iris[, "Sepal.Length"] | `r class(iris[, "Sepal.Length"])` | `r mode(iris[, "Sepal.Length"])` | `r typeof(iris[, "Sepal.Length"])`
+iris[, "Species"] | `r class(iris[, "Species"])` | `r mode(iris[, "Species"])` | `r typeof(iris[, "Species"])`
+iris[["Species"]] | `r class(iris[["Species"]])` | `r mode(iris[["Species"]])` | `r typeof(iris[["Species"]])`
+levels(iris[["Species"]]) | `r class(levels(iris[["Species"]]))` | `r mode(levels(iris[["Species"]]))` | `r typeof(levels(iris[["Species"]]))`
+rownames(iris) | `r class(rownames(iris))` | `r mode(rownames(iris))` | `r typeof(rownames(iris))`

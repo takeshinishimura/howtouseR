@@ -3,6 +3,8 @@
 Rの使い方を使用例とともに紹介する。
 自分が参照することを意識しているため，近接箇所で同じことを実現するのにわざと異なるコードで書いている部分がある。
 
+- [baseに関するメモ](https://takeshinishimura.github.io/howtouseR/base.html)
+
 
 ## 作図
 
