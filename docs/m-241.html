@@ -114,14 +114,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="holux-m-241" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="holux-m-241"><span class="header-section-number">1</span> HOLUX M-241</h2>
 <p>HOLUX M-241は，かつて約8,000円で売られていたGPSロガーである。 現在新品では入手困難である。</p>
-<p>また，HOLUX M-241は，単三電池1本で丸一日近くGPSログを取ることができる。 どれくらいの頻度でログを取るかを設定できるため，電池の持ち時間はこの設定に依存する。 肝心の位置の精度はかなり正確であり，どういうルートをたどったかを思い出すには十分な精度である。。</p>
-<p>macOSでは，<a href="https://www.houdah.com/houdahGPS/" target="_blank">HoudahGPS</a> を使えば，Bluetooth接続で <a href="https://ja.wikipedia.org/wiki/GPX" target="_blank">GPX</a> や <a href="https://ja.wikipedia.org/wiki/KML" target="_blank">KML</a> に変換できるため，非常に便利である。</p>
-<p>ただし，ひとつ大きな問題がある。 ここ近年，記録された日時が正確ではないことである。 これは<a href="https://www.yamareco.com/modules/yamanote/detail.php?nid=2428" target="_blank">GPS週数ロールオーバー</a>と呼ぶらしい。</p>
-<p>みちびきの公式サイトには，「最初のロールオーバーを迎えたのは1999年8月21～22日でした。（計算上は）さらにそこから1024週（＝年間約52週×約19.7年）を経たUTC 2019年4月7日午前0時（日本時間の午前9時）に2度目のロールオーバーとなり、以後、週数のカウントは3巡目に入ります。」（<a href="https://qzss.go.jp/overview/column/gps-rollover_190225.html" target="_blank">4月7日（日本時間）に2度目の「GPS週数ロールオーバー」｜衛星測位入門｜みちびき（準天頂衛星システム：QZSS）公式サイト - 内閣府</a>）という説明がある。細かいことは省略して，2019年4月のはずが1999年8月になるということである。これはハードウェア側がファームウェアアップデートで対応すればよい話であるが，このGPSロガーのメーカーは<a href="https://www.yamareco.com/modules/diary/148886-detail-192657" target="_blank">倒産した</a>そうである。このため，記録された日時に何らかの方法で1024週追加して，時間を後ろにずらす必要がある。 この時間を後ろにずらすことをRにやらせようというのがこのページの趣旨である。</p>
+<p>HOLUX M-241は，単三電池1本で丸一日近くGPSログを取ることができる。 どれくらいの頻度でログを取るかを設定できるため，電池の持ち時間はこの設定に依存する。 肝心の位置の精度はかなり正確であり，どういうルートをたどったかを思い出すには十分な精度である。 また，macOSでは，<a href="https://www.houdah.com/houdahGPS/" target="_blank">HoudahGPS</a> を使えば，Bluetooth接続で <a href="https://ja.wikipedia.org/wiki/GPX" target="_blank">GPX</a> や <a href="https://ja.wikipedia.org/wiki/KML" target="_blank">KML</a> に変換できるため，非常に便利である。</p>
+<p>ただし，ひとつ大きな問題がある。 ここ近年，記録された日時が正確ではないことである。 これは <a href="https://www.yamareco.com/modules/yamanote/detail.php?nid=2428" target="_blank">GPS週数ロールオーバー</a> と呼ぶらしい。</p>
+<p>みちびきの公式サイトには次のように記されている。 「最初のロールオーバーを迎えたのは1999年8月21～22日でした。（計算上は）さらにそこから1024週（＝年間約52週×約19.7年）を経たUTC 2019年4月7日午前0時（日本時間の午前9時）に2度目のロールオーバーとなり、以後、週数のカウントは3巡目に入ります。」（<a href="https://qzss.go.jp/overview/column/gps-rollover_190225.html" target="_blank">4月7日（日本時間）に2度目の「GPS週数ロールオーバー」｜衛星測位入門｜みちびき（準天頂衛星システム：QZSS）公式サイト - 内閣府</a>） これはハードウェア側がファームウェアアップデートすることで対応できる話ではあるが，このGPSロガーのメーカーは<a href="https://www.yamareco.com/modules/diary/148886-detail-192657" target="_blank">倒産した</a>そうである。 このため，ユーザー側でエクスポートしたファイルに何らかの方法で1024週追加して，時間を後ろにずらす必要がある。 この時間を後ろにずらすことをRにやらせようというのがこのページの趣旨である。</p>
 </section>
 <section id="holux-m-241から書き出したkmlファイル内の日付の修正" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="holux-m-241から書き出したkmlファイル内の日付の修正"><span class="header-section-number">2</span> HOLUX M-241から書き出したKMLファイル内の日付の修正</h2>
-<p>XMLファイルの扱いに慣れていないため，不完全なスクリプトである。 XMLの要素を取得できるときとできないときがあり，その違いがどうしてもわからない。 取得できないときは，テキストとして処理している。 また，このスクリプトは正常に動作するはずであるが，HOLUX M-241の設定によってはうまく動作しないかもしれない。</p>
+<p>XMLファイルの扱いに慣れていないため，不完全なスクリプトである。 XMLの要素を取得できるときとできないときがあり，その違いがどうしてもわからない。 取得できないときは，テキストとして処理している。 また，このスクリプトは正常に動作するはずであるが，HOLUX M-241の設定によってはうまく動作しない可能性がある。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(xml2)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
@@ -155,36 +154,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">is.null</span>(description)) {</span>
 <span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>    time_text <span class="ot">&lt;-</span> <span class="fu">xml_text</span>(description)</span>
 <span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>    dates <span class="ot">&lt;-</span> <span class="fu">str_match_all</span>(time_text, <span class="st">"</span><span class="sc">\\</span><span class="st">d{4}-</span><span class="sc">\\</span><span class="st">d{2}-</span><span class="sc">\\</span><span class="st">d{2}T</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}Z"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    new_dates <span class="ot">&lt;-</span> <span class="fu">add_weeks</span>(dates, <span class="dv">1024</span>)</span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    new_time_text <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(time_text, dates, new_dates)</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_set_text</span>(description, new_time_text)</span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a><span class="co"># description要素の日付を更新する</span></span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>description <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(kml, <span class="st">".//d1:description"</span>, <span class="at">ns =</span> ns[<span class="st">"d1"</span>])</span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_match_all</span>(<span class="fu">xml_text</span>(description), <span class="st">"</span><span class="sc">\\</span><span class="st">d{4}-</span><span class="sc">\\</span><span class="st">d{2}-</span><span class="sc">\\</span><span class="st">d{2}T</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}Z"</span>)[[<span class="dv">1</span>]]</span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>new_dates <span class="ot">&lt;-</span> <span class="fu">add_weeks</span>(dates, <span class="dv">1024</span>)</span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>new_description <span class="ot">&lt;-</span> <span class="fu">sub</span>(dates[<span class="dv">1</span>, <span class="dv">1</span>], new_dates[<span class="dv">1</span>], <span class="fu">xml_text</span>(description))</span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>new_description <span class="ot">&lt;-</span> <span class="fu">sub</span>(dates[<span class="dv">2</span>, <span class="dv">1</span>], new_dates[<span class="dv">2</span>], new_description)</span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_set_text</span>(<span class="fu">xml_find_first</span>(kml, <span class="st">".//d1:description"</span>, <span class="at">ns =</span> ns[<span class="st">"d1"</span>]), new_description)</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="co"># TimeSpan要素の日付を更新する</span></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>time_span <span class="ot">&lt;-</span> <span class="fu">xml_find_all</span>(kml, <span class="st">"//d1:TimeSpan | //gx:TimeSpan"</span>, <span class="at">ns =</span> ns)</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> time_span) {</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  begin <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(t, <span class="st">".//d1:begin | .//gx:begin"</span>, <span class="at">ns =</span> ns)</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  end <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(t, <span class="st">".//d1:end | .//gx:end"</span>, <span class="at">ns =</span> ns)</span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xml_set_text</span>(begin, <span class="fu">add_weeks</span>(<span class="fu">xml_text</span>(begin), <span class="dv">1024</span>))</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xml_set_text</span>(end, <span class="fu">add_weeks</span>(<span class="fu">xml_text</span>(end), <span class="dv">1024</span>))</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="co"># 更新したKMLファイルを保存する</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xml</span>(kml, output_file, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>    new_time_text <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(time_text, dates, <span class="fu">add_weeks</span>(dates, <span class="dv">1024</span>))</span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">xml_set_text</span>(description, new_time_text)</span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a><span class="co"># description要素の日付を更新する</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>description <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(kml, <span class="st">".//d1:description"</span>, <span class="at">ns =</span> ns[<span class="st">"d1"</span>])</span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_match_all</span>(<span class="fu">xml_text</span>(description), <span class="st">"</span><span class="sc">\\</span><span class="st">d{4}-</span><span class="sc">\\</span><span class="st">d{2}-</span><span class="sc">\\</span><span class="st">d{2}T</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}:</span><span class="sc">\\</span><span class="st">d{2}Z"</span>)[[<span class="dv">1</span>]]</span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>new_dates <span class="ot">&lt;-</span> <span class="fu">add_weeks</span>(dates, <span class="dv">1024</span>)</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>new_description <span class="ot">&lt;-</span> <span class="fu">sub</span>(dates[<span class="dv">1</span>, <span class="dv">1</span>], new_dates[<span class="dv">1</span>], <span class="fu">xml_text</span>(description))</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>new_description <span class="ot">&lt;-</span> <span class="fu">sub</span>(dates[<span class="dv">2</span>, <span class="dv">1</span>], new_dates[<span class="dv">2</span>], new_description)</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a><span class="fu">xml_set_text</span>(<span class="fu">xml_find_first</span>(kml, <span class="st">".//d1:description"</span>, <span class="at">ns =</span> ns[<span class="st">"d1"</span>]), new_description)</span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a><span class="co"># TimeSpan要素の日付を更新する</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>time_span <span class="ot">&lt;-</span> <span class="fu">xml_find_all</span>(kml, <span class="st">"//d1:TimeSpan | //gx:TimeSpan"</span>, <span class="at">ns =</span> ns)</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (t <span class="cf">in</span> time_span) {</span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>  begin <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(t, <span class="st">".//d1:begin | .//gx:begin"</span>, <span class="at">ns =</span> ns)</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>  end <span class="ot">&lt;-</span> <span class="fu">xml_find_first</span>(t, <span class="st">".//d1:end | .//gx:end"</span>, <span class="at">ns =</span> ns)</span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xml_set_text</span>(begin, <span class="fu">add_weeks</span>(<span class="fu">xml_text</span>(begin), <span class="dv">1024</span>))</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xml_set_text</span>(end, <span class="fu">add_weeks</span>(<span class="fu">xml_text</span>(end), <span class="dv">1024</span>))</span>
+<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="co"># 更新したKMLファイルを保存する</span></span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a><span class="fu">write_xml</span>(kml, output_file, <span class="at">encoding =</span> <span class="st">"UTF-8"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="geojsonへの変換" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="geojsonへの変換"><span class="header-section-number">3</span> GeoJSONへの変換</h2>
-<p><a href="https://mapshaper.org/">mapshaper</a></p>
+<p><a href="https://mapshaper.org/" target="_blank">mapshaper</a></p>
 </section>
 
 </main>
