@@ -1,0 +1,112 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "HOLUX M-241"
+date: "`r format(Sys.time(), '%Y-%m-%d') `"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 2
+    number-sections: true
+    theme: cyborg
+lang: ja
+---
+
+HOLUX M-241で保存したGPSログをRで扱うためのメモです。
+
+
+## HOLUX M-241
+
+HOLUX M-241は，かつて約8,000円で売られていたGPSロガーである。
+現在新品では入手困難である。
+
+また，HOLUX M-241は，単三電池1本で丸一日近くGPSログを取ることができる。
+どれくらいの頻度でログを取るかを設定できるため，電池の持ち時間はこの設定に依存する。
+肝心の位置の精度はかなり正確であり，どういうルートをたどったかを思い出すには十分な精度である。。
+
+macOSでは，[HoudahGPS](https://www.houdah.com/houdahGPS/){target="_blank"} を使えば，Bluetooth接続で [GPX](https://ja.wikipedia.org/wiki/GPX){target="_blank"} や [KML](https://ja.wikipedia.org/wiki/KML){target="_blank"} に変換できるため，非常に便利である。
+
+ただし，ひとつ大きな問題がある。
+ここ近年，記録された日時が正確ではないことである。
+これは[GPS週数ロールオーバー](https://www.yamareco.com/modules/yamanote/detail.php?nid=2428){target="_blank"}と呼ぶらしい。
+
+みちびきの公式サイトには，「最初のロールオーバーを迎えたのは1999年8月21～22日でした。（計算上は）さらにそこから1024週（＝年間約52週×約19.7年）を経たUTC 2019年4月7日午前0時（日本時間の午前9時）に2度目のロールオーバーとなり、以後、週数のカウントは3巡目に入ります。」（[4月7日（日本時間）に2度目の「GPS週数ロールオーバー」｜衛星測位入門｜みちびき（準天頂衛星システム：QZSS）公式サイト - 内閣府](https://qzss.go.jp/overview/column/gps-rollover_190225.html){target="_blank"}）という説明がある。細かいことは省略して，2019年4月のはずが1999年8月になるということである。これはハードウェア側がファームウェアアップデートで対応すればよい話であるが，このGPSロガーのメーカーは[倒産した](https://www.yamareco.com/modules/diary/148886-detail-192657){target="_blank"}そうである。このため，記録された日時に何らかの方法で1024週追加して，時間を後ろにずらす必要がある。
+この時間を後ろにずらすことをRにやらせようというのがこのページの趣旨である。
+
+
+## HOLUX M-241から書き出したKMLファイル内の日付の修正
+
+XMLファイルの扱いに慣れていないため，不完全なスクリプトである。
+XMLの要素を取得できるときとできないときがあり，その違いがどうしてもわからない。
+取得できないときは，テキストとして処理している。
+また，このスクリプトは正常に動作するはずであるが，HOLUX M-241の設定によってはうまく動作しないかもしれない。
+
+
+```{r}
+#| eval: false
+library(xml2)
+library(stringr)
+
+# KMLファイルのパスとファイル名を指定する
+input_file <- "filename.kml"
+output_file <- gsub("(\\.kml)", "+1024weeks\\1", input_file)
+
+# KMLファイルを読み込む
+kml <- read_xml(input_file)
+
+# 日付に1024週を加算するための関数を定義する
+add_weeks <- function(date_string, weeks) {
+  date <- as.POSIXct(date_string, format = "%Y-%m-%dT%H:%M:%S", tz = "UTC")
+  format(date + weeks * 7 * 24 * 60 * 60, "%Y-%m-%dT%H:%M:%SZ")
+}
+
+# 名前空間を定義する
+ns <- xml_ns(kml)
+
+# Placemark内の要素の日付を1024週加算する
+placemarks <- xml_find_all(kml, "//d1:Placemark", ns = ns["d1"])
+for (placemark in placemarks) {
+  # TimeStamp要素の日付を更新する
+  time_stamp <- xml_find_first(placemark, ".//d1:TimeStamp/d1:when", ns = ns["d1"])
+  date <- xml_text(time_stamp)
+  xml_set_text(time_stamp, add_weeks(date, 1024))
+
+  # description要素の日付を更新する
+  description <- xml_find_first(placemark, ".//d1:description", ns = ns["d1"])
+  if (!is.null(description)) {
+    time_text <- xml_text(description)
+    dates <- str_match_all(time_text, "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z")[[1]]
+    new_dates <- add_weeks(dates, 1024)
+    new_time_text <- str_replace_all(time_text, dates, new_dates)
+    xml_set_text(description, new_time_text)
+  }
+}
+
+# description要素の日付を更新する
+description <- xml_find_first(kml, ".//d1:description", ns = ns["d1"])
+dates <- stringr::str_match_all(xml_text(description), "\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}Z")[[1]]
+new_dates <- add_weeks(dates, 1024)
+new_description <- sub(dates[1, 1], new_dates[1], xml_text(description))
+new_description <- sub(dates[2, 1], new_dates[2], new_description)
+xml_set_text(xml_find_first(kml, ".//d1:description", ns = ns["d1"]), new_description)
+
+# TimeSpan要素の日付を更新する
+time_span <- xml_find_all(kml, "//d1:TimeSpan | //gx:TimeSpan", ns = ns)
+for (t in time_span) {
+  begin <- xml_find_first(t, ".//d1:begin | .//gx:begin", ns = ns)
+  end <- xml_find_first(t, ".//d1:end | .//gx:end", ns = ns)
+  xml_set_text(begin, add_weeks(xml_text(begin), 1024))
+  xml_set_text(end, add_weeks(xml_text(end), 1024))
+}
+
+# 更新したKMLファイルを保存する
+write_xml(kml, output_file, encoding = "UTF-8")
+```
+
+
+## GeoJSONへの変換
+
+[mapshaper](https://mapshaper.org/)
