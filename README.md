@@ -6,15 +6,11 @@ Rの使い方を使用例とともに紹介する。
 忘れたときに，[baseに関するメモ](https://takeshinishimura.github.io/howtouseR/base.html)を見る。
 
 
-## 作図
-
-- [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
-- [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
-
-
-## データ
+## 小ネタ
 
 - [HOLUX M-241](https://takeshinishimura.github.io/howtouseR/m-241.html)
+- [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
+- [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
 
 
 ## 遺物
