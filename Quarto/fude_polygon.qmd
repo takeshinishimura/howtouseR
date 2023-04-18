@@ -1,0 +1,220 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "農地の区画情報（筆ポリゴン）"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 2
+    number-sections: true
+    theme: simplex
+lang: ja
+---
+
+農林水産省の農地の区画情報（筆ポリゴン）をRで扱ってみる。
+
+次のWebページに利用規約等が掲載されているので，以下に進む前に目を通す必要がある。
+
+::: {.callout-note collapse="true" icon="true"}
+## 農林水産省「農地の区画情報（筆ポリゴン）のデータ提供・利用」
+
+[https://www.maff.go.jp/j/tokei/porigon/](https://www.maff.go.jp/j/tokei/porigon/){target="_blank"}
+:::
+
+筆ポリゴンのデータは筆ポリゴン公開サイトにあり，アンケートに回答すると，目的の都道府県または市区町村のデータがダウンロードできる。
+
+::: {.callout-note collapse="true" icon="true"}
+## 筆ポリゴン公開サイト
+
+[https://open.fude.maff.go.jp/](https://open.fude.maff.go.jp/){target="_blank"}
+:::
+
+以下のRのコードは，上記の方法でダウンロードしたファイルに適用できる。
+2021年7月以前に公開された筆ポリゴンはファイル形式が異なるため，以下のコードはうまく動作しない。
+
+
+## 筆ポリゴンの読み込み
+
+まず，ダウンロードした筆ポリゴンのZIPファイルを読み込む関数を作る。
+このZIPファイルの中には複数のGeoJSON形式のファイルがある。
+
+```{r}
+#| message: false
+library(sf)
+
+# 筆ポリゴンのZIPファイルを読み込む関数
+read_fude <- function(x) {
+  exdir <- tempfile()
+  on.exit(unlink(exdir, recursive = TRUE))
+  utils::unzip(x, exdir = exdir)
+  json_files <- list.files(exdir, pattern = ".*\\.json$", recursive = TRUE, full.names = TRUE)
+  res <- lapply(json_files, sf::st_read)
+  names(res) <- gsub("^.*/|.json", "", json_files)
+  res
+}
+```
+
+続いて，ダウンロードしたZIPファイルを選択すると，`fude` に読み込むようにする。
+
+```{r}
+#| eval: false
+fude <- read_fude(file.choose())
+```
+```{r}
+#| include: false
+fude <- read_fude("~/2022_38.zip")
+```
+
+筆ポリゴンのファイル名には，年度と全国地方公共団体コードによって構成されている。
+このままでも使用には問題ないが，人間にとっては全国地方公共団体コードよりも漢字で書かれた市区町村名の方が扱いやすい。
+そこで，市区町村名を指定すると，それに対応する筆ポリゴンが呼び出されるようにする。
+これを実現するためには，総務省のWebページから全国地方公共団体コードに関するデータを入手する必要がある。
+ただし，総務省が提供するExcelファイルは，全国地方公共団体コードと市区町村名の対応関係が不完全であるため，対応関係を整理する必要がある。
+この整理された対応関係に応じて，読み込んだ筆ポリゴンのリストの名前を変更する。
+
+::: {.callout-note collapse="true" icon="true"}
+## 総務省「地方行政のデジタル化｜全国地方公共団体コード」
+
+[https://www.soumu.go.jp/denshijiti/code.html](https://www.soumu.go.jp/denshijiti/code.html){target="_blank"}
+:::
+
+まず，総務省の次のWebページから全国地方公共団体コードの一覧表をダウンロードする。
+
+```{r}
+#| message: false
+#| eval: false
+library(readxl)
+
+# ファイルをダウンロード
+url <- "https://www.soumu.go.jp/main_content/000875486.xls"
+destfile <- "./000875486.xls"
+if (!file.exists(destfile)) {
+  utils::download.file(url, destfile)
+}
+```
+```{r}
+#| include: false
+library(readxl)
+
+# ファイルをダウンロード
+url <- "https://www.soumu.go.jp/main_content/000875486.xls"
+destfile <- "../data/000875486.xls"
+if (!file.exists(destfile)) {
+  utils::download.file(url, destfile)
+}
+```
+
+ダウンロードしたファイルを読み込む。
+
+```{r}
+#| message: false
+# 地方公共団体コードの読み込み
+local_government_cd <- readxl::read_excel(destfile, sheet = 1)
+names(local_government_cd) <- sub("\n", "", names(local_government_cd))
+
+# 政令指定都市の読み込み
+seireishitei <- readxl::read_excel(destfile, col_names = FALSE, sheet = 2)
+
+# 全国地方公共団体コードに政令指定都市を追加
+new_rows <- seireishitei[!seireishitei$`...1` %in% local_government_cd$`団体コード`, ]
+new_rows <- tibble::tibble(
+  new_rows[, 1], 
+  rep(NA, nrow(new_rows)), 
+  new_rows[, 2], 
+  rep(NA, nrow(new_rows)), 
+  new_rows[, 3],
+  .name_repair = "unique"
+)
+names(new_rows) <- names(local_government_cd)
+new_local_government_cd <- rbind(local_government_cd, new_rows)
+
+# 筆ポリゴンのリストをリネームする関数
+rename_fude <- function(fude) {
+  nen <- unique(sub("(_.*)", "_", names(fude)))
+  new_col_names <- paste0(nen, new_local_government_cd$`市区町村名（漢字）`[match(sub(nen, "", names(fude)), new_local_government_cd$`団体コード`)])
+  names(fude) <- new_col_names
+  fude
+}
+```
+
+ここで実際に，先ほど読み込んだ筆ポリゴンのリストの名前を日本語に変更してみる。
+
+```{r}
+fude <- rename_fude(fude)
+names(fude)
+```
+
+うまく変換できた。
+
+
+## 筆ポリゴンの描画
+
+任意の市区町村の筆ポリゴンを描画できるか確認する。
+`land_type` は `100=田` ，`200=畑` となるカテゴリカル変数であることをデータ上，明確にしておくと扱いやすくなる。
+
+```{r}
+library(mapview)
+
+fude[["2022_松前町"]]$land_type <- factor(
+  fude[["2022_松前町"]]$land_type,
+  levels = c(100, 200), labels = c("田", "畑")
+)
+```
+
+以下を実行すると，市区町村によっては，ファイルサイズが大きくなりすぎる。
+また，`quarto render` をすると，`# Fatal javascript OOM in Reached heap limit` が発生することがある。
+ローカルで実行する場合は，コンピュータのスペックに依存する。
+
+```{r}
+mapview::mapview(fude[["2022_松前町"]], zcol = "land_type", layer.name = "耕地の種類")
+```
+
+::: {.callout-important collapse="false" icon="false"}
+## 出典
+
+「筆ポリゴンデータ（2022年度公開 ArcGIS Online版）」（農林水産省）（`r format(Sys.time(), '%Y年%m月%d日')`に利用）。
+
+「筆ポリゴンデータ（2022年度公開 ArcGIS Online版）」（農林水産省）を加工して作成。
+:::
+
+ここで，2021年度公開の同地域のデータを読み込むと比較可能な地図が完成する。
+
+```{r}
+#| eval: false
+fude2021 <- read_fude(file.choose())
+```
+```{r}
+#| include: false
+fude2021 <- read_fude("~/2021_38.zip")
+```
+
+```{r}
+fude2021 <- rename_fude(fude2021)
+names(fude2021)
+
+fude2021[["2021_松前町"]]$land_type <- factor(
+  fude2021[["2021_松前町"]]$land_type,
+  levels = c(100, 200), labels = c("田", "畑")
+)
+
+map2022 <- mapview(fude[["2022_松前町"]], zcol = "land_type", layer.name = "耕地の種類")
+map2021 <- mapview(fude2021[["2021_松前町"]], zcol = "land_type", layer.name = "耕地の種類")
+
+library(leafsync)
+sync(map2021, map2022)
+```
+
+ここまでは，うまく表示される。
+以下を実行するとエラーが返ってくる。
+
+```{r}
+#| eval: false
+library(leaflet.extras2)
+map2021 | map2022
+```
+
+このデータを活用できそうなら加筆する。

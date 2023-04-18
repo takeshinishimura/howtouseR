@@ -3,7 +3,7 @@ project:
   type: website
   output-dir: docs
 title: "baseに関するメモ"
-date: "`r format(Sys.time(), '%Y-%m-%d') `"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
 format:
   html:
     toc: true
