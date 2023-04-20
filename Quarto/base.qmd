@@ -3,7 +3,6 @@ project:
   type: website
   output-dir: docs
 title: "baseに関するメモ"
-date: "`r format(Sys.time(), '%Y-%m-%d')`"
 format:
   html:
     toc: true
@@ -28,6 +27,8 @@ tapply(iris$Sepal.Length, iris$Species, sum)
 
 ## base::class()とbase::mode()とbase::typeof()
 
+### data.frame
+
 ```{r}
 str(iris)
 attributes(iris)
@@ -36,11 +37,35 @@ attributes(iris)
 Objects | class | mode | typeof |
 |:---|:---:|:---:|:---:|
 iris | `r class(iris)` | `r mode(iris)` | `r typeof(iris)`
+iris[1] | `r class(iris[1])` | `r mode(iris[1])` | `r typeof(iris[1])`
+iris["Sepal.Length"] | `r class(iris["Sepal.Length"])` | `r mode(iris["Sepal.Length"])` | `r typeof(iris["Sepal.Length"])`
 iris$Sepal.Length | `r class(iris$Sepal.Length)` | `r mode(iris$Sepal.Length)` | `r typeof(iris$Sepal.Length)`
 iris[, 1] | `r class(iris[, 1])` | `r mode(iris[, 1])` | `r typeof(iris[, 1])`
-iris["Sepal.Length"] | `r class(iris["Sepal.Length"])` | `r mode(iris["Sepal.Length"])` | `r typeof(iris["Sepal.Length"])`
 iris[, "Sepal.Length"] | `r class(iris[, "Sepal.Length"])` | `r mode(iris[, "Sepal.Length"])` | `r typeof(iris[, "Sepal.Length"])`
 iris[, "Species"] | `r class(iris[, "Species"])` | `r mode(iris[, "Species"])` | `r typeof(iris[, "Species"])`
 iris[["Species"]] | `r class(iris[["Species"]])` | `r mode(iris[["Species"]])` | `r typeof(iris[["Species"]])`
 levels(iris[["Species"]]) | `r class(levels(iris[["Species"]]))` | `r mode(levels(iris[["Species"]]))` | `r typeof(levels(iris[["Species"]]))`
 rownames(iris) | `r class(rownames(iris))` | `r mode(rownames(iris))` | `r typeof(rownames(iris))`
+
+### tibble
+
+```{r}
+library(tibble)
+iris_tibble <- iris |> tibble::tibble()
+
+str(iris_tibble)
+attributes(iris_tibble)
+```
+
+Objects | class | mode | typeof |
+|:---|:---:|:---:|:---:|
+iris_tibble | `r class(iris_tibble)` | `r mode(iris_tibble)` | `r typeof(iris_tibble)`
+iris_tibble[1] | `r class(iris_tibble[1])` | `r mode(iris_tibble[1])` | `r typeof(iris_tibble[1])`
+iris_tibble["Sepal.Length"] | `r class(iris_tibble["Sepal.Length"])` | `r mode(iris_tibble["Sepal.Length"])` | `r typeof(iris_tibble["Sepal.Length"])`
+iris_tibble$Sepal.Length | `r class(iris_tibble$Sepal.Length)` | `r mode(iris_tibble$Sepal.Length)` | `r typeof(iris_tibble$Sepal.Length)`
+iris_tibble[, 1] | `r class(iris_tibble[, 1])` | `r mode(iris_tibble[, 1])` | `r typeof(iris_tibble[, 1])`
+iris_tibble[, "Sepal.Length"] | `r class(iris_tibble[, "Sepal.Length"])` | `r mode(iris_tibble[, "Sepal.Length"])` | `r typeof(iris_tibble[, "Sepal.Length"])`
+iris_tibble[, "Species"] | `r class(iris_tibble[, "Species"])` | `r mode(iris_tibble[, "Species"])` | `r typeof(iris_tibble[, "Species"])`
+iris_tibble[["Species"]] | `r class(iris_tibble[["Species"]])` | `r mode(iris_tibble[["Species"]])` | `r typeof(iris_tibble[["Species"]])`
+levels(iris_tibble[["Species"]]) | `r class(levels(iris_tibble[["Species"]]))` | `r mode(levels(iris_tibble[["Species"]]))` | `r typeof(levels(iris_tibble[["Species"]]))`
+rownames(iris_tibble) | `r class(rownames(iris_tibble))` | `r mode(rownames(iris_tibble))` | `r typeof(rownames(iris_tibble))`
