@@ -11,7 +11,7 @@ Rの使い方を使用例とともに紹介する。
 - [HOLUX M-241](https://takeshinishimura.github.io/howtouseR/m-241.html)
 - [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
 - [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
-- [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html)
+- [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> CRANに公開 [fude](https://CRAN.R-project.org/package=fude)
 
 
 ## 遺物
