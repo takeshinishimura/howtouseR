@@ -5,13 +5,20 @@ Rの使い方を使用例とともに紹介する。
 
 忘れたときに，[baseに関するメモ](https://takeshinishimura.github.io/howtouseR/base.html)を見る。
 
+## はじめてのR
+
+- まずは使ってみる
+- 図表の作成
+- 統計分析
+- ggplot2
+- tidyverse
 
 ## 雑記
 
 - [HOLUX M-241](https://takeshinishimura.github.io/howtouseR/m-241.html)
 - [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
 - [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
-- [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> 🎉CRANに公開 [fude: Utilities for Fude Polygon](https://CRAN.R-project.org/package=fude)
+- [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> 🎉 CRANに公開 [fude: Utilities for Fude Polygon](https://CRAN.R-project.org/package=fude)
 
 
 ## 遺物
