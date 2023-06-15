@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>まずは使ってみる</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="letsgetstarted_files/libs/clipboard/clipboard.min.js"></script>
+<script src="letsgetstarted_files/libs/quarto-html/quarto.js"></script>
+<script src="letsgetstarted_files/libs/quarto-html/popper.min.js"></script>
+<script src="letsgetstarted_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="letsgetstarted_files/libs/quarto-html/anchor.min.js"></script>
+<link href="letsgetstarted_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="letsgetstarted_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="letsgetstarted_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="letsgetstarted_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="letsgetstarted_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#環境構築" id="toc-環境構築" class="nav-link active" data-scroll-target="#環境構築"><span class="header-section-number">1</span> 環境構築</a></li>
+  <li><a href="#基本操作" id="toc-基本操作" class="nav-link" data-scroll-target="#基本操作"><span class="header-section-number">2</span> 基本操作</a>
+  <ul>
+  <li><a href="#四則演算" id="toc-四則演算" class="nav-link" data-scroll-target="#四則演算"><span class="header-section-number">2.1</span> 四則演算</a></li>
+  <li><a href="#変数" id="toc-変数" class="nav-link" data-scroll-target="#変数"><span class="header-section-number">2.2</span> 変数</a>
+  <ul class="collapse">
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">2.2.1</span> Tips</a></li>
+  </ul></li>
+  <li><a href="#関数" id="toc-関数" class="nav-link" data-scroll-target="#関数"><span class="header-section-number">2.3</span> 関数</a></li>
+  <li><a href="#パッケージ" id="toc-パッケージ" class="nav-link" data-scroll-target="#パッケージ"><span class="header-section-number">2.4</span> パッケージ</a>
+  <ul class="collapse">
+  <li><a href="#名前空間" id="toc-名前空間" class="nav-link" data-scroll-target="#名前空間"><span class="header-section-number">2.4.1</span> 名前空間</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">3</span> 練習問題</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">まずは使ってみる</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">公開</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2023年6月15日</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>このサイトに書かれていることを実行するためには，あなたのパソコンでRを使える環境を構築しなければなりません（ここでは，RというアプリケーションとR言語を区別することなく，Rと呼びます。区別する場合，前者を <code>R.app</code> と書くことがありますが，これはmacOSのファイル名に由来する慣習です）。 スマートフォンには対応していないため，必ずパソコンを使ってください。</p>
+<section id="環境構築" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="環境構築"><span class="header-section-number">1</span> 環境構築</h2>
+<p>Rは <a href="https://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a> から自分のパソコンのOSに対応したものをダウンロードし，インストールしてください。</p>
+<p><a href="https://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a> は，Googleなどで「<strong>CRAN</strong>」（読みは「シーラン」または「クラン」）と入力して検索すると，すぐに見つかるはずです。 あなたのパソコンのOSがWindowsなら「Download R for Windows」をクリックし，macOSなら「Download R for macOS」をクリックしてください。 Windowsの場合，次の画面で「base」をクリックするとインストーラをダウンロードするページが表示されるはずです。 macOSの場合，自分のMacのCPUがApple siliconかIntelかで，ダウンロードするファイルが異なります。 自分の環境（OSとCPU）に合ったファイルがダウンロードできたら，そのファイルを使ってRをインストールしてください。 Rの準備はこれだけです。</p>
+<p>もしRStudioを使いたければ，インストールしても構いません。 RStudioが何をするためのものかを知ってからインストールしても遅くありませんので，Rに慣れてからインストールすることをおすすめします。 Rコマンダー等，他のソフトウェアはインストールする必要はありません。 Rで何ができるか検索した先に，Rに関連するソフトウェア（パッケージではなく）をインストールするよう指示があった場合は，それが何であるのか理解し，本当に必要であることが分かってから，指示に従ってください。</p>
+<p>奥村先生による <a href="https://okumuralab.org/~okumura/stat/" target="_blank">統計・データ解析</a> は大変参考になります。 時間をかけてじっくり読んむとともに，自分のパソコンで同じようにできるか確かめてください。</p>
+</section>
+<section id="基本操作" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="基本操作"><span class="header-section-number">2</span> 基本操作</h2>
+<p>Rを起動すると，<strong>Rコンソール</strong>が現れます。 macOSの場合はRコンソールのみが表示され，Windowsの場合は全体のウィンドウの中の小さなウィンドウがRコンソールです。</p>
+<p>Rコンソールは下から上に流れていき，一番下がコマンドを入力する場所です。 その場所に，<code>&gt;</code> という文字が表示されているはずです。 <code>&gt;</code> のことを<strong>プロンプト</strong>と呼びますが，この名前は覚えなくても問題ありません。 ここにコマンドを入力するということだけは覚えてください。</p>
+<p>ここで言う<strong>コマンド</strong>とは，Rへの命令のことであり，<strong>関数</strong>であることが多く，一連のコマンドは<strong>コード</strong>や<strong>スクリプト</strong>として表現されるものです。 これらの言葉の厳密な使い分けはできなくても問題ありません。</p>
+<section id="四則演算" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">2.1</span> 四則演算</h3>
+<p>さっそく，計算してみましょう。 プロンプトに続けて，次のように入力してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ここで改行については何も書いていないですが，この文字列を入力した後は，<code>Enterキー</code> または <code>Returnキー</code> を押してください。 この操作のことを「実行する」と言います。</p>
+<p><code>1 + 1</code> を実行すると，次のように表示されるはずです。</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+</div>
+<p>先ほどのコマンドの返り値が，<code>2</code> であることが分かります。 それでは，<code>[1]</code> は何でしょうか。 これは右に表示されている返り値が，ベクトルの何番目の要素であるかを示したものです（厳密には正しくないが，この理解で問題ない）。 <code>2</code> はスカラーであり，ベクトルで考えると1番目の要素に当たるため，1番目の <code>1</code> が <code>[]</code> の中に表示されます。</p>
+<p>四則演算は簡単にできます。 思いつくまま，いくつか実行してみてください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="dv">4</span> <span class="sc">/</span> <span class="dv">2</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これらの返り値が期待通りかを確かめてください。 この例にあるように，かけ算は <code>*</code> で，割り算は <code>/</code> で表します。</p>
+<p>これまでのように，四則演算の記号の前後にはスペースを入力してください。 例えば，次のようにスペースを入れなくても，正しい返り値が得られます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="dv">10</span><span class="sc">--</span><span class="dv">2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span><span class="sc">*</span><span class="fl">1.5</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dv">6</span><span class="sc">/</span><span class="dv">4</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ただし，人間にとっては見にくくなっているはずです。 プログラミングにおいて人間にとって読みやすいかどうかは重要です。 ちなみに，上記の例の2つ目は，正しくは <code>10 - -2</code> と書くか，<code>10 - (-2)</code> と書いてください。 マイナス符号の後にスペースを入れると見にくくなるため，入れないのが一般的です（スペースを入れても入れなくても，結果は変わりません）。 読みやすさを優先して，適宜スペースを入れるようにしてください（このページの記述方法は標準的なものです。記述方法をチェックするために，<a href="https://github.com/r-lib/lintr" target="_blank">lintr</a> パッケージがあります。ここでは理解する必要はありません）。 どうすれば読みやすくなるかは説明が難しく，たくさんのRコードを読むことで自然に身についていくものです。</p>
+<p>計算の順番を指定する場合は，<code>()</code> で括ってください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>((<span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fl">1.5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>()</code> は何回入れ子になっても構いません。 <code>{}</code> や <code>[]</code> は絶対に使ってはいけません。</p>
+</section>
+<section id="変数" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="変数"><span class="header-section-number">2.2</span> 変数</h3>
+<p>Rに値を記憶させるために，<strong>変数</strong>（より厳密には，<strong>オブジェクト</strong>）に値を代入すると便利です。 例えば，変数 <code>x</code> に10を代入するには次のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これは次のように書くこともできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">10</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これらは同じ処理をしています。 ただし，R的な（R like）やり方は前者です。</p>
+<p>変数 <code>x</code> に値が入ったことは，次のようにして確認できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>あるいは，次のコマンドでも同じ結果が得られます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>代入するものは値そのものでなくても，何らかの返り値を持つ数式でも構いません。 また，代入する変数の名前は <code>x</code> である必要はありません。 自分で自由に決められます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>hensuu <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>変数の中身を確認したければ，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>hensuu</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>また，変数を使って計算することもできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>hensuu2 <span class="ot">&lt;-</span> hensuu <span class="sc">*</span> <span class="dv">2</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このことから，コマンドを実行したときの返り値をコンソールに表示させるか，変数に代入するかを選択していることが分かります。 変数に代入しておくと，いつでもその変数の中身を確認できるため，この代入の操作は頻繁に行います。</p>
+<p>また，上に見たとおり，変数名は何でも構いません。 日本語でも可能です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>変数 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ただし，日本語の変数名は思わぬトラブルを招く原因になり得ますので，特別な理由がない限り，使わないことをおすすめします。</p>
+<p>数字で始まる変数名は使えません。 例えば，次のコマンドを実行するとエラーが返ってきます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>2x <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> b</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>アルファベットで始まる変数名にしてください。 大文字より小文字が望ましく，意味のある名前だと分かりやすいです。 変数名にはアルファベットと数字以外に <code>_</code> と <code>.</code>を使うことがよくあります。 <code>_</code> は英単語の区切りとして使うと便利です（例：<code>newnames</code> よりも <code>new_names</code> の方が分かりやすい）。 <code>.</code> は特別な理由がない限り使わない方がよいでしょう（例：<code>new.names</code> といった変数名は使うことはできるが，避ける方が無難）。</p>
+<p>作成した変数を削除する場合は，次のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(hensuu)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>現在使っている変数名は次のコマンドを実行すると分かります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>いろいろな変数を作りすぎて混乱してしまうことがあるでしょう。 その場合，いったんRを終了して，再びRを起動すると，これまでRコンソールで作成した変数はすべてなくなります。 いったんRを終了するのと同じことは，次のコマンドでも実行できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="tips" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">2.2.1</span> Tips</h4>
+<p><code>.</code> で始まる変数名は通常は作成しませんが，作成することはできます。 この変数は他の変数と若干異なります。 例えば，次のようにしてみるとわかります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>.a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>.a</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>.a</code> という名前の変数が存在するはずですが，一覧には表示されません。 <code>.a</code> も含めて一覧を表示させるためには，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>(<span class="at">all.names =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>こういう特殊な動きをするため，<code>.</code> で始まる変数名は特別な理由がない限り使わないでください。</p>
+</section>
+</section>
+<section id="関数" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="関数"><span class="header-section-number">2.3</span> 関数</h3>
+<p>先ほどのように文字の直後に <code>()</code> がくるオブジェクトを<strong>関数</strong>と呼びます。 関数には以下の特徴があります。</p>
+<ul>
+<li>関数名と <code>(</code> と <code>)</code> の3つでひとかたまりである。</li>
+<li>関数はより複雑な処理（より長いコード）を簡略化したものである。</li>
+<li>関数に続く <code>()</code> の中には，関数のオプションとなる引数（ひきすう）を書く。</li>
+<li><code>()</code>を付けずに，関数名だけを書くと，その関数の中身を見ることができる。</li>
+<li><code>?</code>に続けて関数名だけを書くと，その関数のヘルプを参照することができる。</li>
+</ul>
+<p>例を挙げましょう。 <code>seq()</code> は数列を生成する関数です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このとき，<code>from = 1, to = 10, by = 1</code> の部分が引数です。 この関数は，<code>from</code> から <code>by</code> ずつ <code>to</code> まで値を増やす数列を生成します。 実際に <code>x</code> の中身を確認してみましょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<p>関数の引数の名前は省略できます。 例えば，上の記述は以下のように書いても同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>引数の値だけを書いた場合，どの引数の値であるかはコンマで区切られた順番によって決まります。 こうした引数の順番をどのようにして知ることができるでしょうか。 この答えは，後述する関数のヘルプを参照するというものです。 関数のヘルプを見ると引数の順番が分かります（ただし，冗長すぎるといった理由がない限り，引数名は省略しないことをおすすめします）。 また，どのような引数が使えるかも分かります。</p>
+<p>ここで，上述した <code>by = 1</code> のときの <code>seq()</code> は以下のように単純化することができることは知っておく必要があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>この表記はよく使うので必ず覚えておきましょう。</p>
+<p><code>seq()</code> の引数の値を変更すると，違う結果が得られることが想像できるはずです。 次のようにすると，<code>x</code> の中身がどうなるか想像し，実際に想像通りになるかを確かめてください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>一般的に，関数名は覚えなければなりません。 ある関数の使い方については，ヘルプを参照すると分かります。 ヘルプを参照するためには，次のように関数名の前に <code>?</code> を書きます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>?seq</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>同じ結果は，次のようにしても得られます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">help</span>(seq)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これは <code>help</code> という関数を使って，関数のヘルプを参照しています。</p>
+<p>ここで作成した変数 <code>x</code> はベクトルです。 <code>x</code> の中には10個の値が入っており，順番にも意味があります。 このベクトルの2番目の要素は次のようにして取り出すことができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+</div>
+<p>長さは次のようにして得ることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<p>このベクトルはいろいろな計算ができます。 合計を計算するには <code>sum()</code> を使います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2500</code></pre>
+</div>
+</div>
+<p>これはExcelの関数として使ったことがあるのではないでしょうか。</p>
+<p>平均は次のようにして計算します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<p>こうした関数を数式に含めることもできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>x <span class="sc">-</span> <span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] -49 -47 -45 -43 -41 -39 -37 -35 -33 -31 -29 -27 -25 -23 -21 -19 -17 -15 -13
+[20] -11  -9  -7  -5  -3  -1   1   3   5   7   9  11  13  15  17  19  21  23  25
+[39]  27  29  31  33  35  37  39  41  43  45  47  49</code></pre>
+</div>
+</div>
+<p>上では変数名は何でもよいとしましたが，すでに定義されている関数とは別の名前にしなければなりません。 例えば，次のように変数 <code>mean</code> を作成できますが，絶対にしないでください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>すでにある関数名などのことを予約語と言います。 作成したい変数名が予約語かどうかは，その変数名だけを実行したときにエラーとして返ってくるかどうかで判断できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mean_x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-error">
+<pre><code>Error in eval(expr, envir, enclos):  オブジェクト 'mean_x' がありません </code></pre>
+</div>
+</div>
+<p>このようなエラーが返ってくれば，その文字列は変数名として使えます。 例えば，<code>a</code> と <code>b</code> という変数の次に，<code>c</code> という名前の変数を作りたくなったり，分かりやすく <code>data</code> という名前の変数を作りたくなるかもしれません。 実際に，作ってみるとエラーが出ずに作れてしまいます。 作れるので，作ってもいいのですが，後々に思わぬエラーに悩まされるかもしれません。 予約語ではない変数名にするように心掛けましょう。</p>
+</section>
+<section id="パッケージ" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="パッケージ"><span class="header-section-number">2.4</span> パッケージ</h3>
+<p>Rをインストールした素の状態で使える関数は限られています。 Rユーザーが有益な関数を作成し，他のユーザーと共有しているものがあります。 これらの関数は，パッケージとしてCRANに公開されており，それを自分のパソコンにインストールできます。</p>
+<p>例えば，Microsoft Excelで作成されたファイルを効率的に読むことができる <code>readxl</code> パッケージを使う場合を考えます。 このパッケージを初めて使う場合のみ，自分のパソコンにパッケージをインストールする必要があります（Rのバージョンが変わったときにもパッケージをインストールする必要があります）。 以下のコマンドを実行すれば，目的のパッケージがインストールされます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このコマンドは一度実行すれば，Rを終了しても，また，パソコンの電源を切ったとしても，再度実行する必要はありません。 実行してもエラーにはならないので，不安なら実行して構いませんが，一度インストールしたパッケージはパソコンの中に残ります。</p>
+<p>インストールしたパッケージをRで使えるようにするためには，次のコマンドを使って，Rにロードする必要があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このとき，以下のようにしても構いません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>つまり，<code>install.packages()</code> のときは，<code>""</code> で括らなければなりませんが，<code>library()</code> の場合はどちらでも構いません。 ちなみに，何もしなくても最初からロードされているパッケージがいくつかあります。 その場合，そのパッケージをロードしなくても，そのパッケージに含まれる関数を使うことができます。</p>
+<p>インストールしたパッケージの関数を使う場合，いま仮に <code>"sample.xlsx"</code> という名前のExcelファイルがあるとすると，以下のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このコマンドは，次のように書くこともできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>CRANに登録されていないパッケージもインストールできる場合があります。 例えば，日本語形態素解析器MeCabのRラッパーである <code>RMeCab</code> パッケージをインストールする方法はここに書かれています。</p>
+<ul>
+<li><a href="http://rmecab.jp/wiki/index.php?RMeCab" target="_blank">RMeCab</a></li>
+<li><a href="https://github.com/IshidaMotohiro/RMeCab" target="_blank">RMeCab: Interface to MeCab</a></li>
+</ul>
+<p>パッケージにはバージョンがあり，常に最新のバージョンを使うべきです。 インストールされているパッケージは自動でアップデートされないので，定期的に次のコマンドを実行するように心掛けましょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>インストールされているパッケージの一覧は次のコマンドで得られます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">row.names</span>(<span class="fu">installed.packages</span>())</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ただし，これは知らなくてもよいです。 また，パッケージがどこにインストールされているかを知りたい場合は，次のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">searchpaths</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これも知らなくてよいです。 CRANに公開されているパッケージをすべてインストールしたい場合は，以下のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">installed.packages</span>())</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">available.packages</span>())</span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> available[<span class="sc">!</span>available <span class="sc">%in%</span> installed]</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(uninstalled)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>今から数ヶ月間インターネット環境のない場所に行くといった特別な理由がない限り，このような操作は必要ありません。 なお，これも使う機会はないと思いますが，パッケージをアンインストールしたい場合は，以下のコマンドを実行します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">"パッケージ名"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="名前空間" class="level4" data-number="2.4.1">
+<h4 data-number="2.4.1" class="anchored" data-anchor-id="名前空間"><span class="header-section-number">2.4.1</span> 名前空間</h4>
+<p>名前空間について，通常は知らなくてよいです。 ただし，ひとつの作法を知っておいた方がよいので，ここで触れておきます。 ここでは，<strong>そうするもの</strong>として理解してください。</p>
+<p>読み込んだパッケージに含まれる関数を使う場合，その関数名だけで問題なく動作します。 しかし，そこをあえて関数名の前にパッケージ名と <code>::</code> を付けることがあります。 例えば，次のようにする。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">read.csv</span>(<span class="st">"sample.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これは名前空間を明示する書き方であり，こうしなくてもよいですが，こうしておくと人間が読むときに読みやすくなり，間違いが少なくなります。 また，自分が書いたコードを見返すときに分かりやすくなります。 さらに，関数名の衝突が起こるなど，トラブルが発生したときに解決の糸口になることがあります。</p>
+<p>Rに最初からインストールされているパッケージについては，名前空間を明示しなくても構いません。 以下の例の場合，上の記述が一般的です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="練習問題" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">3</span> 練習問題</h2>
+<ol type="1">
+<li>次のWebサイトから任意のCSVファイルをダウンロードして，変数 <code>test</code> に読み込みなさい。また，正しく読み込めているかを確かめなさい。</li>
+</ol>
+<ul>
+<li><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html">CSV Files</a></li>
+<li>ヒント：CSVファイルを読み込む関数は，<code>read.csv</code> です。</li>
+</ul>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
