@@ -382,7 +382,7 @@ update.packages(ask = FALSE)
 インストールされているパッケージの一覧は次のコマンドで得られます。
 ```{r}
 #| eval: false
-row.names(installed.packages())
+.packages(all.available = TRUE)
 ```
 ただし，これは知らなくてもよいです。
 また，パッケージがどこにインストールされているかを知りたい場合は，次のコマンドを実行します。

@@ -1,0 +1,48 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "まずは使ってみる"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 4
+    number-sections: true
+    theme: simplex
+lang: ja
+---
+
+あ。
+
+
+## プロット
+
+さっそく，プロットしてみよう。
+Rには最初から関数やパッケージの使用例がある。
+```{r}
+example(plot)
+```
+`Enterキー` または `Returnキー` を押すと次々と図が表示されます。
+同時に，コンソールには，作図に用いたコードが表示されます。
+
+```{r}
+demo(Hershey)
+demo(Japanese)
+```
+
+```{r}
+demo(graphics)
+demo(image)
+demo(persp)
+demo(colors)
+demo(lm.glm)
+demo(nlm)
+demo(smooth)
+```
+次のコマンドにより，デモの一覧を見ることができる。
+```{r}
+demo()
+```
