@@ -134,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="2" class="anchored" data-anchor-id="基本操作"><span class="header-section-number">2</span> 基本操作</h2>
 <p>Rを起動すると，<strong>Rコンソール</strong>が現れます。 macOSの場合はRコンソールのみが表示され，Windowsの場合は全体のウィンドウの中の小さなウィンドウがRコンソールです。</p>
 <p>Rコンソールは下から上に流れていき，一番下がコマンドを入力する場所です。 その場所に，<code>&gt;</code> という文字が表示されているはずです。 <code>&gt;</code> のことを<strong>プロンプト</strong>と呼びますが，この名前は覚えなくても問題ありません。 ここにコマンドを入力するということだけは覚えてください。</p>
-<p>ここで言う<strong>コマンド</strong>とは，Rへの命令のことであり，<strong>関数</strong>であることが多く，一連のコマンドは<strong>コード</strong>や<strong>スクリプト</strong>として表現されるものです。 これらの言葉の厳密な使い分けはできなくても問題ありません。</p>
+<p>ここで言う<strong>コマンド</strong>とは，Rへの命令のことであり，その実態は<strong>関数</strong>であることが多く，一連のコマンドは<strong>コード</strong>や<strong>スクリプト</strong>として表現されます。 これらの言葉の厳密な使い分けはできなくても問題ありません。</p>
 <section id="四則演算" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">2.1</span> 四則演算</h3>
 <p>さっそく，計算してみましょう。 プロンプトに続けて，次のように入力してください。</p>
@@ -216,17 +216,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>アルファベットで始まる変数名にしてください。 大文字より小文字が望ましく，意味のある名前だと分かりやすいです。 変数名にはアルファベットと数字以外に <code>_</code> と <code>.</code>を使うことがよくあります。 <code>_</code> は英単語の区切りとして使うと便利です（例：<code>newnames</code> よりも <code>new_names</code> の方が分かりやすい）。 <code>.</code> は特別な理由がない限り使わない方がよいでしょう（例：<code>new.names</code> といった変数名は使うことはできるが，避ける方が無難）。</p>
 <p>作成した変数を削除する場合は，次のコマンドを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(hensuu)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>現在使っている変数名は次のコマンドを実行すると分かります。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>いろいろな変数を作りすぎて混乱してしまうことがあるでしょう。 その場合，いったんRを終了して，再びRを起動すると，これまでRコンソールで作成した変数はすべてなくなります。 いったんRを終了するのと同じことは，次のコマンドでも実行できます。</p>
+<p>いろいろな変数を作りすぎて混乱してしまうことがあるでしょう。 その場合，いったんRを終了して，再びRを起動すると，これまでRコンソールで作成した変数はすべてなくなります。 いったんRを終了したのとほぼ同じことは，次のコマンドでも実行できます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>このコマンドは，変数だけでなく，後述する関数を含む（ほぼ）すべてのオブジェクトが削除されます。</p>
 <section id="tips" class="level4" data-number="2.2.1">
 <h4 data-number="2.2.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">2.2.1</span> Tips</h4>
 <p><code>.</code> で始まる変数名は通常は作成しませんが，作成することはできます。 この変数は他の変数と若干異なります。 例えば，次のようにしてみるとわかります。</p>
@@ -394,7 +394,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="名前空間" class="level4" data-number="2.4.1">
 <h4 data-number="2.4.1" class="anchored" data-anchor-id="名前空間"><span class="header-section-number">2.4.1</span> 名前空間</h4>
 <p>名前空間について，通常は知らなくてよいです。 ただし，ひとつの作法を知っておいた方がよいので，ここで触れておきます。 ここでは，<strong>そうするもの</strong>として理解してください。</p>
-<p>読み込んだパッケージに含まれる関数を使う場合，その関数名だけで問題なく動作します。 しかし，そこをあえて関数名の前にパッケージ名と <code>::</code> を付けることがあります。 例えば，次のようにする。</p>
+<p>読み込んだパッケージに含まれる関数を使う場合，その関数名だけで問題なく動作します。 しかし，そこをあえて関数名の前にパッケージ名と <code>::</code> を付けることがあります。 例えば，次のようにします。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">read.csv</span>(<span class="st">"sample.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
