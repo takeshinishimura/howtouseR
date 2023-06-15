@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>図</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="plot_files/libs/clipboard/clipboard.min.js"></script>
+<script src="plot_files/libs/quarto-html/quarto.js"></script>
+<script src="plot_files/libs/quarto-html/popper.min.js"></script>
+<script src="plot_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="plot_files/libs/quarto-html/anchor.min.js"></script>
+<link href="plot_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="plot_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="plot_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="plot_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="plot_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#どんな図を作成できるのか" id="toc-どんな図を作成できるのか" class="nav-link active" data-scroll-target="#どんな図を作成できるのか"><span class="header-section-number">1</span> どんな図を作成できるのか</a></li>
+  <li><a href="#プロット" id="toc-プロット" class="nav-link" data-scroll-target="#プロット"><span class="header-section-number">2</span> プロット</a></li>
+  <li><a href="#保存" id="toc-保存" class="nav-link" data-scroll-target="#保存"><span class="header-section-number">3</span> 保存</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">図</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">公開</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2023年6月15日</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Rの得意な作業のひとつが作図です。</p>
+<section id="どんな図を作成できるのか" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="どんな図を作成できるのか"><span class="header-section-number">1</span> どんな図を作成できるのか</h2>
+<p>Rには最初から関数やパッケージの使用例があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">example</span>(plot)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; Speed &lt;- cars$speed
+
+plot&gt; Distance &lt;- cars$dist
+
+plot&gt; plot(Speed, Distance, panel.first = grid(8, 8),
+plot+      pch = 0, cex = 1.2, col = "blue")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; plot(Speed, Distance,
+plot+      panel.first = lines(stats::lowess(Speed, Distance), lty = "dashed"),
+plot+      pch = 0, cex = 1.2, col = "blue")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-1-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; ## Show the different plot types
+plot&gt; x &lt;- 0:12
+
+plot&gt; y &lt;- sin(pi/5 * x)
+
+plot&gt; op &lt;- par(mfrow = c(3,3), mar = .1+ c(2,2,3,1))
+
+plot&gt; for (tp in c("p","l","b",  "c","o","h",  "s","S","n")) {
+plot+    plot(y ~ x, type = tp, main = paste0("plot(*, type = \"", tp, "\")"))
+plot+    if(tp == "S") {
+plot+       lines(x, y, type = "s", col = "red", lty = 2)
+plot+       mtext("lines(*, type = \"s\", ...)", col = "red", cex = 0.8)
+plot+    }
+plot+ }</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-1-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; par(op)
+
+plot&gt; ##--- Log-Log Plot  with  custom axes
+plot&gt; lx &lt;- seq(1, 5, length.out = 41)
+
+plot&gt; yl &lt;- expression(e^{-frac(1,2) * {log[10](x)}^2})
+
+plot&gt; y &lt;- exp(-.5*lx^2)
+
+plot&gt; op &lt;- par(mfrow = c(2,1), mar = par("mar")-c(1,0,2,0), mgp = c(2, .7, 0))
+
+plot&gt; plot(10^lx, y, log = "xy", type = "l", col = "purple",
+plot+      main = "Log-Log plot", ylab = yl, xlab = "x")</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; plot(10^lx, y, log = "xy", type = "o", pch = ".", col = "forestgreen",
+plot+      main = "Log-Log plot with custom axes", ylab = yl, xlab = "x",
+plot+      axes = FALSE, frame.plot = TRUE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-1-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+plot&gt; my.at &lt;- 10^(1:5)
+
+plot&gt; axis(1, at = my.at, labels = formatC(my.at, format = "fg"))
+
+plot&gt; e.y &lt;- -5:-1 ; at.y &lt;- 10^e.y
+
+plot&gt; axis(2, at = at.y, col.axis = "red", las = 1,
+plot+      labels = as.expression(lapply(e.y, function(E) bquote(10^.(E)))))
+
+plot&gt; par(op)</code></pre>
+</div>
+</div>
+<p><code>Enterキー</code> または <code>Returnキー</code> を押すと次々と図が表示されます。 同時に，コンソールには，作図に用いたコードが表示されます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+    demo(graphics)
+    ---- ~~~~~~~~
+
+&gt; #  Copyright (C) 1997-2009 The R Core Team
+&gt; 
+&gt; require(datasets)
+
+&gt; require(grDevices); require(graphics)
+
+&gt; ## Here is some code which illustrates some of the differences between
+&gt; ## R and S graphics capabilities.  Note that colors are generally specified
+&gt; ## by a character string name (taken from the X11 rgb.txt file) and that line
+&gt; ## textures are given similarly.  The parameter "bg" sets the background
+&gt; ## parameter for the plot and there is also an "fg" parameter which sets
+&gt; ## the foreground color.
+&gt; 
+&gt; 
+&gt; x &lt;- stats::rnorm(50)
+
+&gt; opar &lt;- par(bg = "white")
+
+&gt; plot(x, ann = FALSE, type = "n")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; abline(h = 0, col = gray(.90))
+
+&gt; lines(x, col = "green4", lty = "dotted")
+
+&gt; points(x, bg = "limegreen", pch = 21)
+
+&gt; title(main = "Simple Use of Color In a Plot",
++       xlab = "Just a Whisper of a Label",
++       col.main = "blue", col.lab = gray(.8),
++       cex.main = 1.2, cex.lab = 1.0, font.main = 4, font.lab = 3)
+
+&gt; ## A little color wheel.   This code just plots equally spaced hues in
+&gt; ## a pie chart.   If you have a cheap SVGA monitor (like me) you will
+&gt; ## probably find that numerically equispaced does not mean visually
+&gt; ## equispaced.  On my display at home, these colors tend to cluster at
+&gt; ## the RGB primaries.  On the other hand on the SGI Indy at work the
+&gt; ## effect is near perfect.
+&gt; 
+&gt; par(bg = "gray")
+
+&gt; pie(rep(1,24), col = rainbow(24), radius = 0.9)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; title(main = "A Sample Color Wheel", cex.main = 1.4, font.main = 3)
+
+&gt; title(xlab = "(Use this as a test of monitor linearity)",
++       cex.lab = 0.8, font.lab = 3)
+
+&gt; ## We have already confessed to having these.  This is just showing off X11
+&gt; ## color names (and the example (from the postscript manual) is pretty "cute".
+&gt; 
+&gt; pie.sales &lt;- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+
+&gt; names(pie.sales) &lt;- c("Blueberry", "Cherry",
++             "Apple", "Boston Cream", "Other", "Vanilla Cream")
+
+&gt; pie(pie.sales,
++     col = c("purple","violetred1","green3","cornsilk","cyan","white"))</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-3.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; title(main = "January Pie Sales", cex.main = 1.8, font.main = 1)
+
+&gt; title(xlab = "(Don't try this at home kids)", cex.lab = 0.8, font.lab = 3)
+
+&gt; ## Boxplots:  I couldn't resist the capability for filling the "box".
+&gt; ## The use of color seems like a useful addition, it focuses attention
+&gt; ## on the central bulk of the data.
+&gt; 
+&gt; par(bg="cornsilk")
+
+&gt; n &lt;- 10
+
+&gt; g &lt;- gl(n, 100, n*100)
+
+&gt; x &lt;- rnorm(n*100) + sqrt(as.numeric(g))
+
+&gt; boxplot(split(x,g), col="lavender", notch=TRUE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-4.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; title(main="Notched Boxplots", xlab="Group", font.main=4, font.lab=1)
+
+&gt; ## An example showing how to fill between curves.
+&gt; 
+&gt; par(bg="white")
+
+&gt; n &lt;- 100
+
+&gt; x &lt;- c(0,cumsum(rnorm(n)))
+
+&gt; y &lt;- c(0,cumsum(rnorm(n)))
+
+&gt; xx &lt;- c(0:n, n:0)
+
+&gt; yy &lt;- c(x, rev(y))
+
+&gt; plot(xx, yy, type="n", xlab="Time", ylab="Distance")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-5.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; polygon(xx, yy, col="gray")
+
+&gt; title("Distance Between Brownian Motions")
+
+&gt; ## Colored plot margins, axis labels and titles.   You do need to be
+&gt; ## careful with these kinds of effects.   It's easy to go completely
+&gt; ## over the top and you can end up with your lunch all over the keyboard.
+&gt; ## On the other hand, my market research clients love it.
+&gt; 
+&gt; x &lt;- c(0.00, 0.40, 0.86, 0.85, 0.69, 0.48, 0.54, 1.09, 1.11, 1.73, 2.05, 2.02)
+
+&gt; par(bg="lightgray")
+
+&gt; plot(x, type="n", axes=FALSE, ann=FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-6.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; usr &lt;- par("usr")
+
+&gt; rect(usr[1], usr[3], usr[2], usr[4], col="cornsilk", border="black")
+
+&gt; lines(x, col="blue")
+
+&gt; points(x, pch=21, bg="lightcyan", cex=1.25)
+
+&gt; axis(2, col.axis="blue", las=1)
+
+&gt; axis(1, at=1:12, lab=month.abb, col.axis="blue")
+
+&gt; box()
+
+&gt; title(main= "The Level of Interest in R", font.main=4, col.main="red")
+
+&gt; title(xlab= "1996", col.lab="red")
+
+&gt; ## A filled histogram, showing how to change the font used for the
+&gt; ## main title without changing the other annotation.
+&gt; 
+&gt; par(bg="cornsilk")
+
+&gt; x &lt;- rnorm(1000)
+
+&gt; hist(x, xlim=range(-4, 4, x), col="lavender", main="")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-7.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; title(main="1000 Normal Random Variates", font.main=3)
+
+&gt; ## A scatterplot matrix
+&gt; ## The good old Iris data (yet again)
+&gt; 
+&gt; pairs(iris[1:4], main="Edgar Anderson's Iris Data", font.main=4, pch=19)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-8.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; pairs(iris[1:4], main="Edgar Anderson's Iris Data", pch=21,
++       bg = c("red", "green3", "blue")[unclass(iris$Species)])</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-9.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; ## Contour plotting
+&gt; ## This produces a topographic map of one of Auckland's many volcanic "peaks".
+&gt; 
+&gt; x &lt;- 10*1:nrow(volcano)
+
+&gt; y &lt;- 10*1:ncol(volcano)
+
+&gt; lev &lt;- pretty(range(volcano), 10)
+
+&gt; par(bg = "lightcyan")
+
+&gt; pin &lt;- par("pin")
+
+&gt; xdelta &lt;- diff(range(x))
+
+&gt; ydelta &lt;- diff(range(y))
+
+&gt; xscale &lt;- pin[1]/xdelta
+
+&gt; yscale &lt;- pin[2]/ydelta
+
+&gt; scale &lt;- min(xscale, yscale)
+
+&gt; xadd &lt;- 0.5*(pin[1]/scale - xdelta)
+
+&gt; yadd &lt;- 0.5*(pin[2]/scale - ydelta)
+
+&gt; plot(numeric(0), numeric(0),
++      xlim = range(x)+c(-1,1)*xadd, ylim = range(y)+c(-1,1)*yadd,
++      type = "n", ann = FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-10.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; usr &lt;- par("usr")
+
+&gt; rect(usr[1], usr[3], usr[2], usr[4], col="green3")
+
+&gt; contour(x, y, volcano, levels = lev, col="yellow", lty="solid", add=TRUE)
+
+&gt; box()
+
+&gt; title("A Topographic Map of Maunga Whau", font= 4)
+
+&gt; title(xlab = "Meters North", ylab = "Meters West", font= 3)
+
+&gt; mtext("10 Meter Contour Spacing", side=3, line=0.35, outer=FALSE,
++       at = mean(par("usr")[1:2]), cex=0.7, font=3)
+
+&gt; ## Conditioning plots
+&gt; 
+&gt; par(bg="cornsilk")
+
+&gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = "green3")</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-11.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; par(opar)</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>(image)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+
+    demo(image)
+    ---- ~~~~~
+
+&gt; #  Copyright (C) 1997-2009 The R Core Team
+&gt; 
+&gt; require(datasets)
+
+&gt; require(grDevices); require(graphics)
+
+&gt; x &lt;- 10*(1:nrow(volcano)); x.at &lt;- seq(100, 800, by=100)
+
+&gt; y &lt;- 10*(1:ncol(volcano)); y.at &lt;- seq(100, 600, by=100)
+
+&gt;                   # Using Terrain Colors
+&gt; 
+&gt; image(x, y, volcano, col=terrain.colors(100),axes=FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-12.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col="brown")
+
+&gt; axis(1, at=x.at)
+
+&gt; axis(2, at=y.at)
+
+&gt; box()
+
+&gt; title(main="Maunga Whau Volcano", sub = "col=terrain.colors(100)", font.main=4)
+
+&gt;                   # Using Heat Colors
+&gt; 
+&gt; image(x, y, volcano, col=heat.colors(100), axes=FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-13.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col="brown")
+
+&gt; axis(1, at=x.at)
+
+&gt; axis(2, at=y.at)
+
+&gt; box()
+
+&gt; title(main="Maunga Whau Volcano", sub = "col=heat.colors(100)", font.main=4)
+
+&gt;                   # Using Gray Scale
+&gt; 
+&gt; image(x, y, volcano, col=gray(100:200/200), axes=FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-14.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+&gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col="black")
+
+&gt; axis(1, at=x.at)
+
+&gt; axis(2, at=y.at)
+
+&gt; box()
+
+&gt; title(main="Maunga Whau Volcano \n col=gray(100:200/200)", font.main=4)
+
+&gt; ## Filled Contours are even nicer sometimes :
+&gt; example(filled.contour)
+
+flld.c&gt; require("grDevices") # for colours
+
+flld.c&gt; filled.contour(volcano, asp = 1) # simple</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-15.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+flld.c&gt; x &lt;- 10*1:nrow(volcano)
+
+flld.c&gt; y &lt;- 10*1:ncol(volcano)
+
+flld.c&gt; filled.contour(x, y, volcano,
+flld.c+     color.palette = function(n) hcl.colors(n, "terrain"),
+flld.c+     plot.title = title(main = "The Topography of Maunga Whau",
+flld.c+     xlab = "Meters North", ylab = "Meters West"),
+flld.c+     plot.axes = { axis(1, seq(100, 800, by = 100))
+flld.c+                   axis(2, seq(100, 600, by = 100)) },
+flld.c+     key.title = title(main = "Height\n(meters)"),
+flld.c+     key.axes = axis(4, seq(90, 190, by = 10)))  # maybe also asp = 1</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-16.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+flld.c&gt; mtext(paste("filled.contour(.) from", R.version.string),
+flld.c+       side = 1, line = 4, adj = 1, cex = .66)
+
+flld.c&gt; # Annotating a filled contour plot
+flld.c&gt; a &lt;- expand.grid(1:20, 1:20)
+
+flld.c&gt; b &lt;- matrix(a[,1] + a[,2], 20)
+
+flld.c&gt; filled.contour(x = 1:20, y = 1:20, z = b,
+flld.c+                plot.axes = { axis(1); axis(2); points(10, 10) })</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-17.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+flld.c&gt; ## Persian Rug Art:
+flld.c&gt; x &lt;- y &lt;- seq(-4*pi, 4*pi, length.out = 27)
+
+flld.c&gt; r &lt;- sqrt(outer(x^2, y^2, `+`))
+
+flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), axes = FALSE)</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-18.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+flld.c&gt; ## rather, the key *should* be labeled:
+flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), frame.plot = FALSE,
+flld.c+                plot.axes = {})</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="plot_files/figure-html/unnamed-chunk-2-19.png" class="img-fluid" width="672"></p>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># demo(persp)</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="co"># demo(colors)</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># demo(lm.glm)</span></span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="co"># demo(nlm)</span></span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># demo(smooth)</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>次のコマンドにより，デモの一覧を見ることができる。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">demo</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="プロット" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="プロット"><span class="header-section-number">2</span> プロット</h2>
+<p>さっそく，プロットしてみよう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x)</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>作図ウィンドウを明示的に閉じる場合，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">def.off</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="保存" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="保存"><span class="header-section-number">3</span> 保存</h2>
+<p>PDF，PNG，SVGのいずれかの形式でファイルに保存するのが一般的です。</p>
+<p>書くのが面倒なので，書かないかもしれません。</p>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

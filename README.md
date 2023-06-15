@@ -13,7 +13,8 @@
 
 - [まずは使ってみる](https://takeshinishimura.github.io/howtouseR/letsgetstarted.html)
 - 基礎
-- 図表の作成
+- [図](https://takeshinishimura.github.io/howtouseR/plot.html)
+- 表
 - 統計分析
 - ggplot2
 - tidyverse

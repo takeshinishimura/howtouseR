@@ -2,7 +2,7 @@
 project:
   type: website
   output-dir: docs
-title: "まずは使ってみる"
+title: "図"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 format:
   html:
@@ -15,34 +15,56 @@ format:
 lang: ja
 ---
 
-あ。
+Rの得意な作業のひとつが作図です。
 
 
-## プロット
+## どんな図を作成できるのか
 
-さっそく，プロットしてみよう。
-Rには最初から関数やパッケージの使用例がある。
+Rには最初から関数やパッケージの使用例があります。
 ```{r}
+#| message: false
 example(plot)
 ```
 `Enterキー` または `Returnキー` を押すと次々と図が表示されます。
 同時に，コンソールには，作図に用いたコードが表示されます。
 
 ```{r}
-demo(Hershey)
-demo(Japanese)
-```
-
-```{r}
+#| message: false
 demo(graphics)
 demo(image)
-demo(persp)
-demo(colors)
-demo(lm.glm)
-demo(nlm)
-demo(smooth)
+# demo(persp)
+# demo(colors)
+# demo(lm.glm)
+# demo(nlm)
+# demo(smooth)
 ```
 次のコマンドにより，デモの一覧を見ることができる。
 ```{r}
 demo()
 ```
+
+```{r}
+demo()
+```
+
+
+## プロット
+
+さっそく，プロットしてみよう。
+```{r}
+#| eval: false
+plot(x)
+hist(x)
+```
+
+作図ウィンドウを明示的に閉じる場合，次のようにします。
+```{r}
+#| eval: false
+def.off()
+```
+
+## 保存
+
+PDF，PNG，SVGのいずれかの形式でファイルに保存するのが一般的です。
+
+書くのが面倒なので，書かないかもしれません。
