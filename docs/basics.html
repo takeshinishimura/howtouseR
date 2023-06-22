@@ -487,7 +487,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>一見意味が分かりにくい出力ですが，エスケープシーケンスとしての <code>\</code> なのか文字としての <code>\</code> なのかは考えれば分かるはずです。</p>
-<p>数値を文字列に変換する場合は，<code>as.character()</code> を使います。 ただし，<code>paste()</code> の方が便利なため，頻繁に使うことになるでしょう。</p>
+<p>数値を文字列に変換する場合は，<code>as.character()</code> を使います。 ただし，<code>paste()</code> の方が便利なため，<code>paste()</code> を頻繁に使うことになるでしょう。 例えば次のようにします。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">2000</span><span class="sc">:</span><span class="dv">2010</span>, <span class="st">"年"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -501,7 +501,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="3.3" class="anchored" data-anchor-id="ファクター"><span class="header-section-number">3.3</span> ファクター</h3>
 <p>ファクターは見た目は文字列ですが，以下の特徴があります。</p>
 <ul>
-<li>取り得る値の数が有限である。 — グループ分けに使える。</li>
+<li>取り得る値の数が有限である。</li>
+<li>グループ分けに使える。</li>
 <li>値に順番のようなものがある。</li>
 </ul>
 <p>例えば，学生の成績は「秀」「優」「良」「可」「不可」で表現されます。 あるいは，「S」「A」「B」「C」「D」といった表現もあります。 これらの文字列には順番があります。 また，「愛媛県」は文字列で，一見順番は関係なさそうですが，都道府県コードというものが割り振られており，都道府県別に並べるとき，愛媛県は38番目に表示するというルールがあります。 「北海道」が01で，「沖縄県」が47です。 他に，アンケート調査の選択のある問に対する解答として，「強くそう思う」「ややそう思う」「どちらでもない」「あまりそう思わない」「まったくそう思わない」といったデータがあり得ます。 こうしたデータを扱う場合，ファクターを文字列として考えていると，思い通りの表示にならなかったり，処理できずエラーが返ってくることがあります。</p>
