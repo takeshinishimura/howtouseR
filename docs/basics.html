@@ -100,18 +100,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#変数の種類" id="toc-変数の種類" class="nav-link" data-scroll-target="#変数の種類"><span class="header-section-number">4</span> 変数の種類</a>
   <ul>
-  <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="header-section-number">4.1</span> ベクトル</a></li>
-  <li><a href="#欠損値" id="toc-欠損値" class="nav-link" data-scroll-target="#欠損値"><span class="header-section-number">4.2</span> 欠損値</a></li>
-  <li><a href="#行列" id="toc-行列" class="nav-link" data-scroll-target="#行列"><span class="header-section-number">4.3</span> 行列</a>
+  <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="header-section-number">4.1</span> ベクトル</a>
   <ul class="collapse">
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">4.3.1</span> Tips</a></li>
+  <li><a href="#欠損値" id="toc-欠損値" class="nav-link" data-scroll-target="#欠損値"><span class="header-section-number">4.1.1</span> 欠損値</a></li>
   </ul></li>
-  <li><a href="#データフレーム" id="toc-データフレーム" class="nav-link" data-scroll-target="#データフレーム"><span class="header-section-number">4.4</span> データフレーム</a>
+  <li><a href="#行列" id="toc-行列" class="nav-link" data-scroll-target="#行列"><span class="header-section-number">4.2</span> 行列</a>
   <ul class="collapse">
-  <li><a href="#データフレームの列" id="toc-データフレームの列" class="nav-link" data-scroll-target="#データフレームの列"><span class="header-section-number">4.4.1</span> データフレームの列</a></li>
-  <li><a href="#データフレームの列-1" id="toc-データフレームの列-1" class="nav-link" data-scroll-target="#データフレームの列-1"><span class="header-section-number">4.4.2</span> データフレームの列</a></li>
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">4.2.1</span> Tips</a></li>
   </ul></li>
-  <li><a href="#リスト" id="toc-リスト" class="nav-link" data-scroll-target="#リスト"><span class="header-section-number">4.5</span> リスト</a></li>
+  <li><a href="#データフレーム" id="toc-データフレーム" class="nav-link" data-scroll-target="#データフレーム"><span class="header-section-number">4.3</span> データフレーム</a>
+  <ul class="collapse">
+  <li><a href="#データフレームの列" id="toc-データフレームの列" class="nav-link" data-scroll-target="#データフレームの列"><span class="header-section-number">4.3.1</span> データフレームの列</a></li>
+  <li><a href="#データフレームの列-1" id="toc-データフレームの列-1" class="nav-link" data-scroll-target="#データフレームの列-1"><span class="header-section-number">4.3.2</span> データフレームの列</a></li>
+  </ul></li>
+  <li><a href="#リスト" id="toc-リスト" class="nav-link" data-scroll-target="#リスト"><span class="header-section-number">4.4</span> リスト</a></li>
   </ul></li>
   <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">5</span> 練習問題</a></li>
   </ul>
@@ -340,7 +342,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="2.1" class="anchored" data-anchor-id="コメント"><span class="header-section-number">2.1</span> コメント</h3>
 <p>これまでの説明で登場しましたが，何も説明しなかった大事なことをここで説明しておきます。</p>
 <p><code>#</code> で始まる行は<strong>コメント</strong>です。 行の途中に <code>#</code> がある場合は，そこから右，改行までの文字がコメントとみなされます。 Rはコメントを無視します。 コメントは人間が読んで理解できるようなことを書くのに重宝します。 Rはコメントを無視するため，何を書いても構いません。</p>
-<p>上記 @ref(comment) の <code>read.csv()</code> の例では，Windowsの場合とmacOSの場合を例示するのに，注釈としてコマンドの右に <code>#</code> を付けて説明しました。 このような使い方と同時に，macOSの場合を示した2行目は行頭にも <code>#</code> を付けています。 これは，この2行を実行することはない（実行してはいけない）ため，このような記述にしています。 macOSの人は <code>#</code> の右側のみをコピーしてください。 このように排他的であることを明示するために，コメントを使うこともあります。 他には，「このコードは一部の人のみ実行してください」や「このコードは実行しなくてもよい」といった意味で使用することもあります。</p>
+<p>上記の <code>read.csv()</code> の例では，Windowsの場合とmacOSの場合を例示するのに，注釈としてコマンドの右に <code>#</code> を付けて説明しました。 このような使い方と同時に，macOSの場合を示した2行目は行頭にも <code>#</code> を付けています。 これは，この2行を実行することはない（実行してはいけない）ため，このような記述にしています。 macOSの人は <code>#</code> の右側のみをコピーしてください。 このように排他的であることを明示するために，コメントを使うこともあります。 他には，「このコードは一部の人のみ実行してください」や「このコードは実行しなくてもよい」といった意味で使用することもあります。</p>
 </section>
 <section id="セミコロン" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="セミコロン"><span class="header-section-number">2.2</span> セミコロン</h3>
@@ -659,9 +661,8 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-</section>
-<section id="欠損値" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="欠損値"><span class="header-section-number">4.2</span> 欠損値</h3>
+<section id="欠損値" class="level4" data-number="4.1.1">
+<h4 data-number="4.1.1" class="anchored" data-anchor-id="欠損値"><span class="header-section-number">4.1.1</span> 欠損値</h4>
 <p>データがない部分のことを欠損値と言います。 数値の欠損値は <code>NA</code> で表します。 例えば，アンケート調査を実施して，ある回答者がある問の選択問題の解答をしていない場合，そこに <code>-</code> を入力してはいけません。 そこには，何も入力しないのが正しいデータ作成の方法です。 Microsoft Excelでデータ入力する場合は，そのセルには何も入力せずに次の入力に移ってください。 ただし，Rでデータ作成する場合，次のようにするとエラーが返ってきます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, , <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -691,8 +692,9 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="行列" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="行列"><span class="header-section-number">4.3</span> 行列</h3>
+</section>
+<section id="行列" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="行列"><span class="header-section-number">4.2</span> 行列</h3>
 <p>Rは行列計算が高速であることが特徴のひとつです。 また，行列を用いた数式の表記が簡潔です。 行列は以下のようにして作成します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -729,8 +731,8 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 </div>
 <p>この法則に従って，スペースを入れることを忘れないようにしてください（スペースを入れなくてもエラーは出ません）。</p>
-<section id="tips" class="level4" data-number="4.3.1">
-<h4 data-number="4.3.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">4.3.1</span> Tips</h4>
+<section id="tips" class="level4" data-number="4.2.1">
+<h4 data-number="4.2.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">4.2.1</span> Tips</h4>
 <p>行列はベクトルを折り畳んだようなものであると理解しておくと役に立つことがあります。 次の結果を比較して，行列がベクトルであることを理解してください。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)[<span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -752,8 +754,8 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>しかし，ベクトルであるかのように動作することがあります。</p>
 </section>
 </section>
-<section id="データフレーム" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">4.4</span> データフレーム</h3>
+<section id="データフレーム" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">4.3</span> データフレーム</h3>
 <p>データフレームはMicrosoft Excelでよく見る表に似ており，そのようなものだと理解してください。 <code>read.csv()</code> で読み込んだオブジェクトは，データフレームです。</p>
 <p>データフレームには行と列が存在する点では，行列に似ています。 しかしながら，行列とは違い，各列を異なる型にすることができることから，行列よりも柔軟なデータ構造となります。 それぞれの列は同じ型でなければなりません。</p>
 <p>Rには最初から多くのデータセットが使える状態になっています。 サンプルとしてよく使われるデータセットに <code>iris</code> があります。 <code>iris</code> の中身は，<code>iris</code> と入力するだけで表示されます。</p>
@@ -978,8 +980,8 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <pre><code>[1] 150   5</code></pre>
 </div>
 </div>
-<section id="データフレームの列" class="level4" data-number="4.4.1">
-<h4 data-number="4.4.1" class="anchored" data-anchor-id="データフレームの列"><span class="header-section-number">4.4.1</span> データフレームの列</h4>
+<section id="データフレームの列" class="level4" data-number="4.3.1">
+<h4 data-number="4.3.1" class="anchored" data-anchor-id="データフレームの列"><span class="header-section-number">4.3.1</span> データフレームの列</h4>
 <p>データフレームそのものを分析に使うこともできますが，必要な列を取り出して，分析に使うのが一般的です。 そこで，データフレームの列を取り出す方法をいくつか説明します。 なお，データフレームの進化したものに，<a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> があります。 tibbleはデータフレームとほとんど同じように扱えますが，データフレームとは挙動が若干異なりますので，違うものと考えてください。 ちなみに，<code>read_excel()</code> で読み込んだオブジェクトは，tibbleです。 tibbleは <a href="https://www.tidyverse.org/" target="_blank">Tidyverse</a> の一部分（最も重要な部分）を構成します。</p>
 <p>データフレームの列を取り出す場合，左から何列目であるかを数値で指定することができます。 次のコマンドにより，データフレームの列をベクトルとして取り出すことができます。</p>
 <div class="cell">
@@ -1546,16 +1548,16 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>iris[, <span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="データフレームの列-1" class="level4" data-number="4.4.2">
-<h4 data-number="4.4.2" class="anchored" data-anchor-id="データフレームの列-1"><span class="header-section-number">4.4.2</span> データフレームの列</h4>
+<section id="データフレームの列-1" class="level4" data-number="4.3.2">
+<h4 data-number="4.3.2" class="anchored" data-anchor-id="データフレームの列-1"><span class="header-section-number">4.3.2</span> データフレームの列</h4>
 <p>データフレームは，<code>data.frame()</code> で作成します。 データフレーム作成時に注意すべきことは，各列の長さを合わせるということです。 各列の長さが揃わないときは，短い列を繰り返します。 この繰り返しが整数倍でない場合，エラーが返ってきます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1991</span><span class="sc">:</span><span class="dv">2020</span>, <span class="at">value1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">value2 =</span> <span class="cn">NA</span>, <span class="at">value3 =</span> <span class="fu">c</span>(<span class="st">"東"</span>, <span class="st">"西"</span>, <span class="st">"南"</span>), <span class="at">value4 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="リスト" class="level3" data-number="4.5">
-<h3 data-number="4.5" class="anchored" data-anchor-id="リスト"><span class="header-section-number">4.5</span> リスト</h3>
+<section id="リスト" class="level3" data-number="4.4">
+<h3 data-number="4.4" class="anchored" data-anchor-id="リスト"><span class="header-section-number">4.4</span> リスト</h3>
 <p>リストはさまざまな変数を入れることのできる，引き出しだと説明されることがあります。 さまざまな変数をリストに入れることができます。 データフレームのように，各要素の数を揃える必要はありません。 Pythonでいう辞書のようなものです。</p>
 <p>リストはさまざまな形を取りますが，実践的には，複数のデータフレームを要素とできる点が便利です。</p>
 <div class="cell">
