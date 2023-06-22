@@ -1,0 +1,110 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "比較演算"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 4
+    number-sections: true
+    theme: sketchy
+lang: ja
+---
+
+
+
+```{r}
+#| eval: false
+条件分岐
+for
+
+よく使う関数
+table()
+unique()
+apply()
+```
+
+### 比較演算子
+
+==
+!=
+>
+>=
+<
+<=
+
+&
+&&
+|
+||
+!はその直後の否定を意味する記号です。
+
+論理式での数値は，`0` のみが `FALSE` として扱われ，それ以外は `TRUE` として扱われます。
+as.logical(1)
+as.logical(0)
+
+is.na()
+is.null()
+
+### 正規表現
+
+正規表現を知っているかどうかで，比較演算子の効率的な使い方が飛躍的に向上します。
+正規表現は，人間が考えるかのようにコンピュータに考えさせる記述方法です。
+しかし，非常にややこしいのでここでは説明しません。
+以下のWebページを確認してください。
+
+- [R における正規表現 - RjpWiki](http://www.okadajp.org/RWiki/?R+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)
+
+
+### 型変換
+
+
+
+```{r}
+#| eval: false
+install.packages("scales")
+```
+
+### 型が変わる
+
+変数の型は意識して変えなくても変わることがある。
+どのような場合に変わるかの感覚を身につけなければならない。
+
+`TRUE` を `sum()` することができる。
+```{r}
+#| eval: false
+sum( == )
+```
+
+
+
+paste("a", "b")
+paste("a", "b", sep = "")
+paste0("a", "b")
+paste("a", "b", callapse = ", ")
+
+
+paste(1990:2020, "年", sep = "")
+
+
+## 関数の作成
+
+関数を自分で作ることができます。
+
+
+## 練習問題
+
+1. 気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 `temp` に読み込んだ後，世界全体の最高気温と最低気温を計算しなさい。
+  - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html)
+1. 次のコマンドの無駄を見つけ，よりよいものに修正してください。
+```{r}
+#| eval: false
+x <- 1990:2010
+y <- seq(5000, 5050, 50)
+z <- data.frame(year = x, value = y)
+x$value[which(x$year == 2000)]
+```

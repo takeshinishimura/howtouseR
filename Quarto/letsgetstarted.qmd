@@ -439,5 +439,5 @@ base::mean(x)
 ## 練習問題
 
 1. 次のWebサイトから任意のCSVファイルをダウンロードして，変数 `test` に読み込みなさい。また，正しく読み込めているかを確かめなさい。
-  - [CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html)
+  - [CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"}
   - ヒント：CSVファイルを読み込む関数は，`read.csv` です。

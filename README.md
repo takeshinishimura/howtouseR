@@ -12,7 +12,8 @@
 ## はじめてのR
 
 - [まずは使ってみる](https://takeshinishimura.github.io/howtouseR/letsgetstarted.html)
-- 基礎
+- [基礎](https://takeshinishimura.github.io/howtouseR/basics.html)
+- 比較演算
 - [図](https://takeshinishimura.github.io/howtouseR/plot.html)
 - 表
 - 統計分析
@@ -25,7 +26,7 @@
 - [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
 - [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
 - [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> 🎉 CRANに公開 [fude: Utilities for Fude Polygon](https://CRAN.R-project.org/package=fude)
-
+- テキストマイニング
 
 ## 遺物
 
