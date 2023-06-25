@@ -1,0 +1,55 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "まずは使ってみる"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 4
+    number-sections: true
+    theme: simplex
+lang: ja
+---
+
+## tibble
+
+[tibble](https://tibble.tidyverse.org/){target="_blank"}
+
+### tidyr
+
+[tidyr](https://tidyr.tidyverse.org/){target="_blank"}
+
+`tidyr::pivot_longer()`
+
+`tidyr::pivot_wider()`
+
+`tidyr::spread()` と `tidyr::gather()` は古い関数なので，覚える必要はない。
+しかし，使う人が多すぎるため，パッケージから削除できずに残っている。
+
+ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータ形式のことです。
+一方，ロングというデータ形式もあり，列数は限られています。
+ワイドは横に長く，ロングは縦に長いデータフレームです。
+
+```{r}
+```
+
+
+### dplyr
+
+[dplyr](https://dplyr.tidyverse.org/){target="_blank"}
+
+select()
+filter()
+arrange()
+group_by()
+summarise()
+mutate()
+
+### readr
+
+[readr](https://readr.tidyverse.org/)
+

@@ -263,7 +263,7 @@ is.null()
 しかし，非常にややこしいのでここでは説明しません。
 以下のWebページを確認してください。
 
-- [R における正規表現 - RjpWiki](http://www.okadajp.org/RWiki/?R+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE)
+- [R における正規表現 - RjpWiki](http://www.okadajp.org/RWiki/?R+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE){target="_blank"} 
 
 
 ## 関数の作成
@@ -271,10 +271,11 @@ is.null()
 関数を自分で作ることができます。
 
 
+
 ## 練習問題
 
 1. 気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 `temp` に読み込んだ後，世界全体の最高気温と最低気温を計算しなさい。
-  - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html)
+  - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html){target="_blank"} 
 1. 次のコマンドの無駄を見つけ，よりよいものに修正してください。
 ```{r}
 #| eval: false

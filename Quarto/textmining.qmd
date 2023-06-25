@@ -1,0 +1,48 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "テキストマイニング"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 3
+    number-sections: true
+    theme: journal
+lang: ja
+---
+
+テキストマイニングでは，
+
+- テキストデータの読み込み
+- 形態素解析
+
+
+## MeCab
+
+[MeCab: Yet Another Part-of-Speech and Morphological Analyzer](http://taku910.github.io/mecab/){target="_blank"}
+
+### RMecab
+
+[RMecab](http://rmecab.jp/wiki/){target="_blank"}
+
+
+### RcppMeCab
+
+[RcppMeCab](https://github.com/junhewk/RcppMeCab){target="_blank"}
+
+
+
+## TreeTagger
+
+[TreeTagger](https://www.cis.uni-muenchen.de/~schmid/tools/TreeTagger/){target="_blank"}
+
+
+[koRpus](https://reaktanz.de/?c=hacking&s=koRpus){target="_blank"}
+
+## TreeTagger
+
+[quanteda](https://github.com/quanteda/quanteda){target="_blank"}
