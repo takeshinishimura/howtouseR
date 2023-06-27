@@ -284,3 +284,9 @@ y <- seq(5000, 5050, 50)
 z <- data.frame(year = x, value = y)
 x$value[which(x$year == 2000)]
 ```
+
+3. ポケモンの中から，water タイプのポケモンをすべて挙げなさい。
+ただし，ポケモンのデータセットは，`d3po` パッケージの `pokemon` を使いなさい。
+なお，`pokemon` は tibble であるが，データフレームに使えるコマンドのほとんどはそのまま使える。
+
+pokemon[c(which(pokemon$type_1 == "water"), which(pokemon$type_2 == "water")), ]

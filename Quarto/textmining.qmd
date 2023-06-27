@@ -23,7 +23,13 @@ lang: ja
 
 ## MeCab
 
-[MeCab: Yet Another Part-of-Speech and Morphological Analyzer](http://taku910.github.io/mecab/){target="_blank"}
+形態素解析エンジン MeCab を使用する方法を説明します。
+まず，[MeCab: Yet Another Part-of-Speech and Morphological Analyzer](http://taku910.github.io/mecab/){target="_blank"} から，MeCab本体とMeCab用の辞書（IPA辞書）をダウンロードします。
+macOSの場合はSourceをダウンロードします。
+
+続いて，ダウンロードしたファイルをインストールします。
+macOSのインストール方法はUNIXと同じです。
+
 
 ### RMecab
 
@@ -43,6 +49,15 @@ lang: ja
 
 [koRpus](https://reaktanz.de/?c=hacking&s=koRpus){target="_blank"}
 
-## TreeTagger
+
+## tidytext
+
+[tidytext](https://cran.r-project.org/web/packages/tidytext/index.html){target="_blank"}
+
+[Welcome to Text Mining with R](https://www.tidytextmining.com/){target="_blank"}
+
+
+## quanteda
 
 [quanteda](https://github.com/quanteda/quanteda){target="_blank"}
+

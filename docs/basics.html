@@ -67,6 +67,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="basics_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="basics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="basics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="mermaid-theme" content="neutral">
+<script src="basics_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="basics_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="basics_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -81,9 +85,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul>
   <li><a href="#ファイル操作" id="toc-ファイル操作" class="nav-link active" data-scroll-target="#ファイル操作"><span class="header-section-number">1</span> ファイル操作</a>
   <ul>
-  <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">1.1</span> 作業ディレクトリ</a></li>
-  <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">1.2</span> 絶対パス</a></li>
-  <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">1.3</span> 相対パス</a></li>
+  <li><a href="#ディレクトリ構造とファイル管理の基礎" id="toc-ディレクトリ構造とファイル管理の基礎" class="nav-link" data-scroll-target="#ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">1.1</span> ディレクトリ構造とファイル管理の基礎</a>
+  <ul class="collapse">
+  <li><a href="#ディレクトリ構造" id="toc-ディレクトリ構造" class="nav-link" data-scroll-target="#ディレクトリ構造"><span class="header-section-number">1.1.1</span> ディレクトリ構造</a></li>
+  <li><a href="#ファイル管理" id="toc-ファイル管理" class="nav-link" data-scroll-target="#ファイル管理"><span class="header-section-number">1.1.2</span> ファイル管理</a></li>
+  </ul></li>
+  <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">1.2</span> 作業ディレクトリ</a></li>
+  <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">1.3</span> 絶対パス</a></li>
+  <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">1.4</span> 相対パス</a></li>
   </ul></li>
   <li><a href="#特殊記号" id="toc-特殊記号" class="nav-link" data-scroll-target="#特殊記号"><span class="header-section-number">2</span> 特殊記号</a>
   <ul>
@@ -134,7 +143,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年6月25日</p>
+      <p class="date">2023年6月27日</p>
     </div>
   </div>
   
@@ -151,13 +160,94 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。 拡張子は省略してはいけません。 もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。 上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。</p>
+<p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。 拡張子は省略してはいけません。 もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Windows_extension.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Windowsの拡張子表示</figcaption>
+</figure>
+</div>
+<p>上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。</p>
 <ol type="1">
 <li>ダウンロードしたファイルを作業ディレクトリ（working directory）に移動する。</li>
 <li>ダウンロードしたファイルへの絶対パスを指定する。</li>
 </ol>
-<section id="作業ディレクトリ" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="作業ディレクトリ"><span class="header-section-number">1.1</span> 作業ディレクトリ</h3>
+<section id="ディレクトリ構造とファイル管理の基礎" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">1.1</span> ディレクトリ構造とファイル管理の基礎</h3>
+<p>そもそもの話として，<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">CUI</a> に慣れていない人は，このファイル操作の内容がさっぱり分からないかもしれません。 現代のOSは，<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">GUI</a> であるため，無理もない話です。 そこで，ここで簡単に CUI の話をしておきます。</p>
+<section id="ディレクトリ構造" class="level4" data-number="1.1.1">
+<h4 data-number="1.1.1" class="anchored" data-anchor-id="ディレクトリ構造"><span class="header-section-number">1.1.1</span> ディレクトリ構造</h4>
+<p>まず，Windowsのディレクトリ構造について説明します。 macOSもほぼ同じです。</p>
+<p>Rを起動した時，Rコンソールは次の場所（ディレクトリ）にいます。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- ドキュメント
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。 Rは，この場所で作業をします。 ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，その人の使っているパソコンによって異なります。</p>
+<p>この図の線の部分を <code>/</code> で置き換えると，CUIで表現できます。 つまり，上の図はCUIでは <code>C:/Users/ユーザ名/OneDrive/ドキュメント</code> と表現します（Windowsの場合，<code>/</code> を <code>¥</code> や <code>\</code> で表現する場合もあります）。</p>
+<p>一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の <code>Downloads</code> にあるはずです。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- ドキュメント
+  ユーザ名 --- Downloads
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p><code>Downloads</code> はカタカナで <code>ダウンロード</code> かもしれません。</p>
+<p>以下の説明では，これらのことが理解できていることを前提としています。</p>
+</section>
+<section id="ファイル管理" class="level4" data-number="1.1.2">
+<h4 data-number="1.1.2" class="anchored" data-anchor-id="ファイル管理"><span class="header-section-number">1.1.2</span> ファイル管理</h4>
+<p>続いて，ファイル管理について説明します。 これは，Rとは直接は関係ありません。 パソコンの中のファイルの整理方法の説明です。</p>
+<p>人によってファイルの整理方法は異なります。 このため，ここに書いてある通りにすべきということではありません。 ただし，以下の説明はここに書いてあることを想定しています。</p>
+<p>自分で作ったWordやExcelのファイルだけでなく，インターネットからダウンロードしたファイルは，<code>ドキュメント</code> 以下の関連するフォルダに移動させることを強くおすすめします。 そうしないと，<code>ダウンロード</code> フォルダが訳が分からない状態になってしまします。</p>
+<p><code>ドキュメント</code> フォルダも同様で，何もルールを決めずにファイルを保存していると，何が何だか分からなくなってしまいます。 そこで，<code>ドキュメント</code> の中にフォルダを作ります。 フォルダの名前は自分で決めてください。 そのフォルダに関連するファイルをフォルダの中に入れていきます。 これらの作業は，Explorer（またはFinder）上で，マウスやトラックパッドを使って行ってください。 そのフォルダの中に，新たなフォルダを作ります。 このフォルダの名前も自分で決めてください。 こうして作成したフォルダは，ツリー状に表現できます。</p>
+<p>前節の図の <code>ドキュメント</code> 以下のフォルダ構造の例を示すと，以下のようになります。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  ドキュメント --- 大学
+  ドキュメント --- 就職活動
+  大学 --- 学部
+  大学 --- 大学院
+  大学院 --- 修士課程1年
+  大学院 --- 修士課程2年
+  修士課程1年 --- 授業科目A
+  修士課程1年 --- 授業科目B
+  授業科目A --- 2023年6月21日
+  授業科目A --- 2023年6月28日
+  授業科目A --- data
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>以下の説明では，日付のフォルダに，Rスクリプトや授業に関連するファイルを入れます。 <code>data</code> フォルダにダウンロードしたファイルを入れます。</p>
+<p>自分なりに分かりやすいフォルダを作って，ファイルを整理してください。</p>
+</section>
+</section>
+<section id="作業ディレクトリ" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="作業ディレクトリ"><span class="header-section-number">1.2</span> 作業ディレクトリ</h3>
 <p>対処方法の1つ目は，Explorer（Windowsの場合）またはFinder（macOSの場合）でのファイル操作を伴います。 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -171,18 +261,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の場所を指定します。 この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。 ここで行っているのは，作業ディレクトリの変更です。</p>
 </section>
-<section id="絶対パス" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="絶対パス"><span class="header-section-number">1.2</span> 絶対パス</h3>
+<section id="絶対パス" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="絶対パス"><span class="header-section-number">1.3</span> 絶対パス</h3>
 <p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。 これは，次のコマンドによって実現します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/ユーザ名/Downloads/addresses.csv"</span>) <span class="co"># Windowsの例</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，その人の使っているパソコンによって異なります。 また，<code>Downloads</code> はカタカナで <code>ダウンロード</code> かもしれません。 Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。 コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。 macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。 絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
+<p>Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。 コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。 macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。 絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
 <p>実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。 なお，こうした煩雑さを緩和する目的で，<a href="https://CRAN.R-project.org/package=here" target="_blank">here</a> パッケージがありますので，知りたい人は調べてください。</p>
 </section>
-<section id="相対パス" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="相対パス"><span class="header-section-number">1.3</span> 相対パス</h3>
+<section id="相対パス" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="相対パス"><span class="header-section-number">1.4</span> 相対パス</h3>
 <p>相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。 Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
 <p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。</p>
 <div class="cell">
