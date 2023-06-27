@@ -58,7 +58,8 @@ graph LR
   C[C:] --- Users
   Users --- ユーザ名
   ユーザ名 --- OneDrive
-  OneDrive --- ドキュメント
+  OneDrive --- doc[ドキュメント]
+  style doc fill:#f96,stroke:#333
 ```
 「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。
 Rは，この場所で作業をします。
@@ -73,8 +74,9 @@ graph LR
   C[C:] --- Users
   Users --- ユーザ名
   ユーザ名 --- OneDrive
-  OneDrive --- ドキュメント
-  ユーザ名 --- Downloads
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- dow[Downloads]
+  style dow fill:#f96,stroke:#333
 ```
 `Downloads` はカタカナで `ダウンロード` かもしれません。
 
@@ -113,9 +115,12 @@ flowchart LR
   大学院 --- 修士課程2年
   修士課程1年 --- 授業科目A
   修士課程1年 --- 授業科目B
-  授業科目A --- 2023年6月21日
-  授業科目A --- 2023年6月28日
+  授業科目A --- lastweek[2023年6月21日]
+  授業科目A --- today[2023年6月28日]
   授業科目A --- data
+  style lastweek fill:#f96,stroke:#333
+  style today fill:#f96,stroke:#333
+  style data fill:#f96,stroke:#333
 ```
 `就職活動` を `大学` の中に入れたい人やまったく別のフォルダ構造にしたい人もいるでしょう。
 自分の好きなようにしてください。
