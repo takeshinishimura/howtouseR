@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年6月28日</p>
+      <p class="date">2023年6月29日</p>
     </div>
   </div>
   
@@ -707,7 +707,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rコンソールには何も表示されません。 その代わりに，作業ディレクトリに <code>test.txt</code> というテキストファイルができているはずです。 Explorer（またはFinder）で確認してください。</p>
-<p>この例のように，<code>sink()</code> の引数に保存したいファイル名を書きます。 ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。</p>
+<p>この例のように，<code>sink()</code> の引数に保存したいファイル名を書きます。 ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。 また，ファイル出力が終わったら，必ず引数なしで <code>sink()</code> としてファイルを閉じてください。</p>
 <p>相対パスでディレクトリを書くと，その場所に保存されます。 例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"../../Downloads/test.txt"</span>) <span class="co"># OneDriveで同期している場合</span></span>
