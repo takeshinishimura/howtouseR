@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>ファイル操作</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="file_manipulation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="file_manipulation_files/libs/quarto-html/quarto.js"></script>
+<script src="file_manipulation_files/libs/quarto-html/popper.min.js"></script>
+<script src="file_manipulation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="file_manipulation_files/libs/quarto-html/anchor.min.js"></script>
+<link href="file_manipulation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="file_manipulation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="file_manipulation_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="file_manipulation_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="file_manipulation_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="mermaid-theme" content="neutral">
+<script src="file_manipulation_files/libs/quarto-diagram/mermaid.min.js"></script>
+<script src="file_manipulation_files/libs/quarto-diagram/mermaid-init.js"></script>
+<link href="file_manipulation_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#ファイルの読み込み" id="toc-ファイルの読み込み" class="nav-link active" data-scroll-target="#ファイルの読み込み"><span class="header-section-number">1</span> ファイルの読み込み</a></li>
+  <li><a href="#ディレクトリ構造とファイル管理の基礎" id="toc-ディレクトリ構造とファイル管理の基礎" class="nav-link" data-scroll-target="#ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">2</span> ディレクトリ構造とファイル管理の基礎</a>
+  <ul>
+  <li><a href="#ディレクトリ構造" id="toc-ディレクトリ構造" class="nav-link" data-scroll-target="#ディレクトリ構造"><span class="header-section-number">2.1</span> ディレクトリ構造</a></li>
+  <li><a href="#ファイル管理" id="toc-ファイル管理" class="nav-link" data-scroll-target="#ファイル管理"><span class="header-section-number">2.2</span> ファイル管理</a></li>
+  </ul></li>
+  <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">3</span> 作業ディレクトリ</a></li>
+  <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">4</span> 絶対パス</a></li>
+  <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">5</span> 相対パス</a></li>
+  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">6</span> 練習問題</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">ファイル操作</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">公開</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2023年6月28日</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>今回は，Rにおけるファイル操作について学びます。 とくにRのコンソールがいまどこにいるかを意識していないと，ファイルの読み書きに支障を来します。 コマンドラインに不慣れな人はこのあたりで躓く可能性があります。</p>
+<section id="ファイルの読み込み" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="ファイルの読み込み"><span class="header-section-number">1</span> ファイルの読み込み</h2>
+<p><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードします。 これをRに読み込んでみましょう。 例えば，<code>addresses.csv</code>をダウンロードした場合，次のコマンドで読み込めます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。 拡張子は省略してはいけません。 もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./Windows_extension.png" class="img-fluid figure-img"></p>
+<figcaption class="figure-caption">Windowsの拡張子表示</figcaption>
+</figure>
+</div>
+<p>上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。</p>
+<ol type="1">
+<li>ダウンロードしたファイルを作業ディレクトリ（working directory）に移動する。</li>
+<li>ダウンロードしたファイルへの絶対パスを指定する。</li>
+</ol>
+</section>
+<section id="ディレクトリ構造とファイル管理の基礎" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">2</span> ディレクトリ構造とファイル管理の基礎</h2>
+<p>そもそもの話として，<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">CUI</a> に慣れていない人は，このファイル操作の内容がさっぱり分からないかもしれません。 現代のOSは，<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">GUI</a> であるため，無理もない話です。 そこで，ここで簡単に CUI の話をしておきます。</p>
+<section id="ディレクトリ構造" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="ディレクトリ構造"><span class="header-section-number">2.1</span> ディレクトリ構造</h3>
+<p>まず，Windowsのディレクトリ構造について説明します。 macOSもほぼ同じです。</p>
+<p>Rを起動した時，Rコンソールは次の場所（フォルダ）にいます。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  style doc fill:#f96,stroke:#333
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。 Rは，この場所で作業をします。 ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，パソコンによって異なります。</p>
+<p>この図の線の部分を <code>/</code> で置き換えると，CUIで表現できます。 つまり，上の図はCUIでは <code>C:/Users/ユーザ名/OneDrive/ドキュメント</code> と表現します（Windowsの場合，<code>/</code> を <code>¥</code> や <code>\</code> で表現する場合もあります）。</p>
+<p>一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の <code>Downloads</code> にあるはずです。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- dow[Downloads]
+  style dow fill:#f96,stroke:#333
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p><code>Downloads</code> はカタカナで <code>ダウンロード</code> という表記になっているかもしれません。</p>
+<p>以下の説明では，これらのことが理解できていることを前提としています。</p>
+</section>
+<section id="ファイル管理" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="ファイル管理"><span class="header-section-number">2.2</span> ファイル管理</h3>
+<p>続いて，ファイル管理について説明します。 これは，Rとは直接は関係ありません。 パソコンの中のファイルの整理方法の説明です。</p>
+<p>人によってファイルの整理方法は異なります。 このため，ここに書いてある通りにすべきということではありません。 ただし，以下の説明はここに書いてあることを想定しています。</p>
+<p>自分で作ったWordやExcelのファイルだけでなく，インターネットからダウンロードしたファイルは，<code>ドキュメント</code> 以下の関連するフォルダに移動させることを強くおすすめします。 そうしないと，<code>ダウンロード</code> フォルダが訳が分からない状態になってしまいます。</p>
+<p><code>ドキュメント</code> フォルダも同様で，何もルールを決めずにファイルを保存していると，何が何だか分からなくなってしまいます。 そこで，<code>ドキュメント</code> の中にフォルダを作ります。 フォルダの名前は自分で決めてください。 そのフォルダに関連するファイルをフォルダの中に入れていきます。 これらの作業は，Explorer（またはFinder）上で，マウスやトラックパッドを使って行ってください。 そのフォルダの中に，新たなフォルダを作ります。 このフォルダの名前も自分で決めてください。 こうして作成したフォルダは，ツリー状に表現できます。</p>
+<p>前節の図の <code>ドキュメント</code> 以下のフォルダ構造の例を示すと，以下のようになります。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">flowchart LR
+  ドキュメント --- 大学
+  ドキュメント --- 就職活動
+  大学 --- 学部
+  大学 --- 大学院
+  大学院 --- 修士課程1年
+  大学院 --- 修士課程2年
+  修士課程1年 --- 授業科目A
+  修士課程1年 --- 授業科目B
+  授業科目A --- lastweek[2023年6月21日]
+  授業科目A --- today[2023年6月28日]
+  授業科目A --- data
+  style lastweek fill:#f96,stroke:#333
+  style today fill:#f96,stroke:#333
+  style data fill:#f96,stroke:#333
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p><code>就職活動</code> を <code>大学</code> の中に入れたい人やまったく別のフォルダ構造にしたい人もいるでしょう。 自分の好きなようにしてください。 ただし，以下の説明では，日付のフォルダに，Rスクリプトや授業に関連するファイルを入れ，<code>data</code> フォルダにダウンロードしたファイルを入れることを想定した説明をします。</p>
+<p>自分なりに分かりやすいフォルダを作って，ファイルを整理してください。</p>
+</section>
+</section>
+<section id="作業ディレクトリ" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="作業ディレクトリ"><span class="header-section-number">3</span> 作業ディレクトリ</h2>
+<p>対処方法の1つ目は，Explorer（Windowsの場合）またはFinder（macOSの場合）でのファイル操作を伴います。 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ただし，このコマンドの返り値のディレクトリで<strong>本当に</strong>よいかは，その人によります。 といっても分からないと思いますので，作業ディレクトリは次の方法で変更しましょう。</p>
+<p>Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。 macOSの場合，メニューの[その他]→[作業ディレクトリの変更…]から作業ディレクトリを変更します。 ここで，先ほどCSVファイルがダウンロードされたディレクトリを指定すればよいです。 しかしながら，ここでは，<strong>作業ディレクトリをどこかに決める</strong>ことをおすすめします。 作業ディレクトリはRを終了すると初期化されます（デフォルト値に戻る）ので，Rを起動するたびに毎回，この操作を行います。 毎回同じ場所でもよいですし，通常は目的（プロジェクト，論文，授業など）ごとに変更すべきでしょう。 どこを作業ディレクトリにするかは自分で決めてください。 Rに関連するファイルしか存在しないディレクトリを作成しておくと，作業がしやすいです。</p>
+<p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。 これらスクリプトが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。 拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。 テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。 macOSの場合はOS標準のテキストエディット.appで問題ありません。 最近は，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。</p>
+<p>上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。 次のコマンドを知っておくと便利です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/ユーザ名/OneDrive/ドキュメント"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の場所を指定します。 この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。 ここで行っているのは，作業ディレクトリの変更です。</p>
+</section>
+<section id="絶対パス" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="絶対パス"><span class="header-section-number">4</span> 絶対パス</h2>
+<p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。 これは，次のコマンドによって実現します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/ユーザ名/Downloads/addresses.csv"</span>) <span class="co"># Windowsの例</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。 コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。 macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。 絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
+<p>実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。 なお，こうした煩雑さを緩和する目的で，<a href="https://CRAN.R-project.org/package=here" target="_blank">here</a> パッケージがありますので，知りたい人は調べてください。</p>
+</section>
+<section id="相対パス" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="相対パス"><span class="header-section-number">5</span> 相対パス</h2>
+<p>相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。 Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
+<p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"./test"</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv"</span>, <span class="st">"./test/addresses.csv"</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./test/addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>                   John      Doe               X120.jefferson.st.   Riverside
+1                  Jack McGinnis                     220 hobo Av.       Phila
+2         John "Da Man"   Repici                120 Jefferson St.   Riverside
+3               Stephen    Tyler 7452 Terrace "At the Plaza" road    SomeTown
+4                       Blankman                                     SomeTown
+5 Joan "the bone", Anne      Jet              9th, at Terrace plc Desert City
+   NJ X08075
+1  PA   9119
+2  NJ   8075
+3  SD  91234
+4  SD    298
+5  CO    123</code></pre>
+</div>
+</div>
+<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを強調して表現したいときに用いる記号です。 このことから，<code>./</code> は作業ディレクトリを意味します。 この部分はなくても構いません。 ただし，<code>"./test"</code> と <code>"test"</code> は同じ意味ですが，<code>"/test"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/test")</code> とした場合，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
+<p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。</p>
+<p>この結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                     V1       V2                               V3          V4
+1                  John      Doe                120 jefferson st.   Riverside
+2                  Jack McGinnis                     220 hobo Av.       Phila
+3         John "Da Man"   Repici                120 Jefferson St.   Riverside
+4               Stephen    Tyler 7452 Terrace "At the Plaza" road    SomeTown
+5                       Blankman                                     SomeTown
+6 Joan "the bone", Anne      Jet              9th, at Terrace plc Desert City
+   V5    V6
+1  NJ  8075
+2  PA  9119
+3  NJ  8075
+4  SD 91234
+5  SD   298
+6  CO   123</code></pre>
+</div>
+</div>
+<p>ヘッダーをどうすべきかはファイルによって異なります。 例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"../data/airtravel.csv"</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Month X1958 X1959 X1960
+1    JAN   340   360   417
+2    FEB   318   342   391
+3    MAR   362   406   419
+4    APR   348   396   461
+5    MAY   363   420   472
+6    JUN   435   472   535
+7    JUL   491   548   622
+8    AUG   505   559   606
+9    SEP   404   463   508
+10   OCT   359   407   461
+11   NOV   310   362   390
+12   DEC   337   405   432</code></pre>
+</div>
+</div>
+<p>ヘッダーがおかしいものがありますが，ここでは無視します（この節の最後のやり方でこのおかしさは解消します）。 あえて間違った読み方をすると次のようになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      V1   V2   V3   V4
+1  Month 1958 1959 1960
+2    JAN  340  360  417
+3    FEB  318  342  391
+4    MAR  362  406  419
+5    APR  348  396  461
+6    MAY  363  420  472
+7    JUN  435  472  535
+8    JUL  491  548  622
+9    AUG  505  559  606
+10   SEP  404  463  508
+11   OCT  359  407  461
+12   NOV  310  362  390
+13   DEC  337  405  432</code></pre>
+</div>
+</div>
+<p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。 これは，Explorer（Windowsの場合）やFinder（macOSの場合）における通常のファイル操作と同じです。</p>
+<p>なお，パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。 <code>.</code> と <code>..</code> は同時には使えません。 どちらもパスの先頭になければならないからです。 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味しています。 このコマンドを理解するには，次回説明する条件分岐と <code>!</code> の意味を正しく理解できなければなりません。 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。 なお，この考え方に基づくと，CSVファイルを読むコマンドは以下のように書き換えることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="st">"../data/biostats.csv"</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(destfile)) {</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  utils<span class="sc">::</span><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, destfile)</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Name      Sex Age Height..in. Weight..lbs.
+1  Alex        M  41          74          170
+2  Bert        M  42          68          166
+3  Carl        M  32          70          155
+4  Dave        M  39          72          167
+5  Elly        F  30          66          124
+6  Fran        F  33          66          115
+7  Gwen        F  26          64          121
+8  Hank        M  30          71          158
+9  Ivan        M  53          72          175
+10 Jake        M  32          69          143
+11 Kate        F  47          69          139
+12 Luke        M  34          72          163
+13 Myra        F  23          62           98
+14 Neil        M  36          75          160
+15 Omar        M  38          70          145
+16 Page        F  31          67          135
+17 Quin        M  29          71          176
+18 Ruth        F  28          65          131</code></pre>
+</div>
+</div>
+<p>コードは複雑になりましたが，読み込みたいファイルがすでにダウンロードされている場合は，再びダウンロードしないため，こちらの方がネットワークへの負荷が少なく，よりよいコードと言えます。 ただし，元のファイルと比較するとヘッダーがおかしいです。 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Name      Sex Age Height (in) Weight (lbs)
+1  Alex        M  41          74          170
+2  Bert        M  42          68          166
+3  Carl        M  32          70          155
+4  Dave        M  39          72          167
+5  Elly        F  30          66          124
+6  Fran        F  33          66          115
+7  Gwen        F  26          64          121
+8  Hank        M  30          71          158
+9  Ivan        M  53          72          175
+10 Jake        M  32          69          143
+11 Kate        F  47          69          139
+12 Luke        M  34          72          163
+13 Myra        F  23          62           98
+14 Neil        M  36          75          160
+15 Omar        M  38          70          145
+16 Page        F  31          67          135
+17 Quin        M  29          71          176
+18 Ruth        F  28          65          131</code></pre>
+</div>
+</div>
+</section>
+<section id="練習問題" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">6</span> 練習問題</h2>
+<ol type="1">
+<li>Rを起動した状態で，Webブラウザを使って <a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。 ExplorerやFinderを使ってファイルを移動せずに，また，<code>setwd()</code> を使わずに，Rコンソール上でダウンロードしたファイルを読み込みなさい。</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
