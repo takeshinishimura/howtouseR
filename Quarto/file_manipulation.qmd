@@ -254,7 +254,7 @@ read.csv(destfile)
 ```
 パスの先頭にある `.` は自分がいるディレクトリを意味する記号です。
 このことから，`./` は作業ディレクトリを指します。
-`./` はなくても構いません。
+`./` はあってもなくても同じです。
 ただし，`"./data"` と `"data"` は同じ意味ですが，`"/data"` は意味が異なりますので注意してください。
 もし `dir.create("/data")` とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。
 
@@ -288,7 +288,7 @@ graph LR
 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。
 ```{r}
 #| eval: false
-read.csv("./data/addresses.csv", header = FALSE)
+read.csv("data/addresses.csv", header = FALSE)
 ```
 ```{r}
 #| echo: false
@@ -298,8 +298,8 @@ read.csv("../data/addresses.csv", header = FALSE)
 例えば，次の例では，ヘッダーを `TRUE` にすべきです（省略時のヘッダーは `TRUE` であるため，省略してもよい）。 
 ```{r}
 #| eval: false
-download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "./data/airtravel.csv")
-read.csv("./data/airtravel.csv", header = TRUE)
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "data/airtravel.csv")
+read.csv("data/airtravel.csv", header = TRUE)
 ```
 ```{r}
 #| echo: false
@@ -313,7 +313,7 @@ read.csv(destfile)
 ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。
 ```{r}
 #| eval: false
-read.csv("./data/airtravel.csv", header = FALSE)
+read.csv("data/airtravel.csv", header = FALSE)
 ```
 ```{r}
 #| echo: false
@@ -328,8 +328,8 @@ read.csv("../data/airtravel.csv", header = FALSE)
 例えば，次のように別のCSVファイルを読み込んでください。
 ```{r}
 #| eval: false
-download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", "./data/biostats.csv")
-read.csv("./data/biostats.csv", header = TRUE)
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", "data/biostats.csv")
+read.csv("data/biostats.csv", header = TRUE)
 ```
 ```{r}
 #| echo: false
@@ -344,7 +344,7 @@ read.csv(destfile, header = TRUE)
 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。
 ```{r}
 #| eval: false
-read.csv("./data/biostats.csv", check.names = FALSE)
+read.csv("data/biostats.csv", check.names = FALSE)
 ```
 ```{r}
 #| echo: false
@@ -405,6 +405,14 @@ graph LR
 #| eval: false
 read.csv("../../Downloads/cities.csv")
 ```
+なお，上述の `.` の説明を踏まえると，これは次のように書くこともできます。
+```{r}
+#| eval: false
+read.csv("./../../Downloads/cities.csv")
+```
+ただし，こういう場合に， `./` を書くのは冗長な印象を受けます。
+`./` はあってもなくても結果は同じですが，上の階層に行く場合は `..` から始めるべきでしょう。
+
 OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。
 ```{mermaid}
 graph LR
@@ -435,3 +443,36 @@ read.csv(destfile)
 ```
 
 ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。
+
+
+## ファイル出力
+
+Rコンソールがいる場所（ディレクトリ）がどこであるかを意識する必要があるのは，ファイル入出力のときです。
+これまで，ファイル入力のみを行ってきました。
+ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。
+
+Rの返り値をコンソールではなく，ファイルに出力する関数が `sink()` です。
+例えば，次のコードを実行するとどうなるでしょうか。
+```{r}
+#| eval: false
+sink("test.txt")
+iris
+sink()
+```
+Rコンソールには何も表示されません。
+その代わりに，作業ディレクトリに `test.txt` というテキストファイルができているはずです。
+Explorer（またはFinder）で確認してください。
+
+この例のように，`sink()` の引数に保存したいファイル名を書きます。
+ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。
+
+相対パスでディレクトリを書くと，その場所に保存されます。
+例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。
+```{r}
+#| eval: false
+sink("../../Downloads/test.txt") # OneDriveで同期している場合
+# sink("../Downloads/test.txt") # OneDriveで同期していない場合
+cars
+sink()
+```
+ OneDriveで同期していない人は，2行目の `#` の右側以降をRコンソールにコピーして，コードを実行してください。

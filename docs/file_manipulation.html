@@ -92,6 +92,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">3</span> 作業ディレクトリ</a></li>
   <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">4</span> 絶対パス</a></li>
   <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">5</span> 相対パス</a></li>
+  <li><a href="#ファイル出力" id="toc-ファイル出力" class="nav-link" data-scroll-target="#ファイル出力"><span class="header-section-number">6</span> ファイル出力</a></li>
   </ul>
 </nav>
 </div>
@@ -313,7 +314,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5  CO    123</code></pre>
 </div>
 </div>
-<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを意味する記号です。 このことから，<code>./</code> は作業ディレクトリを指します。 <code>./</code> はなくても構いません。 ただし，<code>"./data"</code> と <code>"data"</code> は同じ意味ですが，<code>"/data"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/data")</code> とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
+<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを意味する記号です。 このことから，<code>./</code> は作業ディレクトリを指します。 <code>./</code> はあってもなくても同じです。 ただし，<code>"./data"</code> と <code>"data"</code> は同じ意味ですが，<code>"/data"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/data")</code> とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
 <p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。 このことを図で表現すると，次のようになります。</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -351,7 +352,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><code>~</code> はホームディレクトリを意味する記号であり，OneDriveで同期している人は <code>"C:/Users/ユーザ名/OneDrive/ドキュメント"</code>，同期していない人は <code>"C:/Users/ユーザ名/Documents"</code> を指します。</p>
 <p>先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -373,8 +374,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>ヘッダーをどうすべきかはファイルによって異なります。 例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"./data/airtravel.csv"</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"data/airtravel.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -395,7 +396,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>ヘッダーが数字で始まる場合，先頭に <code>X</code> が付き，文字列に変換されます。 ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -418,8 +419,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。 これは，Explorer（またはFinder）における通常のファイル操作と同じです。</p>
 <p>ここでよくある例を挙げておきます。 例えば，次のように別のCSVファイルを読み込んでください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, <span class="st">"./data/biostats.csv"</span>)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/biostats.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, <span class="st">"data/biostats.csv"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/biostats.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -446,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>biostats.csv</code> を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。 <code>()</code> とスペースが <code>.</code> に置き換わっていることが分かります。 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/biostats.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"data/biostats.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -530,6 +531,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>なお，上述の <code>.</code> の説明を踏まえると，これは次のように書くこともできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ただし，こういう場合に， <code>./</code> を書くのは冗長な印象を受けます。 <code>./</code> はあってもなくても結果は同じですが，上の階層に行く場合は <code>..</code> から始めるべきでしょう。</p>
 <p>OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。</p>
 <div class="cell">
 <div class="cell-output-display">
@@ -554,7 +560,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -690,6 +696,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>ここで，<code>..</code> という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。</p>
+</section>
+<section id="ファイル出力" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="ファイル出力"><span class="header-section-number">6</span> ファイル出力</h2>
+<p>Rコンソールがいる場所（ディレクトリ）がどこであるかを意識する必要があるのは，ファイル入出力のときです。 これまで，ファイル入力のみを行ってきました。 ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。</p>
+<p>Rの返り値をコンソールではなく，ファイルに出力する関数が <code>sink()</code> です。 例えば，次のコードを実行するとどうなるでしょうか。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"test.txt"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>iris</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Rコンソールには何も表示されません。 その代わりに，作業ディレクトリに <code>test.txt</code> というテキストファイルができているはずです。 Explorer（またはFinder）で確認してください。</p>
+<p>この例のように，<code>sink()</code> の引数に保存したいファイル名を書きます。 ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。</p>
+<p>相対パスでディレクトリを書くと，その場所に保存されます。 例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"../../Downloads/test.txt"</span>) <span class="co"># OneDriveで同期している場合</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sink("../Downloads/test.txt") # OneDriveで同期していない場合</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cars</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>OneDriveで同期していない人は，2行目の <code>#</code> の右側以降をRコンソールにコピーして，コードを実行してください。</p>
 </section>
 
 </main>
