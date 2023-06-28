@@ -67,10 +67,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="basics_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="basics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="basics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<meta name="mermaid-theme" content="neutral">
-<script src="basics_files/libs/quarto-diagram/mermaid.min.js"></script>
-<script src="basics_files/libs/quarto-diagram/mermaid-init.js"></script>
-<link href="basics_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -83,48 +79,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#ファイル操作" id="toc-ファイル操作" class="nav-link active" data-scroll-target="#ファイル操作"><span class="header-section-number">1</span> ファイル操作</a>
+  <li><a href="#変数の型" id="toc-変数の型" class="nav-link active" data-scroll-target="#変数の型"><span class="header-section-number">1</span> 変数の型</a>
   <ul>
-  <li><a href="#ディレクトリ構造とファイル管理の基礎" id="toc-ディレクトリ構造とファイル管理の基礎" class="nav-link" data-scroll-target="#ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">1.1</span> ディレクトリ構造とファイル管理の基礎</a>
-  <ul class="collapse">
-  <li><a href="#ディレクトリ構造" id="toc-ディレクトリ構造" class="nav-link" data-scroll-target="#ディレクトリ構造"><span class="header-section-number">1.1.1</span> ディレクトリ構造</a></li>
-  <li><a href="#ファイル管理" id="toc-ファイル管理" class="nav-link" data-scroll-target="#ファイル管理"><span class="header-section-number">1.1.2</span> ファイル管理</a></li>
+  <li><a href="#数値" id="toc-数値" class="nav-link" data-scroll-target="#数値"><span class="header-section-number">1.1</span> 数値</a></li>
+  <li><a href="#文字列" id="toc-文字列" class="nav-link" data-scroll-target="#文字列"><span class="header-section-number">1.2</span> 文字列</a></li>
+  <li><a href="#ファクター" id="toc-ファクター" class="nav-link" data-scroll-target="#ファクター"><span class="header-section-number">1.3</span> ファクター</a></li>
+  <li><a href="#論理値" id="toc-論理値" class="nav-link" data-scroll-target="#論理値"><span class="header-section-number">1.4</span> 論理値</a></li>
   </ul></li>
-  <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">1.2</span> 作業ディレクトリ</a></li>
-  <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">1.3</span> 絶対パス</a></li>
-  <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">1.4</span> 相対パス</a></li>
-  </ul></li>
-  <li><a href="#特殊記号" id="toc-特殊記号" class="nav-link" data-scroll-target="#特殊記号"><span class="header-section-number">2</span> 特殊記号</a>
+  <li><a href="#変数の種類" id="toc-変数の種類" class="nav-link" data-scroll-target="#変数の種類"><span class="header-section-number">2</span> 変数の種類</a>
   <ul>
-  <li><a href="#コメント" id="toc-コメント" class="nav-link" data-scroll-target="#コメント"><span class="header-section-number">2.1</span> コメント</a></li>
-  <li><a href="#セミコロン" id="toc-セミコロン" class="nav-link" data-scroll-target="#セミコロン"><span class="header-section-number">2.2</span> セミコロン</a></li>
-  <li><a href="#評価と同時に返り値を表示" id="toc-評価と同時に返り値を表示" class="nav-link" data-scroll-target="#評価と同時に返り値を表示"><span class="header-section-number">2.3</span> 評価と同時に返り値を表示</a></li>
+  <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="header-section-number">2.1</span> ベクトル</a>
+  <ul class="collapse">
+  <li><a href="#欠損値" id="toc-欠損値" class="nav-link" data-scroll-target="#欠損値"><span class="header-section-number">2.1.1</span> 欠損値</a></li>
   </ul></li>
-  <li><a href="#変数の型" id="toc-変数の型" class="nav-link" data-scroll-target="#変数の型"><span class="header-section-number">3</span> 変数の型</a>
+  <li><a href="#行列" id="toc-行列" class="nav-link" data-scroll-target="#行列"><span class="header-section-number">2.2</span> 行列</a>
+  <ul class="collapse">
+  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">2.2.1</span> Tips</a></li>
+  </ul></li>
+  <li><a href="#データフレーム" id="toc-データフレーム" class="nav-link" data-scroll-target="#データフレーム"><span class="header-section-number">2.3</span> データフレーム</a>
+  <ul class="collapse">
+  <li><a href="#データフレームの列" id="toc-データフレームの列" class="nav-link" data-scroll-target="#データフレームの列"><span class="header-section-number">2.3.1</span> データフレームの列</a></li>
+  <li><a href="#データフレームの列-1" id="toc-データフレームの列-1" class="nav-link" data-scroll-target="#データフレームの列-1"><span class="header-section-number">2.3.2</span> データフレームの列</a></li>
+  </ul></li>
+  <li><a href="#リスト" id="toc-リスト" class="nav-link" data-scroll-target="#リスト"><span class="header-section-number">2.4</span> リスト</a></li>
+  </ul></li>
+  <li><a href="#特殊記号" id="toc-特殊記号" class="nav-link" data-scroll-target="#特殊記号"><span class="header-section-number">3</span> 特殊記号</a>
   <ul>
-  <li><a href="#数値" id="toc-数値" class="nav-link" data-scroll-target="#数値"><span class="header-section-number">3.1</span> 数値</a></li>
-  <li><a href="#文字列" id="toc-文字列" class="nav-link" data-scroll-target="#文字列"><span class="header-section-number">3.2</span> 文字列</a></li>
-  <li><a href="#ファクター" id="toc-ファクター" class="nav-link" data-scroll-target="#ファクター"><span class="header-section-number">3.3</span> ファクター</a></li>
-  <li><a href="#論理値" id="toc-論理値" class="nav-link" data-scroll-target="#論理値"><span class="header-section-number">3.4</span> 論理値</a></li>
+  <li><a href="#コメント" id="toc-コメント" class="nav-link" data-scroll-target="#コメント"><span class="header-section-number">3.1</span> コメント</a></li>
+  <li><a href="#セミコロン" id="toc-セミコロン" class="nav-link" data-scroll-target="#セミコロン"><span class="header-section-number">3.2</span> セミコロン</a></li>
+  <li><a href="#評価と同時に返り値を表示" id="toc-評価と同時に返り値を表示" class="nav-link" data-scroll-target="#評価と同時に返り値を表示"><span class="header-section-number">3.3</span> 評価と同時に返り値を表示</a></li>
   </ul></li>
-  <li><a href="#変数の種類" id="toc-変数の種類" class="nav-link" data-scroll-target="#変数の種類"><span class="header-section-number">4</span> 変数の種類</a>
-  <ul>
-  <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="header-section-number">4.1</span> ベクトル</a>
-  <ul class="collapse">
-  <li><a href="#欠損値" id="toc-欠損値" class="nav-link" data-scroll-target="#欠損値"><span class="header-section-number">4.1.1</span> 欠損値</a></li>
-  </ul></li>
-  <li><a href="#行列" id="toc-行列" class="nav-link" data-scroll-target="#行列"><span class="header-section-number">4.2</span> 行列</a>
-  <ul class="collapse">
-  <li><a href="#tips" id="toc-tips" class="nav-link" data-scroll-target="#tips"><span class="header-section-number">4.2.1</span> Tips</a></li>
-  </ul></li>
-  <li><a href="#データフレーム" id="toc-データフレーム" class="nav-link" data-scroll-target="#データフレーム"><span class="header-section-number">4.3</span> データフレーム</a>
-  <ul class="collapse">
-  <li><a href="#データフレームの列" id="toc-データフレームの列" class="nav-link" data-scroll-target="#データフレームの列"><span class="header-section-number">4.3.1</span> データフレームの列</a></li>
-  <li><a href="#データフレームの列-1" id="toc-データフレームの列-1" class="nav-link" data-scroll-target="#データフレームの列-1"><span class="header-section-number">4.3.2</span> データフレームの列</a></li>
-  </ul></li>
-  <li><a href="#リスト" id="toc-リスト" class="nav-link" data-scroll-target="#リスト"><span class="header-section-number">4.4</span> リスト</a></li>
-  </ul></li>
-  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">5</span> 練習問題</a></li>
+  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">4</span> 練習問題</a></li>
   </ul>
 </nav>
 </div>
@@ -143,7 +128,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年6月27日</p>
+      <p class="date">2023年6月28日</p>
     </div>
   </div>
   
@@ -153,352 +138,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくにRのコンソールがいまどこにいるかを意識していないと，ファイルの読み書きに支障を来します。 また，変数の型について知っておかなければなりません。</p>
-<section id="ファイル操作" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="ファイル操作"><span class="header-section-number">1</span> ファイル操作</h2>
-<p>まず，<a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードします。 例えば，<code>addresses.csv</code>をダウンロードした場合，次のコマンドで読み込めます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。 拡張子は省略してはいけません。 もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="./Windows_extension.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Windowsの拡張子表示</figcaption>
-</figure>
-</div>
-<p>上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。</p>
-<ol type="1">
-<li>ダウンロードしたファイルを作業ディレクトリ（working directory）に移動する。</li>
-<li>ダウンロードしたファイルへの絶対パスを指定する。</li>
-</ol>
-<section id="ディレクトリ構造とファイル管理の基礎" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="ディレクトリ構造とファイル管理の基礎"><span class="header-section-number">1.1</span> ディレクトリ構造とファイル管理の基礎</h3>
-<p>そもそもの話として，<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">CUI</a> に慣れていない人は，このファイル操作の内容がさっぱり分からないかもしれません。 現代のOSは，<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">GUI</a> であるため，無理もない話です。 そこで，ここで簡単に CUI の話をしておきます。</p>
-<section id="ディレクトリ構造" class="level4" data-number="1.1.1">
-<h4 data-number="1.1.1" class="anchored" data-anchor-id="ディレクトリ構造"><span class="header-section-number">1.1.1</span> ディレクトリ構造</h4>
-<p>まず，Windowsのディレクトリ構造について説明します。 macOSもほぼ同じです。</p>
-<p>Rを起動した時，Rコンソールは次の場所（フォルダ）にいます。</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-  C[C:] --- Users
-  Users --- ユーザ名
-  ユーザ名 --- OneDrive
-  OneDrive --- doc[ドキュメント]
-  style doc fill:#f96,stroke:#333
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p>「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。 Rは，この場所で作業をします。 ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，パソコンによって異なります。</p>
-<p>この図の線の部分を <code>/</code> で置き換えると，CUIで表現できます。 つまり，上の図はCUIでは <code>C:/Users/ユーザ名/OneDrive/ドキュメント</code> と表現します（Windowsの場合，<code>/</code> を <code>¥</code> や <code>\</code> で表現する場合もあります）。</p>
-<p>一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の <code>Downloads</code> にあるはずです。</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">graph LR
-  C[C:] --- Users
-  Users --- ユーザ名
-  ユーザ名 --- OneDrive
-  OneDrive --- doc[ドキュメント]
-  ユーザ名 --- dow[Downloads]
-  style dow fill:#f96,stroke:#333
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p><code>Downloads</code> はカタカナで <code>ダウンロード</code> という表記になっているかもしれません。</p>
-<p>以下の説明では，これらのことが理解できていることを前提としています。</p>
-</section>
-<section id="ファイル管理" class="level4" data-number="1.1.2">
-<h4 data-number="1.1.2" class="anchored" data-anchor-id="ファイル管理"><span class="header-section-number">1.1.2</span> ファイル管理</h4>
-<p>続いて，ファイル管理について説明します。 これは，Rとは直接は関係ありません。 パソコンの中のファイルの整理方法の説明です。</p>
-<p>人によってファイルの整理方法は異なります。 このため，ここに書いてある通りにすべきということではありません。 ただし，以下の説明はここに書いてあることを想定しています。</p>
-<p>自分で作ったWordやExcelのファイルだけでなく，インターネットからダウンロードしたファイルは，<code>ドキュメント</code> 以下の関連するフォルダに移動させることを強くおすすめします。 そうしないと，<code>ダウンロード</code> フォルダが訳が分からない状態になってしまいます。</p>
-<p><code>ドキュメント</code> フォルダも同様で，何もルールを決めずにファイルを保存していると，何が何だか分からなくなってしまいます。 そこで，<code>ドキュメント</code> の中にフォルダを作ります。 フォルダの名前は自分で決めてください。 そのフォルダに関連するファイルをフォルダの中に入れていきます。 これらの作業は，Explorer（またはFinder）上で，マウスやトラックパッドを使って行ってください。 そのフォルダの中に，新たなフォルダを作ります。 このフォルダの名前も自分で決めてください。 こうして作成したフォルダは，ツリー状に表現できます。</p>
-<p>前節の図の <code>ドキュメント</code> 以下のフォルダ構造の例を示すと，以下のようになります。</p>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<div>
-<pre class="mermaid mermaid-js">flowchart LR
-  ドキュメント --- 大学
-  ドキュメント --- 就職活動
-  大学 --- 学部
-  大学 --- 大学院
-  大学院 --- 修士課程1年
-  大学院 --- 修士課程2年
-  修士課程1年 --- 授業科目A
-  修士課程1年 --- 授業科目B
-  授業科目A --- lastweek[2023年6月21日]
-  授業科目A --- today[2023年6月28日]
-  授業科目A --- data
-  style lastweek fill:#f96,stroke:#333
-  style today fill:#f96,stroke:#333
-  style data fill:#f96,stroke:#333
-</pre>
-</div>
-</div>
-</div>
-</div>
-<p><code>就職活動</code> を <code>大学</code> の中に入れたい人やまったく別のフォルダ構造にしたい人もいるでしょう。 自分の好きなようにしてください。 ただし，以下の説明では，日付のフォルダに，Rスクリプトや授業に関連するファイルを入れ，<code>data</code> フォルダにダウンロードしたファイルを入れることを想定した説明をします。</p>
-<p>自分なりに分かりやすいフォルダを作って，ファイルを整理してください。</p>
-</section>
-</section>
-<section id="作業ディレクトリ" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="作業ディレクトリ"><span class="header-section-number">1.2</span> 作業ディレクトリ</h3>
-<p>対処方法の1つ目は，Explorer（Windowsの場合）またはFinder（macOSの場合）でのファイル操作を伴います。 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>ただし，このコマンドの返り値のディレクトリで<strong>本当に</strong>よいかは，その人によります。 といっても分からないと思いますので，作業ディレクトリは次の方法で変更しましょう。</p>
-<p>Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。 macOSの場合，メニューの[その他]→[作業ディレクトリの変更…]から作業ディレクトリを変更します。 ここで，先ほどCSVファイルがダウンロードされたディレクトリを指定すればよいです。 しかしながら，ここでは，<strong>作業ディレクトリをどこかに決める</strong>ことをおすすめします。 作業ディレクトリはRを終了すると初期化されます（デフォルト値に戻る）ので，Rを起動するたびに毎回，この操作を行います。 毎回同じ場所でもよいですし，通常は目的（プロジェクト，論文，授業など）ごとに変更すべきでしょう。 どこを作業ディレクトリにするかは自分で決めてください。 Rに関連するファイルしか存在しないディレクトリを作成しておくと，作業がしやすいです。</p>
-<p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。 これらスクリプトが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。 拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。 テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。 macOSの場合はOS標準のテキストエディット.appで問題ありません。 最近は，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。</p>
-<p>上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。 次のコマンドを知っておくと便利です。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/ユーザ名/OneDrive/ドキュメント"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の場所を指定します。 この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。 ここで行っているのは，作業ディレクトリの変更です。</p>
-</section>
-<section id="絶対パス" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="絶対パス"><span class="header-section-number">1.3</span> 絶対パス</h3>
-<p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。 これは，次のコマンドによって実現します。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/ユーザ名/Downloads/addresses.csv"</span>) <span class="co"># Windowsの例</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。 コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。 macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。 絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
-<p>実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。 なお，こうした煩雑さを緩和する目的で，<a href="https://CRAN.R-project.org/package=here" target="_blank">here</a> パッケージがありますので，知りたい人は調べてください。</p>
-</section>
-<section id="相対パス" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="相対パス"><span class="header-section-number">1.4</span> 相対パス</h3>
-<p>相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。 Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
-<p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"./test"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv"</span>, <span class="st">"./test/addresses.csv"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./test/addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>                   John      Doe               X120.jefferson.st.   Riverside
-1                  Jack McGinnis                     220 hobo Av.       Phila
-2         John "Da Man"   Repici                120 Jefferson St.   Riverside
-3               Stephen    Tyler 7452 Terrace "At the Plaza" road    SomeTown
-4                       Blankman                                     SomeTown
-5 Joan "the bone", Anne      Jet              9th, at Terrace plc Desert City
-   NJ X08075
-1  PA   9119
-2  NJ   8075
-3  SD  91234
-4  SD    298
-5  CO    123</code></pre>
-</div>
-</div>
-<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを強調して表現したいときに用いる記号です。 このことから，<code>./</code> は作業ディレクトリを意味します。 この部分はなくても構いません。 ただし，<code>"./test"</code> と <code>"test"</code> は同じ意味ですが，<code>"/test"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/test")</code> とした場合，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
-<p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。</p>
-<p>この結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>                     V1       V2                               V3          V4
-1                  John      Doe                120 jefferson st.   Riverside
-2                  Jack McGinnis                     220 hobo Av.       Phila
-3         John "Da Man"   Repici                120 Jefferson St.   Riverside
-4               Stephen    Tyler 7452 Terrace "At the Plaza" road    SomeTown
-5                       Blankman                                     SomeTown
-6 Joan "the bone", Anne      Jet              9th, at Terrace plc Desert City
-   V5    V6
-1  NJ  8075
-2  PA  9119
-3  NJ  8075
-4  SD 91234
-5  SD   298
-6  CO   123</code></pre>
-</div>
-</div>
-<p>ヘッダーをどうすべきかはファイルによって異なります。 例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"../data/airtravel.csv"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Month X1958 X1959 X1960
-1    JAN   340   360   417
-2    FEB   318   342   391
-3    MAR   362   406   419
-4    APR   348   396   461
-5    MAY   363   420   472
-6    JUN   435   472   535
-7    JUL   491   548   622
-8    AUG   505   559   606
-9    SEP   404   463   508
-10   OCT   359   407   461
-11   NOV   310   362   390
-12   DEC   337   405   432</code></pre>
-</div>
-</div>
-<p>ヘッダーがおかしいものがありますが，ここでは無視します（この節の最後のやり方でこのおかしさは解消します）。 あえて間違った読み方をすると次のようになります。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>      V1   V2   V3   V4
-1  Month 1958 1959 1960
-2    JAN  340  360  417
-3    FEB  318  342  391
-4    MAR  362  406  419
-5    APR  348  396  461
-6    MAY  363  420  472
-7    JUN  435  472  535
-8    JUL  491  548  622
-9    AUG  505  559  606
-10   SEP  404  463  508
-11   OCT  359  407  461
-12   NOV  310  362  390
-13   DEC  337  405  432</code></pre>
-</div>
-</div>
-<p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。 これは，Explorer（Windowsの場合）やFinder（macOSの場合）における通常のファイル操作と同じです。</p>
-<p>なお，パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。 <code>.</code> と <code>..</code> は同時には使えません。 どちらもパスの先頭になければならないからです。 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味しています。 このコマンドを理解するには，次回説明する条件分岐と <code>!</code> の意味を正しく理解できなければなりません。 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。 なお，この考え方に基づくと，CSVファイルを読むコマンドは以下のように書き換えることができます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="st">"../data/biostats.csv"</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(destfile)) {</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  utils<span class="sc">::</span><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, destfile)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Name      Sex Age Height..in. Weight..lbs.
-1  Alex        M  41          74          170
-2  Bert        M  42          68          166
-3  Carl        M  32          70          155
-4  Dave        M  39          72          167
-5  Elly        F  30          66          124
-6  Fran        F  33          66          115
-7  Gwen        F  26          64          121
-8  Hank        M  30          71          158
-9  Ivan        M  53          72          175
-10 Jake        M  32          69          143
-11 Kate        F  47          69          139
-12 Luke        M  34          72          163
-13 Myra        F  23          62           98
-14 Neil        M  36          75          160
-15 Omar        M  38          70          145
-16 Page        F  31          67          135
-17 Quin        M  29          71          176
-18 Ruth        F  28          65          131</code></pre>
-</div>
-</div>
-<p>コードは複雑になりましたが，読み込みたいファイルがすでにダウンロードされている場合は，再びダウンロードしないため，こちらの方がネットワークへの負荷が少なく，よりよいコードと言えます。 ただし，元のファイルと比較するとヘッダーがおかしいです。 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>   Name      Sex Age Height (in) Weight (lbs)
-1  Alex        M  41          74          170
-2  Bert        M  42          68          166
-3  Carl        M  32          70          155
-4  Dave        M  39          72          167
-5  Elly        F  30          66          124
-6  Fran        F  33          66          115
-7  Gwen        F  26          64          121
-8  Hank        M  30          71          158
-9  Ivan        M  53          72          175
-10 Jake        M  32          69          143
-11 Kate        F  47          69          139
-12 Luke        M  34          72          163
-13 Myra        F  23          62           98
-14 Neil        M  36          75          160
-15 Omar        M  38          70          145
-16 Page        F  31          67          135
-17 Quin        M  29          71          176
-18 Ruth        F  28          65          131</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="特殊記号" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="特殊記号"><span class="header-section-number">2</span> 特殊記号</h2>
-<section id="コメント" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="コメント"><span class="header-section-number">2.1</span> コメント</h3>
-<p>これまでの説明で登場しましたが，何も説明しなかった大事なことをここで説明しておきます。</p>
-<p><code>#</code> で始まる行は<strong>コメント</strong>です。 行の途中に <code>#</code> がある場合は，そこから右，改行までの文字がコメントとみなされます。 Rはコメントを無視します。 コメントは人間が読んで理解できるようなことを書くのに重宝します。 Rはコメントを無視するため，何を書いても構いません。</p>
-<p>上記の <code>read.csv()</code> の例では，Windowsの場合とmacOSの場合を例示するのに，注釈としてコマンドの右に <code>#</code> を付けて説明しました。 このような使い方と同時に，macOSの場合を示した2行目は行頭にも <code>#</code> を付けています。 これは，この2行を実行することはない（実行してはいけない）ため，このような記述にしています。 macOSの人は <code>#</code> の右側のみをコピーしてください。 このように排他的であることを明示するために，コメントを使うこともあります。 他には，「このコードは一部の人のみ実行してください」や「このコードは実行しなくてもよい」といった意味で使用することもあります。</p>
-</section>
-<section id="セミコロン" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="セミコロン"><span class="header-section-number">2.2</span> セミコロン</h3>
-<p>通常，Rでは1行に複数のコマンドを書きません。 ただし，1行に複数のコマンドを書くこともできます。 何らかの理由により，1行に複数のコマンドを書きたい場合は，次のように <code>;</code> で繋げます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>; <span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5050</code></pre>
-</div>
-</div>
-<p>ただし，こうしたからといって処理速度が速くなることはありません。</p>
-<p>セミコロンを使って書くと，コマンドと返り値の順番に変化がもたらされます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5050</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.5</code></pre>
-</div>
-</div>
-<p>セミコロンのない場合とある場合とで，コマンドと返り値が表示される順番に違いがあることに注目してください。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x); <span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 5050</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 50.5</code></pre>
-</div>
-</div>
-<p>返り値がまとまってほしいときに便利ですが，そうなってほしいことは滅多にありません。</p>
-</section>
-<section id="評価と同時に返り値を表示" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="評価と同時に返り値を表示"><span class="header-section-number">2.3</span> 評価と同時に返り値を表示</h3>
-<p>コマンドを実行して，返り値を得ることを評価と呼びます。 このとき，同時に，その返り値を表示したい場合，コマンド全体を <code>()</code> で括ります。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="dv">10</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10</code></pre>
-</div>
-</div>
-<p>関数の <code>()</code> とは異なり，全体を <code>()</code> で括ります。 これは次のようなコマンドを実行するのと同じことです。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 10</code></pre>
-</div>
-</div>
-<p>このように冗長に書くよりも，<code>()</code> を使った方が分かりやすいことがたまにあります。</p>
-</section>
-</section>
-<section id="変数の型" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="変数の型"><span class="header-section-number">3</span> 変数の型</h2>
+<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくに変数の型と種類について理解しておかなければなりません。</p>
+<section id="変数の型" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="変数の型"><span class="header-section-number">1</span> 変数の型</h2>
 <p>変数の型には，数値，文字列，ファクター（因子），論理値があります。 以下のどれかのコマンドを使って，その変数の型を知ることができます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>()</span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>()</span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>()</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>()</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ただし，常に意識するというよりは，エラーの原因追及（バグフィックス）時に必要な知識です。 このため，自分が書いたスクリプトにバグが入らないようにしたいなら，この変数の型を意識しておかなければなりません。 変数の型には次の種類があります。</p>
 <ol type="1">
@@ -508,46 +155,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>ファクター</li>
 <li>論理値</li>
 </ol>
-<section id="数値" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="数値"><span class="header-section-number">3.1</span> 数値</h3>
+<section id="数値" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="数値"><span class="header-section-number">1.1</span> 数値</h3>
 <p>実数と整数はいずれも数値で，区別しなくても困りません。 数値は計算できます。 任意のオブジェクトが数値かどうかを判定したいときは，<code>is.double()</code> または <code>is.numeric()</code> を用います。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.double</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># is.numeric(x)</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># is.numeric(x)</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>返り値の <code>TRUE</code> は真という意味で，判定（知りたいこと）が真のときに <code>TRUE</code> が返ってきます。</p>
 <p>Rではデフォルトで数値は実数として扱われます。 数字を扱うにあたって，それ以上のことを考える必要はありません。 もし整数として明示的に扱いたい場合は，次の関係を知っておいてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 10L</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> 10L</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">10</span>)</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">10</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">is.integer</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>また，整数は整数として意識的に維持しなければ，容易に実数に変化します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>10L <span class="sc">+</span> <span class="dv">2</span>; <span class="fu">is.integer</span>(10L <span class="sc">+</span> <span class="dv">2</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>10L <span class="sc">+</span> <span class="dv">2</span>; <span class="fu">is.integer</span>(10L <span class="sc">+</span> <span class="dv">2</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>10L <span class="sc">+</span> 2L; <span class="fu">is.integer</span>(10L <span class="sc">+</span> 2L)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>10L <span class="sc">+</span> 2L; <span class="fu">is.integer</span>(10L <span class="sc">+</span> 2L)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 12</code></pre>
 </div>
@@ -556,27 +203,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="文字列" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="文字列"><span class="header-section-number">3.2</span> 文字列</h3>
+<section id="文字列" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="文字列"><span class="header-section-number">1.2</span> 文字列</h3>
 <p>文字列は文字として表現されるもので，<code>""</code> で括って表記します。 多くの場合，<code>""</code> は <code>''</code> で代替できます。 ただし，Rの返り値は必ず <code>""</code> で括られますので，<code>''</code> ではなく <code>""</code> を使うようにしてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">"文字"</span>, <span class="st">'b'</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">'a'</span>, <span class="st">"文字"</span>, <span class="st">'b'</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "a"    "文字" "b"   </code></pre>
 </div>
 </div>
 <p>文字列の中に <code>"</code> を入れたい場合に <code>''</code> を使うと分かりやすくなりますが，その場合でも <code>""</code> は使えます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\"</span><span class="st">あ</span><span class="sc">\"</span><span class="st">"</span></span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\"</span><span class="st">あ</span><span class="sc">\"</span><span class="st">"</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "\"あ\""</code></pre>
 </div>
 </div>
 <p><code>\</code> のことを<strong>エスケープシーケンス</strong>と呼びます。 それでは，文字列の中に <code>\</code> を入れたい場合はどうすればよいでしょうか？ 次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\\"</span><span class="st">あ"</span></span>
-<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"</span><span class="sc">\\\"</span><span class="st">あ"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "\\\"あ"</code></pre>
 </div>
@@ -584,7 +231,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>一見意味が分かりにくい出力ですが，エスケープシーケンスとしての <code>\</code> なのか文字としての <code>\</code> なのかは考えれば分かるはずです。</p>
 <p>数値を文字列に変換する場合は，<code>as.character()</code> を使います。 ただし，<code>paste()</code> の方が便利なため，<code>paste()</code> を頻繁に使うことになるでしょう。 例えば次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">2000</span><span class="sc">:</span><span class="dv">2010</span>, <span class="st">"年"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste</span>(<span class="dv">2000</span><span class="sc">:</span><span class="dv">2010</span>, <span class="st">"年"</span>, <span class="at">sep =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "2000年" "2001年" "2002年" "2003年" "2004年" "2005年" "2006年" "2007年"
  [9] "2008年" "2009年" "2010年"</code></pre>
@@ -592,8 +239,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><code>paste()</code> は文字列を繋げる関数です。 引数には文字列を取りますので，引数に数値がある場合は，勝手に文字列に変換されます。</p>
 </section>
-<section id="ファクター" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="ファクター"><span class="header-section-number">3.3</span> ファクター</h3>
+<section id="ファクター" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="ファクター"><span class="header-section-number">1.3</span> ファクター</h3>
 <p>ファクターは見た目は文字列ですが，以下の特徴があります。</p>
 <ul>
 <li>取り得る値の数が有限である。</li>
@@ -603,47 +250,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>例えば，学生の成績は「秀」「優」「良」「可」「不可」で表現されます。 あるいは，「S」「A」「B」「C」「D」といった表現もあります。 これらの文字列には順番があります。 また，「愛媛県」は文字列で，一見順番は関係なさそうですが，都道府県コードというものが割り振られており，都道府県別に並べるとき，愛媛県は38番目に表示するというルールがあります。 「北海道」が01で，「沖縄県」が47です。 他に，アンケート調査の選択のある問に対する解答として，「強くそう思う」「ややそう思う」「どちらでもない」「あまりそう思わない」「まったくそう思わない」といったデータがあり得ます。 こうしたデータを扱う場合，ファクターを文字列として考えていると，思い通りの表示にならなかったり，処理できずエラーが返ってくることがあります。</p>
 <p>次のデータがあったとします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"優"</span>, <span class="st">"良"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"良"</span>, <span class="st">"不可"</span>, <span class="st">"秀"</span>, <span class="st">"優"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>)</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>grade</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>grade <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"優"</span>, <span class="st">"良"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"良"</span>, <span class="st">"不可"</span>, <span class="st">"秀"</span>, <span class="st">"優"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>grade</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "優"   "良"   "可"   "良"   "良"   "不可" "秀"   "優"   "可"   "良"  </code></pre>
 </div>
 </div>
-<p>この変数 <code>grade</code> に順番を持たせるためには，次のようにします。</p>
+<p>この変数 <code>grade</code> に順番のようなものを持たせるためには，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>grade2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"秀"</span>, <span class="st">"優"</span>, <span class="st">"良"</span>, <span class="st">"可"</span>, <span class="st">"不可"</span>))</span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>grade2</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>grade2 <span class="ot">&lt;-</span> <span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"不可"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"優"</span>, <span class="st">"秀"</span>))</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>grade2</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 優   良   可   良   良   不可 秀   優   可   良  
-Levels: 秀 優 良 可 不可</code></pre>
+Levels: 不可 可 良 優 秀</code></pre>
 </div>
 </div>
 <p>ファクターの返り値に順番が <code>Levels</code> として表記されます。 この <code>Levels</code> はファクターに付けられたラベルであり，次のコマンドで取り出せます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(grade2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(grade2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "秀"   "優"   "良"   "可"   "不可"</code></pre>
+<pre><code>[1] "不可" "可"   "良"   "優"   "秀"  </code></pre>
 </div>
 </div>
 <p>ファクターのラベルを変更すれば，ファクターの各要素の値も変わります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(grade2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"S"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"D"</span>)</span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>grade2</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(grade2) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"D"</span>, <span class="st">"C"</span>, <span class="st">"B"</span>, <span class="st">"A"</span>, <span class="st">"S"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>grade2</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] A B C B B D S A C B
-Levels: S A B C D</code></pre>
+Levels: D C B A S</code></pre>
 </div>
 </div>
 <p>ファクターを文字列に変換すれば，ラベル（順番の情報）は失われます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(grade2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.character</span>(grade2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] "A" "B" "C" "B" "B" "D" "S" "A" "C" "B"</code></pre>
 </div>
 </div>
 <p>上述の説明は<strong>順番のようなもの</strong>の存在を暗黙裏に扱っており，通常の使用ではこれで問題ありません。 もし明示的に<strong>順番</strong>を扱いたい場合は，次のようにする必要があります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"不可"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"優"</span>, <span class="st">"秀"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"不可"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"優"</span>, <span class="st">"秀"</span>), <span class="at">ordered =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 優   良   可   良   良   不可 秀   優   可   良  
 Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
@@ -651,24 +298,25 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>また，上述のアンケート調査の例では，実際は，ファクターではなく，数値に変換して分析することもあります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(<span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"不可"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"優"</span>, <span class="st">"秀"</span>)))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">factor</span>(grade, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"不可"</span>, <span class="st">"可"</span>, <span class="st">"良"</span>, <span class="st">"優"</span>, <span class="st">"秀"</span>))</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 4 3 2 3 3 1 5 4 2 3</code></pre>
 </div>
 </div>
 </section>
-<section id="論理値" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="論理値"><span class="header-section-number">3.4</span> 論理値</h3>
+<section id="論理値" class="level3" data-number="1.4">
+<h3 data-number="1.4" class="anchored" data-anchor-id="論理値"><span class="header-section-number">1.4</span> 論理値</h3>
 <p>オブジェクトの状態を表すものに，<code>TRUE</code> と <code>FALSE</code> があります。 日本語では，<code>TRUE</code> は真で，<code>FALSE</code> で偽と表現します。 これまで関数の引数として登場しました。</p>
 <p><code>TRUE</code> は <code>T</code> と省略でき，<code>FALSE</code> は <code>F</code> と省略できることを知っておいてください。 ただし，自分では <code>T</code> や <code>F</code> を使わないでください。 複雑なコードのときに，<code>T</code> や <code>F</code> よりも，<code>TRUE</code> や <code>FALSE</code> の方が分かりやすいからです。 もしどこかで<code>T</code> や <code>F</code> を見かけたら，頭の中でそれぞれ <code>TRUE</code> と <code>FALSE</code> に置き換えてください。 なお，<code>True</code> や <code>true</code> ではなく，必ず大文字を使ってください。</p>
 <p>論理値は，真偽を確かめたいときに関数の返り値として用いられます。 このとき，論理値が計算できることを知っておくと役に立つ場面がある。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">10</span>)</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">TRUE</span>, <span class="dv">10</span>)</span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10</code></pre>
 </div>
@@ -676,8 +324,8 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>この例のように，<code>TRUE</code> のベクトルをわざわざ生成することは実際はないが，比較演算子を用いた判定の返り値を計算に利用することはよくある。 このとき，<code>sum()</code> は <code>TRUE</code> の数に一致する。 すなわち，<code>TRUE</code> の数を数えていると理解してもよい。 実際には，R内部で <code>TRUE</code> は数値の <code>1</code> に変換され，<code>FALSE</code> は数値の <code>0</code> に変換された後，<code>sum()</code> が適用されている。</p>
 </section>
 </section>
-<section id="変数の種類" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="変数の種類"><span class="header-section-number">4</span> 変数の種類</h2>
+<section id="変数の種類" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="変数の種類"><span class="header-section-number">2</span> 変数の種類</h2>
 <p>変数の種類といってよいのかどうか分かりませんが，変数には以下の種類のものがあります。</p>
 <ol type="1">
 <li>ベクトル</li>
@@ -685,32 +333,32 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <li>データフレーム</li>
 <li>リスト</li>
 </ol>
-<section id="ベクトル" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="ベクトル"><span class="header-section-number">4.1</span> ベクトル</h3>
+<section id="ベクトル" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="ベクトル"><span class="header-section-number">2.1</span> ベクトル</h3>
 <p>ベクトルは，<code>c()</code> で作成します。 <code>seq()</code> などの関数のように，返り値がベクトルとなるものもあります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 10 12 15 20</code></pre>
 </div>
 </div>
 <p>ベクトルの四則演算はベクトルを返します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>) <span class="sc">*</span> <span class="dv">5</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">15</span>, <span class="dv">20</span>) <span class="sc">*</span> <span class="dv">5</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  50  60  75 100</code></pre>
 </div>
 </div>
 <p>列ベクトルか行ベクトルかはあまり気にする必要はありません。 ベクトルの転置は次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2020</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
 [16] 2005 2006 2007 2008 2009 2010 2011 2012 2013 2014 2015 2016 2017 2018 2019
 [31] 2020</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13] [,14]
 [1,] 1990 1991 1992 1993 1994 1995 1996 1997 1998  1999  2000  2001  2002  2003
@@ -723,78 +371,78 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>このことから，<code>x</code> と <code>x</code> を転置した <code>t(x)</code> は違うことが分かります。</p>
 <p>ベクトルは数値である必要はなく，文字列のベクトルも作成できます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニス"</span>, <span class="st">"バレーボール"</span>, <span class="st">"野球"</span>, <span class="st">"サッカー"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニス"</span>, <span class="st">"バレーボール"</span>, <span class="st">"野球"</span>, <span class="st">"サッカー"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "テニス"       "バレーボール" "野球"         "サッカー"    </code></pre>
 </div>
 </div>
 <p>ただし，ベクトルの各要素の型は同じでなければなりません。 例えば，数値と文字列を混ぜた場合，そのベクトルは文字列になります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">"テニス"</span>, <span class="dv">3</span>)</span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="sc">+</span> x[<span class="dv">3</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="st">"テニス"</span>, <span class="dv">3</span>)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>] <span class="sc">+</span> x[<span class="dv">3</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in x[1] + x[3]:  二項演算子の引数が数値ではありません </code></pre>
 </div>
 </div>
 <p>文字列は，たとえ見た目が数値であったとしても，計算できません。 文字列は必ず <code>""</code> で括られています。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "1"      "テニス" "3"     </code></pre>
 </div>
 </div>
 <p>ただし，文字列の中が数値の場合，その文字列は数値に変換できます。 文字列を数値に変換する場合は，<code>as.double()</code> を用います。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(x[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">as.double</span>(x[<span class="dv">3</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.double</span>(x[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">as.double</span>(x[<span class="dv">3</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
 <p>次のように，<code>as.numeric()</code> でも同じ結果が得られますが，文字列を数値に変換する場合，<code>as.double()</code> を使う方が（おそらく）正当なやり方です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">as.numeric</span>(x[<span class="dv">3</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(x[<span class="dv">1</span>]) <span class="sc">+</span> <span class="fu">as.numeric</span>(x[<span class="dv">3</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 4</code></pre>
 </div>
 </div>
-<section id="欠損値" class="level4" data-number="4.1.1">
-<h4 data-number="4.1.1" class="anchored" data-anchor-id="欠損値"><span class="header-section-number">4.1.1</span> 欠損値</h4>
+<section id="欠損値" class="level4" data-number="2.1.1">
+<h4 data-number="2.1.1" class="anchored" data-anchor-id="欠損値"><span class="header-section-number">2.1.1</span> 欠損値</h4>
 <p>データがない部分のことを欠損値と言います。 数値の欠損値は <code>NA</code> で表します。 例えば，アンケート調査を実施して，ある回答者がある問の選択問題の解答をしていない場合，そこに <code>-</code> を入力してはいけません。 そこには，何も入力しないのが正しいデータ作成の方法です。 Microsoft Excelでデータ入力する場合は，そのセルには何も入力せずに次の入力に移ってください。 ただし，Rでデータ作成する場合，次のようにするとエラーが返ってきます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, , <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, , <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>このため，欠損値には <code>NA</code> と書いてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="cn">NA</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>CSVファイルなどをRで読み込むときに欠損値があると，その部分がデフォルトでは <code>NA</code> に置き換わります。 ここで，次のようにするとエラーが返ってきます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="sc">-</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="sc">-</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>また，次のようにすると全体が文字列になります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"-"</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="st">"-"</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>一方，アンケート調査で，文章で回答してもらう問に対して無回答だった場合，そこに <code>""</code> を入力してください。 Microsoft Excelでデータ入力する場合は，そのセルには何も入力せずに次の入力に移ってください。 CSVファイルなどをRで読み込むときに欠損値があると，その部分がデフォルトでは <code>""</code> に置き換わります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニスが好き"</span>, <span class="st">"バレーボールをやってた"</span>, <span class="cn">NA</span>, <span class="st">"野球が苦手"</span>, <span class="st">"サッカーが得意"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニスが好き"</span>, <span class="st">"バレーボールをやってた"</span>, <span class="cn">NA</span>, <span class="st">"野球が苦手"</span>, <span class="st">"サッカーが得意"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>これだとエラーは返ってきませんが，あまりよい方法ではありません。 この場合，次のようにしてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニスが好き"</span>, <span class="st">"バレーボールをやってた"</span>, <span class="st">""</span>, <span class="st">"野球が苦手"</span>, <span class="st">"サッカーが得意"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="st">"テニスが好き"</span>, <span class="st">"バレーボールをやってた"</span>, <span class="st">""</span>, <span class="st">"野球が苦手"</span>, <span class="st">"サッカーが得意"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><code>NA</code> に似たものに <code>NULL</code> があります。 <code>NULL</code> はデータの欠損値には使いません。 <code>NULL</code> には例えば次のような使い方があります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">NULL</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="行列" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="行列"><span class="header-section-number">4.2</span> 行列</h3>
+<section id="行列" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="行列"><span class="header-section-number">2.2</span> 行列</h3>
 <p>Rは行列計算が高速であることが特徴のひとつです。 また，ここには書きませんが，行列を用いた数式の表記は簡潔です。</p>
 <p>行列は以下のようにして作成します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     [,1] [,2] [,3]
 [1,]    1    5    9
@@ -807,43 +455,43 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>行列の外側の <code>[]</code>で囲まれた部分に注目してください。 <code>[]</code> と <code>,</code> と数字によって，そこが行列の何行目か，あるいは，何列目かが分かります。 <code>[行, 列]</code> という関係になっています。</p>
 <p>行列はMicrosoft Excelでよく見る表に似ていますが，そうではなく，数学で出てくる行列そのものだと理解してください。 行列の要素は <code>[]</code> を用いて取り出します。 例えば，1行2列の要素は次のようにして取り出します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">1</span>, <span class="dv">2</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
 </div>
 <p>行は次のようにして取り出します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb72"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>x[<span class="dv">2</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  2  6 10</code></pre>
 </div>
 </div>
 <p>列は次のようにして取り出します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>x[, <span class="dv">3</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb74"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>x[, <span class="dv">3</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1]  9 10 11 12</code></pre>
 </div>
 </div>
 <p>この法則に従って，スペースを入れることを忘れないようにしてください（スペースを入れなくてもエラーは出ません）。</p>
-<section id="tips" class="level4" data-number="4.2.1">
-<h4 data-number="4.2.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">4.2.1</span> Tips</h4>
+<section id="tips" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="tips"><span class="header-section-number">2.2.1</span> Tips</h4>
 <p>行列はベクトルを折り畳んだようなものであると理解しておくと役に立つことがあります。 次の結果を比較して，行列がベクトルであることを理解してください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)[<span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb76"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>)[<span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 5</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)[<span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb78"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>, <span class="at">byrow =</span> <span class="cn">TRUE</span>)[<span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2</code></pre>
 </div>
 </div>
 <p>ただし，通常のデータ分析で行列を扱う機会は少ないかもしれません。 次のコマンドが <code>FALSE</code> を返すように，厳密にはベクトルではありません。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb110"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb80"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.vector</span>(<span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">12</span>, <span class="at">nrow =</span> <span class="dv">4</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] FALSE</code></pre>
 </div>
@@ -851,13 +499,13 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>しかし，ベクトルであるかのように動作することがあります。</p>
 </section>
 </section>
-<section id="データフレーム" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">4.3</span> データフレーム</h3>
+<section id="データフレーム" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">2.3</span> データフレーム</h3>
 <p>データフレームはMicrosoft Excelでよく見る表に似ており，そのようなものだと理解してください。 <code>read.csv()</code> で読み込んだオブジェクトは，データフレームです。</p>
 <p>データフレームには行と列が存在する点では，行列に似ています。 しかしながら，行列とは違い，各列を異なる型にすることができることから，行列よりも柔軟なデータ構造となります。 それぞれの列は同じ型でなければなりません。</p>
 <p>Rには最初から多くのデータセットが使える状態になっています。 サンプルとしてよく使われるデータセットに <code>iris</code> があります。 <code>iris</code> の中身は，<code>iris</code> と入力するだけで表示されます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a>iris</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a>iris</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 1            5.1         3.5          1.4         0.2     setosa
@@ -1014,14 +662,14 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p><code>iris</code> は変数であり，次のコマンドで確かめられるように，データフレームです。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.data.frame</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] TRUE</code></pre>
 </div>
 </div>
 <p>データフレームの全体を表示させることなく，データフレームの構造を知りたいときは，最初の数行を表示させるコマンドを使うのが便利です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -1034,7 +682,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>同じように，最後の数行を表示させることもできます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 145          6.7         3.3          5.7         2.5 virginica
@@ -1047,7 +695,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>途中の行を表示させたい場合は，行番号を指定します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="dv">100</span><span class="sc">:</span><span class="dv">105</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="dv">100</span><span class="sc">:</span><span class="dv">105</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 100          5.7         2.8          4.1         1.3 versicolor
@@ -1060,7 +708,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>データフレームの構造を知りたい場合は，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb92"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>'data.frame':   150 obs. of  5 variables:
  $ Sepal.Length: num  5.1 4.9 4.7 4.6 5 5.4 4.6 5 4.4 4.9 ...
@@ -1072,17 +720,17 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>データフレームの列ごとに変数の型が表示されることが分かります。 行の数と列の数は次のコマンドで取得できる。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 150   5</code></pre>
 </div>
 </div>
-<section id="データフレームの列" class="level4" data-number="4.3.1">
-<h4 data-number="4.3.1" class="anchored" data-anchor-id="データフレームの列"><span class="header-section-number">4.3.1</span> データフレームの列</h4>
+<section id="データフレームの列" class="level4" data-number="2.3.1">
+<h4 data-number="2.3.1" class="anchored" data-anchor-id="データフレームの列"><span class="header-section-number">2.3.1</span> データフレームの列</h4>
 <p>データフレームそのものを分析に使うこともできますが，必要な列を取り出して，分析に使うのが一般的です。 そこで，データフレームの列を取り出す方法をいくつか説明します。 なお，データフレームの進化したものに，<a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> があります。 tibbleはデータフレームとほとんど同じように扱えますが，データフレームとは挙動が若干異なりますので，違うものと考えてください。 ちなみに，<code>read_excel()</code> で読み込んだオブジェクトは，tibbleです。 tibbleは <a href="https://www.tidyverse.org/" target="_blank">Tidyverse</a> の一部分（最も重要な部分）を構成します。</p>
 <p>データフレームの列を取り出す場合，左から何列目であるかを数値で指定することができます。 次のコマンドにより，データフレームの列をベクトルとして取り出すことができます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>iris[, <span class="dv">1</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>iris[, <span class="dv">1</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
@@ -1097,7 +745,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>返り値をデータフレームとして保ちたければ，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="dv">1</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="dv">1</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length
 1            5.1
@@ -1254,7 +902,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>次のようにすると，左から1列目をベクトルとして取り出せます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>iris[[<span class="dv">1</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>iris[[<span class="dv">1</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
@@ -1270,7 +918,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>このことから，<code>iris[, 1]</code> と <code>iris[[1]]</code> は同じ結果が得られることが分かります。</p>
 <p>データフレームの左から何列目かという情報は，対話的にRを使う場合は便利なときもありますが，データフレームの構造を正確に把握しておかなければならず，またデータフレームの列が多くなった場合，何列目かをわざわざ数えなければなりません。 こうした作業は面倒だということもありますが，それ以上に，間違う可能性があります。 列を取り出す際，データフレームの左から何列目かという情報ではなく，列名で指定する方が間違いが少なくなるでしょう。 <code>iris</code> の <code>Sepal.Length</code> 列を取り出したい場合は，次のように <code>$</code> で繋ぎます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>Sepal.Length</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span>Sepal.Length</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
@@ -1285,11 +933,11 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>列名が日本語の場合など，次のようにしなければエラーが返ってくることがあります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb134"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb134-1"><a href="#cb134-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal.Length</span><span class="st">`</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>iris<span class="sc">$</span><span class="st">`</span><span class="at">Sepal.Length</span><span class="st">`</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>日本語の他にも，列名に <code>()</code> が使われている場合は，`` で括らなければエラーが返ってきます。 返り値をデータフレームとして保ちたければ，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="st">"Sepal.Length"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="st">"Sepal.Length"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length
 1            5.1
@@ -1446,14 +1094,14 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>このとき，<code>""</code> をつけなければエラーが返ってきます。 ここで，<code>""</code> の中は文字列として扱われるため，`` で括る必要はありません。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>iris[Sepal.Length]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a>iris[Sepal.Length]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos):  オブジェクト 'Sepal.Length' がありません </code></pre>
 </div>
 </div>
 <p>このとき，<code>Sepal.Length</code> という名前の変数（オブジェクト）を探しに行き，それがないためエラーを返しています。 次のようにすると，ベクトルとして取り出せます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb139"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a>iris[[<span class="st">"Sepal.Length"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>iris[[<span class="st">"Sepal.Length"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  [1] 5.1 4.9 4.7 4.6 5.0 5.4 4.6 5.0 4.4 4.9 5.4 4.8 4.8 4.3 5.8 5.7 5.4 5.1
  [19] 5.7 5.1 5.4 5.1 4.6 5.1 4.8 5.0 5.0 5.2 5.2 4.7 4.8 5.4 5.2 5.5 4.9 5.0
@@ -1468,21 +1116,21 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 <p>ここで，列名を知るにはどうすればよいでしょうか。 <code>str()</code> で知ることができますが，<code>str()</code> だと情報が多いです。 データフレームの列名のみを得るには，次のコマンドを用います。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb141"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     </code></pre>
 </div>
 </div>
 <p>これは次のようにしても同じです。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb143"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Sepal.Length" "Sepal.Width"  "Petal.Length" "Petal.Width"  "Species"     </code></pre>
 </div>
 </div>
 <p>次に，複数の列を取り出してみます。 <code>iris</code> の <code>Sepal.Length</code> 列と <code>Sepal.Width</code> 列を取り出すには，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width
 1            5.1         3.5
@@ -1640,30 +1288,30 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>データフレームから複数列を取り出す場合，返り値はベクトルではなく，必ずデータフレームになります。 このため，<code>$</code> や <code>[[]]</code> は使えません。</p>
 <p>ちなみに，以下のような表記法は，返り値としてベクトルが欲しい場合にもデータフレームが欲しい場合にも使えるので，便利です。 しかしながら，tibbleでこの方法は使えないため，残念ながら，こうした表記法は過去のものとなりました。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb147"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a>iris[, <span class="st">"Sepal.Length"</span>]</span>
-<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a>iris[, <span class="st">"Sepal.Length"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
-<span id="cb147-3"><a href="#cb147-3" aria-hidden="true" tabindex="-1"></a>iris[, <span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>iris[, <span class="st">"Sepal.Length"</span>]</span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>iris[, <span class="st">"Sepal.Length"</span>, drop <span class="ot">=</span> <span class="cn">FALSE</span>]</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>iris[, <span class="fu">c</span>(<span class="st">"Sepal.Length"</span>, <span class="st">"Sepal.Width"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="データフレームの列-1" class="level4" data-number="4.3.2">
-<h4 data-number="4.3.2" class="anchored" data-anchor-id="データフレームの列-1"><span class="header-section-number">4.3.2</span> データフレームの列</h4>
+<section id="データフレームの列-1" class="level4" data-number="2.3.2">
+<h4 data-number="2.3.2" class="anchored" data-anchor-id="データフレームの列-1"><span class="header-section-number">2.3.2</span> データフレームの列</h4>
 <p>データフレームは，<code>data.frame()</code> で作成します。 データフレーム作成時に注意すべきことは，各列の長さを合わせるということです。 各列の長さが揃わないときは，短い列を繰り返します。 この繰り返しが整数倍でない場合，エラーが返ってきます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb148"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb148-1"><a href="#cb148-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1991</span><span class="sc">:</span><span class="dv">2020</span>, <span class="at">value1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">value2 =</span> <span class="cn">NA</span>, <span class="at">value3 =</span> <span class="fu">c</span>(<span class="st">"東"</span>, <span class="st">"西"</span>, <span class="st">"南"</span>), <span class="at">value4 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">year =</span> <span class="dv">1991</span><span class="sc">:</span><span class="dv">2020</span>, <span class="at">value1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">30</span>, <span class="at">value2 =</span> <span class="cn">NA</span>, <span class="at">value3 =</span> <span class="fu">c</span>(<span class="st">"東"</span>, <span class="st">"西"</span>, <span class="st">"南"</span>), <span class="at">value4 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
-<section id="リスト" class="level3" data-number="4.4">
-<h3 data-number="4.4" class="anchored" data-anchor-id="リスト"><span class="header-section-number">4.4</span> リスト</h3>
+<section id="リスト" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="リスト"><span class="header-section-number">2.4</span> リスト</h3>
 <p>リストはさまざまな変数を入れることのできる，引き出しだと説明されることがあります。 さまざまな変数をリストに入れることができます。 データフレームのように，各要素の数を揃える必要はありません。 Pythonでいう辞書のようなものです。</p>
 <p>リストはさまざまな形を取りますが，実践的には，複数のデータフレームを要素とできる点が便利です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb149"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">list</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>また，関数の返り値がリストとなることがあります。 例えば，データフレームをある列（ファクター）に従って分割したい場合，<code>split()</code> を用います。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb150"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb150-1"><a href="#cb150-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">split</span>(iris, iris<span class="sc">$</span>Species)</span>
-<span id="cb150-2"><a href="#cb150-2" aria-hidden="true" tabindex="-1"></a>x[[<span class="dv">1</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">split</span>(iris, iris<span class="sc">$</span>Species)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>x[[<span class="dv">1</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1           5.1         3.5          1.4         0.2  setosa
@@ -1717,7 +1365,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 49          5.3         3.7          1.5         0.2  setosa
 50          5.0         3.3          1.4         0.2  setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb152"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">names</span>(x)[<span class="dv">2</span>]]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>x[[<span class="fu">names</span>(x)[<span class="dv">2</span>]]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
 51           7.0         3.2          4.7         1.4 versicolor
@@ -1774,8 +1422,68 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </div>
 </section>
 </section>
-<section id="練習問題" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">5</span> 練習問題</h2>
+<section id="特殊記号" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="特殊記号"><span class="header-section-number">3</span> 特殊記号</h2>
+<section id="コメント" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="コメント"><span class="header-section-number">3.1</span> コメント</h3>
+<p><code>#</code> で始まる行は<strong>コメント</strong>です。 行の途中に <code>#</code> がある場合は，そこから右，改行までの文字がコメントとみなされます。 Rはコメントを無視します。 コメントは人間が読んで理解できるようなことを書くのに重宝します。 Rはコメントを無視するため，何を書いても構いません。</p>
+<p><a href="./file_manipulation.html" target="_blank">ファイル操作</a> のコードでは，Windowsの場合とmacOSの場合を例示するのに，注釈としてコマンドの右に <code>#</code> を付けて説明しました。 このような使い方と同時に，macOSの場合を示した2行目は行頭にも <code>#</code> を付けています。 これは，この2行を実行することはない（実行してはいけない）ため，このような記述にしています。 macOSの人は <code>#</code> の右側のみをコピーしてください。 このように排他的であることを明示するために，コメントを使うこともあります。 他には，「このコードは一部の人のみ実行してください」や「このコードは実行しなくてもよい」といった意味で使用することもあります。</p>
+</section>
+<section id="セミコロン" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="セミコロン"><span class="header-section-number">3.2</span> セミコロン</h3>
+<p>通常，Rでは1行に複数のコマンドを書きません。 ただし，1行に複数のコマンドを書くこともできます。 何らかの理由により，1行に複数のコマンドを書きたい場合は，次のように <code>;</code> で繋げます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>; <span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5050</code></pre>
+</div>
+</div>
+<p>ただし，こうしたからといって処理速度が速くなることはありません。</p>
+<p>セミコロンを使って書くと，コマンドと返り値の順番に変化がもたらされます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5050</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.5</code></pre>
+</div>
+</div>
+<p>セミコロンのない場合とある場合とで，コマンドと返り値が表示される順番に違いがあることに注目してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x); <span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5050</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50.5</code></pre>
+</div>
+</div>
+<p>返り値がまとまってほしいときに便利ですが，そうなってほしいことは滅多にありません。</p>
+</section>
+<section id="評価と同時に返り値を表示" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="評価と同時に返り値を表示"><span class="header-section-number">3.3</span> 評価と同時に返り値を表示</h3>
+<p>コマンドを実行して，返り値を得ることを評価と呼びます。 このとき，同時に，その返り値を表示したい場合，コマンド全体を <code>()</code> で括ります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>(x <span class="ot">&lt;-</span> <span class="dv">10</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>関数の <code>()</code> とは異なり，全体を <code>()</code> で括ります。 これは次のようなコマンドを実行するのと同じことです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>このように冗長に書くよりも，<code>()</code> を使った方が分かりやすいことがたまにあります。</p>
+</section>
+</section>
+<section id="練習問題" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">4</span> 練習問題</h2>
 <ol type="1">
 <li><p>「北海道」「青森県」といった都道府県の文字も含む日本の全都道府県名を要素とするファクターを作成しなさい。</p></li>
 <li><p>気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 <code>temp</code> に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。</p></li>
@@ -1787,9 +1495,9 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <li>次のデータフレーム <code>z</code> があるとする。</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb154"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2010</span></span>
-<span id="cb154-2"><a href="#cb154-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5040</span>, <span class="dv">2</span>)</span>
-<span id="cb154-3"><a href="#cb154-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb137"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2010</span></span>
+<span id="cb137-2"><a href="#cb137-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5040</span>, <span class="dv">2</span>)</span>
+<span id="cb137-3"><a href="#cb137-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>2000年代の値（ <code>value</code> 列）の平均を求めなさい。</p>
 </section>

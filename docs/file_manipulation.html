@@ -92,7 +92,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#作業ディレクトリ" id="toc-作業ディレクトリ" class="nav-link" data-scroll-target="#作業ディレクトリ"><span class="header-section-number">3</span> 作業ディレクトリ</a></li>
   <li><a href="#絶対パス" id="toc-絶対パス" class="nav-link" data-scroll-target="#絶対パス"><span class="header-section-number">4</span> 絶対パス</a></li>
   <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">5</span> 相対パス</a></li>
-  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">6</span> 練習問題</a></li>
   </ul>
 </nav>
 </div>
@@ -163,7 +162,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
-<p>「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。 Rは，この場所で作業をします。 ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，パソコンによって異なります。</p>
+<p>「いる」というのは，Explorer（Windowsの場合）やFinder（macOSの場合）でその場所を開いていることと同じと思ってください。 Rは，この場所で作業をします。 ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，パソコンによって異なります。 OneDriveで同期していない人は，次のように次の場所にいるかもしれません。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  style Documents fill:#f96,stroke:#333
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>以下では，OneDriveで同期していない人に限定した説明となっている場合がありますので，適宜読み替えてください。</p>
 <p>この図の線の部分を <code>/</code> で置き換えると，CUIで表現できます。 つまり，上の図はCUIでは <code>C:/Users/ユーザ名/OneDrive/ドキュメント</code> と表現します（Windowsの場合，<code>/</code> を <code>¥</code> や <code>\</code> で表現する場合もあります）。</p>
 <p>一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の <code>Downloads</code> にあるはずです。</p>
 <div class="cell">
@@ -222,7 +236,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="作業ディレクトリ" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="作業ディレクトリ"><span class="header-section-number">3</span> 作業ディレクトリ</h2>
-<p>対処方法の1つ目は，Explorer（Windowsの場合）またはFinder（macOSの場合）でのファイル操作を伴います。 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
+<p>対処方法の1つ目は，Explorer（またはFinder）でのファイル操作を伴います。 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -231,16 +245,45 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。 これらスクリプトが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。 拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。 テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。 macOSの場合はOS標準のテキストエディット.appで問題ありません。 最近は，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。</p>
 <p>上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。 次のコマンドを知っておくと便利です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/ユーザ名/OneDrive/ドキュメント"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の場所を指定します。 この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。 ここで行っているのは，作業ディレクトリの変更です。</p>
+<p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の中のある特定の場所を指定します。 この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。 ここで行っているのは，作業ディレクトリの変更です。</p>
+<p>実際の使用時には，例えば，次のように書きます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/ユーザ名/OneDrive/ドキュメント"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>OneDriveで同期していない人は次のように書きます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"C:/Users/ユーザ名/Documents"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これは，次のコマンドと同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><code>"~"</code> はホームディレクトリを意味します。</p>
 </section>
 <section id="絶対パス" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="絶対パス"><span class="header-section-number">4</span> 絶対パス</h2>
 <p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。 これは，次のコマンドによって実現します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/ユーザ名/Downloads/addresses.csv"</span>) <span class="co"># Windowsの例</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"C:/Users/ユーザ名/Downloads/addresses.csv"</span>) <span class="co"># Windowsの例</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>これは，次のファイルを読んでいることを意味します。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Downloads
+  Downloads --- file[addresses.csv]
+  style file fill:#f96,stroke-width:0px
+</pre>
+</div>
+</div>
+</div>
 </div>
 <p>Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。 コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。 macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。 絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
 <p>実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。 なお，こうした煩雑さを緩和する目的で，<a href="https://CRAN.R-project.org/package=here" target="_blank">here</a> パッケージがありますので，知りたい人は調べてください。</p>
@@ -248,11 +291,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="相対パス" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="相対パス"><span class="header-section-number">5</span> 相対パス</h2>
 <p>相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。 Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
-<p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。</p>
+<p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。 次のコードを実行する前に，Explorer（またはFinder）で作業ディレクトリを表示させておき，次のコードを実行することで起こる変化を注視してください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"./test"</span>)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv"</span>, <span class="st">"./test/addresses.csv"</span>)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./test/addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">"./data"</span>)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv"</span>, <span class="st">"./data/addresses.csv"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/addresses.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -270,11 +313,47 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5  CO    123</code></pre>
 </div>
 </div>
-<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを強調して表現したいときに用いる記号です。 このことから，<code>./</code> は作業ディレクトリを意味します。 この部分はなくても構いません。 ただし，<code>"./test"</code> と <code>"test"</code> は同じ意味ですが，<code>"/test"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/test")</code> とした場合，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
-<p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。</p>
-<p>この結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
+<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを意味する記号です。 このことから，<code>./</code> は作業ディレクトリを指します。 <code>./</code> はなくても構いません。 ただし，<code>"./data"</code> と <code>"data"</code> は同じ意味ですが，<code>"/data"</code> は意味が異なりますので注意してください。 もし <code>dir.create("/data")</code> とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
+<p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。 このことを図で表現すると，次のようになります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  doc --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>Rの作業ディレクトリは <code>ドキュメント</code> ですので，ここから<strong>相対的に</strong>ひとつ下に <code>data</code> というディレクトリを作成し，その中にダウンロードしたファイルを保存し，その保存したファイルを読み込んでいます。 実際には，パソコンの <code>C:</code> の中にファイルはありますが，Rで読み込む際に <code>C:</code> から始める必要はありません。 このことを図で表現すると，次のようになります。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  dot["~"] --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p><code>~</code> はホームディレクトリを意味する記号であり，OneDriveで同期している人は <code>"C:/Users/ユーザ名/OneDrive/ドキュメント"</code>，同期していない人は <code>"C:/Users/ユーザ名/Documents"</code> を指します。</p>
+<p>先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/addresses.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>                     V1       V2                               V3          V4
 1                  John      Doe                120 jefferson st.   Riverside
@@ -294,8 +373,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>ヘッダーをどうすべきかはファイルによって異なります。 例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"../data/airtravel.csv"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv"</span>, <span class="st">"./data/airtravel.csv"</span>)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Month X1958 X1959 X1960
 1    JAN   340   360   417
@@ -312,9 +393,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 12   DEC   337   405   432</code></pre>
 </div>
 </div>
-<p>ヘッダーがおかしいものがありますが，ここでは無視します（この節の最後のやり方でこのおかしさは解消します）。 あえて間違った読み方をすると次のようになります。</p>
+<p>ヘッダーが数字で始まる場合，先頭に <code>X</code> が付き，文字列に変換されます。 ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/airtravel.csv"</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>      V1   V2   V3   V4
 1  Month 1958 1959 1960
@@ -332,25 +415,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 13   DEC  337  405  432</code></pre>
 </div>
 </div>
-<p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。 これは，Explorer（Windowsの場合）やFinder（macOSの場合）における通常のファイル操作と同じです。</p>
-<p>なお，パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。 <code>.</code> と <code>..</code> は同時には使えません。 どちらもパスの先頭になければならないからです。 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
+<p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。 これは，Explorer（またはFinder）における通常のファイル操作と同じです。</p>
+<p>ここでよくある例を挙げておきます。 例えば，次のように別のCSVファイルを読み込んでください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, <span class="st">"./data/biostats.csv"</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/biostats.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味しています。 このコマンドを理解するには，次回説明する条件分岐と <code>!</code> の意味を正しく理解できなければなりません。 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。 なお，この考え方に基づくと，CSVファイルを読むコマンドは以下のように書き換えることができます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>destfile <span class="ot">&lt;-</span> <span class="st">"../data/biostats.csv"</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(destfile)) {</span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  utils<span class="sc">::</span><span class="fu">download.file</span>(<span class="st">"https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv"</span>, destfile)</span>
-<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   Name      Sex Age Height..in. Weight..lbs.
 1  Alex        M  41          74          170
@@ -373,9 +444,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 18 Ruth        F  28          65          131</code></pre>
 </div>
 </div>
-<p>コードは複雑になりましたが，読み込みたいファイルがすでにダウンロードされている場合は，再びダウンロードしないため，こちらの方がネットワークへの負荷が少なく，よりよいコードと言えます。 ただし，元のファイルと比較するとヘッダーがおかしいです。 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
+<p><code>biostats.csv</code> を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。 <code>()</code> とスペースが <code>.</code> に置き換わっていることが分かります。 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(destfile, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./data/biostats.csv"</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
 <div class="cell-output cell-output-stdout">
 <pre><code>   Name      Sex Age Height (in) Weight (lbs)
 1  Alex        M  41          74          170
@@ -398,12 +471,225 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 18 Ruth        F  28          65          131</code></pre>
 </div>
 </div>
-</section>
-<section id="練習問題" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">6</span> 練習問題</h2>
-<ol type="1">
-<li>Rを起動した状態で，Webブラウザを使って <a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。 ExplorerやFinderを使ってファイルを移動せずに，また，<code>setwd()</code> を使わずに，Rコンソール上でダウンロードしたファイルを読み込みなさい。</li>
-</ol>
+<p>ここで，Explorer（またはFinder）から先ほど作成した <code>data</code> フォルダを削除しておいてください。</p>
+<p>なお，相対パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+注意
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。 もし実行してしまった場合は，Explorer（またはFinder）で作業ディレクトリと同じ階層にある <code>data</code> フォルダの中を確認し，何もファイルがなければ <code>data</code> フォルダを削除してください。 ファイルがあれば，他のアプリケーションで使用している可能性があるため，<code>data</code> フォルダを削除せず，残しておいてください。</p>
+</div>
+</div>
+</div>
+<p>上記コードの2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味します。 このコマンドを理解するには，条件分岐と <code>!</code> の意味を正しく理解できなければなりません。 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。</p>
+<p><code>..</code> の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。 作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Webブラウザを使って，<a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。 このCSVファイルをRに読み込むには，どうすればよいでしょうか。 図で考えると次の相対パスを考えることに他なりません。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  doc -- .. --&gt; OneDrive
+  OneDrive -- .. --&gt; ユーザ名
+  ユーザ名 --&gt; Downloads
+  Downloads --&gt; file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+  linkStyle 8 stroke:red
+  linkStyle 9 stroke:red
+</pre>
+</div>
+</div>
+</div>
+</div>
+<p>これをRのコマンドにすると次のようになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。</p>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<div>
+<pre class="mermaid mermaid-js">graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  Documents == .. ==&gt; ユーザ名
+  ユーザ名 ==&gt; Downloads
+  Downloads ==&gt; file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 5 stroke:red
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>    LatD LatM LatS NS LonD LonM LonS EW                City State
+1     41    5   59  N   80   39    0  W          Youngstown    OH
+2     42   52   48  N   97   23   23  W             Yankton    SD
+3     46   35   59  N  120   30   36  W              Yakima    WA
+4     42   16   12  N   71   48    0  W           Worcester    MA
+5     43   37   48  N   89   46   11  W     Wisconsin Dells    WI
+6     36    5   59  N   80   15    0  W       Winston-Salem    NC
+7     49   52   48  N   97    9    0  W            Winnipeg    MB
+8     39   11   23  N   78    9   36  W          Winchester    VA
+9     34   14   24  N   77   55   11  W          Wilmington    NC
+10    39   45    0  N   75   33    0  W          Wilmington    DE
+11    48    9    0  N  103   37   12  W           Williston    ND
+12    41   15    0  N   77    0    0  W        Williamsport    PA
+13    37   40   48  N   82   16   47  W          Williamson    WV
+14    33   54    0  N   98   29   23  W       Wichita Falls    TX
+15    37   41   23  N   97   20   23  W             Wichita    KS
+16    40    4   11  N   80   43   12  W            Wheeling    WV
+17    26   43   11  N   80    3    0  W     West Palm Beach    FL
+18    47   25   11  N  120   19   11  W           Wenatchee    WA
+19    41   25   11  N  122   23   23  W                Weed    CA
+20    31   13   11  N   82   20   59  W            Waycross    GA
+21    44   57   35  N   89   38   23  W              Wausau    WI
+22    42   21   36  N   87   49   48  W            Waukegan    IL
+23    44   54    0  N   97    6   36  W           Watertown    SD
+24    43   58   47  N   75   55   11  W           Watertown    NY
+25    42   30    0  N   92   20   23  W            Waterloo    IA
+26    41   32   59  N   73    3    0  W           Waterbury    CT
+27    38   53   23  N   77    1   47  W          Washington    DC
+28    41   50   59  N   79    8   23  W              Warren    PA
+29    46    4   11  N  118   19   48  W         Walla Walla    WA
+30    31   32   59  N   97    8   23  W                Waco    TX
+31    38   40   48  N   87   31   47  W           Vincennes    IN
+32    28   48   35  N   97    0   36  W            Victoria    TX
+33    32   20   59  N   90   52   47  W           Vicksburg    MS
+34    49   16   12  N  123    7   12  W           Vancouver    BC
+35    46   55   11  N   98    0   36  W         Valley City    ND
+36    30   49   47  N   83   16   47  W            Valdosta    GA
+37    43    6   36  N   75   13   48  W               Utica    NY
+38    39   54    0  N   79   43   48  W           Uniontown    PA
+39    32   20   59  N   95   18    0  W               Tyler    TX
+40    42   33   36  N  114   28   12  W          Twin Falls    ID
+41    33   12   35  N   87   34   11  W          Tuscaloosa    AL
+42    34   15   35  N   88   42   35  W              Tupelo    MS
+43    36    9   35  N   95   54   36  W               Tulsa    OK
+44    32   13   12  N  110   58   12  W              Tucson    AZ
+45    37   10   11  N  104   30   36  W            Trinidad    CO
+46    40   13   47  N   74   46   11  W             Trenton    NJ
+47    44   45   35  N   85   37   47  W       Traverse City    MI
+48    43   39    0  N   79   22   47  W             Toronto    ON
+49    39    2   59  N   95   40   11  W              Topeka    KS
+50    41   39    0  N   83   32   24  W              Toledo    OH
+51    33   25   48  N   94    3    0  W           Texarkana    TX
+52    39   28   12  N   87   24   36  W         Terre Haute    IN
+53    27   57    0  N   82   26   59  W               Tampa    FL
+54    30   27    0  N   84   16   47  W         Tallahassee    FL
+55    47   14   24  N  122   25   48  W              Tacoma    WA
+56    43    2   59  N   76    9    0  W            Syracuse    NY
+57    32   35   59  N   82   20   23  W          Swainsboro    GA
+58    33   55   11  N   80   20   59  W              Sumter    SC
+59    40   59   24  N   75   11   24  W         Stroudsburg    PA
+60    37   57   35  N  121   17   24  W            Stockton    CA
+61    44   31   12  N   89   34   11  W       Stevens Point    WI
+62    40   21   36  N   80   37   12  W        Steubenville    OH
+63    40   37   11  N  103   13   12  W            Sterling    CO
+64    38    9    0  N   79    4   11  W            Staunton    VA
+65    39   55   11  N   83   48   35  W         Springfield    OH
+66    37   13   12  N   93   17   24  W         Springfield    MO
+67    42    5   59  N   72   35   23  W         Springfield    MA
+68    39   47   59  N   89   39    0  W         Springfield    IL
+69    47   40   11  N  117   24   36  W             Spokane    WA
+70    41   40   48  N   86   15    0  W          South Bend    IN
+71    43   32   24  N   96   43   48  W         Sioux Falls    SD
+72    42   29   24  N   96   23   23  W          Sioux City    IA
+73    32   30   35  N   93   45    0  W          Shreveport    LA
+74    33   38   23  N   96   36   36  W             Sherman    TX
+75    44   47   59  N  106   57   35  W            Sheridan    WY
+76    35   13   47  N   96   40   48  W            Seminole    OK
+77    32   25   11  N   87    1   11  W               Selma    AL
+78    38   42   35  N   93   13   48  W             Sedalia    MO
+79    47   35   59  N  122   19   48  W             Seattle    WA
+80    41   24   35  N   75   40   11  W            Scranton    PA
+81    41   52   11  N  103   39   36  W         Scottsbluff    NB
+82    42   49   11  N   73   56   59  W         Schenectady    NY
+83    32    4   48  N   81    5   23  W            Savannah    GA
+84    46   29   24  N   84   20   59  W  Sault Sainte Marie    MI
+85    27   20   24  N   82   31   47  W            Sarasota    FL
+86    38   26   23  N  122   43   12  W          Santa Rosa    CA
+87    35   40   48  N  105   56   59  W            Santa Fe    NM
+88    34   25   11  N  119   41   59  W       Santa Barbara    CA
+89    33   45   35  N  117   52   12  W           Santa Ana    CA
+90    37   20   24  N  121   52   47  W            San Jose    CA
+91    37   46   47  N  122   25   11  W       San Francisco    CA
+92    41   27    0  N   82   42   35  W            Sandusky    OH
+93    32   42   35  N  117    9    0  W           San Diego    CA
+94    34    6   36  N  117   18   35  W      San Bernardino    CA
+95    29   25   12  N   98   30    0  W         San Antonio    TX
+96    31   27   35  N  100   26   24  W          San Angelo    TX
+97    40   45   35  N  111   52   47  W      Salt Lake City    UT
+98    38   22   11  N   75   35   59  W           Salisbury    MD
+99    36   40   11  N  121   39    0  W             Salinas    CA
+100   38   50   24  N   97   36   36  W              Salina    KS
+101   38   31   47  N  106    0    0  W              Salida    CO
+102   44   56   23  N  123    1   47  W               Salem    OR
+103   44   57    0  N   93    5   59  W          Saint Paul    MN
+104   38   37   11  N   90   11   24  W         Saint Louis    MO
+105   39   46   12  N   94   50   23  W        Saint Joseph    MO
+106   42    5   59  N   86   28   48  W        Saint Joseph    MI
+107   44   25   11  N   72    1   11  W     Saint Johnsbury    VT
+108   45   34   11  N   94   10   11  W         Saint Cloud    MN
+109   29   53   23  N   81   19   11  W     Saint Augustine    FL
+110   43   25   48  N   83   56   24  W             Saginaw    MI
+111   38   35   24  N  121   29   23  W          Sacramento    CA
+112   43   36   36  N   72   58   12  W             Rutland    VT
+113   33   24    0  N  104   31   47  W             Roswell    NM
+114   35   56   23  N   77   48    0  W         Rocky Mount    NC
+115   41   35   24  N  109   13   48  W        Rock Springs    WY
+116   42   16   12  N   89    5   59  W            Rockford    IL
+117   43    9   35  N   77   36   36  W           Rochester    NY
+118   44    1   12  N   92   27   35  W           Rochester    MN
+119   37   16   12  N   79   56   24  W             Roanoke    VA
+120   37   32   24  N   77   26   59  W            Richmond    VA
+121   39   49   48  N   84   53   23  W            Richmond    IN
+122   38   46   12  N  112    5   23  W           Richfield    UT
+123   45   38   23  N   89   25   11  W         Rhinelander    WI
+124   39   31   12  N  119   48   35  W                Reno    NV
+125   50   25   11  N  104   39    0  W              Regina    SA
+126   40   10   48  N  122   14   23  W           Red Bluff    CA
+127   40   19   48  N   75   55   48  W             Reading    PA
+128   41    9   35  N   81   14   23  W             Ravenna   OH </code></pre>
+</div>
+</div>
+<p>ここで，<code>..</code> という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。</p>
 </section>
 
 </main>

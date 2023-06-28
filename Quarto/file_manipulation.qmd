@@ -62,9 +62,18 @@ graph LR
   OneDrive --- doc[ドキュメント]
   style doc fill:#f96,stroke:#333
 ```
-「いる」というのは，Explorer（またはFinder）でその場所を開いていることと同じと思ってください。
+「いる」というのは，Explorer（Windowsの場合）やFinder（macOSの場合）でその場所を開いていることと同じと思ってください。
 Rは，この場所で作業をします。
 ここで，`ユーザ名` は今使っているパソコンにログインしているユーザ名のことで，パソコンによって異なります。
+OneDriveで同期していない人は，次のように次の場所にいるかもしれません。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  style Documents fill:#f96,stroke:#333
+```
+以下では，OneDriveで同期していない人に限定した説明となっている場合がありますので，適宜読み替えてください。
 
 この図の線の部分を `/` で置き換えると，CUIで表現できます。
 つまり，上の図はCUIでは `C:/Users/ユーザ名/OneDrive/ドキュメント` と表現します（Windowsの場合，`/` を `¥` や `\` で表現する場合もあります）。
@@ -132,7 +141,7 @@ flowchart LR
 
 ## 作業ディレクトリ
 
-対処方法の1つ目は，Explorer（Windowsの場合）またはFinder（macOSの場合）でのファイル操作を伴います。
+対処方法の1つ目は，Explorer（またはFinder）でのファイル操作を伴います。
 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。
 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。
 ファイルの移動先は，以下のコマンドの返り値が指す**ディレクトリ**です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。
@@ -168,12 +177,29 @@ Rのスクリプトに書かれたコードを必要な部分だけコピーし�
 次のコマンドを知っておくと便利です。
 ```{r}
 #| eval: false
-setwd("C:/Users/ユーザ名/OneDrive/ドキュメント")
+setwd("")
 ```
-このコマンドの `""` の中には，自分のパソコンのディレクトリ構造の場所を指定します。
+このコマンドの `""` の中には，自分のパソコンのディレクトリ構造の中のある特定の場所を指定します。
 この場所は，Windowsなら `C:` から始まり，macOSなら `/` から始まる階層構造における位置のことで，パスと呼びます。
 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。
 ここで行っているのは，作業ディレクトリの変更です。
+
+実際の使用時には，例えば，次のように書きます。
+```{r}
+#| eval: false
+setwd("C:/Users/ユーザ名/OneDrive/ドキュメント")
+```
+OneDriveで同期していない人は次のように書きます。
+```{r}
+#| eval: false
+setwd("C:/Users/ユーザ名/Documents")
+```
+これは，次のコマンドと同じです。
+```{r}
+#| eval: false
+setwd("~")
+```
+`"~"` はホームディレクトリを意味します。
 
 
 ## 絶対パス
@@ -185,6 +211,15 @@ setwd("C:/Users/ユーザ名/OneDrive/ドキュメント")
 #| eval: false
 read.csv("C:/Users/ユーザ名/Downloads/addresses.csv") # Windowsの例
 # read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例
+```
+これは，次のファイルを読んでいることを意味します。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Downloads
+  Downloads --- file[addresses.csv]
+  style file fill:#f96,stroke-width:0px
 ```
 Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。
 コピーした後，`read.csv("")` にある2つの `"` の間にペーストしてください。
@@ -201,52 +236,125 @@ macOSの場合，Terminal.appを起動して，そのウィンドウにダウン
 Rによるディレクトリの作成と合わせて考えると非常に便利です。
 
 例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。
+次のコードを実行する前に，Explorer（またはFinder）で作業ディレクトリを表示させておき，次のコードを実行することで起こる変化を注視してください。
 ```{r}
 #| eval: false
-dir.create("./test")
-download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", "./test/addresses.csv")
-read.csv("./test/addresses.csv")
+dir.create("./data")
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", "./data/addresses.csv")
+read.csv("./data/addresses.csv")
 ```
 ```{r}
 #| echo: false
 #| warning: false
-download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", "../data/addresses.csv")
-read.csv("../data/addresses.csv")
+destfile <- "../data/addresses.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", destfile)
+}
+read.csv(destfile)
 ```
-パスの先頭にある `.` は自分がいるディレクトリを強調して表現したいときに用いる記号です。
-このことから，`./` は作業ディレクトリを意味します。
-この部分はなくても構いません。
-ただし，`"./test"` と `"test"` は同じ意味ですが，`"/test"` は意味が異なりますので注意してください。
-もし `dir.create("/test")` とした場合，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。
+パスの先頭にある `.` は自分がいるディレクトリを意味する記号です。
+このことから，`./` は作業ディレクトリを指します。
+`./` はなくても構いません。
+ただし，`"./data"` と `"data"` は同じ意味ですが，`"/data"` は意味が異なりますので注意してください。
+もし `dir.create("/data")` とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。
 
 上述のコードは，`dir.create()` でディレクトリを作成し，`download.file()` でファイルをダウンロードした後，`read.csv()` でダウンロードしたファイルを読み込みます。
+このことを図で表現すると，次のようになります。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  doc --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+```
+Rの作業ディレクトリは `ドキュメント` ですので，ここから**相対的に**ひとつ下に `data` というディレクトリを作成し，その中にダウンロードしたファイルを保存し，その保存したファイルを読み込んでいます。
+実際には，パソコンの `C:` の中にファイルはありますが，Rで読み込む際に `C:` から始める必要はありません。
+このことを図で表現すると，次のようになります。
+```{mermaid}
+graph LR
+  dot["~"] --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+```
+`~` はホームディレクトリを意味する記号であり，OneDriveで同期している人は `"C:/Users/ユーザ名/OneDrive/ドキュメント"`，同期していない人は `"C:/Users/ユーザ名/Documents"` を指します。
 
-この結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。
+先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。
 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。
 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。
 ```{r}
+#| eval: false
+read.csv("./data/addresses.csv", header = FALSE)
+```
+```{r}
+#| echo: false
 read.csv("../data/addresses.csv", header = FALSE)
 ```
 ヘッダーをどうすべきかはファイルによって異なります。
 例えば，次の例では，ヘッダーを `TRUE` にすべきです（省略時のヘッダーは `TRUE` であるため，省略してもよい）。 
 ```{r}
-download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "../data/airtravel.csv")
-read.csv("../data/airtravel.csv", header = TRUE)
+#| eval: false
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "./data/airtravel.csv")
+read.csv("./data/airtravel.csv", header = TRUE)
 ```
-ヘッダーがおかしいものがありますが，ここでは無視します（この節の最後のやり方でこのおかしさは解消します）。
-あえて間違った読み方をすると次のようになります。
 ```{r}
+#| echo: false
+destfile <- "../data/airtravel.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", destfile)
+}
+read.csv(destfile)
+```
+ヘッダーが数字で始まる場合，先頭に `X` が付き，文字列に変換されます。
+ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。
+```{r}
+#| eval: false
+read.csv("./data/airtravel.csv", header = FALSE)
+```
+```{r}
+#| echo: false
 read.csv("../data/airtravel.csv", header = FALSE)
 ```
 
 正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。
 以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，`read.csv()` を使って何度も読み直すときに `download.file()` は必要ありません。
-これは，Explorer（Windowsの場合）やFinder（macOSの場合）における通常のファイル操作と同じです。
+これは，Explorer（またはFinder）における通常のファイル操作と同じです。
 
-なお，パスの先頭に `..` または `../` を書くこともできます。
+ここでよくある例を挙げておきます。
+例えば，次のように別のCSVファイルを読み込んでください。
+```{r}
+#| eval: false
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", "./data/biostats.csv")
+read.csv("./data/biostats.csv", header = TRUE)
+```
+```{r}
+#| echo: false
+destfile <- "../data/biostats.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", destfile)
+}
+read.csv(destfile, header = TRUE)
+```
+`biostats.csv` を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。
+`()` とスペースが `.` に置き換わっていることが分かります。
+CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。
+```{r}
+#| eval: false
+read.csv("./data/biostats.csv", check.names = FALSE)
+```
+```{r}
+#| echo: false
+read.csv("../data/biostats.csv", check.names = FALSE)
+```
+
+ここで，Explorer（またはFinder）から先ほど作成した `data` フォルダを削除しておいてください。
+
+なお，相対パスの先頭に `..` または `../` を書くこともできます。
 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。
-`.` と `..` は同時には使えません。
-どちらもパスの先頭になければならないからです。
 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。
 ```{r}
 #| eval: false
@@ -255,31 +363,75 @@ if (!file.exists(outdir)) {
   dir.create(outdir)
 }
 ```
-2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味しています。
-このコマンドを理解するには，次回説明する条件分岐と `!` の意味を正しく理解できなければなりません。
+::: {.callout-caution collapse="false" icon="true"}
+もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。
+もし実行してしまった場合は，Explorer（またはFinder）で作業ディレクトリと同じ階層にある `data` フォルダの中を確認し，何もファイルがなければ `data` フォルダを削除してください。
+ファイルがあれば，他のアプリケーションで使用している可能性があるため，`data` フォルダを削除せず，残しておいてください。
+:::
+上記コードの2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味します。
+このコマンドを理解するには，条件分岐と `!` の意味を正しく理解できなければなりません。
 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。
 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。
-なお，この考え方に基づくと，CSVファイルを読むコマンドは以下のように書き換えることができます。
+
+`..` の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。
+作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。
 ```{r}
-outdir <- "../data"
-if (!file.exists(outdir)) {
-  dir.create(outdir)
-}
-destfile <- "../data/biostats.csv"
+#| eval: false
+setwd("~")
+```
+Webブラウザを使って，[CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"} から，任意のCSVファイルをダウンロードしてください。
+このCSVファイルをRに読み込むには，どうすればよいでしょうか。
+図で考えると次の相対パスを考えることに他なりません。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  doc -- .. --> OneDrive
+  OneDrive -- .. --> ユーザ名
+  ユーザ名 --> Downloads
+  Downloads --> file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+  linkStyle 8 stroke:red
+  linkStyle 9 stroke:red
+```
+これをRのコマンドにすると次のようになります。
+```{r}
+#| eval: false
+read.csv("../../Downloads/cities.csv")
+```
+OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  Documents == .. ==> ユーザ名
+  ユーザ名 ==> Downloads
+  Downloads ==> file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 5 stroke:red
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+```
+```{r}
+#| eval: false
+read.csv("../Downloads/cities.csv")
+```
+```{r}
+#| echo: false
+destfile <- "../data/cities.csv"
 if (!file.exists(destfile)) {
-  utils::download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", destfile)
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv", destfile)
 }
 read.csv(destfile)
 ```
-コードは複雑になりましたが，読み込みたいファイルがすでにダウンロードされている場合は，再びダウンロードしないため，こちらの方がネットワークへの負荷が少なく，よりよいコードと言えます。
-ただし，元のファイルと比較するとヘッダーがおかしいです。
-CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。
-```{r}
-read.csv(destfile, check.names = FALSE)
-```
 
-
-## 練習問題
-
-1. Rを起動した状態で，Webブラウザを使って [CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"} から，任意のCSVファイルをダウンロードしてください。
-ExplorerやFinderを使ってファイルを移動せずに，また，`setwd()` を使わずに，Rコンソール上でダウンロードしたファイルを読み込みなさい。
+ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。
