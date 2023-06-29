@@ -111,7 +111,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年6月29日</p>
+      <p class="date">2023年6月30日</p>
     </div>
   </div>
   
@@ -258,7 +258,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>ただし，このコマンドの返り値のディレクトリで<strong>本当に</strong>よいかは，その人によります。 といっても分からないと思いますので，作業ディレクトリは次の方法で変更しましょう。</p>
 <p>Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。 macOSの場合，メニューの[その他]→[作業ディレクトリの変更…]から作業ディレクトリを変更します。 ここで，先ほどCSVファイルがダウンロードされたディレクトリを指定すればよいです。 しかしながら，ここでは，<strong>作業ディレクトリをどこかに決める</strong>ことをおすすめします。 作業ディレクトリはRを終了すると初期化されます（デフォルト値に戻る）ので，Rを起動するたびに毎回，この操作を行います。 毎回同じ場所でもよいですし，通常は目的（プロジェクト，論文，授業など）ごとに変更すべきでしょう。 どこを作業ディレクトリにするかは自分で決めてください。 Rに関連するファイルしか存在しないディレクトリを作成しておくと，作業がしやすいです。</p>
-<p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。 これらスクリプトが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。 拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。 テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。 macOSの場合はOS標準のテキストエディット.appで問題ありません。 最近は，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。</p>
+<p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。 これらスクリプトが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。 拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。 テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。 他に，<a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a> や <a href="https://sakura-editor.github.io/" target="_blank">サクラエディタ</a> などがあります。 一方，macOSの場合はOS標準の テキストエディット.app がおすすめです。 また，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。 <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。</p>
 <p>上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。 次のコマンドを知っておくと便利です。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -710,7 +710,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 128   41    9   35  N   81   14   23  W             Ravenna   OH </code></pre>
 </div>
 </div>
-<p>ここで，<code>..</code> という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。</p>
+<p>ここで，<code>..</code> という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っていることに注目してください。</p>
 </section>
 <section id="ファイル出力" class="level2" data-number="6">
 <h2 data-number="6" class="anchored" data-anchor-id="ファイル出力"><span class="header-section-number">6</span> ファイル出力</h2>

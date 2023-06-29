@@ -179,8 +179,9 @@ Rのプログラムが書かれたもの（関数やコマンドのかたまり�
 拡張子が `R` のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。
 テキストエディタは，Windowsの場合は [秀丸エディタ](https://hide.maruo.co.jp/software/hidemaru.html){target="_blank"} が有名で，おすすめです。
 秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。
-macOSの場合はOS標準のテキストエディット.appで問題ありません。
-最近は，OSに関係なく，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} を使うのもよいかもしれません。
+他に，[Notepad++](https://notepad-plus-plus.org/){target="_blank"} や [サクラエディタ](https://sakura-editor.github.io/){target="_blank"} などがあります。
+一方，macOSの場合はOS標準の テキストエディット.app がおすすめです。
+また，OSに関係なく，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} を使うのもよいかもしれません。
 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。
 [Visual Studio Code](https://code.visualstudio.com/){target="_blank"} には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。
 
@@ -453,7 +454,7 @@ if (!file.exists(destfile)) {
 read.csv(destfile)
 ```
 
-ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っています。
+ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っていることに注目してください。
 
 
 ## ファイル出力
