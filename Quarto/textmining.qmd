@@ -9,9 +9,11 @@ format:
     toc: true
     toc-title: 目次
     toc_float: true
-    toc-depth: 3
+    toc-depth: 4
     number-sections: true
-    theme: journal
+    theme: simplex
+    mermaid:
+      theme: neutral
 lang: ja
 ---
 

@@ -89,14 +89,14 @@ year[year >= 2000]
 ```{r}
 year[c(TRUE, FALSE, FALSE)]
 ```
-これは，`length(year)` が `r length(year)` でり，これを `length(c(TRUE, FALSE, FALSE))` の `r length(c(TRUE, FALSE, FALSE))` で割ると，`r length(c(TRUE, FALSE, FALSE)) / length(year)` になるためです。
+これは，`length(year)` が `r length(year)` でり，これを `length(c(TRUE, FALSE, FALSE))` の `r length(c(TRUE, FALSE, FALSE))` で割ると，`r length(year) / length(c(TRUE, FALSE, FALSE))` になるためです。
 もしこの計算によって求められる数値（ここでは `7` ）が整数でなければ，エラーが返ってきます。
 例えば，次の場合，エラーが返ってきます。
 ```{r}
 #| error: true
 year[c(TRUE, FALSE, FALSE, FALSE)]
 ```
-これは，`length(year)` が `r length(year)` でり，これを `length(c(TRUE, FALSE, FALSE, FALSE))` の `r length(c(TRUE, FALSE, FALSE, FALSE))` で割ると，`r length(c(TRUE, FALSE, FALSE, FALSE)) / length(year)` になり，整数ではないためです。
+これは，`length(year)` が `r length(year)` でり，これを `length(c(TRUE, FALSE, FALSE, FALSE))` の `r length(c(TRUE, FALSE, FALSE, FALSE))` で割ると，`r length(year) / length(c(TRUE, FALSE, FALSE, FALSE))` になり，整数ではないためです。
 
 `[]` の外側が内側の整数倍の長さのベクトルという性質を使うことはほとんどないため，このことを知らなくても困ることはほとんどないでしょう。
 むしろ，ベクトルの長さが違っていてもエラーにならない可能性があることから，思わぬバグに気づかないかもしれません。
