@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.361">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>比較演算</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="comparison_files/libs/clipboard/clipboard.min.js"></script>
+<script src="comparison_files/libs/quarto-html/quarto.js"></script>
+<script src="comparison_files/libs/quarto-html/popper.min.js"></script>
+<script src="comparison_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="comparison_files/libs/quarto-html/anchor.min.js"></script>
+<link href="comparison_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="comparison_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="comparison_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="comparison_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="comparison_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+
+
+</head>
+
+<body>
+
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
+<div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+  <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#比較演算" id="toc-比較演算" class="nav-link active" data-scroll-target="#比較演算"><span class="header-section-number">1</span> 比較演算</a>
+  <ul>
+  <li><a href="#数値" id="toc-数値" class="nav-link" data-scroll-target="#数値"><span class="header-section-number">1.1</span> 数値</a>
+  <ul class="collapse">
+  <li><a href="#na" id="toc-na" class="nav-link" data-scroll-target="#na"><span class="header-section-number">1.1.1</span> <code>NA</code></a></li>
+  </ul></li>
+  <li><a href="#文字列" id="toc-文字列" class="nav-link" data-scroll-target="#文字列"><span class="header-section-number">1.2</span> 文字列</a></li>
+  <li><a href="#正規表現" id="toc-正規表現" class="nav-link" data-scroll-target="#正規表現"><span class="header-section-number">1.3</span> 正規表現</a></li>
+  </ul></li>
+  <li><a href="#条件分岐" id="toc-条件分岐" class="nav-link" data-scroll-target="#条件分岐"><span class="header-section-number">2</span> 条件分岐</a></li>
+  <li><a href="#繰り返し処理" id="toc-繰り返し処理" class="nav-link" data-scroll-target="#繰り返し処理"><span class="header-section-number">3</span> 繰り返し処理</a></li>
+  <li><a href="#データクリーニング" id="toc-データクリーニング" class="nav-link" data-scroll-target="#データクリーニング"><span class="header-section-number">4</span> データ・クリーニング</a></li>
+  <li><a href="#関数の作成" id="toc-関数の作成" class="nav-link" data-scroll-target="#関数の作成"><span class="header-section-number">5</span> 関数の作成</a></li>
+  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">6</span> 練習問題</a></li>
+  </ul>
+</nav>
+</div>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">比較演算</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">公開</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">2023年6月30日</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<p>今回は比較演算子の使い方を学びます。 比較演算ができるようになれば，条件分岐と繰り返し処理の理解が進みます。</p>
+<section id="比較演算" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="比較演算"><span class="header-section-number">1</span> 比較演算</h2>
+<p>比較演算とは<strong>比較演算子</strong>を使った判定のことです。 数値の比較はみなさんが日常的に行ってことですので，分かりやすいはずです。</p>
+<section id="数値" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="数値"><span class="header-section-number">1.1</span> 数値</h3>
+<p>比較演算子の1つに <code>==</code> があります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2001</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+<p><code>=</code> は必ず2つ連続で使用します。 <code>=</code> を1つしか使わない場合，関数の引数以外では，<code>&lt;-</code> と同じ意味になってしまいますので，注意が必要です。 上のコマンドは，<code>==</code> の左側と右側が等しいかどうかを判定しています。 比較演算の返り値は論理値です。</p>
+<p>また，ベクトルを比較演算子の左側に置いた場合，返り値は左側のベクトルと同じ長さのベクトルになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2010</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(year)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(year <span class="sc">==</span> <span class="dv">2000</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21</code></pre>
+</div>
+</div>
+<p>ベクトルの各要素を表示し，返り値との対応関係が正しいことを確かめてください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>year</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
+[16] 2005 2006 2007 2008 2009 2010</code></pre>
+</div>
+</div>
+<p>Rコンソールに表示されるベクトルが何行目で改行されるかは，そのベクトルによって異なります。 このため，2行目がベクトルの何番目であるかはそのベクトルに依存します。 左の <code>[]</code> 内に表示される数字がベクトルの何番目の要素であるかを示しています。</p>
+<p><code>==</code> のほかに，次のような比較演算子があります。 これらの比較演算は直感的に理解できるはずです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">&gt;</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+[13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">&lt;</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">&gt;=</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+[13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">&lt;=</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<p><code>&gt;=</code> は <code>=&gt;</code> とするとエラーが返ってきます。 <code>&lt;=</code> も同様に <code>&lt;=</code> としてはいけません。 ここでもベクトルの返り値がベクトルであることに注意してください。</p>
+<p>比較演算子の先頭に <code>!</code> をつけることができます。 この <code>!</code> は否定を意味します。 <code>==</code> の場合は，<code>!=</code> とすると <code>==</code> が真ではないものという意味になります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>year <span class="sc">!=</span> <span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
+[13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+</div>
+<p><code>!=</code> の返り値は， <code>==</code> のちょうど反対であることが分かるはずです。 なお，<code>!&gt;</code>，<code>!&lt;</code>，<code>!&gt;=</code>，<code>!&lt;=</code> は使えません。 <code>&gt;</code> の否定は <code>&lt;=</code> で表現できるため，これらのコマンドが使えなくてもとくに困りません。</p>
+<p>比較演算は，ベクトルや行列の一部を取り出すときによく使います。 例えば，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>year[year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010</code></pre>
+</div>
+</div>
+<p>一見冗長な書き方のように見えますが，これで問題ありません。 <code>[]</code> の内側は論理値のベクトルであり，<code>[]</code> の外側（ <code>year</code> ）のベクトルと長さが同じ（または，外側が内側の整数倍）でなければなりません。 この場合は <code>[]</code> の外側と内側で同じ変数 <code>year</code> を使っているので，必ずベクトルの長さが同じになります。 <code>[]</code> 外側のベクトルに対して，内側のベクトルの長さが短い場合は，内側のベクトルを繰り返します。 例えば，次のようにすると，<code>c(TRUE, FALSE, FALSE)</code> は7回繰り返され，返り値は7つの要素を持つベクトルになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>year[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1990 1993 1996 1999 2002 2005 2008</code></pre>
+</div>
+</div>
+<p>これは，<code>length(year)</code> が 21 でり，これを <code>length(c(TRUE, FALSE, FALSE))</code> の 3 で割ると，0.1428571 になるためです。 もしこの計算によって求められる数値（ここでは <code>7</code> ）が整数でなければ，エラーが返ってきます。 例えば，次の場合，エラーが返ってきます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>year[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1990 1994 1998 2002 2006 2010</code></pre>
+</div>
+</div>
+<p>これは，<code>length(year)</code> が 21 でり，これを <code>length(c(TRUE, FALSE, FALSE, FALSE))</code> の 4 で割ると，0.1904762 になり，整数ではないためです。</p>
+<p><code>[]</code> の外側が内側の整数倍の長さのベクトルという性質を使うことはほとんどないため，このことを知らなくても困ることはほとんどないでしょう。 むしろ，ベクトルの長さが違っていてもエラーにならない可能性があることから，思わぬバグに気づかないかもしれません。</p>
+<p>なお，次のようにもできますが，スクリプトの中でのこのような記述は無駄だということに注意してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>year[year <span class="sc">==</span> <span class="dv">2000</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2000</code></pre>
+</div>
+</div>
+<p>この場合，次のようにした場合と返り値が同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2000</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2000</code></pre>
+</div>
+</div>
+<p>返り値を関数の引数に入力してしまっています。 ただし，次のような場合は無駄ではありません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2000</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010</code></pre>
+</div>
+</div>
+<p>こうした比較演算は，実際には，次のような使い方をすることがよくあります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5040</span>, <span class="dv">2</span>)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> year, <span class="at">value =</span> y)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(z[z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>, ]<span class="sc">$</span>value)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5031</code></pre>
+</div>
+</div>
+<p>最後の部分は次のようにしても同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>value[z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+</div>
+</div>
+<p>このことがいまいちピンとこない人は，次のように分解して考えてみてください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>(zd1 <span class="ot">&lt;-</span> z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+[13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>(zd2 <span class="ot">&lt;-</span> z[zd1, ])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year value
+12 2001  5022
+13 2002  5024
+14 2003  5026
+15 2004  5028
+16 2005  5030
+17 2006  5032
+18 2007  5034
+19 2008  5036
+20 2009  5038
+21 2010  5040</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>(zd3 <span class="ot">&lt;-</span> zd2<span class="sc">$</span>value)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(zd3)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5031</code></pre>
+</div>
+</div>
+<p>これまでの説明で，返り値が論理値であることが混乱を招く原因になっているかもしれません。 しかし，これは R の便利な特徴のひとつですので，必ず理解してください。 もしかしたら，判定が真となる要素がベクトルの何番目の要素であるかを返す関数 <code>which()</code> の方が理解が容易でしょうか。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">which</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 11 12 13 14 15 16 17 18 19 20 21</code></pre>
+</div>
+</div>
+<p>このため，次のようにすることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>(zd <span class="ot">&lt;-</span> <span class="fu">which</span>(z<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 11 12 13 14 15 16 17 18 19 20 21</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>value[zd]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5020 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+</div>
+</div>
+<p>ただし，これは次のようにすることと同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>z<span class="sc">$</span>value[z<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 5020 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+</div>
+</div>
+<p>返り値と関数の引数は異なります。 このように，ベクトルを取り出すとき，何番目であるかを指定する方法と，論理値で指定する方法の2つがあることを知っておいてください。 今後自分でコードを書くとき，このことが混乱の原因になるかもしれません。 もし混乱した場合は，そのとき扱っている変数が数値なのか論理値なのかを考えると，頭の中が整理されるはずです。</p>
+<section id="na" class="level4" data-number="1.1.1">
+<h4 data-number="1.1.1" class="anchored" data-anchor-id="na"><span class="header-section-number">1.1.1</span> <code>NA</code></h4>
+<p>ベクトルに <code>NA</code> が含まれるとき，<code>NA</code> のある場所では評価（比較演算）しません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE FALSE FALSE  TRUE FALSE  TRUE  TRUE    NA FALSE  TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  9 10  7  8 NA  6</code></pre>
+</div>
+</div>
+<p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。 <code>NA</code> かどうかは次の関数で判定します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE</code></pre>
+</div>
+</div>
+<p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE</code></pre>
+</div>
+</div>
+<p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<p>このベクトルがデータフレームから取り出したものである場合，そのデータフレームに <code>NA</code> を取り除いたベクトルを戻すことはできません。 行の対応関係が崩れるため当然ですが，勘違いしやすいので注意してください。 <code>NA</code> が含まれる計算結果は <code>NA</code> となるため，<code>NA</code> を取り除きたくなるかもしれません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] NA</code></pre>
+</div>
+</div>
+<p>この場合，関数の引数に <code>na.rm = TRUE</code> を入れて，一時的に <code>NA</code> を取り除いて計算してください。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 50</code></pre>
+</div>
+</div>
+<p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
+<p>判定の際に <code>NA</code> を取り除きたい場合は，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  9 10  7  8  6</code></pre>
+</div>
+</div>
+<p>ここで，<code>&amp;</code> は<strong>論理積</strong>と呼ばれるもので，英語の”and”，日本語の「かつ」という意味を持ち，判定の条件を増やすことを意味します。 <code>NA</code> に限らず，複数の比較演算を使いたい場合は，論理積 <code>&amp;</code> を使います。 もっと単純な例としては，以下のようなものがあります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2005</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2001 2002 2003 2004</code></pre>
+</div>
+</div>
+<p>論理積は以下のベン図で表現できます。</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="comparison_files/figure-html/unnamed-chunk-26-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>一方，複数の比較演算のいずれかが真となるという条件式を書きたい場合は，論理和 <code>|</code> を使います。 例えば，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2005</span> <span class="sc">|</span> year <span class="sc">&lt;</span> <span class="dv">1995</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 1990 1991 1992 1993 1994 2006 2007 2008 2009 2010</code></pre>
+</div>
+</div>
+<p>論理和は以下のベン図で表現できます。</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="comparison_files/figure-html/unnamed-chunk-28-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+</section>
+</section>
+<section id="文字列" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="文字列"><span class="header-section-number">1.2</span> 文字列</h3>
+<p>文字列の比較演算子が使えます。 文字列の比較演算は次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>prefecture <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"北海道"</span>, <span class="st">"青森県"</span>, <span class="st">"岩手県"</span>, <span class="st">"宮城県"</span>, <span class="st">"秋田県"</span>, <span class="st">"山形県"</span>, <span class="st">"福島県"</span>,</span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>                <span class="st">"茨城県"</span>, <span class="st">"栃木県"</span>, <span class="st">"群馬県"</span>, <span class="st">"埼玉県"</span>, <span class="st">"千葉県"</span>, <span class="st">"東京都"</span>, <span class="st">"神奈川県"</span>,</span>
+<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>                <span class="st">"新潟県"</span>, <span class="st">"富山県"</span>, <span class="st">"石川県"</span>, <span class="st">"福井県"</span>, <span class="st">"山梨県"</span>, <span class="st">"長野県"</span>, <span class="st">"岐阜県"</span>, <span class="st">"静岡県"</span>, <span class="st">"愛知県"</span>,</span>
+<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>                <span class="st">"三重県"</span>, <span class="st">"滋賀県"</span>, <span class="st">"京都府"</span>, <span class="st">"大阪府"</span>, <span class="st">"兵庫県"</span>, <span class="st">"奈良県"</span>, <span class="st">"和歌山県"</span>,</span>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>                <span class="st">"鳥取県"</span>, <span class="st">"島根県"</span>, <span class="st">"岡山県"</span>, <span class="st">"広島県"</span>, <span class="st">"山口県"</span>, <span class="st">"徳島県"</span>, <span class="st">"香川県"</span>, <span class="st">"愛媛県"</span>, <span class="st">"高知県"</span>,</span>
+<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>                <span class="st">"福岡県"</span>, <span class="st">"佐賀県"</span>, <span class="st">"長崎県"</span>, <span class="st">"熊本県"</span>, <span class="st">"大分県"</span>, <span class="st">"宮崎県"</span>, <span class="st">"鹿児島県"</span>, <span class="st">"沖縄県"</span>)</span>
+<span id="cb77-7"><a href="#cb77-7" aria-hidden="true" tabindex="-1"></a>prefecture <span class="sc">==</span> <span class="st">"愛媛県"</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+[37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+</div>
+</div>
+<p>数値と同じく，文字列の返り値も論理値です。 文字列の場合，<code>==</code> は完全一致を意味します。</p>
+<p>文字列の場合，大きさはないため，<code>&gt;</code> や <code>&lt;</code> といった比較演算子は使えないはずです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>prefecture[prefecture <span class="sc">&gt;</span> <span class="st">"愛媛県"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "北海道"   "青森県"   "岩手県"   "宮城県"   "秋田県"   "山形県"  
+ [7] "福島県"   "茨城県"   "栃木県"   "群馬県"   "埼玉県"   "千葉県"  
+[13] "東京都"   "神奈川県" "新潟県"   "富山県"   "石川県"   "福井県"  
+[19] "山梨県"   "長野県"   "岐阜県"   "静岡県"   "三重県"   "滋賀県"  
+[25] "京都府"   "大阪府"   "兵庫県"   "奈良県"   "和歌山県" "鳥取県"  
+[31] "島根県"   "岡山県"   "広島県"   "山口県"   "徳島県"   "香川県"  
+[37] "高知県"   "福岡県"   "佐賀県"   "長崎県"   "熊本県"   "大分県"  
+[43] "宮崎県"   "鹿児島県" "沖縄県"  </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>prefecture[prefecture <span class="sc">&lt;</span> <span class="st">"愛媛県"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "愛知県"</code></pre>
+</div>
+</div>
+<p>予想に反して，エラーではなく返り値が得られます。 これは，各文字列の文字コードを比較しています。 このことは，次のコマンドでも確認できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">factor</span>(prefecture)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 北海道   青森県   岩手県   宮城県   秋田県   山形県   福島県   茨城県  
+ [9] 栃木県   群馬県   埼玉県   千葉県   東京都   神奈川県 新潟県   富山県  
+[17] 石川県   福井県   山梨県   長野県   岐阜県   静岡県   愛知県   三重県  
+[25] 滋賀県   京都府   大阪府   兵庫県   奈良県   和歌山県 鳥取県   島根県  
+[33] 岡山県   広島県   山口県   徳島県   香川県   愛媛県   高知県   福岡県  
+[41] 佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県 沖縄県  
+47 Levels: 愛知県 愛媛県 茨城県 岡山県 沖縄県 岩手県 岐阜県 宮崎県 ... 和歌山県</code></pre>
+</div>
+</div>
+<p><code>Levels</code> がおかしな並び順になっていることが確認できます。 こうした文字コードでの順序づけを回避するには，<code>levels()</code> を明示的に指定しなければなりません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>(prefecture_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(prefecture, <span class="at">levels =</span> prefecture, <span class="at">ordered =</span> <span class="cn">TRUE</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] 北海道   青森県   岩手県   宮城県   秋田県   山形県   福島県   茨城県  
+ [9] 栃木県   群馬県   埼玉県   千葉県   東京都   神奈川県 新潟県   富山県  
+[17] 石川県   福井県   山梨県   長野県   岐阜県   静岡県   愛知県   三重県  
+[25] 滋賀県   京都府   大阪府   兵庫県   奈良県   和歌山県 鳥取県   島根県  
+[33] 岡山県   広島県   山口県   徳島県   香川県   愛媛県   高知県   福岡県  
+[41] 佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県 沖縄県  
+47 Levels: 北海道 &lt; 青森県 &lt; 岩手県 &lt; 宮城県 &lt; 秋田県 &lt; 山形県 &lt; ... &lt; 沖縄県</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a>prefecture_factor[prefecture_factor <span class="sc">&gt;</span> <span class="st">"愛媛県"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 高知県   福岡県   佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県
+[9] 沖縄県  
+47 Levels: 北海道 &lt; 青森県 &lt; 岩手県 &lt; 宮城県 &lt; 秋田県 &lt; 山形県 &lt; ... &lt; 沖縄県</code></pre>
+</div>
+</div>
+<p>このようなこともできますが，特別な理由がない限り，文字列の大小比較はしないでください。</p>
+<p>さて，文字列のベクトルの中から共通する要素を取り出したいことがあるかもしれません。 例えば，都道府県の中から県のみを取り出したいときに，次のようにしてもほしい結果は得られません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a>prefecture[prefecture <span class="sc">==</span> <span class="st">"県"</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>character(0)</code></pre>
+</div>
+</div>
+<p>上述のように，<code>==</code> は完全一致を意味するからです。 このとき，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a>prefecture[<span class="fu">grep</span>(<span class="st">"県"</span>, prefecture)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "青森県"   "岩手県"   "宮城県"   "秋田県"   "山形県"   "福島県"  
+ [7] "茨城県"   "栃木県"   "群馬県"   "埼玉県"   "千葉県"   "神奈川県"
+[13] "新潟県"   "富山県"   "石川県"   "福井県"   "山梨県"   "長野県"  
+[19] "岐阜県"   "静岡県"   "愛知県"   "三重県"   "滋賀県"   "兵庫県"  
+[25] "奈良県"   "和歌山県" "鳥取県"   "島根県"   "岡山県"   "広島県"  
+[31] "山口県"   "徳島県"   "香川県"   "愛媛県"   "高知県"   "福岡県"  
+[37] "佐賀県"   "長崎県"   "熊本県"   "大分県"   "宮崎県"   "鹿児島県"
+[43] "沖縄県"  </code></pre>
+</div>
+</div>
+<p>これは正規表現を使った抽出です。 このコマンドはやや冗長で，本来なら次のようにすべきです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">"県"</span>, prefecture, <span class="at">value =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "青森県"   "岩手県"   "宮城県"   "秋田県"   "山形県"   "福島県"  
+ [7] "茨城県"   "栃木県"   "群馬県"   "埼玉県"   "千葉県"   "神奈川県"
+[13] "新潟県"   "富山県"   "石川県"   "福井県"   "山梨県"   "長野県"  
+[19] "岐阜県"   "静岡県"   "愛知県"   "三重県"   "滋賀県"   "兵庫県"  
+[25] "奈良県"   "和歌山県" "鳥取県"   "島根県"   "岡山県"   "広島県"  
+[31] "山口県"   "徳島県"   "香川県"   "愛媛県"   "高知県"   "福岡県"  
+[37] "佐賀県"   "長崎県"   "熊本県"   "大分県"   "宮崎県"   "鹿児島県"
+[43] "沖縄県"  </code></pre>
+</div>
+</div>
+<p><code>grep</code> は正規表現を使った処理ができる関数のひとつです。 ただし，正規表現の理解は初学者には難しいでしょう。</p>
+</section>
+<section id="正規表現" class="level3" data-number="1.3">
+<h3 data-number="1.3" class="anchored" data-anchor-id="正規表現"><span class="header-section-number">1.3</span> 正規表現</h3>
+<p>正規表現を知っているかどうかで，比較演算子の効率的な使い方が飛躍的に向上します。 正規表現は，人間が考えるかのようにコンピュータに考えさせる記述方法です。 しかし，非常にややこしいのでここでは説明しません。 以下のWebページを確認してください。</p>
+<ul>
+<li><a href="http://www.okadajp.org/RWiki/?R+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE" target="_blank">R における正規表現 - RjpWiki</a></li>
+</ul>
+</section>
+</section>
+<section id="条件分岐" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="条件分岐"><span class="header-section-number">2</span> 条件分岐</h2>
+<p>条件分岐とは，「もし〜ならば」という条件「〜」を満たす場合に，指定の処理をする手続きのことです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"正解です。"</span>)</span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "正解です。"</code></pre>
+</div>
+</div>
+<p>このように，<code>if</code> と <code>()</code> の間にスペースを入れます。 また，<code>{}</code> の前後は改行し，<code>{}</code> の中は左にインデントを付けるようにしてください。 インデントは，スペース2つが一般的です（スペースを4つ付ける人もいます）。</p>
+<p><code>if</code> 文は，「そうでなければ」ということを意味する <code>else</code> を伴うこともできます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"正解です。"</span>)</span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"不正解です。"</span>)</span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "正解です。"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (x[<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"正解です。"</span>)</span>
+<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"不正解です。"</span>)</span>
+<span id="cb99-6"><a href="#cb99-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "不正解です。"</code></pre>
+</div>
+</div>
+<p><code>if</code> 文の <code>()</code> の中は，長さ1のベクトル（つまり，スカラー）かつ論理値でなければなりません。 すなわち，<code>if</code> 文の <code>()</code> の中は <code>TRUE</code> か <code>FALSE</code> です。 もしベクトルの要素1つずつ処理したい場合は，次に説明する繰り返し処理と組み合わせて使います。</p>
+</section>
+<section id="繰り返し処理" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="繰り返し処理"><span class="header-section-number">3</span> 繰り返し処理</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb101-5"><a href="#cb101-5" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+<p>このように，<code>for</code> と <code>()</code> の間にスペースを入れます。 また，<code>for</code> 文と同じように，<code>{}</code> の前後は改行し，<code>{}</code> の中は左にインデントを付けるようにしてください。</p>
+<p><code>for</code> 文を使うときは，必ずループから抜け出せるようにしてください。 例えば，<code>for</code> の引数に <code>{}</code> の中で代入した場合，無限ループになることがあります。</p>
+<p>繰り返し処理には，<code>for</code> 文意外に <code>while</code> 文もあります。</p>
+</section>
+<section id="データクリーニング" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="データクリーニング"><span class="header-section-number">4</span> データ・クリーニング</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a>よく使う関数</span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>()</span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>()</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a><span class="fu">apply</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>論理式での数値は，<code>0</code> のみが <code>FALSE</code> として扱われ，それ以外は <code>TRUE</code> として扱われます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">1</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb106"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">0</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+</div>
+</section>
+<section id="関数の作成" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="関数の作成"><span class="header-section-number">5</span> 関数の作成</h2>
+<p>関数を自分で作ることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb108"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cf">function</span> (y) {</span>
+<span id="cb108-2"><a href="#cb108-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">paste</span>(y, <span class="at">collapse =</span> <span class="st">"/"</span>)</span>
+<span id="cb108-3"><a href="#cb108-3" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb108-4"><a href="#cb108-4" aria-hidden="true" tabindex="-1"></a><span class="fu">x</span>(<span class="fu">c</span>(<span class="st">"Apple"</span>, <span class="st">"Orange"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "Apple/Orange"</code></pre>
+</div>
+</div>
+</section>
+<section id="練習問題" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">6</span> 練習問題</h2>
+<ol type="1">
+<li>ポケモンの中から，water タイプのポケモンをすべて挙げなさい。 ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。 なお，<code>pokemon</code> は tibble であるが，データフレームに使えるコマンドのほとんどはそのまま使えます。</li>
+</ol>
+</section>
+
+</main>
+<!-- /main column -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

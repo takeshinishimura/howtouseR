@@ -13,7 +13,7 @@
 
 - [まずは使ってみる](https://takeshinishimura.github.io/howtouseR/letsgetstarted.html)
 - [基礎](https://takeshinishimura.github.io/howtouseR/basics.html)
-- 比較演算
+- [比較演算](https://takeshinishimura.github.io/howtouseR/comparison.html)
 - [ファイル操作](https://takeshinishimura.github.io/howtouseR/file_manipulation.html)
 - [図](https://takeshinishimura.github.io/howtouseR/plot.html)
 - 表
