@@ -489,3 +489,44 @@ cars
 sink()
 ```
  OneDriveで同期していない人は，2行目の `#` の右側以降をRコンソールにコピーして，コードを実行してください。
+
+
+## Microsoft 365
+
+[Microsoft365R](https://github.com/Azure/Microsoft365R){target="_blank"} パッケージは，Microsoft 365 の R インターフェースです。
+
+大学のメールアドレスで OneDrive を使用している場合は，次のコードを実行します。
+```{R}
+#| eval: false
+library(Microsoft365R)
+odb <- get_business_onedrive()
+```
+プライベートなメールアドレスで OneDrive を使用している場合は，次のコードを実行します。
+```{R}
+#| eval: false
+od <- get_personal_onedrive()
+```
+すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。
+支持に従うと，R から Microsoft 365 を操作できるようになります。
+例えば，次のようなことができます。
+```{R}
+#| eval: false
+# list files and folders
+odb$list_items()
+odb$list_items("ドキュメント")
+
+# upload and download files
+odb$upload_file("somedata.xlsx")
+odb$download_file("ドキュメント/myfile.docx")
+
+# create a folder
+odb$create_folder("ドキュメント/newfolder")
+
+# open a document for editing in Word Online
+odb$open_item("ドキュメント/myfile.docx")
+
+# working with data frames and R objects
+library(readr)
+odb$save_dataframe(iris, "ドキュメント/iris.csv")
+```
+ただし，便利かどうかは不明です。
