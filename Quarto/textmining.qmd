@@ -34,6 +34,13 @@ lang: ja
 テキストマイニングでは前処理が重要です。
 前処理は，形態素解析の前に行います。
 
+環境によっては文字コードを変換する必要がある場合もあります。
+文字コードがUTF-8でない場合にUTF-8に変換するようにすればよいでしょう。
+```{R}
+#| eval: false
+iconv(textdata, from = "CP932", to = "UTF-8")
+```
+
 表記揺れの修正は日本語のテキストマイニングにおいて重要でしょう。
 例えば，次のようにします。
 ```{R}
@@ -82,13 +89,6 @@ for (i in names(df)) {
 #| eval: false
 library(audubon)
 audubon::strj_normalize(textdata)
-```
-
-環境によっては文字コードを変換する必要がある場合もあります。
-文字コードがUTF-8でない場合にUTF-8に変換するようにすればよいでしょう。
-```{R}
-#| eval: false
-iconv(textdata, from = "CP932", to = "UTF-8")
 ```
 
 
@@ -292,31 +292,52 @@ dtm[, 1:7]
 
 テキスト分析では，ストップワードを削除する必要がある。
 ストップワードとは，出現頻度が高すぎる動詞などであり，分析に役に立たないばかりか，分析結果をつまらないものにします。
-
+```{r}
 tidytext::stop_words
-
+```
 ストップワードを辞書ごとに `filter()` することも可能である。
-
+```{r}
 table(tidytext::stop_words$lexicon)
+```
+他にストップワードを追加してもよいです。
+ただし，`mutate(word = stringr::str_extract(word, "[a-z]+"))` のように，`dplyr` のパイプ処理の際に削除するのが，現代的かもしれません。
 
-
+```{r}
 tidy_books <- tidy_books %>% 
-dplyr::anti_join(stop_words)
+  dplyr::anti_join(tidytext::stop_words)
+```
 
+```{r}
 text <- c("Because I could not stop for Death -", "He kindly stopped for me -",
 "The Carriage held but just Ourselves -", "and Immortality")
-
 
 library(dplyr)
 library(tidytext)
 
 text_df <- dplyr::tibble(line = 1:4, text = text)
 text_df |> tidytext::unnest_tokens(word, text)
-
+```
 `unnest_tokens()` では句読点，記号は削除され，小文字に変換される。
 
 [tm](https://CRAN.R-project.org/package=tm){target="_blank"} パッケージ
 
+### センチメント分析
+
+```{r}
+tidytext::sentiments()
+table(tidytext::sentiments$sentiment)
+```
+
+### ワードクラウド
+
+```{r}
+library(wordcloud)
+
+tidy_books %>%
+  dplyr::anti_join(tidytext::stop_words) %>%
+  dplyr::count(word) %>%
+  with(wordcloud(word, n, max.words = 100))
+```
 
 ## quanteda
 

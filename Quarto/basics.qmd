@@ -543,12 +543,23 @@ x
 このように冗長に書くよりも，`()` を使った方が分かりやすいことがたまにあります。
 
 
+## チートシート
+
+Base R のチートシートがここからダウンロードできる（ページ右側の Downloadボタンをクリック）。
+
+- [base-r_ja.pdf](https://github.com/rstudio/cheatsheets/blob/main/translations/japanese/base-r_ja.pdf){target="_blank"}
+
+他にも役立つチートシートがいくつかある。
+
+- [rstudio/cheatsheets](https://github.com/rstudio/cheatsheets/tree/main/translations/japanese){target="_blank"}
+
+
 ## 練習問題
 
 1. 「北海道」「青森県」といった都道府県の文字も含む日本の全都道府県名を要素とするファクターを作成しなさい。
 
 2. 気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 `temp` に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。
-  - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html){target="_blank"} 
+  - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html){target="_blank"}
 
 3. 次のデータフレーム `z` があるとする。
 ```{r}
