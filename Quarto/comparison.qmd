@@ -347,12 +347,23 @@ x
 
 ## データ・クリーニング
 
+よく使う関数に次のようなものがある。
 ```{r}
 #| eval: false
-よく使う関数
 table()
 unique()
+order()
 apply()
+sapply()
+lapply()
+```
+
+例えば，次のように使う。
+```{r}
+table(iris$Species)
+unique(iris$Species)
+order(iris$Sepal.Length, decreasing = TRUE)
+head(iris[order(iris$Sepal.Length, decreasing = TRUE), ])
 ```
 
 論理式での数値は，`0` のみが `FALSE` として扱われ，それ以外は `TRUE` として扱われます。
