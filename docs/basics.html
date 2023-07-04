@@ -79,7 +79,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#変数の型" id="toc-変数の型" class="nav-link active" data-scroll-target="#変数の型"><span class="header-section-number">1</span> 変数の型</a>
+  <li><a href="#データの型" id="toc-データの型" class="nav-link active" data-scroll-target="#データの型"><span class="header-section-number">1</span> データの型</a>
   <ul>
   <li><a href="#数値" id="toc-数値" class="nav-link" data-scroll-target="#数値"><span class="header-section-number">1.1</span> 数値</a></li>
   <li><a href="#文字列" id="toc-文字列" class="nav-link" data-scroll-target="#文字列"><span class="header-section-number">1.2</span> 文字列</a></li>
@@ -139,16 +139,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくに変数の型と種類について理解しておかなければなりません。</p>
-<section id="変数の型" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="変数の型"><span class="header-section-number">1</span> 変数の型</h2>
-<p>変数の型には，数値，文字列，ファクター（因子），論理値があります。 以下のどれかのコマンドを使って，その変数の型を知ることができます。</p>
+<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくにデータの型と変数の種類について理解しておかなければなりません。</p>
+<section id="データの型" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="データの型"><span class="header-section-number">1</span> データの型</h2>
+<p>データの型には，数値，文字列，ファクター（因子），論理値があります。 以下のどれかのコマンドを使って，そのデータの型を知ることができます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>()</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mode</span>()</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>ただし，常に意識するというよりは，エラーの原因追及（バグフィックス）時に必要な知識です。 このため，自分が書いたスクリプトにバグが入らないようにしたいなら，この変数の型を意識しておかなければなりません。 変数の型には次の種類があります。</p>
+<p>ただし，常に意識するというよりは，エラーの原因追及（バグフィックス）時に必要な知識です。 このため，自分が書いたスクリプトにバグが入らないようにしたいなら，このデータの型を意識しておかなければなりません。 データの型には次の種類があります。</p>
 <ol type="1">
 <li>実数</li>
 <li>整数</li>
@@ -719,7 +719,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
 </div>
-<p>データフレームの列ごとに変数の型が表示されることが分かります。 行の数と列の数は次のコマンドで取得できる。</p>
+<p>データフレームの列ごとにデータの型が表示されることが分かります。 行の数と列の数は次のコマンドで取得できる。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
