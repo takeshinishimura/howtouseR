@@ -97,6 +97,9 @@ year[c(TRUE, FALSE, FALSE)]
 year[c(TRUE, FALSE, FALSE, FALSE)]
 ```
 これは，`length(year)` が `r length(year)` でり，これを `length(c(TRUE, FALSE, FALSE, FALSE))` の `r length(c(TRUE, FALSE, FALSE, FALSE))` で割ると，`r length(year) / length(c(TRUE, FALSE, FALSE, FALSE))` になり，整数ではないためです。
+あれ，おかしいな，エラーにならないですね。
+整数倍でなくてもいいようですね。
+時間あるときに書き換えます。
 
 `[]` の外側が内側の整数倍の長さのベクトルという性質を使うことはほとんどないため，このことを知らなくても困ることはほとんどないでしょう。
 むしろ，ベクトルの長さが違っていてもエラーにならない可能性があることから，思わぬバグに気づかないかもしれません。
