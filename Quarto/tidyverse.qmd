@@ -23,7 +23,13 @@ lang: ja
 
 [tidyr](https://tidyr.tidyverse.org/){target="_blank"}
 
-`tidyr::pivot_longer()`
+```{r}
+iris
+dim(iris)
+iris_long <- tidyr::pivot_longer(iris, cols = Sepal.Length:Petal.Width)
+iris_long
+dim(iris_long)
+```
 
 `tidyr::pivot_wider()`
 
@@ -34,20 +40,57 @@ lang: ja
 一方，ロングというデータ形式もあり，列数は限られています。
 ワイドは横に長く，ロングは縦に長いデータフレームです。
 
-```{r}
-```
-
 
 ### dplyr
 
 [dplyr](https://dplyr.tidyverse.org/){target="_blank"}
 
-select()
+#### select
+
+```{r}
+iris["Species"]
+iris |> dplyr::select(Species)
+```
+
+#### count
+
+```{r}
+table(iris$Species)
+iris |> dplyr::count(Species)
+```
+
+#### arrange()
+
+```{r}
+iris[order(iris$Sepal.Length, decreasing = TRUE), ]
+iris |>
+  dplyr::arrange(dplyr::desc(Sepal.Length))
+```
+
+#### summarise()
+
+```{r}
+lapply(split(iris, iris$Species), mean)
+iris |>
+  dplyr::group_by(Species) |>
+  dplyr::summarize(value = mean(Sepal.Length))
+```
+
+#### group_by
+
+```{r}
+unlist(lapply(split(iris, iris$Species), nrow))
+iris |>
+  dplyr::group_by(Species) |>
+  dplyr::count(Species) |>
+  dplyr::ungroup()
+```
+
+mutate()
+
 filter()
 arrange()
-group_by()
-summarise()
-mutate()
+
 
 ### readr
 
