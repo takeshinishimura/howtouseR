@@ -507,7 +507,7 @@ odb <- get_business_onedrive()
 od <- get_personal_onedrive()
 ```
 すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。
-支持に従うと，R から Microsoft 365 を操作できるようになります。
+指示に従うと，R から Microsoft 365 を操作できるようになります。
 例えば，次のようなことができます。
 ```{R}
 #| eval: false
