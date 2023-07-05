@@ -323,25 +323,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE FALSE  TRUE    NA FALSE  TRUE FALSE  TRUE  TRUE FALSE</code></pre>
+<pre><code> [1] FALSE FALSE  TRUE  TRUE    NA FALSE FALSE  TRUE  TRUE  TRUE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  8 NA  9  7  6</code></pre>
+<pre><code>[1]  6  8 NA  9  7 10</code></pre>
 </div>
 </div>
 <p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。 <code>NA</code> かどうかは次の関数で判定します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 </div>
 </div>
 <p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
@@ -366,7 +366,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 45</code></pre>
+<pre><code>[1] 50</code></pre>
 </div>
 </div>
 <p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
@@ -374,7 +374,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 8 9 7 6</code></pre>
+<pre><code>[1]  6  8  9  7 10</code></pre>
 </div>
 </div>
 <p>ここで，<code>&amp;</code> は<strong>論理積</strong>と呼ばれるもので，英語の”and”，日本語の「かつ」という意味を持ち，判定の条件を増やすことを意味します。 <code>NA</code> に限らず，複数の比較演算を使いたい場合は，論理積 <code>&amp;</code> を使います。 もっと単純な例としては，以下のようなものがあります。</p>
@@ -664,7 +664,7 @@ Levels: setosa versicolor virginica</code></pre>
 <h2 data-number="6" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">6</span> 練習問題</h2>
 <ol type="1">
 <li><p>ポケモンの中から，water タイプのポケモンをすべて挙げなさい。 ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。</p></li>
-<li><p>「北海道」「青森」…「東京都」…といった都道府県のデータがあります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべてのデータが「都道府県」で終わるように揃えなさい。</p></li>
+<li><p>「北海道」「青森」…「東京」…といった都道府県のデータがあります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべてのデータが「都道府県」で終わるように揃えなさい。</p></li>
 </ol>
 </section>
 
