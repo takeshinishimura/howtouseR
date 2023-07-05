@@ -229,6 +229,14 @@ g <- ggVennDiagram(list("year > 2005" = year[year > 2005],
 g$layers[[1]]$mapping <- aes(fill = name)
 g + scale_fill_manual(values = c("year > 2005" = "lightblue", "year < 1995" = "lightblue", "year > 2005..year < 1995" = "lightblue"))
 ```
+このケースでは，2つの条件のどちらも満たす `year` は存在しませんので，実際には重なりはありません。
+
+ここで，滅多に使わないですが，次の関係は知っておいてください。
+```{r}
+TRUE & NA
+TRUE | NA
+```
+`NA` の取り扱いは難しいため，実際にコードを書くときには，コードを分解して，確実に意図通りの結果が得られていることを確かめながら，全体を完成させてください。
 
 ### 文字列
 
@@ -251,13 +259,16 @@ prefecture == "愛媛県"
 prefecture[prefecture > "愛媛県"]
 prefecture[prefecture < "愛媛県"]
 ```
-予想に反して，エラーではなく返り値が得られます。
+予想に反して，返り値はエラーではありません。
 これは，各文字列の文字コードを比較しています。
 このことは，次のコマンドでも確認できます。
 ```{r}
 factor(prefecture)
 ```
 `Levels` がおかしな並び順になっていることが確認できます。
+**ここで `R` と `RStudio` では， `levels(prefecture)` が異なります。
+なぜなのか？どなたか説明いただければ幸いです。RStudio は何をしているのでしょうか？**
+
 こうした文字コードでの順序づけを回避するには，`levels()` を明示的に指定しなければなりません。
 ```{r}
 (prefecture_factor <- factor(prefecture, levels = prefecture, ordered = TRUE))
