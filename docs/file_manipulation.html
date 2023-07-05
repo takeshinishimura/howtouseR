@@ -94,6 +94,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#相対パス" id="toc-相対パス" class="nav-link" data-scroll-target="#相対パス"><span class="header-section-number">5</span> 相対パス</a></li>
   <li><a href="#ファイル出力" id="toc-ファイル出力" class="nav-link" data-scroll-target="#ファイル出力"><span class="header-section-number">6</span> ファイル出力</a></li>
   <li><a href="#microsoft-365" id="toc-microsoft-365" class="nav-link" data-scroll-target="#microsoft-365"><span class="header-section-number">7</span> Microsoft 365</a></li>
+  <li><a href="#ロケールの変更" id="toc-ロケールの変更" class="nav-link" data-scroll-target="#ロケールの変更"><span class="header-section-number">8</span> ロケールの変更</a></li>
+  <li><a href="#unicodeエスケープシーケンス" id="toc-unicodeエスケープシーケンス" class="nav-link" data-scroll-target="#unicodeエスケープシーケンス"><span class="header-section-number">9</span> Unicodeエスケープシーケンス</a></li>
   </ul>
 </nav>
 </div>
@@ -766,6 +768,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">"ドキュメント/iris.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ただし，便利かどうかは不明です。</p>
+</section>
+<section id="ロケールの変更" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="ロケールの変更"><span class="header-section-number">8</span> ロケールの変更</h2>
+<p>Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。 次のコマンドでロケールを知ることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"locale"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>一般的に，このような結果が得られるはずです。</p>
+<pre><code>LANG="ja_JP.UTF-8"
+LC_COLLATE="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LC_MESSAGES="ja_JP.UTF-8"
+LC_MONETARY="ja_JP.UTF-8"
+LC_NUMERIC="ja_JP.UTF-8"
+LC_TIME="ja_JP.UTF-8"
+LC_ALL=</code></pre>
+<p>または，次のような結果が得られるかもしれません。</p>
+<pre><code>LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL=</code></pre>
+<p>これらの場合は，日本語は正しく表示されるはずです。</p>
+<p>環境によっては，次のような結果が得られるかもしれません。</p>
+<pre><code>LANG="en_JP.UTF-8"
+LC_COLLATE="C"
+LC_CTYPE="C"
+LC_MESSAGES="C"
+LC_MONETARY="C"
+LC_NUMERIC="C"
+LC_TIME="C"
+LC_ALL=</code></pre>
+<p>この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。</p>
+<p>日本語が表示される環境に設定したければ，次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"defaults write org.R-project.R force.LANG ja_JP.UTF-8"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>おそらくこれはmacOSだけに対応しているはずです。 Windowsでのロケールの変更方法は知りません。</p>
+</section>
+<section id="unicodeエスケープシーケンス" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="unicodeエスケープシーケンス"><span class="header-section-number">9</span> Unicodeエスケープシーケンス</h2>
+<p>日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。 そのとき，次のコマンドを使うことで対応します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>stringi<span class="sc">::</span><span class="fu">stri_escape_unicode</span>(<span class="st">"日本語"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "\\u65e5\\u672c\\u8a9e"</code></pre>
+</div>
+</div>
+<p>あるいは，次のようにしてもよいでしょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">u"</span>, <span class="fu">sprintf</span>(<span class="st">"%04x"</span>, <span class="fu">utf8ToInt</span>(<span class="st">"日本語"</span>)), <span class="at">collapse =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "\\u65e5\\u672c\\u8a9e"</code></pre>
+</div>
+</div>
+<p><code>\</code> が2つずつ連続していますが，Rコードで用いるときは <code>\</code> は1つで大丈夫です。</p>
 </section>
 
 </main>

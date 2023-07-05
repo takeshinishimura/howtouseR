@@ -530,3 +530,71 @@ library(readr)
 odb$save_dataframe(iris, "ドキュメント/iris.csv")
 ```
 ただし，便利かどうかは不明です。
+
+
+## ロケールの変更
+
+Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。
+次のコマンドでロケールを知ることができます。
+```{R}
+system("locale")
+```
+一般的に，このような結果が得られるはずです。
+```
+LANG="ja_JP.UTF-8"
+LC_COLLATE="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LC_MESSAGES="ja_JP.UTF-8"
+LC_MONETARY="ja_JP.UTF-8"
+LC_NUMERIC="ja_JP.UTF-8"
+LC_TIME="ja_JP.UTF-8"
+LC_ALL=
+```
+または，次のような結果が得られるかもしれません。
+```
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL=
+```
+これらの場合は，日本語は正しく表示されるはずです。
+
+環境によっては，次のような結果が得られるかもしれません。
+```
+LANG="en_JP.UTF-8"
+LC_COLLATE="C"
+LC_CTYPE="C"
+LC_MESSAGES="C"
+LC_MONETARY="C"
+LC_NUMERIC="C"
+LC_TIME="C"
+LC_ALL=
+```
+この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。
+
+日本語が表示される環境に設定したければ，次のようにします。
+```{R}
+system("defaults write org.R-project.R force.LANG ja_JP.UTF-8")
+```
+おそらくこれはmacOSだけに対応しているはずです。
+Windowsでのロケールの変更方法は知りません。
+
+
+## Unicodeエスケープシーケンス
+
+日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。
+そのとき，次のコマンドを使うことで対応します。
+```{R}
+library(stringi)
+
+stringi::stri_escape_unicode("日本語")
+```
+あるいは，次のようにしてもよいでしょう。
+```{R}
+paste0("\\u", sprintf("%04x", utf8ToInt("日本語")), collapse = "")
+```
+`\` が2つずつ連続していますが，Rコードで用いるときは `\` は1つで大丈夫です。
