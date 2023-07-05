@@ -388,7 +388,6 @@ x(c("Apple", "Orange"))
 
 1. ポケモンの中から，water タイプのポケモンをすべて挙げなさい。
 ただし，ポケモンのデータセットは，`d3po` パッケージの `pokemon` を使いなさい。
-なお，`pokemon` は tibble ですが，データフレームに使えるコマンドのほとんどはそのまま使えます。
 ```{r}
 #| eval: false
 #| include: false
