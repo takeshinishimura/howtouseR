@@ -321,6 +321,13 @@ tidytext::stop_words
 table(tidytext::stop_words$lexicon)
 ```
 他にストップワードを追加してもよいです。
+ストップワードの追加は，`unnest_tokens()` の返り値に対して，次のようにします。
+```{r}
+#| eval: false
+textdata <- unnest_tokens(textdata, word, text)
+mystopwords <- data_frame(word = c("eq", "co", "rc", "ac", "ak", "bn", "fig"))
+new_textdata <- anti_join(textdata, mystopwords, by = "word")
+```
 ただし，`mutate(word = stringr::str_extract(word, "[a-z]+"))` のように，`dplyr` のパイプ処理の際に削除するのが，現代的かもしれません。
 
 ```{r}
