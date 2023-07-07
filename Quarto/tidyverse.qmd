@@ -23,36 +23,97 @@ lang: ja
 
 [tidyr](https://tidyr.tidyverse.org/){target="_blank"}
 
+ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータ形式のことです。
+一方，ロングというデータ形式もあり，列数は限られています。
+ワイドは横に長く，ロングは縦に長いデータフレームです。
+
+#### pivot_longer()
+
 ```{r}
-iris
+head(iris)
 dim(iris)
 iris_long <- tidyr::pivot_longer(iris, cols = Sepal.Length:Petal.Width)
 iris_long
 dim(iris_long)
 ```
 
-`tidyr::pivot_wider()`
 
-`tidyr::spread()` と `tidyr::gather()` は古い関数なので，覚える必要はない。
-しかし，使う人が多すぎるため，パッケージから削除できずに残っている。
+#### pivot_wider()
 
-ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータ形式のことです。
-一方，ロングというデータ形式もあり，列数は限られています。
-ワイドは横に長く，ロングは縦に長いデータフレームです。
+```{r}
+iris_long <- tidyr::pivot_longer(iris, cols = Sepal.Length:Petal.Width)
+iris_long
+dim(iris_long)
+```
+
+`tidyr::spread()` と `tidyr::gather()` は superseded になっている（古い関数）ので，覚える必要はない。
+
+#### separate()
+
+`tidyr::separate()` は列を複数列に分割します。
+ただし，superseded になっているため，次のようなコマンドで代替します。
+```{r}
+iris |>
+  dplyr::mutate(tmp = formatC(Sepal.Length, format = "f", digits = 1)) |>
+  tidyr::separate_wider_delim(tmp, delim = ".", names = c("A", "B"))
+# tidyr::separate_longer_delim(tmp, delim = ".")
+```
 
 
 ### dplyr
 
 [dplyr](https://dplyr.tidyverse.org/){target="_blank"}
 
-#### select
+#### select()
 
+`select()` で列を選択する。
 ```{r}
 iris["Species"]
 iris |> dplyr::select(Species)
 ```
 
-#### count
+#### mutate()
+
+`select()` で新しい列を作成する。
+```{r}
+iris$new_species <- iris$Species
+iris |> dplyr::mutate(new_species = Species)
+```
+
+`select()` で列を修正する。
+```{r}
+iris$Sepal.Length <- iris$Sepal.Length * 100
+iris |> dplyr::mutate(Sepal.Length = iris$Sepal.Length * 100)
+```
+
+`select()` で列を修正する。
+```{r}
+for (i in names(iris)[names(iris) != "Species"]) {
+  iris[[i]] <- as.factor(iris[[i]])
+}
+str(iris)
+ <- iris$Sepal.Length * 100
+iris |> dplyr::mutate(dplyr::across(!Species, as.factor))
+str(iris)
+```
+
+#### filter()
+
+`filter()` で列を抽出する。
+```{r}
+iris[iris$Sepal.Length > mean(iris$Sepal.Length), ]
+iris |> dplyr::filter(Sepal.Length > mean(iris$Sepal.Length))
+iris[iris$Species == "setosa", ]
+iris |> dplyr::filter(Species == "setosa")
+iris[grep("^v", iris$Species), ]
+iris |> dplyr::filter(stringr::str_detect(Species, "^v"))
+head(iris |> dplyr::filter(!stringr::str_detect(Species, "^v")))
+```
+
+#### arrange()
+
+
+#### count()
 
 ```{r}
 table(iris$Species)
@@ -85,11 +146,6 @@ iris |>
   dplyr::count(Species) |>
   dplyr::ungroup()
 ```
-
-mutate()
-
-filter()
-arrange()
 
 
 ### readr

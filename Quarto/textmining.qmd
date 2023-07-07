@@ -24,8 +24,11 @@ lang: ja
 - テキストデータの収集
 - テキストデータの読み込み
 - 前処理
-- 形態素解析
-— 単語文書行列（term-document matrix）または文書単語行列（document-term matrix）の作成
+  — トークン化
+  — 整理テキスト
+  - 形態素解析
+  — 単語文書行列（term-document matrix）または文書単語行列（document-term matrix）の作成
+  - 文書特徴量行列（document-feature matrix）の作成
 - 分析
 
 
@@ -117,13 +120,14 @@ install.packages("RMeCab", repos = "http://rmecab.jp/R")
 ```{r}
 library(RMeCab)
 
-source("http://rmecab.jp/R/Aozora.R")
-x <- Aozora("https://www.aozora.gr.jp/cards/000148/files/752_ruby_2438.zip")
-RMeCab::RMeCabFreq(x)
-
 sumomo <- "すもももももももものうち"
 res <- RMeCab::RMeCabC(sumomo)
 unlist(res)
+
+source("http://rmecab.jp/R/Aozora.R")
+bocchan <- Aozora("https://www.aozora.gr.jp/cards/000148/files/752_ruby_2438.zip")
+textdata <- RMeCab::RMeCabFreq(bocchan)
+head(textdata)
 ```
 正常に動作することが確認できたら，次に，テキストファイルを読んで，単語文書行列を作成してみます。
 `docMatrix()` の最初の引数には，テキストファイルのあるディレクトリを指定します。
@@ -376,7 +380,27 @@ tidy_books %>%
   with(wordcloud(word, n, max.words = 100))
 ```
 
+
+### 整理テキスト -> DTM
+
+```{r}
+#| eval: false
+tidytext::tidy()
+```
+
+### DTM -> 整理テキスト
+
+```{r}
+#| eval: false
+tidytext::tidy()
+```
+
 ## quanteda
 
 [quanteda](https://github.com/quanteda/quanteda){target="_blank"}
 
+文書特徴量行列（document-feature matrix）
+```{r}
+#| eval: false
+quanteda::dfm()
+```
