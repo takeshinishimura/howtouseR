@@ -86,7 +86,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#ファクター" id="toc-ファクター" class="nav-link" data-scroll-target="#ファクター"><span class="header-section-number">1.3</span> ファクター</a></li>
   <li><a href="#論理値" id="toc-論理値" class="nav-link" data-scroll-target="#論理値"><span class="header-section-number">1.4</span> 論理値</a></li>
   </ul></li>
-  <li><a href="#変数の種類" id="toc-変数の種類" class="nav-link" data-scroll-target="#変数の種類"><span class="header-section-number">2</span> 変数の種類</a>
+  <li><a href="#データの構造" id="toc-データの構造" class="nav-link" data-scroll-target="#データの構造"><span class="header-section-number">2</span> データの構造</a>
   <ul>
   <li><a href="#ベクトル" id="toc-ベクトル" class="nav-link" data-scroll-target="#ベクトル"><span class="header-section-number">2.1</span> ベクトル</a>
   <ul class="collapse">
@@ -109,7 +109,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#セミコロン" id="toc-セミコロン" class="nav-link" data-scroll-target="#セミコロン"><span class="header-section-number">3.2</span> セミコロン</a></li>
   <li><a href="#評価と同時に返り値を表示" id="toc-評価と同時に返り値を表示" class="nav-link" data-scroll-target="#評価と同時に返り値を表示"><span class="header-section-number">3.3</span> 評価と同時に返り値を表示</a></li>
   </ul></li>
-  <li><a href="#チートシート" id="toc-チートシート" class="nav-link" data-scroll-target="#チートシート"><span class="header-section-number">4</span> チートシート</a></li>
+  <li><a href="#入門書" id="toc-入門書" class="nav-link" data-scroll-target="#入門書"><span class="header-section-number">4</span> 入門書</a>
+  <ul>
+  <li><a href="#チートシート" id="toc-チートシート" class="nav-link" data-scroll-target="#チートシート"><span class="header-section-number">4.1</span> チートシート</a></li>
+  </ul></li>
   <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">5</span> 練習問題</a></li>
   </ul>
 </nav>
@@ -129,7 +132,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年7月4日</p>
+      <p class="date">2023年7月8日</p>
     </div>
   </div>
   
@@ -139,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくにデータの型と変数の種類について理解しておかなければなりません。</p>
+<p>今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。 とくにデータの型と構造について理解しておかなければなりません。</p>
 <section id="データの型" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="データの型"><span class="header-section-number">1</span> データの型</h2>
 <p>データの型には，数値，文字列，ファクター（因子），論理値があります。 以下のどれかのコマンドを使って，そのデータの型を知ることができます。</p>
@@ -325,9 +328,9 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>この例のように，<code>TRUE</code> のベクトルをわざわざ生成することは実際はないが，比較演算子を用いた判定の返り値を計算に利用することはよくある。 このとき，<code>sum()</code> は <code>TRUE</code> の数に一致する。 すなわち，<code>TRUE</code> の数を数えていると理解してもよい。 実際には，R内部で <code>TRUE</code> は数値の <code>1</code> に変換され，<code>FALSE</code> は数値の <code>0</code> に変換された後，<code>sum()</code> が適用されている。</p>
 </section>
 </section>
-<section id="変数の種類" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="変数の種類"><span class="header-section-number">2</span> 変数の種類</h2>
-<p>変数の種類といってよいのかどうか分かりませんが，変数には以下の種類のものがあります。</p>
+<section id="データの構造" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="データの構造"><span class="header-section-number">2</span> データの構造</h2>
+<p>データの構造には以下の種類のものがあります。</p>
 <ol type="1">
 <li>ベクトル</li>
 <li>行列</li>
@@ -1483,16 +1486,17 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <p>このように冗長に書くよりも，<code>()</code> を使った方が分かりやすいことがたまにあります。</p>
 </section>
 </section>
-<section id="チートシート" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="チートシート"><span class="header-section-number">4</span> チートシート</h2>
-<p>Base R のチートシートがここからダウンロードできる（ページ右側の Downloadボタンをクリック）。</p>
-<ul>
-<li><a href="https://github.com/rstudio/cheatsheets/blob/main/translations/japanese/base-r_ja.pdf" target="_blank">base-r_ja.pdf</a></li>
-</ul>
-<p>他にも役立つチートシートがいくつかある。</p>
+<section id="入門書" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="入門書"><span class="header-section-number">4</span> 入門書</h2>
+<p>Posit Cloud にある <a href="https://posit.cloud/learn/primers" target="_blank">Posit Primers</a> は時間をかけて読む価値がありそうです。</p>
+<section id="チートシート" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="チートシート"><span class="header-section-number">4.1</span> チートシート</h3>
+<p><a href="https://posit.cloud/learn/cheat-sheets" target="_blank">Posit Cheat Sheets</a></p>
+<p>チートシートの日本語訳がここからダウンロードできます（ページ右側の Downloadボタンをクリック）。</p>
 <ul>
 <li><a href="https://github.com/rstudio/cheatsheets/tree/main/translations/japanese" target="_blank">rstudio/cheatsheets</a></li>
 </ul>
+</section>
 </section>
 <section id="練習問題" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">5</span> 練習問題</h2>

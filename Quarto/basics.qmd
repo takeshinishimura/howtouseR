@@ -18,7 +18,7 @@ lang: ja
 ---
 
 今回は，前回の練習問題の解答について解説しつつ，Rの基礎を学びます。
-とくにデータの型と変数の種類について理解しておかなければなりません。
+とくにデータの型と構造について理解しておかなければなりません。
 
 
 ## データの型
@@ -178,9 +178,9 @@ sum(x)
 実際には，R内部で `TRUE` は数値の `1` に変換され，`FALSE` は数値の `0` に変換された後，`sum()` が適用されている。
 
 
-## 変数の種類
+## データの構造
 
-変数の種類といってよいのかどうか分かりませんが，変数には以下の種類のものがあります。
+データの構造には以下の種類のものがあります。
 
 1. ベクトル
 1. 行列
@@ -543,13 +543,15 @@ x
 このように冗長に書くよりも，`()` を使った方が分かりやすいことがたまにあります。
 
 
-## チートシート
+## 入門書
 
-Base R のチートシートがここからダウンロードできる（ページ右側の Downloadボタンをクリック）。
+Posit Cloud にある [Posit Primers](https://posit.cloud/learn/primers){target="_blank"} は時間をかけて読む価値がありそうです。
 
-- [base-r_ja.pdf](https://github.com/rstudio/cheatsheets/blob/main/translations/japanese/base-r_ja.pdf){target="_blank"}
+### チートシート
 
-他にも役立つチートシートがいくつかある。
+[Posit Cheat Sheets](https://posit.cloud/learn/cheat-sheets){target="_blank"}
+
+チートシートの日本語訳がここからダウンロードできます（ページ右側の Downloadボタンをクリック）。
 
 - [rstudio/cheatsheets](https://github.com/rstudio/cheatsheets/tree/main/translations/japanese){target="_blank"}
 
