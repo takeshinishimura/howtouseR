@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -112,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年7月7日</p>
+      <p class="date">2023年7月19日</p>
     </div>
   </div>
   
@@ -338,39 +338,44 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>mean <span class="ot">&lt;-</span> <span class="fu">sum</span>(x) <span class="sc">/</span> <span class="fu">length</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>すでにある関数名などのことを予約語と言います。 作成したい変数名が予約語かどうかは，その変数名だけを実行したときにエラーとして返ってくるかどうかで判断できます。</p>
+<p>ある関数がすでに定義されている場合，その関数と同じ名前の変数は作成しないでください。 作成したい変数名が定義済みかどうかは，その変数名だけを実行したときにエラーとして返ってくるかどうかで判断できます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>mean_x</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-error">
 <pre><code>Error in eval(expr, envir, enclos):  オブジェクト 'mean_x' がありません </code></pre>
 </div>
 </div>
-<p>このようなエラーが返ってくれば，その文字列は変数名として使えます。 例えば，<code>a</code> と <code>b</code> という変数の次に，<code>c</code> という名前の変数を作りたくなったり，分かりやすく <code>data</code> という名前の変数を作りたくなるかもしれません。 実際に，作ってみるとエラーが出ずに作れてしまいます。 作れるので，作ってもいいのですが，後々に思わぬエラーに悩まされるかもしれません。 予約語ではない変数名にするように心掛けましょう。</p>
+<p>このようなエラーが返ってくれば，その文字列は変数名として使えます。 例えば，<code>a</code> と <code>b</code> という変数の次に，<code>c</code> という名前の変数を作りたくなったり，分かりやすく <code>data</code> という名前の変数を作りたくなるかもしれません。 実際に，作ってみるとエラーが出ずに作れてしまいます。 作れるので，作ってもいいのですが，後々に思わぬエラーに悩まされるかもしれません。</p>
+<p>同様なものに，予約語があります。 予約語は次のコマンドを実行すると，知ることができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a>?reserved</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>予約語ではない変数名にするように心掛けましょう。</p>
 </section>
 <section id="パッケージ" class="level3" data-number="2.4">
 <h3 data-number="2.4" class="anchored" data-anchor-id="パッケージ"><span class="header-section-number">2.4</span> パッケージ</h3>
 <p>Rをインストールした素の状態で使える関数は限られています。 Rユーザーが有益な関数を作成し，他のユーザーと共有しているものがあります。 これらの関数は，パッケージとしてCRANに公開されており，それを自分のパソコンにインストールできます。</p>
 <p>例えば，Microsoft Excelで作成されたファイルを効率的に読むことができる <code>readxl</code> パッケージを使う場合を考えます。 このパッケージを初めて使う場合のみ，自分のパソコンにパッケージをインストールする必要があります（Rのバージョンが変わったときにもパッケージをインストールする必要があります）。 以下のコマンドを実行すれば，目的のパッケージがインストールされます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>このコマンドは一度実行すれば，Rを終了しても，また，パソコンの電源を切ったとしても，再度実行する必要はありません。 実行してもエラーにはならないので，不安なら実行して構いませんが，一度インストールしたパッケージはパソコンの中に残ります。</p>
 <p>インストールしたパッケージをRで使えるようにするためには，次のコマンドを使って，Rにロードする必要があります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>このとき，以下のようにしても構いません。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"readxl"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>つまり，<code>install.packages()</code> のときは，<code>""</code> で括らなければなりませんが，<code>library()</code> の場合はどちらでも構いません。 ちなみに，何もしなくても最初からロードされているパッケージがいくつかあります。 その場合，そのパッケージをロードしなくても，そのパッケージに含まれる関数を使うことができます。</p>
 <p>インストールしたパッケージの関数を使う場合，いま仮に <code>"sample.xlsx"</code> という名前のExcelファイルがあるとすると，以下のコマンドを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>このコマンドは，次のように書くこともできます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">"sample.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>CRANに登録されていないパッケージもインストールできる場合があります。 例えば，日本語形態素解析器MeCabのRラッパーである <code>RMeCab</code> パッケージをインストールする方法はここに書かれています。</p>
 <ul>
@@ -379,39 +384,39 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p>パッケージにはバージョンがあり，常に最新のバージョンを使うべきです。 インストールされているパッケージは自動でアップデートされないので，定期的に次のコマンドを実行するように心掛けましょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>インストールされているパッケージの一覧は次のコマンドで得られます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ただし，これは知らなくてもよいです。 また，パッケージがどこにインストールされているかを知りたい場合は，次のコマンドを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">searchpaths</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">searchpaths</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>これも知らなくてよいです。 CRANに公開されているパッケージをすべてインストールしたい場合は，以下のコマンドを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">installed.packages</span>())</span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">available.packages</span>())</span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> available[<span class="sc">!</span>available <span class="sc">%in%</span> installed]</span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(uninstalled)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">installed.packages</span>())</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">available.packages</span>())</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> available[<span class="sc">!</span>available <span class="sc">%in%</span> installed]</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(uninstalled)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>今から数ヶ月間インターネット環境のない場所に行くといった特別な理由がない限り，このような操作は必要ありません。 なお，これも使う機会はないと思いますが，パッケージをアンインストールしたい場合は，以下のコマンドを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">"パッケージ名"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">"パッケージ名"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="名前空間" class="level4" data-number="2.4.1">
 <h4 data-number="2.4.1" class="anchored" data-anchor-id="名前空間"><span class="header-section-number">2.4.1</span> 名前空間</h4>
 <p>名前空間について，通常は知らなくてよいです。 ただし，ひとつの作法を知っておいた方がよいので，ここで触れておきます。 ここでは，<strong>そうするもの</strong>として理解してください。</p>
 <p>読み込んだパッケージに含まれる関数を使う場合，その関数名だけで問題なく動作します。 しかし，そこをあえて関数名の前にパッケージ名と <code>::</code> を付けることがあります。 例えば，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">read.csv</span>(<span class="st">"sample.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">read.csv</span>(<span class="st">"sample.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>これは名前空間を明示する書き方であり，こうしなくてもよいですが，こうしておくと人間が読むときに読みやすくなり，間違いが少なくなります。 また，自分が書いたコードを見返すときに分かりやすくなります。 さらに，関数名の衝突が起こるなど，トラブルが発生したときに解決の糸口になることがあります。</p>
 <p>Rに最初からインストールされているパッケージについては，名前空間を明示しなくても構いません。 以下の例の場合，上の記述が一般的です。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
-<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>base<span class="sc">::</span><span class="fu">mean</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
