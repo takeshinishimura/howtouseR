@@ -1,0 +1,53 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "ggplot2"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 4
+    number-sections: true
+    theme: simplex
+lang: ja
+---
+
+`ggplot2` は綺麗なグラフを作成できるため，よく使われるパッケージです。
+ただし，普通の `plot` と比較すると癖が強く（レイヤーを重ねるという発想），好みが分かれます。
+それにもかかわらず，`ggplot2` は統一された文法で，さまざまなグラフを描くことができるため，おすすめします。
+
+
+## ペンギン
+
+まず，サンプルデータを用意しなければなりません。
+ここでは，[palmerpenguins](https://allisonhorst.github.io/palmerpenguins/index.html) パッケージのデータセットを使います。
+```{r}
+#| message: false
+library(ggplot2)
+library(palmerpenguins)
+penguins
+```
+
+このデータフレームの一部をプロットしてみましょう。
+```{r}
+#| warning: false
+ggplot(data = penguins, aes(x = flipper_length_mm, y = body_mass_g)) +
+  geom_point(aes(color = species, shape = species), size = 3, alpha = 0.8)
+```
+これは，次のようにしても同じです。
+```{r}
+#| warning: false
+ggplot() +
+  geom_point(data = penguins,
+             aes(x = flipper_length_mm,
+                 y = body_mass_g,
+                 color = species,
+                 shape = species),
+             size = 3, alpha = 0.8)
+```
+Rとしては，改行はあってもなくても同じです。
+改行を入れる目的は，人間が見て理解しやすいようにするためです。
+一定のルールがあるため（絶対に従わなければならないルールはなく，いくつかの流儀が存在します），Rのコードをたくさん見て，感覚をつかんでください。
