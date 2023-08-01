@@ -152,8 +152,7 @@ iris |>
 unlist(lapply(split(iris, iris$Species), nrow))
 iris |>
   dplyr::group_by(Species) |>
-  dplyr::count(Species) |>
-  dplyr::ungroup()
+  dplyr::count()
 ```
 
 
