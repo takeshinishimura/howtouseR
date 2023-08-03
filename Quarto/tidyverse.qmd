@@ -77,33 +77,38 @@ tidyr::unnest()
 
 `select()` で列を選択する。
 ```{r}
-iris["Species"]
-iris |> dplyr::select(Species)
+head(iris["Species"])
+head(iris |> dplyr::select(Species))
 ```
 
 #### mutate()
 
-`select()` で新しい列を作成する。
+`mutate()` で新しい列を作成する。
 ```{r}
-iris$new_species <- iris$Species
-iris |> dplyr::mutate(new_species = Species)
+iris2 <- iris
+iris2$new_species <- iris2$Species
+head(iris2)
+iris3 <- iris
+head(iris3 |> dplyr::mutate(new_species = Species))
 ```
 
-`select()` で列を修正する。
+`mutate()` で列を修正する。
 ```{r}
-iris$Sepal.Length <- iris$Sepal.Length * 100
-iris |> dplyr::mutate(Sepal.Length = iris$Sepal.Length * 100)
+head(iris$Sepal.Length <- iris$Sepal.Length * 100)
+head(iris |> dplyr::mutate(Sepal.Length = iris$Sepal.Length * 100))
 ```
 
-`select()` で列を修正する。
+`mutate()` で列を修正する。
 ```{r}
-for (i in names(iris)[names(iris) != "Species"]) {
-  iris[[i]] <- as.factor(iris[[i]])
+str(iris)
+iris2 <- iris
+for (i in names(iris2)[names(iris2) != "Species"]) {
+  iris2[[i]] <- as.factor(iris2[[i]])
 }
-str(iris)
- <- iris$Sepal.Length * 100
-iris |> dplyr::mutate(dplyr::across(!Species, as.factor))
-str(iris)
+str(iris2)
+iris3 <- iris |>
+  dplyr::mutate(dplyr::across(!Species, as.factor))
+str(iris3)
 ```
 
 #### filter()
@@ -140,7 +145,7 @@ iris |>
 #### summarise()
 
 ```{r}
-lapply(split(iris, iris$Species), mean)
+sapply(split(iris$Sepal.Length, iris$Species), mean)
 iris |>
   dplyr::group_by(Species) |>
   dplyr::summarize(value = mean(Sepal.Length))
@@ -149,7 +154,7 @@ iris |>
 #### group_by
 
 ```{r}
-unlist(lapply(split(iris, iris$Species), nrow))
+sapply(split(iris, iris$Species), nrow)
 iris |>
   dplyr::group_by(Species) |>
   dplyr::count()
