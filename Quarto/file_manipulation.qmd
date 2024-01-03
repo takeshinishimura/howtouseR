@@ -132,10 +132,11 @@ flowchart LR
   ドキュメント --- 就職活動
   大学 --- 学部
   大学 --- 大学院
-  大学院 --- 修士課程1年
-  大学院 --- 修士課程2年
-  修士課程1年 --- 授業科目A
-  修士課程1年 --- 授業科目B
+  学部 --- 1年
+  学部 --- 2年
+  学部 --- 3年
+  3年 --- 授業科目A
+  3年 --- 授業科目B
   授業科目A --- lastweek[2023年6月21日]
   授業科目A --- today[2023年6月28日]
   授業科目A --- data
@@ -374,6 +375,12 @@ outdir <- "../data"
 if (!file.exists(outdir)) {
   dir.create(outdir)
 }
+```
+これは次のようにやっても同じです。
+```{r}
+#| eval: false
+outdir <- "../data"
+dir.create(outdir, showWarnings = FALSE)
 ```
 ::: {.callout-caution collapse="false" icon="true"}
 もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。

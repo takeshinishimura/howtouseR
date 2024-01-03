@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.361">
+<meta name="generator" content="quarto-1.3.450">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -117,7 +117,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年7月6日</p>
+      <p class="date">2024年1月4日</p>
     </div>
   </div>
   
@@ -237,10 +237,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   ドキュメント --- 就職活動
   大学 --- 学部
   大学 --- 大学院
-  大学院 --- 修士課程1年
-  大学院 --- 修士課程2年
-  修士課程1年 --- 授業科目A
-  修士課程1年 --- 授業科目B
+  学部 --- 1年
+  学部 --- 2年
+  学部 --- 3年
+  3年 --- 授業科目A
+  3年 --- 授業科目B
   授業科目A --- lastweek[2023年6月21日]
   授業科目A --- today[2023年6月28日]
   授業科目A --- data
@@ -501,6 +502,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
 <span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>これは次のようにやっても同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">"../data"</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dir.create</span>(outdir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -520,7 +526,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>上記コードの2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味します。 このコマンドを理解するには，条件分岐と <code>!</code> の意味を正しく理解できなければなりません。 ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。</p>
 <p><code>..</code> の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。 作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">"~"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Webブラウザを使って，<a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。 このCSVファイルをRに読み込むには，どうすればよいでしょうか。 図で考えると次の相対パスを考えることに他なりません。</p>
 <div class="cell">
@@ -550,11 +556,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>これをRのコマンドにすると次のようになります。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>なお，上述の <code>.</code> の説明を踏まえると，これは次のように書くこともできます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"./../../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ただし，こういう場合に， <code>./</code> を書くのは冗長な印象を受けます。 <code>./</code> はあってもなくても結果は同じですが，上の階層に行く場合は <code>..</code> から始めるべきでしょう。</p>
 <p>OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。</p>
@@ -581,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">"../Downloads/cities.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="cell-output cell-output-stdout">
@@ -728,18 +734,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Rコンソールがいる場所（ディレクトリ）がどこであるかを意識する必要があるのは，ファイル入出力のときです。 これまで，ファイル入力のみを行ってきました。 ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。</p>
 <p>Rの返り値をコンソールではなく，ファイルに出力する関数が <code>sink()</code> です。 例えば，次のコードを実行するとどうなるでしょうか。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"test.txt"</span>)</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>iris</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"test.txt"</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>iris</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Rコンソールには何も表示されません。 その代わりに，作業ディレクトリに <code>test.txt</code> というテキストファイルができているはずです。 Explorer（またはFinder）で確認してください。</p>
 <p>この例のように，<code>sink()</code> の引数に保存したいファイル名を書きます。 ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。 また，ファイル出力が終わったら，必ず引数なしで <code>sink()</code> としてファイルを閉じてください。</p>
 <p>相対パスでディレクトリを書くと，その場所に保存されます。 例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"../../Downloads/test.txt"</span>) <span class="co"># OneDriveで同期している場合</span></span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sink("../Downloads/test.txt") # OneDriveで同期していない場合</span></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>cars</span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">"../../Downloads/test.txt"</span>) <span class="co"># OneDriveで同期している場合</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># sink("../Downloads/test.txt") # OneDriveで同期していない場合</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>cars</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sink</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>OneDriveで同期していない人は，2行目の <code>#</code> の右側以降をRコンソールにコピーして，コードを実行してください。</p>
 </section>
@@ -748,32 +754,32 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://github.com/Azure/Microsoft365R" target="_blank">Microsoft365R</a> パッケージは，Microsoft 365 の R インターフェースです。</p>
 <p>大学のメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>odb <span class="ot">&lt;-</span> <span class="fu">get_business_onedrive</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>odb <span class="ot">&lt;-</span> <span class="fu">get_business_onedrive</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>プライベートなメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>od <span class="ot">&lt;-</span> <span class="fu">get_personal_onedrive</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>od <span class="ot">&lt;-</span> <span class="fu">get_personal_onedrive</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。 指示に従うと，R から Microsoft 365 を操作できるようになります。 例えば，次のようなことができます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list files and folders</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>()</span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>(<span class="st">"ドキュメント"</span>)</span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a><span class="co"># upload and download files</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">upload_file</span>(<span class="st">"somedata.xlsx"</span>)</span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">download_file</span>(<span class="st">"ドキュメント/myfile.docx"</span>)</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a folder</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">create_folder</span>(<span class="st">"ドキュメント/newfolder"</span>)</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a><span class="co"># open a document for editing in Word Online</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">open_item</span>(<span class="st">"ドキュメント/myfile.docx"</span>)</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a><span class="co"># working with data frames and R objects</span></span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">"ドキュメント/iris.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># list files and folders</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>()</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>(<span class="st">"ドキュメント"</span>)</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="co"># upload and download files</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">upload_file</span>(<span class="st">"somedata.xlsx"</span>)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">download_file</span>(<span class="st">"ドキュメント/myfile.docx"</span>)</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create a folder</span></span>
+<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">create_folder</span>(<span class="st">"ドキュメント/newfolder"</span>)</span>
+<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a><span class="co"># open a document for editing in Word Online</span></span>
+<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">open_item</span>(<span class="st">"ドキュメント/myfile.docx"</span>)</span>
+<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a><span class="co"># working with data frames and R objects</span></span>
+<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">"ドキュメント/iris.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>ただし，便利かどうかは不明です。</p>
 </section>
@@ -781,7 +787,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="8" class="anchored" data-anchor-id="ロケールの変更"><span class="header-section-number">8</span> ロケールの変更</h2>
 <p>Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。 次のコマンドでロケールを知ることができます。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"locale"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"locale"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>一般的に，このような結果が得られるはずです。</p>
 <pre><code>LANG="ja_JP.UTF-8"
@@ -814,7 +820,7 @@ LC_ALL=</code></pre>
 <p>この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。</p>
 <p>日本語が表示される環境に設定したければ，次のようにします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"defaults write org.R-project.R force.LANG ja_JP.UTF-8"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">"defaults write org.R-project.R force.LANG ja_JP.UTF-8"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>おそらくこれはmacOSだけに対応しているはずです。 Windowsでのロケールの変更方法は知りません。</p>
 </section>
@@ -822,16 +828,16 @@ LC_ALL=</code></pre>
 <h2 data-number="9" class="anchored" data-anchor-id="unicodeエスケープシーケンス"><span class="header-section-number">9</span> Unicodeエスケープシーケンス</h2>
 <p>日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。 そのとき，次のコマンドを使うことで対応します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>stringi<span class="sc">::</span><span class="fu">stri_escape_unicode</span>(<span class="st">"日本語"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>stringi<span class="sc">::</span><span class="fu">stri_escape_unicode</span>(<span class="st">"日本語"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "\\u65e5\\u672c\\u8a9e"</code></pre>
 </div>
 </div>
 <p>あるいは，次のようにしてもよいでしょう。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">u"</span>, <span class="fu">sprintf</span>(<span class="st">"%04x"</span>, <span class="fu">utf8ToInt</span>(<span class="st">"日本語"</span>)), <span class="at">collapse =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">"</span><span class="sc">\\</span><span class="st">u"</span>, <span class="fu">sprintf</span>(<span class="st">"%04x"</span>, <span class="fu">utf8ToInt</span>(<span class="st">"日本語"</span>)), <span class="at">collapse =</span> <span class="st">""</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "\\u65e5\\u672c\\u8a9e"</code></pre>
 </div>
