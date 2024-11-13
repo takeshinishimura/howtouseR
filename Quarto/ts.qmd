@@ -27,11 +27,23 @@ lang: ja
 #| message: false
 library(zoo)
 library(xts)
+library(lubridate)
 
-d <- read.csv("../data/Meter_data.csv")
+# 古いファイル形式
+d <- read.csv("../data/Meter_data20230402.csv")
 dts <- xts::as.xts(zoo::read.zoo(d))
 head(dts)
 dim(dts)
+
+# 最近のファイル形式だと次のようにする必要がある。
+# ただし，データが綺麗に取れていないのか，毎月上旬の値しかないようである。
+# d <- read.csv("../data/Meter_data20240127.csv", check.names = FALSE)
+# d$Timestamp <- lubridate::mdy_hms(d$Timestamp, tz = Sys.timezone())# 'Asia/Tokyo'
+# duplicates <- d[duplicated(d$Timestamp), ]
+# d_unique <- d[!duplicated(d$Timestamp), ]
+# dts <- xts::as.xts(zoo::read.zoo(d_unique, index.column = "Timestamp"))
+# head(dts)
+# dim(dts)
 ```
 
 ## plot
@@ -45,7 +57,7 @@ dim(dts)
 #| label: fig-plot
 #| fig-cap: "列を指定した温度と湿度の折れ線グラフ"
 layout(matrix(1:2, ncol = 1))
-plot(dts[, "Temperature_Celsius"], main = "Temperature Celsius")
+plot(dts[, "Temperature_Celsius"], main = "Temperature Celsius (°C)")
 plot(dts[, "Relative_Humidity"], main = "Relative Humidity")
 ```
 
@@ -54,14 +66,14 @@ plot(dts[, "Relative_Humidity"], main = "Relative Humidity")
 ```{r}
 #| label: fig-plot-year
 #| fig-cap: "年を指定した温度の折れ線グラフ"
-plot(dts["2022", "Temperature_Celsius"], main = "Temperature Celsius")
+plot(dts["2022", "Temperature_Celsius"], main = "Temperature Celsius (°C)")
 ```
 
 ## 期間を指定
 ```{r}
 #| label: fig-plot-month
 #| fig-cap: "月単位で期間を指定した温度の折れ線グラフ"
-plot(dts["2022-12/2023-01", "Temperature_Celsius"], main = "Temperature Celsius")
+plot(dts["2022-12/2023-01", "Temperature_Celsius"], main = "Temperature Celsius (°C)")
 ```
 :::
 
@@ -69,8 +81,8 @@ plot(dts["2022-12/2023-01", "Temperature_Celsius"], main = "Temperature Celsius"
 #| label: fig-plot-monthlymean
 #| fig-cap: "月ごとの温度の最大値と最小値（上），平均値（下）の折れ線グラフ"
 layout(matrix(1:2, ncol=1))
-plot(cbind(apply.monthly(dts[, "Temperature_Celsius"], min), apply.monthly(dts[, "Temperature_Celsius"], max)), main = "Temperature Celsius")
-plot(apply.monthly(dts[, "Temperature_Celsius"], mean), main = "Temperature Celsius")
+plot(cbind(apply.monthly(dts[, "Temperature_Celsius"], min), apply.monthly(dts[, "Temperature_Celsius"], max)), main = "Temperature Celsius (°C)")
+plot(apply.monthly(dts[, "Temperature_Celsius"], mean), main = "Temperature Celsius (°C)")
 ```
 
 ## ggplot2.zoo
@@ -99,7 +111,7 @@ library(plotly)
 
 dts2 <- as.data.frame(dts)
 dts2$index <- zoo::index(dts)
-fig <- plotly::plot_ly(dts2, x = ~index, y = ~Temperature_Celsius, type = 'scatter', mode = 'lines')
+fig <- plotly::plot_ly(dts2, x = ~index, y = ~`Temperature_Celsius`, type = 'scatter', mode = 'lines')
 fig
 ```
 
