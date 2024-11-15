@@ -118,7 +118,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年11月13日</p>
+      <p class="date">2024年11月15日</p>
     </div>
   </div>
   
@@ -137,7 +137,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><a href="https://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a> は，Googleなどで「<strong>CRAN</strong>」（読みは「シーラン」または「クラン」）と入力して検索すると，すぐに見つかるはずです。 あなたのパソコンのOSがWindowsなら「Download R for Windows」をクリックし，macOSなら「Download R for macOS」をクリックしてください。 Windowsの場合，次の画面で「base」をクリックするとインストーラをダウンロードするページが表示されるはずです。 macOSの場合，自分のMacのCPUがApple siliconかIntelかで，ダウンロードするファイルが異なります。 自分の環境（OSとCPU）に合ったファイルがダウンロードできたら，そのファイルを使ってRをインストールしてください。 Rの準備はこれだけです。</p>
 <p>もしRStudioを使いたければ，インストールしても構いません。 最初にRStudioをインストールするように指示する書籍やウェブサイトがあると思います。 しかし，個人的にはRStudioの使用はおすすめしません。</p>
 <p>RStudioが何をするためのものかを知ってからインストールしても遅くありませんので，Rに慣れてから，Rではできないことをするために，RStudioをインストールすることをおすすめします。 Rコマンダー等，他のソフトウェアもインストールする必要はありません。 Rで何ができるか検索した先に，Rに関連するソフトウェア（パッケージではなく）をインストールするよう指示があった場合は，それが何であるのか理解し，本当に必要であることが分かってから，指示に従ってください。</p>
-<p>奥村先生による <a href="https://okumuralab.org/~okumura/stat/" target="_blank">統計・データ解析</a> は大変参考になります。 時間をかけてじっくり読んむとともに，自分のパソコンで同じようにできるか確かめてください。</p>
 </section>
 <section id="基本操作" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="基本操作"><span class="header-section-number">2</span> 基本操作</h2>
@@ -439,7 +438,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>utils<span class="sc">::</span><span class="fu">read.csv</span>(<span class="st">"sample.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>これは名前空間を明示する書き方であり，こうしなくてもよいですが，こうしておくと人間が読むときに読みやすくなり，間違いが少なくなります。 また，自分が書いたコードを見返すときに分かりやすくなります。 さらに，関数名の衝突が起こるなど，トラブルが発生したときに解決の糸口になることがあります。</p>
+<p>これは名前空間を明示する書き方であり，こうしなくてもよいですが，こうしておくと人間が読むときに読みやすくなり，間違いが少なくなります。 また，自分が書いたコードを見返すときに分かりやすくなります。 さらに，関数名の衝突が起こるなど，トラブルが発生したときに解決の糸口になることがあります。 めったにないことですが，異なるパッケージで同じ関数があるときに，どちらの関数を使うのかを明示する必要があります。</p>
 <p>Rに最初からインストールされているパッケージについては，名前空間を明示しなくても構いませんし，多くの場合，明示する必要がありません。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(x)</span>
@@ -452,13 +451,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="練習問題" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">3</span> 練習問題</h2>
 <ol type="1">
-<li><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a>から任意のCSVファイルをダウンロードして，R上の変数 <code>test</code> に読み込みなさい。また，正しく読み込めたかを確かめなさい。</li>
-</ol>
-<ul>
-<li>ヒント：CSVファイルを読み込む関数は，<code>read.csv()</code> です。</li>
-</ul>
-<ol start="2" type="1">
-<li><a href="https://www.e-stat.go.jp" target="_blank">政府統計の総合窓口（e-Stat）</a>から任意のExcelファイルをダウンロードして，R上の変数 <code>excercise</code> に読み込みなさい。また，正しく読み込めたかを確かめなさい。</li>
+<li>1から10までの数字を足し算するといくらになるか計算しなさい。</li>
+<li>1から10までの数字の平均を求めなさい。</li>
+<li>1000以上2000以下のうち，偶数の値を合計しなさい。</li>
+<li>1から15までの数列の累積和を計算し、それぞれの値を表示しなさい。累積和とは、数列の各位置までの合計を計算した結果です。</li>
 </ol>
 </section>
 
