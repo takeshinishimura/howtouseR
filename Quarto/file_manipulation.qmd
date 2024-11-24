@@ -77,7 +77,7 @@ graph LR
 以下では，OneDriveで同期していない人に限定した説明となっている場合がありますので，適宜読み替えてください。
 
 この図の線の部分を `/` で置き換えると，CUIで表現できます。
-つまり，上の図はCUIでは `C:/Users/ユーザ名/OneDrive/ドキュメント` と表現します（Windowsの場合，`/` を `¥` や `\` で表現する場合もあります）。
+つまり，上の図はCUIでは `C:/Users/ユーザ名/Documents` または `C:/Users/ユーザ名/OneDrive/ドキュメント` と表現します（Windowsの場合，`/` を `¥` や `\` で表現する場合もあります）。
 
 macOSの場合は，次の場所にいます。
 ```{mermaid}
@@ -135,11 +135,14 @@ flowchart LR
   学部 --- 1年
   学部 --- 2年
   学部 --- 3年
-  3年 --- 授業科目A
-  3年 --- 授業科目B
-  授業科目A --- lastweek[2023年6月21日]
-  授業科目A --- today[2023年6月28日]
+  学部 --- 4年
+  4年 --- 授業科目A
+  4年 --- 授業科目B
+  授業科目A --- lastweek[2025年1月21日]
+  授業科目A --- today[2025年1月28日]
   授業科目A --- data
+  授業科目B --- lastweek2[第1回]
+  授業科目B --- today2[第2回]
   style lastweek fill:#f96,stroke:#333
   style today fill:#f96,stroke:#333
   style data fill:#f96,stroke:#333
@@ -175,16 +178,28 @@ Rに関連するファイルしか存在しないディレクトリを作成し�
 
 例えば，`ドキュメント` ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。
 そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。
+
+### Rのコードの保存
+
 Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。
-これらスクリプトが書かれたファイルは，拡張子を `R` として，文字コードがUTF-8のテキストファイルとして保存します。
-拡張子が `R` のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。
+通常，コードはテキストエディタを使って書きます。
+文字を書くのにMicrosoft Wordしか使ったことがない人が多いので，テキストエディタと言われてもよくわからないと思います。
+
 テキストエディタは，Windowsの場合は [秀丸エディタ](https://hide.maruo.co.jp/software/hidemaru.html){target="_blank"} が有名で，おすすめです。
-秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（メモ帳は改行コードのバグがあるためおすすめしません）。
-他に，[Notepad++](https://notepad-plus-plus.org/){target="_blank"} や [サクラエディタ](https://sakura-editor.github.io/){target="_blank"} などがあります。
+秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（Windowsのメモ帳は改行コードに関連するバグを経験したことがあるため，あまりおすすめしません）。
+他に，[サクラエディタ](https://sakura-editor.github.io/){target="_blank"} や [Notepad++](https://notepad-plus-plus.org/){target="_blank"} などがあります。
 一方，macOSの場合はOS標準の テキストエディット.app がおすすめです。
+
 また，OSに関係なく，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} を使うのもよいかもしれません。
 Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。
-[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} には，お節介機能が多いため，Rを直接実行できますが，Rに慣れないうちはRコンソールから実行するようにしてください。
+ただし，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} は多機能であるため，Rを直接実行できるのですが，Rに慣れないうちはRと [Visual Studio Code](https://code.visualstudio.com/){target="_blank"} をコピー&ペーストで行き来しながら，コードはRコンソールから実行するようにしてください。
+
+Rのコードが書かれたファイルは，拡張子を `R` として，文字コードがUTF-8のテキストファイルとして保存します。
+拡張子が `R` のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。
+OSで関連付けてもいいですし，毎回ファイルを右クリックして開くアプリケーションを選んだとしても，それほど苦ではないと思います。
+（この作業が苦痛な人にはRは向かないのではないでしょうか。）
+
+### 作業ディレクトリの変更
 
 上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。
 次のコマンドを知っておくと便利です。
@@ -254,7 +269,8 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 #| eval: false
 dir.create("./data")
 download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", "./data/addresses.csv")
-read.csv("./data/addresses.csv")
+df <- read.csv("./data/addresses.csv")
+df
 ```
 ```{r}
 #| echo: false
@@ -263,7 +279,8 @@ destfile <- "../data/addresses.csv"
 if (!file.exists(destfile)) {
   download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", destfile)
 }
-read.csv(destfile)
+df <- read.csv(destfile)
+df
 ```
 パスの先頭にある `.` は自分がいるディレクトリを意味する記号です。
 このことから，`./` は作業ディレクトリを指します。
@@ -301,18 +318,21 @@ graph LR
 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。
 ```{r}
 #| eval: false
-read.csv("data/addresses.csv", header = FALSE)
+df <- read.csv("data/addresses.csv", header = FALSE)
+df
 ```
 ```{r}
 #| echo: false
-read.csv("../data/addresses.csv", header = FALSE)
+df <- read.csv("../data/addresses.csv", header = FALSE)
+df
 ```
 ヘッダーをどうすべきかはファイルによって異なります。
 例えば，次の例では，ヘッダーを `TRUE` にすべきです（省略時のヘッダーは `TRUE` であるため，省略してもよい）。 
 ```{r}
 #| eval: false
 download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "data/airtravel.csv")
-read.csv("data/airtravel.csv", header = TRUE)
+df <- read.csv("data/airtravel.csv", header = TRUE)
+df
 ```
 ```{r}
 #| echo: false
@@ -320,17 +340,20 @@ destfile <- "../data/airtravel.csv"
 if (!file.exists(destfile)) {
   download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", destfile)
 }
-read.csv(destfile)
+df <- read.csv(destfile)
+df
 ```
 ヘッダーが数字で始まる場合，先頭に `X` が付き，文字列に変換されます。
 ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。
 ```{r}
 #| eval: false
-read.csv("data/airtravel.csv", header = FALSE)
+df <- read.csv("data/airtravel.csv", header = FALSE)
+df
 ```
 ```{r}
 #| echo: false
-read.csv("../data/airtravel.csv", header = FALSE)
+df <- read.csv("../data/airtravel.csv", header = FALSE)
+df
 ```
 
 正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。
@@ -342,7 +365,8 @@ read.csv("../data/airtravel.csv", header = FALSE)
 ```{r}
 #| eval: false
 download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", "data/biostats.csv")
-read.csv("data/biostats.csv", header = TRUE)
+df <- read.csv("data/biostats.csv", header = TRUE)
+df
 ```
 ```{r}
 #| echo: false
@@ -350,18 +374,21 @@ destfile <- "../data/biostats.csv"
 if (!file.exists(destfile)) {
   download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", destfile)
 }
-read.csv(destfile, header = TRUE)
+df <- read.csv(destfile, header = TRUE)
+df
 ```
 `biostats.csv` を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。
 `()` とスペースが `.` に置き換わっていることが分かります。
 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。
 ```{r}
 #| eval: false
-read.csv("data/biostats.csv", check.names = FALSE)
+df <- read.csv("data/biostats.csv", check.names = FALSE)
+df
 ```
 ```{r}
 #| echo: false
-read.csv("../data/biostats.csv", check.names = FALSE)
+df <- read.csv("../data/biostats.csv", check.names = FALSE)
+df
 ```
 
 ここで，Explorer（またはFinder）から先ほど作成した `data` フォルダを削除しておいてください。
@@ -422,12 +449,14 @@ graph LR
 これをRのコマンドにすると次のようになります。
 ```{r}
 #| eval: false
-read.csv("../../Downloads/cities.csv")
+df <- read.csv("../../Downloads/cities.csv")
+df
 ```
 なお，上述の `.` の説明を踏まえると，これは次のように書くこともできます。
 ```{r}
 #| eval: false
-read.csv("./../../Downloads/cities.csv")
+df <- read.csv("./../../Downloads/cities.csv")
+df
 ```
 ただし，こういう場合に， `./` を書くのは冗長な印象を受けます。
 `./` はあってもなくても結果は同じですが，上の階層に行く場合は `..` から始めるべきでしょう。
@@ -450,7 +479,8 @@ graph LR
 ```
 ```{r}
 #| eval: false
-read.csv("../Downloads/cities.csv")
+df <- read.csv("../Downloads/cities.csv")
+df
 ```
 ```{r}
 #| echo: false
@@ -458,7 +488,8 @@ destfile <- "../data/cities.csv"
 if (!file.exists(destfile)) {
   download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv", destfile)
 }
-read.csv(destfile)
+df <- read.csv(destfile)
+df
 ```
 
 ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っていることに注目してください。
@@ -606,10 +637,15 @@ Windowsでのロケールの変更方法は知りません。
 ```{R}
 library(stringi)
 
-stringi::stri_escape_unicode("日本語")
+stri_escape_unicode("日本語")
 ```
 あるいは，次のようにしてもよいでしょう。
 ```{R}
 paste0("\\u", sprintf("%04x", utf8ToInt("日本語")), collapse = "")
 ```
 `\` が2つずつ連続していますが，Rコードで用いるときは `\` は1つで大丈夫です。
+
+
+## 練習問題
+
+未作成
