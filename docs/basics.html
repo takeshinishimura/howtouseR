@@ -610,13 +610,16 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
  $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
 </div>
 </div>
-<p>データフレームの列ごとにデータの型が表示されることが分かります。 行の数と列の数は次のコマンドで取得できる。</p>
+<p>データフレームを90度左に回転して反転させた表示になっていることに気づいたのではないでしょうか。 <code>iris</code> の1列目 <code>Sepal.Length</code> が一番上に表示されています。 <code>iris</code> の2列目は2行目というように順番に表示されます。</p>
+<p>また，データフレームの列ごとにデータの型（の省略形）が表示されることが分かります。 すなわち，データフレームのどの列もデータの型は1つしか認められていません。 違う型の行を追加しようとすると，エラーになるか警告が表示されます。</p>
+<p>行の数と列の数は次のコマンドで取得できます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 150   5</code></pre>
 </div>
 </div>
+<p>この情報は，<code>str(iris)</code> の1行目に表示されるものと同じです。</p>
 <section id="データフレームの列" class="level4" data-number="2.4.1">
 <h4 data-number="2.4.1" class="anchored" data-anchor-id="データフレームの列"><span class="header-section-number">2.4.1</span> データフレームの列</h4>
 <p>データフレームそのものを分析に使うこともできますが，必要な列を取り出して，分析に使うのが一般的です。 そこで，データフレームの列を取り出す方法をいくつか説明します。 なお，データフレームの進化したものに，<a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> があります。 tibbleはデータフレームとほとんど同じように扱えますが，データフレームとは挙動が若干異なりますので，違うものと考えてください。 ちなみに，<code>read_excel()</code> で読み込んだオブジェクトは，tibbleです。 tibbleは <a href="https://www.tidyverse.org/" target="_blank">Tidyverse</a> の一部分（最も重要な部分）を構成します。</p>
