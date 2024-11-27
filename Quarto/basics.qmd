@@ -590,7 +590,7 @@ x
 ## 入門書
 
 奥村先生による [統計・データ解析](https://okumuralab.org/~okumura/stat/){target="_blank"} は大変参考になります。
-時間をかけてじっくり読んむとともに，自分のパソコンで同じようにできるか確かめてください。
+時間をかけてじっくり読むとともに，自分のパソコンで同じようにできるか確かめてください。
 
 また，Posit Cloud にある [Posit Primers](https://posit.cloud/learn/primers){target="_blank"} は時間をかけて読む価値がありそうです。
 
@@ -625,7 +625,7 @@ x <- c("2", "1", "5", "4", "3")
 y <- factor(x, level = x)
 ```
 
-4. 次のデータフレーム `z` があるとする。`z` を使って，2000年代の `value` の値の平均を求めなさい。
+4. 次のデータフレーム `z` があるとする。`z` を使って，2000年以降の `value` の値の平均を求めなさい。
 ```{r}
 #| eval: false
 x <- 1990:2021
@@ -636,7 +636,7 @@ z <- data.frame(year = x, value = y)
 5. [CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"} から任意のCSVファイルをダウンロードして，R上の変数 `x` に読み込みなさい。また，正しく読み込めたかを確かめなさい。
   + ヒント：CSVファイルを読み込む関数は，`read.csv()` です。
 
-6. [政府統計の総合窓口（e-Stat）](https://www.e-stat.go.jp){target="_blank"} から任意のExcelファイルをダウンロードして，R上の変数 `excercise` に読み込みなさい。また，正しく読み込めたかを確かめなさい。
-
-7. 気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 `temp` に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。
+6. 気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 `temp` に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。
   - [世界の年平均気温偏差（℃）](https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html){target="_blank"}
+
+7. [政府統計の総合窓口（e-Stat）](https://www.e-stat.go.jp){target="_blank"} から任意のExcelファイルをダウンロードして，R上の変数 `excercise` に読み込みなさい。また，正しく読み込めたかを確かめなさい。

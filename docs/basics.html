@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.57">
+<meta name="generator" content="quarto-1.6.37">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -63,10 +63,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="basics_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="basics_files/libs/quarto-html/anchor.min.js"></script>
 <link href="basics_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="basics_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="basics_files/libs/quarto-html/quarto-syntax-highlighting-29e2c20b02301cfff04dc8050bf30c7e.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="basics_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="basics_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="basics_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="basics_files/libs/bootstrap/bootstrap-0773cf5b47eb3c94cad37b33e5f1de20.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -133,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年11月20日</p>
+      <p class="date">2024年11月27日</p>
     </div>
   </div>
   
@@ -1376,7 +1376,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 </section>
 <section id="入門書" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="入門書"><span class="header-section-number">4</span> 入門書</h2>
-<p>奥村先生による <a href="https://okumuralab.org/~okumura/stat/" target="_blank">統計・データ解析</a> は大変参考になります。 時間をかけてじっくり読んむとともに，自分のパソコンで同じようにできるか確かめてください。</p>
+<p>奥村先生による <a href="https://okumuralab.org/~okumura/stat/" target="_blank">統計・データ解析</a> は大変参考になります。 時間をかけてじっくり読むとともに，自分のパソコンで同じようにできるか確かめてください。</p>
 <p>また，Posit Cloud にある <a href="https://posit.cloud/learn/primers" target="_blank">Posit Primers</a> は時間をかけて読む価値がありそうです。</p>
 <section id="チートシート" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="チートシート"><span class="header-section-number">4.1</span> チートシート</h3>
@@ -1410,7 +1410,7 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <span id="cb144-2"><a href="#cb144-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">factor</span>(x, <span class="at">level =</span> x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="1">
-<li>次のデータフレーム <code>z</code> があるとする。<code>z</code> を使って，2000年代の <code>value</code> の値の平均を求めなさい。</li>
+<li>次のデータフレーム <code>z</code> があるとする。<code>z</code> を使って，2000年以降の <code>value</code> の値の平均を求めなさい。</li>
 </ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb145"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2021</span></span>
@@ -1424,12 +1424,14 @@ Levels: 不可 &lt; 可 &lt; 良 &lt; 優 &lt; 秀</code></pre>
 <li>ヒント：CSVファイルを読み込む関数は，<code>read.csv()</code> です。</li>
 </ul>
 <ol start="6" type="1">
-<li><p><a href="https://www.e-stat.go.jp" target="_blank">政府統計の総合窓口（e-Stat）</a> から任意のExcelファイルをダウンロードして，R上の変数 <code>excercise</code> に読み込みなさい。また，正しく読み込めたかを確かめなさい。</p></li>
-<li><p>気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 <code>temp</code> に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。</p></li>
+<li>気象庁の次のWebサイトからCSVファイルをダウンロードして，変数 <code>temp</code> に読み込んだ後，世界全体の年平均気温偏差の最大値と最小値を求めなさい。</li>
 </ol>
 <ul>
 <li><a href="https://www.data.jma.go.jp/cpdinfo/temp/list/an_wld.html" target="_blank">世界の年平均気温偏差（℃）</a></li>
 </ul>
+<ol start="7" type="1">
+<li><a href="https://www.e-stat.go.jp" target="_blank">政府統計の総合窓口（e-Stat）</a> から任意のExcelファイルをダウンロードして，R上の変数 <code>excercise</code> に読み込みなさい。また，正しく読み込めたかを確かめなさい。</li>
+</ol>
 </section>
 
 </main>
@@ -1516,8 +1518,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
   clipboard.on('success', onCopySuccess);
   if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
     const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
       text: getTextToCopy,
       container: window.document.getElementById('quarto-embedded-source-code-modal')
@@ -1628,7 +1628,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      // TODO in 1.5, we should make sure this works without a callout special case
       if (note.classList.contains("callout")) {
         return note.outerHTML;
       } else {
