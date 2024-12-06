@@ -189,12 +189,15 @@ year[year > 2000 & year < 2005]
 library(ggVennDiagram)
 library(ggplot2)
 
-g <- ggVennDiagram(list("year > 2000" = year[year > 2000],
-                        "year < 2005" = year[year < 2005]), label = "count") + 
-  scale_color_manual(values = rep("black", 3)) +
-  theme(legend.position = "none")
-g$layers[[1]]$mapping <- aes(fill = name)
-g + scale_fill_manual(values = c("year > 2000" = "white", "year < 2005" = "white", "year > 2000..year < 2005" = "lightblue"))
+g <- ggVennDiagram(list(">2000" = year[year > 2000],
+                        "<2005" = year[year < 2005]),
+                   label = "count") + 
+  scale_fill_distiller(palette = "RdBu") +
+  theme(
+    legend.position = "none"
+  )
+
+g
 ```
 
 #### 論理和
@@ -207,12 +210,15 @@ year[year > 2005 | year < 1995]
 論理和は以下のベン図で表現できます。
 ```{r}
 #| echo: false
-g <- ggVennDiagram(list("year > 2005" = year[year > 2005],
-                        "year < 1995" = year[year < 1995]), label = "count") + 
-  scale_color_manual(values = rep("black", 3)) +
-  theme(legend.position = "none")
-g$layers[[1]]$mapping <- aes(fill = name)
-g + scale_fill_manual(values = c("year > 2005" = "lightblue", "year < 1995" = "lightblue", "year > 2005..year < 1995" = "lightblue"))
+g <- ggVennDiagram(list(">2005" = year[year > 2005],
+                        "<1995" = year[year < 1995]),
+                   label = "count") + 
+  scale_fill_distiller(palette = "RdBu") +
+  theme(
+    legend.position = "none"
+  )
+
+g
 ```
 このケースでは，2つの条件のどちらも満たす `year` は存在しませんので，実際には重なりはありません。
 
@@ -354,7 +360,7 @@ if (x[1] == 1) {
 }
 ```
 
-`if` 文の `()` の中は，長さ1のベクトル（つまり，スカラー）かつ論理値でなければなりません。
+`if` 文の `()` の中は，長さ1のベクトル（スカラーではない）かつ論理値でなければなりません。
 すなわち，`if` 文の `()` の中は `TRUE` か `FALSE` です。
 もしベクトルの要素1つずつ処理したい場合は，次に説明する繰り返し処理と組み合わせて使います。
 
@@ -427,9 +433,11 @@ y <- seq(5000, 5030, 2)
 z <- data.frame(year = x, value = y)
 ```
 
-2. 「北海道」「青森」…「東京」…といった都道府県のベクトル `pref` があります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべての文字列が「都道府県」で終わるように揃えなさい。
+2. 九九（1から9までの整数同士の掛け算）のすべての組み合わせの答えを合計しなさい。
 
-3. ポケモンの中から，water タイプのポケモンをすべて挙げなさい。
+3. 「北海道」「青森」…「東京」…といった都道府県のベクトル `pref` があります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべての文字列が「都道府県」で終わるように揃えなさい。
+
+4. ポケモンの中から，water タイプのポケモンをすべて挙げなさい。
 ただし，ポケモンのデータセットは，`d3po` パッケージの `pokemon` を使いなさい。
 ```{r}
 #| eval: false

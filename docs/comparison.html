@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年11月27日</p>
+      <p class="date">2024年12月6日</p>
     </div>
   </div>
   
@@ -302,25 +302,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE FALSE  TRUE    NA  TRUE  TRUE  TRUE  TRUE FALSE FALSE</code></pre>
+<pre><code> [1] FALSE  TRUE  TRUE  TRUE FALSE    NA FALSE  TRUE  TRUE FALSE</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  6 NA 10  8  7  9</code></pre>
+<pre><code>[1]  7  9 10 NA  8  6</code></pre>
 </div>
 </div>
 <p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。 <code>NA</code> かどうかは次の関数で判定します。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1] FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code> [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 </div>
 </div>
 <p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code> [1]  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code> [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 </div>
 </div>
 <p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
@@ -353,7 +353,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1]  6 10  8  7  9</code></pre>
+<pre><code>[1]  7  9 10  8  6</code></pre>
 </div>
 </div>
 </section>
@@ -574,10 +574,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">"不正解です。"</span>)</span>
 <span id="cb100-6"><a href="#cb100-6" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] "不正解です。"</code></pre>
+<pre><code>[1] "正解です。"</code></pre>
 </div>
 </div>
-<p><code>if</code> 文の <code>()</code> の中は，長さ1のベクトル（つまり，スカラー）かつ論理値でなければなりません。 すなわち，<code>if</code> 文の <code>()</code> の中は <code>TRUE</code> か <code>FALSE</code> です。 もしベクトルの要素1つずつ処理したい場合は，次に説明する繰り返し処理と組み合わせて使います。</p>
+<p><code>if</code> 文の <code>()</code> の中は，長さ1のベクトル（スカラーではない）かつ論理値でなければなりません。 すなわち，<code>if</code> 文の <code>()</code> の中は <code>TRUE</code> か <code>FALSE</code> です。 もしベクトルの要素1つずつ処理したい場合は，次に説明する繰り返し処理と組み合わせて使います。</p>
 </section>
 <section id="繰り返し処理" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="繰り返し処理"><span class="header-section-number">3</span> 繰り返し処理</h2>
@@ -678,6 +678,7 @@ Levels: setosa versicolor virginica</code></pre>
 <span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="2" type="1">
+<li><p>九九（1から9までの整数同士の掛け算）のすべての組み合わせの答えを合計しなさい。</p></li>
 <li><p>「北海道」「青森」…「東京」…といった都道府県のベクトル <code>pref</code> があります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべての文字列が「都道府県」で終わるように揃えなさい。</p></li>
 <li><p>ポケモンの中から，water タイプのポケモンをすべて挙げなさい。 ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。</p></li>
 </ol>
