@@ -15,11 +15,11 @@
 - [基礎](https://takeshinishimura.github.io/howtouseR/basics.html)
 - [ファイル操作](https://takeshinishimura.github.io/howtouseR/file_manipulation.html)
 - [比較演算](https://takeshinishimura.github.io/howtouseR/comparison.html)
+- [tidyverse](https://takeshinishimura.github.io/howtouseR/tidyverse.html)
 - [図](https://takeshinishimura.github.io/howtouseR/plot.html)
-- 表
-- 統計分析
 - ggplot2
-- tidyverse
+- 統計分析
+- 表
 
 ## 雑記
 

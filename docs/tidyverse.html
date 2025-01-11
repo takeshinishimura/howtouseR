@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.6.39">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>まずは使ってみる</title>
+<title>tidyverse</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -63,10 +63,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="tidyverse_files/libs/quarto-html/tippy.umd.min.js"></script>
 <script src="tidyverse_files/libs/quarto-html/anchor.min.js"></script>
 <link href="tidyverse_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="tidyverse_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="tidyverse_files/libs/quarto-html/quarto-syntax-highlighting-e26003cea8cd680ca0c55a263523d882.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="tidyverse_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="tidyverse_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="tidyverse_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="tidyverse_files/libs/bootstrap/bootstrap-00d65cf21f174b4516a2e66297fda939.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
 
 </head>
@@ -79,28 +79,22 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#tibble" id="toc-tibble" class="nav-link active" data-scroll-target="#tibble"><span class="header-section-number">1</span> tibble</a>
+  <li><a href="#base-r" id="toc-base-r" class="nav-link active" data-scroll-target="#base-r"><span class="header-section-number">1</span> base R</a></li>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link" data-scroll-target="#tidyverse"><span class="header-section-number">2</span> tidyverse</a>
   <ul>
-  <li><a href="#tidyr" id="toc-tidyr" class="nav-link" data-scroll-target="#tidyr"><span class="header-section-number">1.1</span> tidyr</a>
+  <li><a href="#データフレーム" id="toc-データフレーム" class="nav-link" data-scroll-target="#データフレーム"><span class="header-section-number">2.1</span> データフレーム</a></li>
+  <li><a href="#よく使う関数" id="toc-よく使う関数" class="nav-link" data-scroll-target="#よく使う関数"><span class="header-section-number">2.2</span> よく使う関数</a>
   <ul class="collapse">
-  <li><a href="#pivot_longer" id="toc-pivot_longer" class="nav-link" data-scroll-target="#pivot_longer"><span class="header-section-number">1.1.1</span> pivot_longer()</a></li>
-  <li><a href="#pivot_wider" id="toc-pivot_wider" class="nav-link" data-scroll-target="#pivot_wider"><span class="header-section-number">1.1.2</span> pivot_wider()</a></li>
-  <li><a href="#separate" id="toc-separate" class="nav-link" data-scroll-target="#separate"><span class="header-section-number">1.1.3</span> separate()</a></li>
-  <li><a href="#unnest" id="toc-unnest" class="nav-link" data-scroll-target="#unnest"><span class="header-section-number">1.1.4</span> unnest()</a></li>
+  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">2.2.1</span> filter()</a></li>
+  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">2.2.2</span> select()</a></li>
+  <li><a href="#pull" id="toc-pull" class="nav-link" data-scroll-target="#pull"><span class="header-section-number">2.2.3</span> pull()</a></li>
+  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">2.2.4</span> mutate()</a></li>
+  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><span class="header-section-number">2.2.5</span> count()</a></li>
+  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">2.2.6</span> arrange()</a></li>
+  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">2.2.7</span> summarise()</a></li>
   </ul></li>
-  <li><a href="#dplyr" id="toc-dplyr" class="nav-link" data-scroll-target="#dplyr"><span class="header-section-number">1.2</span> dplyr</a>
-  <ul class="collapse">
-  <li><a href="#select" id="toc-select" class="nav-link" data-scroll-target="#select"><span class="header-section-number">1.2.1</span> select()</a></li>
-  <li><a href="#mutate" id="toc-mutate" class="nav-link" data-scroll-target="#mutate"><span class="header-section-number">1.2.2</span> mutate()</a></li>
-  <li><a href="#filter" id="toc-filter" class="nav-link" data-scroll-target="#filter"><span class="header-section-number">1.2.3</span> filter()</a></li>
-  <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">1.2.4</span> arrange()</a></li>
-  <li><a href="#count" id="toc-count" class="nav-link" data-scroll-target="#count"><span class="header-section-number">1.2.5</span> count()</a></li>
-  <li><a href="#arrange-1" id="toc-arrange-1" class="nav-link" data-scroll-target="#arrange-1"><span class="header-section-number">1.2.6</span> arrange()</a></li>
-  <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">1.2.7</span> summarise()</a></li>
-  <li><a href="#group_by" id="toc-group_by" class="nav-link" data-scroll-target="#group_by"><span class="header-section-number">1.2.8</span> group_by</a></li>
   </ul></li>
-  <li><a href="#readr" id="toc-readr" class="nav-link" data-scroll-target="#readr"><span class="header-section-number">1.3</span> readr</a></li>
-  </ul></li>
+  <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">3</span> 練習問題</a></li>
   </ul>
 </nav>
 </div>
@@ -108,7 +102,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">まずは使ってみる</h1>
+<h1 class="title">tidyverse</h1>
 </div>
 
 
@@ -119,7 +113,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2023年8月3日</p>
+      <p class="date">2025年1月11日</p>
     </div>
   </div>
   
@@ -127,19 +121,231 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
 
-<section id="tibble" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="tibble"><span class="header-section-number">1</span> tibble</h2>
-<p><a href="https://tibble.tidyverse.org/" target="_blank">tibble</a></p>
-<section id="tidyr" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="tidyr"><span class="header-section-number">1.1</span> tidyr</h3>
-<p><a href="https://tidyr.tidyverse.org/" target="_blank">tidyr</a></p>
-<p>ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータ形式のことです。 一方，ロングというデータ形式もあり，列数は限られています。 ワイドは横に長く，ロングは縦に長いデータフレームです。</p>
-<section id="pivot_longer" class="level4" data-number="1.1.1">
-<h4 data-number="1.1.1" class="anchored" data-anchor-id="pivot_longer"><span class="header-section-number">1.1.1</span> pivot_longer()</h4>
+
+<p>これまでは base R を使ってきました。 近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
+<p>base R は伝統的な R の使い方で，R 3.x あたりで tidyverse が登場しました。 tidyverse が登場した後，これまでの伝統的な R のコードは base R と呼ばれるようになりました。 それでは，base R とは何でしょうか，tidyverse とは何でしょうか。 これらを説明するのはやや難しいです。 しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。</p>
+<p>ここでは，base R と tidyverse の違いについて，実践的に学びます。</p>
+<section id="base-r" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="base-r"><span class="header-section-number">1</span> base R</h2>
+<p>まず，次のようなデータがあるとします。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2025</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(year)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">length</span>(year)<span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>df　<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> year, 南 <span class="ot">=</span> x1, 北 <span class="ot">=</span> x2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>このデータフレーム <code>df</code> の中から2000年代以降のデータを取り出して，<code>南</code> 列の平均を計算する場合，次のようなコードになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>minami2000 <span class="ot">&lt;-</span> df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">"南"</span>]</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(minami2000)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+</div>
+<p>また，同じことは次のようにしても実行できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>minami2000 <span class="ot">&lt;-</span> df<span class="sc">$</span>南[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(minami2000)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+</div>
+<p>もしこの後に，<code>北</code> 列の合計を計算したい場合は，次のようなコードにした方がいいかもしれません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>df2000 <span class="ot">&lt;-</span> df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, ]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df2000<span class="sc">$</span>南)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df2000<span class="sc">$</span>北)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 35100</code></pre>
+</div>
+</div>
+<p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。 コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。 こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。 どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味がわかりにくいです。</p>
+<p>そこで，例えば，次のようにすることもあります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">"南"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">"北"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 35100</code></pre>
+</div>
+</div>
+<p>ただし，これらのコードの問題は，人間が見てわかりにくいということです。 これは，右から左に解釈していくためです。 右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。 そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。</p>
+</section>
+<section id="tidyverse" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">2</span> tidyverse</h2>
+<p>パイプ演算 <code>%&gt;%</code> は <code>magrittr</code> パッケージをロードすると使えるようになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+</div>
+<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。</p>
+<p>パイプ演算子があまりにも便利なため，R は 4.1 で公式にパイプ演算子を採用しました。 R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2350</code></pre>
+</div>
+</div>
+<p><code>%&gt;%</code> と <code>|&gt;</code> はどちらを使っても同じ場合が多いですが，<code>%&gt;%</code> の方が機能が多いため，完全に同じではありません。 大きな違いはプレイスホルダー <code>.</code> の扱いです。 置き換え可能な場合は，<code>|&gt;</code> を使うことをおすすめします。</p>
+<p>パイプ演算子は base R の関数と組み合わせて使うことができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year   南   北
+1 2000 1100 2600
+2 2001 1200 2500
+3 2002 1300 2400
+4 2003 1400 2300
+5 2004 1500 2200
+6 2005 1600 2100</code></pre>
+</div>
+</div>
+<p><strong>パイプ演算子を使うと，その前のデータが次に書く関数の最初の引数として自動的に渡されます。</strong> この文章の意味が理解できるまで，知っている関数をいろいろ使ってみてください。</p>
+<p>処理結果を新しい変数に代入する場合は，base R の作法に従います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>df2000 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ちなみに，次のようにすることもできますが，このようなコードはあまり見ません。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="ot">-&gt;</span> df2000</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>tidyverse とは <code>dplyr</code> のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。 tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a> で確認できます。</p>
+<section id="データフレーム" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">2.1</span> データフレーム</h3>
+<p>tidyverse で使われるデータフレームは <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> です。 普通のデータフレームと <code>tibble</code> は互換性がありますので，特に意識する必要はありません。 どちらもデータフレームと呼びます。</p>
+<p>ただし，データフレームの形には，ワイドとロングがあり，これらの違いを意識する必要があります。 ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータフレームのことです。 一方，ロングは縦に長いデータフレームです。</p>
+<p>ロングとワイドは <a href="https://tidyr.tidyverse.org/" target="_blank">tidyr</a> の関数を使って簡単に変換することができます。 まず，ワイドは次のようなデータフレームです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(df)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  year  南   北
+1 1990 100 3600
+2 1991 200 3500
+3 1992 300 3400
+4 1993 400 3300
+5 1994 500 3200
+6 1995 600 3100</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 36  3</code></pre>
+</div>
+</div>
+<p>これをロングに変換すると次のようなデータフレームになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="sc">-</span>year)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>df_long</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 72 × 3
+    year name  value
+   &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+ 1  1990 南      100
+ 2  1990 北     3600
+ 3  1991 南      200
+ 4  1991 北     3500
+ 5  1992 南      300
+ 6  1992 北     3400
+ 7  1993 南      400
+ 8  1993 北     3300
+ 9  1994 南      500
+10  1994 北     3200
+# ℹ 62 more rows</code></pre>
+</div>
+</div>
+<p>tidyverse で作成したデータフレームは <code>tibble</code> になります。 <code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
+<p>また，<code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。 一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
+<p>先ほどの変換は次のようにしても同じです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"南"</span>, <span class="st">"北"</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> 南<span class="sc">:</span>北)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ロングからワイドへの変換は次のようにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(df_long, <span class="at">names_from =</span> name)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>df_wide</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 36 × 3
+    year    南    北
+   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+ 1  1990   100  3600
+ 2  1991   200  3500
+ 3  1992   300  3400
+ 4  1993   400  3300
+ 5  1994   500  3200
+ 6  1995   600  3100
+ 7  1996   700  3000
+ 8  1997   800  2900
+ 9  1998   900  2800
+10  1999  1000  2700
+# ℹ 26 more rows</code></pre>
+</div>
+</div>
+<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> と <code>tidyr::gather()</code> を使用しているケースがあります。 これらの関数は <code>superseded</code> になっています。 古い関数ですので，覚える必要はありません。</p>
+</section>
+<section id="よく使う関数" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="よく使う関数"><span class="header-section-number">2.2</span> よく使う関数</h3>
+<p>次に <code>iris</code> を使って base R と tidyverse の違いを確認しておきます。 以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。</p>
+<section id="filter" class="level4" data-number="2.2.1">
+<h4 data-number="2.2.1" class="anchored" data-anchor-id="filter"><span class="header-section-number">2.2.1</span> filter()</h4>
+<p><code>filter()</code> で条件を満たす列を抽出します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="dv">7</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+103          7.1         3.0          5.9         2.1 virginica
+106          7.6         3.0          6.6         2.1 virginica
+108          7.3         2.9          6.3         1.8 virginica
+110          7.2         3.6          6.1         2.5 virginica
+118          7.7         3.8          6.7         2.2 virginica
+119          7.7         2.6          6.9         2.3 virginica
+123          7.7         2.8          6.7         2.0 virginica
+126          7.2         3.2          6.0         1.8 virginica
+130          7.2         3.0          5.8         1.6 virginica
+131          7.4         2.8          6.1         1.9 virginica
+132          7.9         3.8          6.4         2.0 virginica
+136          7.7         3.0          6.1         2.3 virginica</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="dv">7</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1           7.1         3.0          5.9         2.1 virginica
+2           7.6         3.0          6.6         2.1 virginica
+3           7.3         2.9          6.3         1.8 virginica
+4           7.2         3.6          6.1         2.5 virginica
+5           7.7         3.8          6.7         2.2 virginica
+6           7.7         2.6          6.9         2.3 virginica
+7           7.7         2.8          6.7         2.0 virginica
+8           7.2         3.2          6.0         1.8 virginica
+9           7.2         3.0          5.8         1.6 virginica
+10          7.4         2.8          6.1         1.9 virginica
+11          7.9         3.8          6.4         2.0 virginica
+12          7.7         3.0          6.1         2.3 virginica</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>, ])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          5.1         3.5          1.4         0.2  setosa
@@ -149,678 +355,153 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 5          5.0         3.6          1.4         0.2  setosa
 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 150   5</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>iris_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(iris, <span class="at">cols =</span> Sepal.Length<span class="sc">:</span>Petal.Width)</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>iris_long</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 600 × 3
-   Species name         value
-   &lt;fct&gt;   &lt;chr&gt;        &lt;dbl&gt;
- 1 setosa  Sepal.Length   5.1
- 2 setosa  Sepal.Width    3.5
- 3 setosa  Petal.Length   1.4
- 4 setosa  Petal.Width    0.2
- 5 setosa  Sepal.Length   4.9
- 6 setosa  Sepal.Width    3  
- 7 setosa  Petal.Length   1.4
- 8 setosa  Petal.Width    0.2
- 9 setosa  Sepal.Length   4.7
-10 setosa  Sepal.Width    3.2
-# ℹ 590 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris_long)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 600   3</code></pre>
-</div>
-</div>
-</section>
-<section id="pivot_wider" class="level4" data-number="1.1.2">
-<h4 data-number="1.1.2" class="anchored" data-anchor-id="pivot_wider"><span class="header-section-number">1.1.2</span> pivot_wider()</h4>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>iris_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(iris_long, <span class="at">names_from =</span> name)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: Values from `value` are not uniquely identified; output will contain list-cols.
-• Use `values_fn = list` to suppress this warning.
-• Use `values_fn = {summary_fun}` to summarise duplicates.
-• Use the following dplyr code to identify duplicates.
-  {data} %&gt;%
-  dplyr::group_by(Species, name) %&gt;%
-  dplyr::summarise(n = dplyr::n(), .groups = "drop") %&gt;%
-  dplyr::filter(n &gt; 1L)</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>iris_wide</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 5
-  Species    Sepal.Length Sepal.Width Petal.Length Petal.Width
-  &lt;fct&gt;      &lt;list&gt;       &lt;list&gt;      &lt;list&gt;       &lt;list&gt;     
-1 setosa     &lt;dbl [50]&gt;   &lt;dbl [50]&gt;  &lt;dbl [50]&gt;   &lt;dbl [50]&gt; 
-2 versicolor &lt;dbl [50]&gt;   &lt;dbl [50]&gt;  &lt;dbl [50]&gt;   &lt;dbl [50]&gt; 
-3 virginica  &lt;dbl [50]&gt;   &lt;dbl [50]&gt;  &lt;dbl [50]&gt;   &lt;dbl [50]&gt; </code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(iris_wide)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 3 5</code></pre>
-</div>
-</div>
-<p><code>tidyr::spread()</code> と <code>tidyr::gather()</code> は superseded になっている（古い関数）ので，覚える必要はない。</p>
-</section>
-<section id="separate" class="level4" data-number="1.1.3">
-<h4 data-number="1.1.3" class="anchored" data-anchor-id="separate"><span class="header-section-number">1.1.3</span> separate()</h4>
-<p><code>tidyr::separate()</code> は列を複数列に分割します。 ただし，superseded になっているため，次のようなコマンドで代替します。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">tmp =</span> <span class="fu">formatC</span>(Sepal.Length, <span class="at">format =</span> <span class="st">"f"</span>, <span class="at">digits =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate_wider_delim</span>(tmp, <span class="at">delim =</span> <span class="st">"."</span>, <span class="at">names =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 150 × 7
-   Sepal.Length Sepal.Width Petal.Length Petal.Width Species A     B    
-          &lt;dbl&gt;       &lt;dbl&gt;        &lt;dbl&gt;       &lt;dbl&gt; &lt;fct&gt;   &lt;chr&gt; &lt;chr&gt;
- 1          5.1         3.5          1.4         0.2 setosa  5     1    
- 2          4.9         3            1.4         0.2 setosa  4     9    
- 3          4.7         3.2          1.3         0.2 setosa  4     7    
- 4          4.6         3.1          1.5         0.2 setosa  4     6    
- 5          5           3.6          1.4         0.2 setosa  5     0    
- 6          5.4         3.9          1.7         0.4 setosa  5     4    
- 7          4.6         3.4          1.4         0.3 setosa  4     6    
- 8          5           3.4          1.5         0.2 setosa  5     0    
- 9          4.4         2.9          1.4         0.2 setosa  4     4    
-10          4.9         3.1          1.5         0.1 setosa  4     9    
-# ℹ 140 more rows</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyr::separate_longer_delim(tmp, delim = ".")</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="unnest" class="level4" data-number="1.1.4">
-<h4 data-number="1.1.4" class="anchored" data-anchor-id="unnest"><span class="header-section-number">1.1.4</span> unnest()</h4>
-<p><code>tidyr::unnest()</code> はリストの中を <code>unlist()</code> して，行と列の要素とします。 他の列は，重複分だけ複製されます。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>tidyr<span class="sc">::</span><span class="fu">unnest</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-</section>
-<section id="dplyr" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="dplyr"><span class="header-section-number">1.2</span> dplyr</h3>
-<p><a href="https://dplyr.tidyverse.org/" target="_blank">dplyr</a></p>
-<section id="select" class="level4" data-number="1.2.1">
-<h4 data-number="1.2.1" class="anchored" data-anchor-id="select"><span class="header-section-number">1.2.1</span> select()</h4>
-<p><code>select()</code> で列を選択する。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="st">"Species"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Species
-1  setosa
-2  setosa
-3  setosa
-4  setosa
-5  setosa
-6  setosa</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">select</span>(Species))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Species
-1  setosa
-2  setosa
-3  setosa
-4  setosa
-5  setosa
-6  setosa</code></pre>
-</div>
-</div>
-</section>
-<section id="mutate" class="level4" data-number="1.2.2">
-<h4 data-number="1.2.2" class="anchored" data-anchor-id="mutate"><span class="header-section-number">1.2.2</span> mutate()</h4>
-<p><code>mutate()</code> で新しい列を作成する。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>iris2<span class="sc">$</span>new_species <span class="ot">&lt;-</span> iris2<span class="sc">$</span>Species</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
-1          5.1         3.5          1.4         0.2  setosa      setosa
-2          4.9         3.0          1.4         0.2  setosa      setosa
-3          4.7         3.2          1.3         0.2  setosa      setosa
-4          4.6         3.1          1.5         0.2  setosa      setosa
-5          5.0         3.6          1.4         0.2  setosa      setosa
-6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris3 <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">new_species =</span> Species))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
-1          5.1         3.5          1.4         0.2  setosa      setosa
-2          4.9         3.0          1.4         0.2  setosa      setosa
-3          4.7         3.2          1.3         0.2  setosa      setosa
-4          4.6         3.1          1.5         0.2  setosa      setosa
-5          5.0         3.6          1.4         0.2  setosa      setosa
-6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
-</div>
-</div>
-<p><code>mutate()</code> で列を修正する。</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris<span class="sc">$</span>Sepal.Length <span class="ot">&lt;-</span> iris<span class="sc">$</span>Sepal.Length <span class="sc">*</span> <span class="dv">100</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 510 490 470 460 500 540</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Sepal.Length =</span> iris<span class="sc">$</span>Sepal.Length <span class="sc">*</span> <span class="dv">100</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1        51000         3.5          1.4         0.2  setosa
-2        49000         3.0          1.4         0.2  setosa
-3        47000         3.2          1.3         0.2  setosa
-4        46000         3.1          1.5         0.2  setosa
-5        50000         3.6          1.4         0.2  setosa
-6        54000         3.9          1.7         0.4  setosa</code></pre>
+1          5.1         3.5          1.4         0.2  setosa
+2          4.9         3.0          1.4         0.2  setosa
+3          4.7         3.2          1.3         0.2  setosa
+4          4.6         3.1          1.5         0.2  setosa
+5          5.0         3.6          1.4         0.2  setosa
+6          5.4         3.9          1.7         0.4  setosa</code></pre>
 </div>
 </div>
-<p><code>mutate()</code> で列を修正する。</p>
+<p>tidyverse が常にわかりやすいとは限りません。 例えば，次の2つのコードを比較してみてください。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length), ])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   150 obs. of  5 variables:
- $ Sepal.Length: num  510 490 470 460 500 540 460 500 440 490 ...
- $ Sepal.Width : num  3.5 3 3.2 3.1 3.6 3.9 3.4 3.4 2.9 3.1 ...
- $ Petal.Length: num  1.4 1.4 1.3 1.5 1.4 1.7 1.4 1.5 1.4 1.5 ...
- $ Petal.Width : num  0.2 0.2 0.2 0.2 0.2 0.4 0.3 0.2 0.2 0.1 ...
- $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+51          7.0         3.2          4.7         1.4 versicolor
+52          6.4         3.2          4.5         1.5 versicolor
+53          6.9         3.1          4.9         1.5 versicolor
+55          6.5         2.8          4.6         1.5 versicolor
+57          6.3         3.3          4.7         1.6 versicolor
+59          6.6         2.9          4.6         1.3 versicolor</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">names</span>(iris2)[<span class="fu">names</span>(iris2) <span class="sc">!=</span> <span class="st">"Species"</span>]) {</span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  iris2[[i]] <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(iris2[[i]])</span>
-<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>                  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>                  dplyr<span class="sc">::</span><span class="fu">pull</span>(mean_length)) <span class="sc">|&gt;</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   150 obs. of  5 variables:
- $ Sepal.Length: Factor w/ 35 levels "430","440","450",..: 9 7 5 4 8 12 4 8 2 7 ...
- $ Sepal.Width : Factor w/ 23 levels "2","2.2","2.3",..: 15 10 12 11 16 19 14 14 9 11 ...
- $ Petal.Length: Factor w/ 43 levels "1","1.1","1.2",..: 5 5 4 6 5 8 5 6 5 6 ...
- $ Petal.Width : Factor w/ 22 levels "0.1","0.2","0.3",..: 2 2 2 2 2 4 3 2 2 1 ...
- $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1          7.0         3.2          4.7         1.4 versicolor
+2          6.4         3.2          4.5         1.5 versicolor
+3          6.9         3.1          4.9         1.5 versicolor
+4          6.5         2.8          4.6         1.5 versicolor
+5          6.3         3.3          4.7         1.6 versicolor
+6          6.6         2.9          4.6         1.3 versicolor</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>iris3 <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(dplyr<span class="sc">::</span><span class="fu">across</span>(<span class="sc">!</span>Species, as.factor))</span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(iris3)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>後者のようなコードを書きたい場合は，次のように，tidyverse と base R を組み合わせるのがよいでしょう。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>'data.frame':   150 obs. of  5 variables:
- $ Sepal.Length: Factor w/ 35 levels "430","440","450",..: 9 7 5 4 8 12 4 8 2 7 ...
- $ Sepal.Width : Factor w/ 23 levels "2","2.2","2.3",..: 15 10 12 11 16 19 14 14 9 11 ...
- $ Petal.Length: Factor w/ 43 levels "1","1.1","1.2",..: 5 5 4 6 5 8 5 6 5 6 ...
- $ Petal.Width : Factor w/ 22 levels "0.1","0.2","0.3",..: 2 2 2 2 2 4 3 2 2 1 ...
- $ Species     : Factor w/ 3 levels "setosa","versicolor",..: 1 1 1 1 1 1 1 1 1 1 ...</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+1          7.0         3.2          4.7         1.4 versicolor
+2          6.4         3.2          4.5         1.5 versicolor
+3          6.9         3.1          4.9         1.5 versicolor
+4          6.5         2.8          4.6         1.5 versicolor
+5          6.3         3.3          4.7         1.6 versicolor
+6          6.6         2.9          4.6         1.3 versicolor</code></pre>
 </div>
 </div>
 </section>
-<section id="filter" class="level4" data-number="1.2.3">
-<h4 data-number="1.2.3" class="anchored" data-anchor-id="filter"><span class="header-section-number">1.2.3</span> filter()</h4>
-<p><code>filter()</code> で列を抽出する。</p>
+<section id="select" class="level4" data-number="2.2.2">
+<h4 data-number="2.2.2" class="anchored" data-anchor-id="select"><span class="header-section-number">2.2.2</span> select()</h4>
+<p><code>select()</code> で必要な列のみを取り出します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length), ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="st">"Species"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-51           700         3.2          4.7         1.4 versicolor
-52           640         3.2          4.5         1.5 versicolor
-53           690         3.1          4.9         1.5 versicolor
-55           650         2.8          4.6         1.5 versicolor
-57           630         3.3          4.7         1.6 versicolor
-59           660         2.9          4.6         1.3 versicolor
-62           590         3.0          4.2         1.5 versicolor
-63           600         2.2          4.0         1.0 versicolor
-64           610         2.9          4.7         1.4 versicolor
-66           670         3.1          4.4         1.4 versicolor
-69           620         2.2          4.5         1.5 versicolor
-71           590         3.2          4.8         1.8 versicolor
-72           610         2.8          4.0         1.3 versicolor
-73           630         2.5          4.9         1.5 versicolor
-74           610         2.8          4.7         1.2 versicolor
-75           640         2.9          4.3         1.3 versicolor
-76           660         3.0          4.4         1.4 versicolor
-77           680         2.8          4.8         1.4 versicolor
-78           670         3.0          5.0         1.7 versicolor
-79           600         2.9          4.5         1.5 versicolor
-84           600         2.7          5.1         1.6 versicolor
-86           600         3.4          4.5         1.6 versicolor
-87           670         3.1          4.7         1.5 versicolor
-88           630         2.3          4.4         1.3 versicolor
-92           610         3.0          4.6         1.4 versicolor
-98           620         2.9          4.3         1.3 versicolor
-101          630         3.3          6.0         2.5  virginica
-103          710         3.0          5.9         2.1  virginica
-104          630         2.9          5.6         1.8  virginica
-105          650         3.0          5.8         2.2  virginica
-106          760         3.0          6.6         2.1  virginica
-108          730         2.9          6.3         1.8  virginica
-109          670         2.5          5.8         1.8  virginica
-110          720         3.6          6.1         2.5  virginica
-111          650         3.2          5.1         2.0  virginica
-112          640         2.7          5.3         1.9  virginica
-113          680         3.0          5.5         2.1  virginica
-116          640         3.2          5.3         2.3  virginica
-117          650         3.0          5.5         1.8  virginica
-118          770         3.8          6.7         2.2  virginica
-119          770         2.6          6.9         2.3  virginica
-120          600         2.2          5.0         1.5  virginica
-121          690         3.2          5.7         2.3  virginica
-123          770         2.8          6.7         2.0  virginica
-124          630         2.7          4.9         1.8  virginica
-125          670         3.3          5.7         2.1  virginica
-126          720         3.2          6.0         1.8  virginica
-127          620         2.8          4.8         1.8  virginica
-128          610         3.0          4.9         1.8  virginica
-129          640         2.8          5.6         2.1  virginica
-130          720         3.0          5.8         1.6  virginica
-131          740         2.8          6.1         1.9  virginica
-132          790         3.8          6.4         2.0  virginica
-133          640         2.8          5.6         2.2  virginica
-134          630         2.8          5.1         1.5  virginica
-135          610         2.6          5.6         1.4  virginica
-136          770         3.0          6.1         2.3  virginica
-137          630         3.4          5.6         2.4  virginica
-138          640         3.1          5.5         1.8  virginica
-139          600         3.0          4.8         1.8  virginica
-140          690         3.1          5.4         2.1  virginica
-141          670         3.1          5.6         2.4  virginica
-142          690         3.1          5.1         2.3  virginica
-144          680         3.2          5.9         2.3  virginica
-145          670         3.3          5.7         2.5  virginica
-146          670         3.0          5.2         2.3  virginica
-147          630         2.5          5.0         1.9  virginica
-148          650         3.0          5.2         2.0  virginica
-149          620         3.4          5.4         2.3  virginica
-150          590         3.0          5.1         1.8  virginica</code></pre>
+<pre><code>  Species
+1  setosa
+2  setosa
+3  setosa
+4  setosa
+5  setosa
+6  setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1           700         3.2          4.7         1.4 versicolor
-2           640         3.2          4.5         1.5 versicolor
-3           690         3.1          4.9         1.5 versicolor
-4           650         2.8          4.6         1.5 versicolor
-5           630         3.3          4.7         1.6 versicolor
-6           660         2.9          4.6         1.3 versicolor
-7           590         3.0          4.2         1.5 versicolor
-8           600         2.2          4.0         1.0 versicolor
-9           610         2.9          4.7         1.4 versicolor
-10          670         3.1          4.4         1.4 versicolor
-11          620         2.2          4.5         1.5 versicolor
-12          590         3.2          4.8         1.8 versicolor
-13          610         2.8          4.0         1.3 versicolor
-14          630         2.5          4.9         1.5 versicolor
-15          610         2.8          4.7         1.2 versicolor
-16          640         2.9          4.3         1.3 versicolor
-17          660         3.0          4.4         1.4 versicolor
-18          680         2.8          4.8         1.4 versicolor
-19          670         3.0          5.0         1.7 versicolor
-20          600         2.9          4.5         1.5 versicolor
-21          600         2.7          5.1         1.6 versicolor
-22          600         3.4          4.5         1.6 versicolor
-23          670         3.1          4.7         1.5 versicolor
-24          630         2.3          4.4         1.3 versicolor
-25          610         3.0          4.6         1.4 versicolor
-26          620         2.9          4.3         1.3 versicolor
-27          630         3.3          6.0         2.5  virginica
-28          710         3.0          5.9         2.1  virginica
-29          630         2.9          5.6         1.8  virginica
-30          650         3.0          5.8         2.2  virginica
-31          760         3.0          6.6         2.1  virginica
-32          730         2.9          6.3         1.8  virginica
-33          670         2.5          5.8         1.8  virginica
-34          720         3.6          6.1         2.5  virginica
-35          650         3.2          5.1         2.0  virginica
-36          640         2.7          5.3         1.9  virginica
-37          680         3.0          5.5         2.1  virginica
-38          640         3.2          5.3         2.3  virginica
-39          650         3.0          5.5         1.8  virginica
-40          770         3.8          6.7         2.2  virginica
-41          770         2.6          6.9         2.3  virginica
-42          600         2.2          5.0         1.5  virginica
-43          690         3.2          5.7         2.3  virginica
-44          770         2.8          6.7         2.0  virginica
-45          630         2.7          4.9         1.8  virginica
-46          670         3.3          5.7         2.1  virginica
-47          720         3.2          6.0         1.8  virginica
-48          620         2.8          4.8         1.8  virginica
-49          610         3.0          4.9         1.8  virginica
-50          640         2.8          5.6         2.1  virginica
-51          720         3.0          5.8         1.6  virginica
-52          740         2.8          6.1         1.9  virginica
-53          790         3.8          6.4         2.0  virginica
-54          640         2.8          5.6         2.2  virginica
-55          630         2.8          5.1         1.5  virginica
-56          610         2.6          5.6         1.4  virginica
-57          770         3.0          6.1         2.3  virginica
-58          630         3.4          5.6         2.4  virginica
-59          640         3.1          5.5         1.8  virginica
-60          600         3.0          4.8         1.8  virginica
-61          690         3.1          5.4         2.1  virginica
-62          670         3.1          5.6         2.4  virginica
-63          690         3.1          5.1         2.3  virginica
-64          680         3.2          5.9         2.3  virginica
-65          670         3.3          5.7         2.5  virginica
-66          670         3.0          5.2         2.3  virginica
-67          630         2.5          5.0         1.9  virginica
-68          650         3.0          5.2         2.0  virginica
-69          620         3.4          5.4         2.3  virginica
-70          590         3.0          5.1         1.8  virginica</code></pre>
+<pre><code>  Species
+1  setosa
+2  setosa
+3  setosa
+4  setosa
+5  setosa
+6  setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>iris[iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">"setosa"</span>, ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="pull" class="level4" data-number="2.2.3">
+<h4 data-number="2.2.3" class="anchored" data-anchor-id="pull"><span class="header-section-number">2.2.3</span> pull()</h4>
+<p>列をベクトルで取り出したい場合は，<code>pull()</code> を使います。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris<span class="sc">$</span>Species)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1           510         3.5          1.4         0.2  setosa
-2           490         3.0          1.4         0.2  setosa
-3           470         3.2          1.3         0.2  setosa
-4           460         3.1          1.5         0.2  setosa
-5           500         3.6          1.4         0.2  setosa
-6           540         3.9          1.7         0.4  setosa
-7           460         3.4          1.4         0.3  setosa
-8           500         3.4          1.5         0.2  setosa
-9           440         2.9          1.4         0.2  setosa
-10          490         3.1          1.5         0.1  setosa
-11          540         3.7          1.5         0.2  setosa
-12          480         3.4          1.6         0.2  setosa
-13          480         3.0          1.4         0.1  setosa
-14          430         3.0          1.1         0.1  setosa
-15          580         4.0          1.2         0.2  setosa
-16          570         4.4          1.5         0.4  setosa
-17          540         3.9          1.3         0.4  setosa
-18          510         3.5          1.4         0.3  setosa
-19          570         3.8          1.7         0.3  setosa
-20          510         3.8          1.5         0.3  setosa
-21          540         3.4          1.7         0.2  setosa
-22          510         3.7          1.5         0.4  setosa
-23          460         3.6          1.0         0.2  setosa
-24          510         3.3          1.7         0.5  setosa
-25          480         3.4          1.9         0.2  setosa
-26          500         3.0          1.6         0.2  setosa
-27          500         3.4          1.6         0.4  setosa
-28          520         3.5          1.5         0.2  setosa
-29          520         3.4          1.4         0.2  setosa
-30          470         3.2          1.6         0.2  setosa
-31          480         3.1          1.6         0.2  setosa
-32          540         3.4          1.5         0.4  setosa
-33          520         4.1          1.5         0.1  setosa
-34          550         4.2          1.4         0.2  setosa
-35          490         3.1          1.5         0.2  setosa
-36          500         3.2          1.2         0.2  setosa
-37          550         3.5          1.3         0.2  setosa
-38          490         3.6          1.4         0.1  setosa
-39          440         3.0          1.3         0.2  setosa
-40          510         3.4          1.5         0.2  setosa
-41          500         3.5          1.3         0.3  setosa
-42          450         2.3          1.3         0.3  setosa
-43          440         3.2          1.3         0.2  setosa
-44          500         3.5          1.6         0.6  setosa
-45          510         3.8          1.9         0.4  setosa
-46          480         3.0          1.4         0.3  setosa
-47          510         3.8          1.6         0.2  setosa
-48          460         3.2          1.4         0.2  setosa
-49          530         3.7          1.5         0.2  setosa
-50          500         3.3          1.4         0.2  setosa</code></pre>
+<pre><code>[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">"setosa"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
-1           510         3.5          1.4         0.2  setosa
-2           490         3.0          1.4         0.2  setosa
-3           470         3.2          1.3         0.2  setosa
-4           460         3.1          1.5         0.2  setosa
-5           500         3.6          1.4         0.2  setosa
-6           540         3.9          1.7         0.4  setosa
-7           460         3.4          1.4         0.3  setosa
-8           500         3.4          1.5         0.2  setosa
-9           440         2.9          1.4         0.2  setosa
-10          490         3.1          1.5         0.1  setosa
-11          540         3.7          1.5         0.2  setosa
-12          480         3.4          1.6         0.2  setosa
-13          480         3.0          1.4         0.1  setosa
-14          430         3.0          1.1         0.1  setosa
-15          580         4.0          1.2         0.2  setosa
-16          570         4.4          1.5         0.4  setosa
-17          540         3.9          1.3         0.4  setosa
-18          510         3.5          1.4         0.3  setosa
-19          570         3.8          1.7         0.3  setosa
-20          510         3.8          1.5         0.3  setosa
-21          540         3.4          1.7         0.2  setosa
-22          510         3.7          1.5         0.4  setosa
-23          460         3.6          1.0         0.2  setosa
-24          510         3.3          1.7         0.5  setosa
-25          480         3.4          1.9         0.2  setosa
-26          500         3.0          1.6         0.2  setosa
-27          500         3.4          1.6         0.4  setosa
-28          520         3.5          1.5         0.2  setosa
-29          520         3.4          1.4         0.2  setosa
-30          470         3.2          1.6         0.2  setosa
-31          480         3.1          1.6         0.2  setosa
-32          540         3.4          1.5         0.4  setosa
-33          520         4.1          1.5         0.1  setosa
-34          550         4.2          1.4         0.2  setosa
-35          490         3.1          1.5         0.2  setosa
-36          500         3.2          1.2         0.2  setosa
-37          550         3.5          1.3         0.2  setosa
-38          490         3.6          1.4         0.1  setosa
-39          440         3.0          1.3         0.2  setosa
-40          510         3.4          1.5         0.2  setosa
-41          500         3.5          1.3         0.3  setosa
-42          450         2.3          1.3         0.3  setosa
-43          440         3.2          1.3         0.2  setosa
-44          500         3.5          1.6         0.6  setosa
-45          510         3.8          1.9         0.4  setosa
-46          480         3.0          1.4         0.3  setosa
-47          510         3.8          1.6         0.2  setosa
-48          460         3.2          1.4         0.2  setosa
-49          530         3.7          1.5         0.2  setosa
-50          500         3.3          1.4         0.2  setosa</code></pre>
+<pre><code>[1] setosa setosa setosa setosa setosa setosa
+Levels: setosa versicolor virginica</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="fu">grep</span>(<span class="st">"^v"</span>, iris<span class="sc">$</span>Species), ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="mutate" class="level4" data-number="2.2.4">
+<h4 data-number="2.2.4" class="anchored" data-anchor-id="mutate"><span class="header-section-number">2.2.4</span> mutate()</h4>
+<p><code>mutate()</code> で新しい列を作成します。 その前に，<code>iris</code> を変更したくないので，<code>iris</code> のコピーを作成して，それをいじることにします。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>iris2<span class="sc">$</span>new_species <span class="ot">&lt;-</span> iris2<span class="sc">$</span>Species</span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-51           700         3.2          4.7         1.4 versicolor
-52           640         3.2          4.5         1.5 versicolor
-53           690         3.1          4.9         1.5 versicolor
-54           550         2.3          4.0         1.3 versicolor
-55           650         2.8          4.6         1.5 versicolor
-56           570         2.8          4.5         1.3 versicolor
-57           630         3.3          4.7         1.6 versicolor
-58           490         2.4          3.3         1.0 versicolor
-59           660         2.9          4.6         1.3 versicolor
-60           520         2.7          3.9         1.4 versicolor
-61           500         2.0          3.5         1.0 versicolor
-62           590         3.0          4.2         1.5 versicolor
-63           600         2.2          4.0         1.0 versicolor
-64           610         2.9          4.7         1.4 versicolor
-65           560         2.9          3.6         1.3 versicolor
-66           670         3.1          4.4         1.4 versicolor
-67           560         3.0          4.5         1.5 versicolor
-68           580         2.7          4.1         1.0 versicolor
-69           620         2.2          4.5         1.5 versicolor
-70           560         2.5          3.9         1.1 versicolor
-71           590         3.2          4.8         1.8 versicolor
-72           610         2.8          4.0         1.3 versicolor
-73           630         2.5          4.9         1.5 versicolor
-74           610         2.8          4.7         1.2 versicolor
-75           640         2.9          4.3         1.3 versicolor
-76           660         3.0          4.4         1.4 versicolor
-77           680         2.8          4.8         1.4 versicolor
-78           670         3.0          5.0         1.7 versicolor
-79           600         2.9          4.5         1.5 versicolor
-80           570         2.6          3.5         1.0 versicolor
-81           550         2.4          3.8         1.1 versicolor
-82           550         2.4          3.7         1.0 versicolor
-83           580         2.7          3.9         1.2 versicolor
-84           600         2.7          5.1         1.6 versicolor
-85           540         3.0          4.5         1.5 versicolor
-86           600         3.4          4.5         1.6 versicolor
-87           670         3.1          4.7         1.5 versicolor
-88           630         2.3          4.4         1.3 versicolor
-89           560         3.0          4.1         1.3 versicolor
-90           550         2.5          4.0         1.3 versicolor
-91           550         2.6          4.4         1.2 versicolor
-92           610         3.0          4.6         1.4 versicolor
-93           580         2.6          4.0         1.2 versicolor
-94           500         2.3          3.3         1.0 versicolor
-95           560         2.7          4.2         1.3 versicolor
-96           570         3.0          4.2         1.2 versicolor
-97           570         2.9          4.2         1.3 versicolor
-98           620         2.9          4.3         1.3 versicolor
-99           510         2.5          3.0         1.1 versicolor
-100          570         2.8          4.1         1.3 versicolor
-101          630         3.3          6.0         2.5  virginica
-102          580         2.7          5.1         1.9  virginica
-103          710         3.0          5.9         2.1  virginica
-104          630         2.9          5.6         1.8  virginica
-105          650         3.0          5.8         2.2  virginica
-106          760         3.0          6.6         2.1  virginica
-107          490         2.5          4.5         1.7  virginica
-108          730         2.9          6.3         1.8  virginica
-109          670         2.5          5.8         1.8  virginica
-110          720         3.6          6.1         2.5  virginica
-111          650         3.2          5.1         2.0  virginica
-112          640         2.7          5.3         1.9  virginica
-113          680         3.0          5.5         2.1  virginica
-114          570         2.5          5.0         2.0  virginica
-115          580         2.8          5.1         2.4  virginica
-116          640         3.2          5.3         2.3  virginica
-117          650         3.0          5.5         1.8  virginica
-118          770         3.8          6.7         2.2  virginica
-119          770         2.6          6.9         2.3  virginica
-120          600         2.2          5.0         1.5  virginica
-121          690         3.2          5.7         2.3  virginica
-122          560         2.8          4.9         2.0  virginica
-123          770         2.8          6.7         2.0  virginica
-124          630         2.7          4.9         1.8  virginica
-125          670         3.3          5.7         2.1  virginica
-126          720         3.2          6.0         1.8  virginica
-127          620         2.8          4.8         1.8  virginica
-128          610         3.0          4.9         1.8  virginica
-129          640         2.8          5.6         2.1  virginica
-130          720         3.0          5.8         1.6  virginica
-131          740         2.8          6.1         1.9  virginica
-132          790         3.8          6.4         2.0  virginica
-133          640         2.8          5.6         2.2  virginica
-134          630         2.8          5.1         1.5  virginica
-135          610         2.6          5.6         1.4  virginica
-136          770         3.0          6.1         2.3  virginica
-137          630         3.4          5.6         2.4  virginica
-138          640         3.1          5.5         1.8  virginica
-139          600         3.0          4.8         1.8  virginica
-140          690         3.1          5.4         2.1  virginica
-141          670         3.1          5.6         2.4  virginica
-142          690         3.1          5.1         2.3  virginica
-143          580         2.7          5.1         1.9  virginica
-144          680         3.2          5.9         2.3  virginica
-145          670         3.3          5.7         2.5  virginica
-146          670         3.0          5.2         2.3  virginica
-147          630         2.5          5.0         1.9  virginica
-148          650         3.0          5.2         2.0  virginica
-149          620         3.4          5.4         2.3  virginica
-150          590         3.0          5.1         1.8  virginica</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+1          5.1         3.5          1.4         0.2  setosa      setosa
+2          4.9         3.0          1.4         0.2  setosa      setosa
+3          4.7         3.2          1.3         0.2  setosa      setosa
+4          4.6         3.1          1.5         0.2  setosa      setosa
+5          5.0         3.6          1.4         0.2  setosa      setosa
+6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(stringr<span class="sc">::</span><span class="fu">str_detect</span>(Species, <span class="st">"^v"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">new_species =</span> Species)</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1            700         3.2          4.7         1.4 versicolor
-2            640         3.2          4.5         1.5 versicolor
-3            690         3.1          4.9         1.5 versicolor
-4            550         2.3          4.0         1.3 versicolor
-5            650         2.8          4.6         1.5 versicolor
-6            570         2.8          4.5         1.3 versicolor
-7            630         3.3          4.7         1.6 versicolor
-8            490         2.4          3.3         1.0 versicolor
-9            660         2.9          4.6         1.3 versicolor
-10           520         2.7          3.9         1.4 versicolor
-11           500         2.0          3.5         1.0 versicolor
-12           590         3.0          4.2         1.5 versicolor
-13           600         2.2          4.0         1.0 versicolor
-14           610         2.9          4.7         1.4 versicolor
-15           560         2.9          3.6         1.3 versicolor
-16           670         3.1          4.4         1.4 versicolor
-17           560         3.0          4.5         1.5 versicolor
-18           580         2.7          4.1         1.0 versicolor
-19           620         2.2          4.5         1.5 versicolor
-20           560         2.5          3.9         1.1 versicolor
-21           590         3.2          4.8         1.8 versicolor
-22           610         2.8          4.0         1.3 versicolor
-23           630         2.5          4.9         1.5 versicolor
-24           610         2.8          4.7         1.2 versicolor
-25           640         2.9          4.3         1.3 versicolor
-26           660         3.0          4.4         1.4 versicolor
-27           680         2.8          4.8         1.4 versicolor
-28           670         3.0          5.0         1.7 versicolor
-29           600         2.9          4.5         1.5 versicolor
-30           570         2.6          3.5         1.0 versicolor
-31           550         2.4          3.8         1.1 versicolor
-32           550         2.4          3.7         1.0 versicolor
-33           580         2.7          3.9         1.2 versicolor
-34           600         2.7          5.1         1.6 versicolor
-35           540         3.0          4.5         1.5 versicolor
-36           600         3.4          4.5         1.6 versicolor
-37           670         3.1          4.7         1.5 versicolor
-38           630         2.3          4.4         1.3 versicolor
-39           560         3.0          4.1         1.3 versicolor
-40           550         2.5          4.0         1.3 versicolor
-41           550         2.6          4.4         1.2 versicolor
-42           610         3.0          4.6         1.4 versicolor
-43           580         2.6          4.0         1.2 versicolor
-44           500         2.3          3.3         1.0 versicolor
-45           560         2.7          4.2         1.3 versicolor
-46           570         3.0          4.2         1.2 versicolor
-47           570         2.9          4.2         1.3 versicolor
-48           620         2.9          4.3         1.3 versicolor
-49           510         2.5          3.0         1.1 versicolor
-50           570         2.8          4.1         1.3 versicolor
-51           630         3.3          6.0         2.5  virginica
-52           580         2.7          5.1         1.9  virginica
-53           710         3.0          5.9         2.1  virginica
-54           630         2.9          5.6         1.8  virginica
-55           650         3.0          5.8         2.2  virginica
-56           760         3.0          6.6         2.1  virginica
-57           490         2.5          4.5         1.7  virginica
-58           730         2.9          6.3         1.8  virginica
-59           670         2.5          5.8         1.8  virginica
-60           720         3.6          6.1         2.5  virginica
-61           650         3.2          5.1         2.0  virginica
-62           640         2.7          5.3         1.9  virginica
-63           680         3.0          5.5         2.1  virginica
-64           570         2.5          5.0         2.0  virginica
-65           580         2.8          5.1         2.4  virginica
-66           640         3.2          5.3         2.3  virginica
-67           650         3.0          5.5         1.8  virginica
-68           770         3.8          6.7         2.2  virginica
-69           770         2.6          6.9         2.3  virginica
-70           600         2.2          5.0         1.5  virginica
-71           690         3.2          5.7         2.3  virginica
-72           560         2.8          4.9         2.0  virginica
-73           770         2.8          6.7         2.0  virginica
-74           630         2.7          4.9         1.8  virginica
-75           670         3.3          5.7         2.1  virginica
-76           720         3.2          6.0         1.8  virginica
-77           620         2.8          4.8         1.8  virginica
-78           610         3.0          4.9         1.8  virginica
-79           640         2.8          5.6         2.1  virginica
-80           720         3.0          5.8         1.6  virginica
-81           740         2.8          6.1         1.9  virginica
-82           790         3.8          6.4         2.0  virginica
-83           640         2.8          5.6         2.2  virginica
-84           630         2.8          5.1         1.5  virginica
-85           610         2.6          5.6         1.4  virginica
-86           770         3.0          6.1         2.3  virginica
-87           630         3.4          5.6         2.4  virginica
-88           640         3.1          5.5         1.8  virginica
-89           600         3.0          4.8         1.8  virginica
-90           690         3.1          5.4         2.1  virginica
-91           670         3.1          5.6         2.4  virginica
-92           690         3.1          5.1         2.3  virginica
-93           580         2.7          5.1         1.9  virginica
-94           680         3.2          5.9         2.3  virginica
-95           670         3.3          5.7         2.5  virginica
-96           670         3.0          5.2         2.3  virginica
-97           630         2.5          5.0         1.9  virginica
-98           650         3.0          5.2         2.0  virginica
-99           620         3.4          5.4         2.3  virginica
-100          590         3.0          5.1         1.8  virginica</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+1          5.1         3.5          1.4         0.2  setosa      setosa
+2          4.9         3.0          1.4         0.2  setosa      setosa
+3          4.7         3.2          1.3         0.2  setosa      setosa
+4          4.6         3.1          1.5         0.2  setosa      setosa
+5          5.0         3.6          1.4         0.2  setosa      setosa
+6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>stringr<span class="sc">::</span><span class="fu">str_detect</span>(Species, <span class="st">"^v"</span>)))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>また，既存の列を修正するのにも <code>mutate()</code> を使用します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>iris2<span class="sc">$</span>Sepal.Length <span class="ot">&lt;-</span> iris2<span class="sc">$</span>Sepal.Length <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+1          510         3.5          1.4         0.2  setosa      setosa
+2          490         3.0          1.4         0.2  setosa      setosa
+3          470         3.2          1.3         0.2  setosa      setosa
+4          460         3.1          1.5         0.2  setosa      setosa
+5          500         3.6          1.4         0.2  setosa      setosa
+6          540         3.9          1.7         0.4  setosa      setosa</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Sepal.Length =</span> Sepal.Length <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width Species
 1          510         3.5          1.4         0.2  setosa
@@ -832,20 +513,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="arrange" class="level4" data-number="1.2.4">
-<h4 data-number="1.2.4" class="anchored" data-anchor-id="arrange"><span class="header-section-number">1.2.4</span> arrange()</h4>
-</section>
-<section id="count" class="level4" data-number="1.2.5">
-<h4 data-number="1.2.5" class="anchored" data-anchor-id="count"><span class="header-section-number">1.2.5</span> count()</h4>
+<section id="count" class="level4" data-number="2.2.5">
+<h4 data-number="2.2.5" class="anchored" data-anchor-id="count"><span class="header-section-number">2.2.5</span> count()</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="fu">table</span>(iris<span class="sc">$</span>Species))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>        Var1 Freq
-1     setosa   50
-2 versicolor   50
-3  virginica   50</code></pre>
+<pre><code>
+    setosa versicolor  virginica 
+        50         50         50 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span> dplyr<span class="sc">::</span><span class="fu">count</span>(Species)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(Species)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>     Species  n
 1     setosa 50
@@ -854,368 +532,67 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </section>
-<section id="arrange-1" class="level4" data-number="1.2.6">
-<h4 data-number="1.2.6" class="anchored" data-anchor-id="arrange-1"><span class="header-section-number">1.2.6</span> arrange()</h4>
+<section id="arrange" class="level4" data-number="2.2.6">
+<h4 data-number="2.2.6" class="anchored" data-anchor-id="arrange"><span class="header-section-number">2.2.6</span> arrange()</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a>iris[<span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris[<span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-132          790         3.8          6.4         2.0  virginica
-118          770         3.8          6.7         2.2  virginica
-119          770         2.6          6.9         2.3  virginica
-123          770         2.8          6.7         2.0  virginica
-136          770         3.0          6.1         2.3  virginica
-106          760         3.0          6.6         2.1  virginica
-131          740         2.8          6.1         1.9  virginica
-108          730         2.9          6.3         1.8  virginica
-110          720         3.6          6.1         2.5  virginica
-126          720         3.2          6.0         1.8  virginica
-130          720         3.0          5.8         1.6  virginica
-103          710         3.0          5.9         2.1  virginica
-51           700         3.2          4.7         1.4 versicolor
-53           690         3.1          4.9         1.5 versicolor
-121          690         3.2          5.7         2.3  virginica
-140          690         3.1          5.4         2.1  virginica
-142          690         3.1          5.1         2.3  virginica
-77           680         2.8          4.8         1.4 versicolor
-113          680         3.0          5.5         2.1  virginica
-144          680         3.2          5.9         2.3  virginica
-66           670         3.1          4.4         1.4 versicolor
-78           670         3.0          5.0         1.7 versicolor
-87           670         3.1          4.7         1.5 versicolor
-109          670         2.5          5.8         1.8  virginica
-125          670         3.3          5.7         2.1  virginica
-141          670         3.1          5.6         2.4  virginica
-145          670         3.3          5.7         2.5  virginica
-146          670         3.0          5.2         2.3  virginica
-59           660         2.9          4.6         1.3 versicolor
-76           660         3.0          4.4         1.4 versicolor
-55           650         2.8          4.6         1.5 versicolor
-105          650         3.0          5.8         2.2  virginica
-111          650         3.2          5.1         2.0  virginica
-117          650         3.0          5.5         1.8  virginica
-148          650         3.0          5.2         2.0  virginica
-52           640         3.2          4.5         1.5 versicolor
-75           640         2.9          4.3         1.3 versicolor
-112          640         2.7          5.3         1.9  virginica
-116          640         3.2          5.3         2.3  virginica
-129          640         2.8          5.6         2.1  virginica
-133          640         2.8          5.6         2.2  virginica
-138          640         3.1          5.5         1.8  virginica
-57           630         3.3          4.7         1.6 versicolor
-73           630         2.5          4.9         1.5 versicolor
-88           630         2.3          4.4         1.3 versicolor
-101          630         3.3          6.0         2.5  virginica
-104          630         2.9          5.6         1.8  virginica
-124          630         2.7          4.9         1.8  virginica
-134          630         2.8          5.1         1.5  virginica
-137          630         3.4          5.6         2.4  virginica
-147          630         2.5          5.0         1.9  virginica
-69           620         2.2          4.5         1.5 versicolor
-98           620         2.9          4.3         1.3 versicolor
-127          620         2.8          4.8         1.8  virginica
-149          620         3.4          5.4         2.3  virginica
-64           610         2.9          4.7         1.4 versicolor
-72           610         2.8          4.0         1.3 versicolor
-74           610         2.8          4.7         1.2 versicolor
-92           610         3.0          4.6         1.4 versicolor
-128          610         3.0          4.9         1.8  virginica
-135          610         2.6          5.6         1.4  virginica
-63           600         2.2          4.0         1.0 versicolor
-79           600         2.9          4.5         1.5 versicolor
-84           600         2.7          5.1         1.6 versicolor
-86           600         3.4          4.5         1.6 versicolor
-120          600         2.2          5.0         1.5  virginica
-139          600         3.0          4.8         1.8  virginica
-62           590         3.0          4.2         1.5 versicolor
-71           590         3.2          4.8         1.8 versicolor
-150          590         3.0          5.1         1.8  virginica
-15           580         4.0          1.2         0.2     setosa
-68           580         2.7          4.1         1.0 versicolor
-83           580         2.7          3.9         1.2 versicolor
-93           580         2.6          4.0         1.2 versicolor
-102          580         2.7          5.1         1.9  virginica
-115          580         2.8          5.1         2.4  virginica
-143          580         2.7          5.1         1.9  virginica
-16           570         4.4          1.5         0.4     setosa
-19           570         3.8          1.7         0.3     setosa
-56           570         2.8          4.5         1.3 versicolor
-80           570         2.6          3.5         1.0 versicolor
-96           570         3.0          4.2         1.2 versicolor
-97           570         2.9          4.2         1.3 versicolor
-100          570         2.8          4.1         1.3 versicolor
-114          570         2.5          5.0         2.0  virginica
-65           560         2.9          3.6         1.3 versicolor
-67           560         3.0          4.5         1.5 versicolor
-70           560         2.5          3.9         1.1 versicolor
-89           560         3.0          4.1         1.3 versicolor
-95           560         2.7          4.2         1.3 versicolor
-122          560         2.8          4.9         2.0  virginica
-34           550         4.2          1.4         0.2     setosa
-37           550         3.5          1.3         0.2     setosa
-54           550         2.3          4.0         1.3 versicolor
-81           550         2.4          3.8         1.1 versicolor
-82           550         2.4          3.7         1.0 versicolor
-90           550         2.5          4.0         1.3 versicolor
-91           550         2.6          4.4         1.2 versicolor
-6            540         3.9          1.7         0.4     setosa
-11           540         3.7          1.5         0.2     setosa
-17           540         3.9          1.3         0.4     setosa
-21           540         3.4          1.7         0.2     setosa
-32           540         3.4          1.5         0.4     setosa
-85           540         3.0          4.5         1.5 versicolor
-49           530         3.7          1.5         0.2     setosa
-28           520         3.5          1.5         0.2     setosa
-29           520         3.4          1.4         0.2     setosa
-33           520         4.1          1.5         0.1     setosa
-60           520         2.7          3.9         1.4 versicolor
-1            510         3.5          1.4         0.2     setosa
-18           510         3.5          1.4         0.3     setosa
-20           510         3.8          1.5         0.3     setosa
-22           510         3.7          1.5         0.4     setosa
-24           510         3.3          1.7         0.5     setosa
-40           510         3.4          1.5         0.2     setosa
-45           510         3.8          1.9         0.4     setosa
-47           510         3.8          1.6         0.2     setosa
-99           510         2.5          3.0         1.1 versicolor
-5            500         3.6          1.4         0.2     setosa
-8            500         3.4          1.5         0.2     setosa
-26           500         3.0          1.6         0.2     setosa
-27           500         3.4          1.6         0.4     setosa
-36           500         3.2          1.2         0.2     setosa
-41           500         3.5          1.3         0.3     setosa
-44           500         3.5          1.6         0.6     setosa
-50           500         3.3          1.4         0.2     setosa
-61           500         2.0          3.5         1.0 versicolor
-94           500         2.3          3.3         1.0 versicolor
-2            490         3.0          1.4         0.2     setosa
-10           490         3.1          1.5         0.1     setosa
-35           490         3.1          1.5         0.2     setosa
-38           490         3.6          1.4         0.1     setosa
-58           490         2.4          3.3         1.0 versicolor
-107          490         2.5          4.5         1.7  virginica
-12           480         3.4          1.6         0.2     setosa
-13           480         3.0          1.4         0.1     setosa
-25           480         3.4          1.9         0.2     setosa
-31           480         3.1          1.6         0.2     setosa
-46           480         3.0          1.4         0.3     setosa
-3            470         3.2          1.3         0.2     setosa
-30           470         3.2          1.6         0.2     setosa
-4            460         3.1          1.5         0.2     setosa
-7            460         3.4          1.4         0.3     setosa
-23           460         3.6          1.0         0.2     setosa
-48           460         3.2          1.4         0.2     setosa
-42           450         2.3          1.3         0.3     setosa
-9            440         2.9          1.4         0.2     setosa
-39           440         3.0          1.3         0.2     setosa
-43           440         3.2          1.3         0.2     setosa
-14           430         3.0          1.1         0.1     setosa</code></pre>
+<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+132          7.9         3.8          6.4         2.0 virginica
+118          7.7         3.8          6.7         2.2 virginica
+119          7.7         2.6          6.9         2.3 virginica
+123          7.7         2.8          6.7         2.0 virginica
+136          7.7         3.0          6.1         2.3 virginica
+106          7.6         3.0          6.6         2.1 virginica</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(Sepal.Length))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
-1            790         3.8          6.4         2.0  virginica
-2            770         3.8          6.7         2.2  virginica
-3            770         2.6          6.9         2.3  virginica
-4            770         2.8          6.7         2.0  virginica
-5            770         3.0          6.1         2.3  virginica
-6            760         3.0          6.6         2.1  virginica
-7            740         2.8          6.1         1.9  virginica
-8            730         2.9          6.3         1.8  virginica
-9            720         3.6          6.1         2.5  virginica
-10           720         3.2          6.0         1.8  virginica
-11           720         3.0          5.8         1.6  virginica
-12           710         3.0          5.9         2.1  virginica
-13           700         3.2          4.7         1.4 versicolor
-14           690         3.1          4.9         1.5 versicolor
-15           690         3.2          5.7         2.3  virginica
-16           690         3.1          5.4         2.1  virginica
-17           690         3.1          5.1         2.3  virginica
-18           680         2.8          4.8         1.4 versicolor
-19           680         3.0          5.5         2.1  virginica
-20           680         3.2          5.9         2.3  virginica
-21           670         3.1          4.4         1.4 versicolor
-22           670         3.0          5.0         1.7 versicolor
-23           670         3.1          4.7         1.5 versicolor
-24           670         2.5          5.8         1.8  virginica
-25           670         3.3          5.7         2.1  virginica
-26           670         3.1          5.6         2.4  virginica
-27           670         3.3          5.7         2.5  virginica
-28           670         3.0          5.2         2.3  virginica
-29           660         2.9          4.6         1.3 versicolor
-30           660         3.0          4.4         1.4 versicolor
-31           650         2.8          4.6         1.5 versicolor
-32           650         3.0          5.8         2.2  virginica
-33           650         3.2          5.1         2.0  virginica
-34           650         3.0          5.5         1.8  virginica
-35           650         3.0          5.2         2.0  virginica
-36           640         3.2          4.5         1.5 versicolor
-37           640         2.9          4.3         1.3 versicolor
-38           640         2.7          5.3         1.9  virginica
-39           640         3.2          5.3         2.3  virginica
-40           640         2.8          5.6         2.1  virginica
-41           640         2.8          5.6         2.2  virginica
-42           640         3.1          5.5         1.8  virginica
-43           630         3.3          4.7         1.6 versicolor
-44           630         2.5          4.9         1.5 versicolor
-45           630         2.3          4.4         1.3 versicolor
-46           630         3.3          6.0         2.5  virginica
-47           630         2.9          5.6         1.8  virginica
-48           630         2.7          4.9         1.8  virginica
-49           630         2.8          5.1         1.5  virginica
-50           630         3.4          5.6         2.4  virginica
-51           630         2.5          5.0         1.9  virginica
-52           620         2.2          4.5         1.5 versicolor
-53           620         2.9          4.3         1.3 versicolor
-54           620         2.8          4.8         1.8  virginica
-55           620         3.4          5.4         2.3  virginica
-56           610         2.9          4.7         1.4 versicolor
-57           610         2.8          4.0         1.3 versicolor
-58           610         2.8          4.7         1.2 versicolor
-59           610         3.0          4.6         1.4 versicolor
-60           610         3.0          4.9         1.8  virginica
-61           610         2.6          5.6         1.4  virginica
-62           600         2.2          4.0         1.0 versicolor
-63           600         2.9          4.5         1.5 versicolor
-64           600         2.7          5.1         1.6 versicolor
-65           600         3.4          4.5         1.6 versicolor
-66           600         2.2          5.0         1.5  virginica
-67           600         3.0          4.8         1.8  virginica
-68           590         3.0          4.2         1.5 versicolor
-69           590         3.2          4.8         1.8 versicolor
-70           590         3.0          5.1         1.8  virginica
-71           580         4.0          1.2         0.2     setosa
-72           580         2.7          4.1         1.0 versicolor
-73           580         2.7          3.9         1.2 versicolor
-74           580         2.6          4.0         1.2 versicolor
-75           580         2.7          5.1         1.9  virginica
-76           580         2.8          5.1         2.4  virginica
-77           580         2.7          5.1         1.9  virginica
-78           570         4.4          1.5         0.4     setosa
-79           570         3.8          1.7         0.3     setosa
-80           570         2.8          4.5         1.3 versicolor
-81           570         2.6          3.5         1.0 versicolor
-82           570         3.0          4.2         1.2 versicolor
-83           570         2.9          4.2         1.3 versicolor
-84           570         2.8          4.1         1.3 versicolor
-85           570         2.5          5.0         2.0  virginica
-86           560         2.9          3.6         1.3 versicolor
-87           560         3.0          4.5         1.5 versicolor
-88           560         2.5          3.9         1.1 versicolor
-89           560         3.0          4.1         1.3 versicolor
-90           560         2.7          4.2         1.3 versicolor
-91           560         2.8          4.9         2.0  virginica
-92           550         4.2          1.4         0.2     setosa
-93           550         3.5          1.3         0.2     setosa
-94           550         2.3          4.0         1.3 versicolor
-95           550         2.4          3.8         1.1 versicolor
-96           550         2.4          3.7         1.0 versicolor
-97           550         2.5          4.0         1.3 versicolor
-98           550         2.6          4.4         1.2 versicolor
-99           540         3.9          1.7         0.4     setosa
-100          540         3.7          1.5         0.2     setosa
-101          540         3.9          1.3         0.4     setosa
-102          540         3.4          1.7         0.2     setosa
-103          540         3.4          1.5         0.4     setosa
-104          540         3.0          4.5         1.5 versicolor
-105          530         3.7          1.5         0.2     setosa
-106          520         3.5          1.5         0.2     setosa
-107          520         3.4          1.4         0.2     setosa
-108          520         4.1          1.5         0.1     setosa
-109          520         2.7          3.9         1.4 versicolor
-110          510         3.5          1.4         0.2     setosa
-111          510         3.5          1.4         0.3     setosa
-112          510         3.8          1.5         0.3     setosa
-113          510         3.7          1.5         0.4     setosa
-114          510         3.3          1.7         0.5     setosa
-115          510         3.4          1.5         0.2     setosa
-116          510         3.8          1.9         0.4     setosa
-117          510         3.8          1.6         0.2     setosa
-118          510         2.5          3.0         1.1 versicolor
-119          500         3.6          1.4         0.2     setosa
-120          500         3.4          1.5         0.2     setosa
-121          500         3.0          1.6         0.2     setosa
-122          500         3.4          1.6         0.4     setosa
-123          500         3.2          1.2         0.2     setosa
-124          500         3.5          1.3         0.3     setosa
-125          500         3.5          1.6         0.6     setosa
-126          500         3.3          1.4         0.2     setosa
-127          500         2.0          3.5         1.0 versicolor
-128          500         2.3          3.3         1.0 versicolor
-129          490         3.0          1.4         0.2     setosa
-130          490         3.1          1.5         0.1     setosa
-131          490         3.1          1.5         0.2     setosa
-132          490         3.6          1.4         0.1     setosa
-133          490         2.4          3.3         1.0 versicolor
-134          490         2.5          4.5         1.7  virginica
-135          480         3.4          1.6         0.2     setosa
-136          480         3.0          1.4         0.1     setosa
-137          480         3.4          1.9         0.2     setosa
-138          480         3.1          1.6         0.2     setosa
-139          480         3.0          1.4         0.3     setosa
-140          470         3.2          1.3         0.2     setosa
-141          470         3.2          1.6         0.2     setosa
-142          460         3.1          1.5         0.2     setosa
-143          460         3.4          1.4         0.3     setosa
-144          460         3.6          1.0         0.2     setosa
-145          460         3.2          1.4         0.2     setosa
-146          450         2.3          1.3         0.3     setosa
-147          440         2.9          1.4         0.2     setosa
-148          440         3.0          1.3         0.2     setosa
-149          440         3.2          1.3         0.2     setosa
-150          430         3.0          1.1         0.1     setosa</code></pre>
+<pre><code>  Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+1          7.9         3.8          6.4         2.0 virginica
+2          7.7         3.8          6.7         2.2 virginica
+3          7.7         2.6          6.9         2.3 virginica
+4          7.7         2.8          6.7         2.0 virginica
+5          7.7         3.0          6.1         2.3 virginica
+6          7.6         3.0          6.6         2.1 virginica</code></pre>
 </div>
 </div>
 </section>
-<section id="summarise" class="level4" data-number="1.2.7">
-<h4 data-number="1.2.7" class="anchored" data-anchor-id="summarise"><span class="header-section-number">1.2.7</span> summarise()</h4>
+<section id="summarise" class="level4" data-number="2.2.7">
+<h4 data-number="2.2.7" class="anchored" data-anchor-id="summarise"><span class="header-section-number">2.2.7</span> summarise()</h4>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">split</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Species), mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">split</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Species), mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>    setosa versicolor  virginica 
-     500.6      593.6      658.8 </code></pre>
+     5.006      5.936      6.588 </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb61-2"><a href="#cb61-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb61-3"><a href="#cb61-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">value =</span> <span class="fu">mean</span>(Sepal.Length))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">value =</span> <span class="fu">mean</span>(Sepal.Length), <span class="at">.by =</span> Species)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-  Species    value
-  &lt;fct&gt;      &lt;dbl&gt;
-1 setosa      501.
-2 versicolor  594.
-3 virginica   659.</code></pre>
+<pre><code>     Species value
+1     setosa 5.006
+2 versicolor 5.936
+3  virginica 6.588</code></pre>
 </div>
 </div>
 </section>
-<section id="group_by" class="level4" data-number="1.2.8">
-<h4 data-number="1.2.8" class="anchored" data-anchor-id="group_by"><span class="header-section-number">1.2.8</span> group_by</h4>
+</section>
+</section>
+<section id="練習問題" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="練習問題"><span class="header-section-number">3</span> 練習問題</h2>
+<ol type="1">
+<li>次のデータフレーム <code>z</code> があるとする。<code>z</code> を使って，2000年以降の <code>value</code> の値の平均を求めなさい。ただし，ここでは tidyverse を用いなさい。</li>
+</ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">split</span>(iris, iris<span class="sc">$</span>Species), nrow)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>    setosa versicolor  virginica 
-        50         50         50 </code></pre>
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2021</span></span>
+<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5030</span>, <span class="dv">2</span>)</span>
+<span id="cb73-3"><a href="#cb73-3" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Species) <span class="sc">|&gt;</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 3 × 2
-# Groups:   Species [3]
-  Species        n
-  &lt;fct&gt;      &lt;int&gt;
-1 setosa        50
-2 versicolor    50
-3 virginica     50</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="readr" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="readr"><span class="header-section-number">1.3</span> readr</h3>
-<p><a href="https://readr.tidyverse.org/">readr</a></p>
-</section>
+<ol start="2" type="1">
+<li>ポケモンの中から，tidyverse を用いて，water タイプのポケモンをすべて挙げなさい。 ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。</li>
+</ol>
 </section>
 
 </main>
@@ -1255,18 +632,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1298,11 +664,48 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
-  function tippyHover(el, contentFn) {
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1312,8 +715,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1325,7 +737,129 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1369,6 +903,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1394,6 +929,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1454,6 +1015,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+
 
 
 

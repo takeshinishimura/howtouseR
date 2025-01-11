@@ -424,8 +424,7 @@ x(c("Apple", "Orange"))
 
 ## 練習問題
 
-
-1. 次のデータフレーム `z` があるとする。`z` を使って，2000年以降の `value` の値の平均を求めなさい。[基礎](basics.html)の練習問題と同じです。ただし，ここでは比較演算子を用いてください。
+1. 次のデータフレーム `z` があるとする。`z` を使って，2000年以降の `value` の値の平均を求めなさい。[基礎](basics.html)の練習問題と同じです。ただし，ここでは比較演算子を用いなさい。
 ```{r}
 #| eval: false
 x <- 1990:2021
@@ -443,5 +442,5 @@ z <- data.frame(year = x, value = y)
 #| eval: false
 #| include: false
 library(d3po)
-pokemon[c(which(pokemon$type_1 == "water"), which(pokemon$type_2 == "water")), ]$name
+pokemon[which(pokemon$type_1 == "water" | pokemon$type_2 == "water"), ]$name
 ```
