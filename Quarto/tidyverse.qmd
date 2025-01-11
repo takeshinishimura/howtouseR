@@ -226,9 +226,9 @@ iris |>
 iris2 <- iris
 iris2$new_species <- iris2$Species
 head(iris2)
-iris2 <- iris |>
-  dplyr::mutate(new_species = Species)
-head(iris2)
+iris |>
+  dplyr::mutate(new_species = Species) |>
+  head()
 ```
 
 また，既存の列を修正するのにも `mutate()` を使用します。
