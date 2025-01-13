@@ -93,6 +93,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#arrange" id="toc-arrange" class="nav-link" data-scroll-target="#arrange"><span class="header-section-number">2.2.6</span> arrange()</a></li>
   <li><a href="#summarise" id="toc-summarise" class="nav-link" data-scroll-target="#summarise"><span class="header-section-number">2.2.7</span> summarise()</a></li>
   </ul></li>
+  <li><a href="#どちらを使えばよいのか" id="toc-どちらを使えばよいのか" class="nav-link" data-scroll-target="#どちらを使えばよいのか"><span class="header-section-number">2.3</span> どちらを使えばよいのか</a></li>
   </ul></li>
   <li><a href="#練習問題" id="toc-練習問題" class="nav-link" data-scroll-target="#練習問題"><span class="header-section-number">3</span> 練習問題</a></li>
   </ul>
@@ -113,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2025年1月11日</p>
+      <p class="date">2025年1月13日</p>
     </div>
   </div>
   
@@ -578,6 +579,18 @@ Levels: setosa versicolor virginica</code></pre>
 </div>
 </div>
 </section>
+</section>
+<section id="どちらを使えばよいのか" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="どちらを使えばよいのか"><span class="header-section-number">2.3</span> どちらを使えばよいのか</h3>
+<p>base R と tidyverse の違いがわかったところで，次に考えるべきは「どちらを使うべきか」という問題です。 結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。</p>
+<p>ここで「使いやすい」という言葉には，次の2つの側面が含まれています。</p>
+<ol type="1">
+<li>自分がコードを理解しやすいこと。</li>
+<li>他人がコードを理解しやすいこと。</li>
+</ol>
+<p>個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。 一方で，常に最適とは限りません。 例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方がわかりやすくなることもあります。</p>
+<p>コードの可読性には重要な意味があります。 理解しにくいコードはバグが発生しやすくなる一方で，可読性の高いコードは必ずしも処理速度が最速ではない場合があります。 このトレードオフを考慮して選択する必要があります。</p>
+<p>また，個人的な感覚としては，tidyverse は柔軟性が高くモダンなイメージがあり，base R には伝統的で安定感のあるイメージがあります。 ただし，いずれを選ぶ場合でも，冗長で無駄の多いコードは避けるべきです。 効率的で簡潔な記述を心がけることが大切です。</p>
 </section>
 </section>
 <section id="練習問題" class="level2" data-number="3">
