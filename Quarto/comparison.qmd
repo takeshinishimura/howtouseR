@@ -318,7 +318,7 @@ setequal(x, y)
 例えば，インストールしていないパッケージ名を知りたいときは次のようにします。
 ```{r}
 #| eval: false
-installed <- names(installed.packages()[ , "Package"])
+installed <- unname(installed.packages()[, "Package"])
 available <- rownames(available.packages())
 uninstalled <- setdiff(available, installed)
 ```
