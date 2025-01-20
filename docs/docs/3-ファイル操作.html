@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>3 ファイル操作 | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="3 ファイル操作 | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="3 ファイル操作 | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="2-基礎.html"/>
+<link rel="next" href="4-比較演算.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Rの使い方</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
+<li class="chapter" data-level="1.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#基本操作"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#四則演算"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#変数"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#関数"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#ベクトル"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#パッケージ"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#練習問題"><i class="fa fa-check"></i><b>1.3</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-基礎.html"><a href="2-基礎.html"><i class="fa fa-check"></i><b>2</b> 基礎</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-基礎.html"><a href="2-基礎.html#データの型"><i class="fa fa-check"></i><b>2.1</b> データの型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2-基礎.html"><a href="2-基礎.html#数値"><i class="fa fa-check"></i><b>2.1.1</b> 数値</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-基礎.html"><a href="2-基礎.html#文字列"><i class="fa fa-check"></i><b>2.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-基礎.html"><a href="2-基礎.html#ファクター"><i class="fa fa-check"></i><b>2.1.3</b> ファクター</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-基礎.html"><a href="2-基礎.html#論理値"><i class="fa fa-check"></i><b>2.1.4</b> 論理値</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-基礎.html"><a href="2-基礎.html#データの構造"><i class="fa fa-check"></i><b>2.2</b> データの構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2-基礎.html"><a href="2-基礎.html#ベクトル-1"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-基礎.html"><a href="2-基礎.html#名前付きベクトル"><i class="fa fa-check"></i><b>2.2.2</b> 名前付きベクトル</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-基礎.html"><a href="2-基礎.html#行列"><i class="fa fa-check"></i><b>2.2.3</b> 行列</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-基礎.html"><a href="2-基礎.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-基礎.html"><a href="2-基礎.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-基礎.html"><a href="2-基礎.html#特殊記号"><i class="fa fa-check"></i><b>2.3</b> 特殊記号</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2-基礎.html"><a href="2-基礎.html#コメント"><i class="fa fa-check"></i><b>2.3.1</b> コメント</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-基礎.html"><a href="2-基礎.html#セミコロン"><i class="fa fa-check"></i><b>2.3.2</b> セミコロン</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-基礎.html"><a href="2-基礎.html#評価と同時に返り値を表示"><i class="fa fa-check"></i><b>2.3.3</b> 評価と同時に返り値を表示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-基礎.html"><a href="2-基礎.html#入門書"><i class="fa fa-check"></i><b>2.4</b> 入門書</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2-基礎.html"><a href="2-基礎.html#チートシート"><i class="fa fa-check"></i><b>2.4.1</b> チートシート</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-基礎.html"><a href="2-基礎.html#練習問題-1"><i class="fa fa-check"></i><b>2.5</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html"><i class="fa fa-check"></i><b>3</b> ファイル操作</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイルの読み込み"><i class="fa fa-check"></i><b>3.1</b> ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎"><i class="fa fa-check"></i><b>3.2</b> ディレクトリ構造とファイル管理の基礎</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造"><i class="fa fa-check"></i><b>3.2.1</b> ディレクトリ構造</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル管理"><i class="fa fa-check"></i><b>3.2.2</b> ファイル管理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
+<li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#tips-2"><i class="fa fa-check"></i><b>3.5.1</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル出力"><i class="fa fa-check"></i><b>3.6</b> ファイル出力</a></li>
+<li class="chapter" data-level="3.7" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#microsoft-365"><i class="fa fa-check"></i><b>3.7</b> Microsoft 365</a></li>
+<li class="chapter" data-level="3.8" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ロケールの変更"><i class="fa fa-check"></i><b>3.8</b> ロケールの変更</a></li>
+<li class="chapter" data-level="3.9" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#unicodeエスケープシーケンス"><i class="fa fa-check"></i><b>3.9</b> Unicodeエスケープシーケンス</a></li>
+<li class="chapter" data-level="3.10" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#練習問題-2"><i class="fa fa-check"></i><b>3.10</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-比較演算.html"><a href="4-比較演算.html"><i class="fa fa-check"></i><b>4</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-比較演算.html"><a href="4-比較演算.html#比較演算-1"><i class="fa fa-check"></i><b>4.1</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4-比較演算.html"><a href="4-比較演算.html#数値-1"><i class="fa fa-check"></i><b>4.1.1</b> 数値</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-比較演算.html"><a href="4-比較演算.html#文字列-1"><i class="fa fa-check"></i><b>4.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-比較演算.html"><a href="4-比較演算.html#正規表現"><i class="fa fa-check"></i><b>4.1.3</b> 正規表現</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-比較演算.html"><a href="4-比較演算.html#集合"><i class="fa fa-check"></i><b>4.1.4</b> 集合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-比較演算.html"><a href="4-比較演算.html#条件分岐"><i class="fa fa-check"></i><b>4.2</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.3" data-path="4-比較演算.html"><a href="4-比較演算.html#繰り返し処理"><i class="fa fa-check"></i><b>4.3</b> 繰り返し処理</a></li>
+<li class="chapter" data-level="4.4" data-path="4-比較演算.html"><a href="4-比較演算.html#データクリーニング"><i class="fa fa-check"></i><b>4.4</b> データ・クリーニング</a></li>
+<li class="chapter" data-level="4.5" data-path="4-比較演算.html"><a href="4-比較演算.html#関数の作成"><i class="fa fa-check"></i><b>4.5</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.6" data-path="4-比較演算.html"><a href="4-比較演算.html#練習問題-3"><i class="fa fa-check"></i><b>4.6</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-作図.html"><a href="5-作図.html"><i class="fa fa-check"></i><b>5</b> 作図</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-作図.html"><a href="5-作図.html#どんな図を作成できるのか"><i class="fa fa-check"></i><b>5.1</b> どんな図を作成できるのか</a></li>
+<li class="chapter" data-level="5.2" data-path="5-作図.html"><a href="5-作図.html#プロット"><i class="fa fa-check"></i><b>5.2</b> プロット</a></li>
+<li class="chapter" data-level="5.3" data-path="5-作図.html"><a href="5-作図.html#保存"><i class="fa fa-check"></i><b>5.3</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-tidyverse.html"><a href="6-tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#base-r"><i class="fa fa-check"></i><b>6.1</b> base R</a></li>
+<li class="chapter" data-level="6.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#tidyverse-1"><i class="fa fa-check"></i><b>6.2</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#データフレーム-1"><i class="fa fa-check"></i><b>6.2.1</b> データフレーム</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#よく使う関数"><i class="fa fa-check"></i><b>6.2.2</b> よく使う関数</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#どちらを使えばよいのか"><i class="fa fa-check"></i><b>6.2.3</b> どちらを使えばよいのか</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#練習問題-4"><i class="fa fa-check"></i><b>6.3</b> 練習問題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ファイル操作" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">3</span> ファイル操作<a href="3-ファイル操作.html#ファイル操作" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>今回は，Rにおけるファイル操作について学びます。
+とくにRのコンソールがいまどこにいるかを意識していないと，ファイルの読み書きに支障を来します。
+コマンドラインに不慣れな人はこのあたりで躓く可能性があります。</p>
+<div id="ファイルの読み込み" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> ファイルの読み込み<a href="3-ファイル操作.html#ファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードします。
+これをRに読み込んでみましょう。
+例えば，<code>addresses.csv</code>をダウンロードした場合，次のコマンドで読み込めます。</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="3-ファイル操作.html#cb201-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;addresses.csv&quot;</span>)</span></code></pre></div>
+<p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。
+拡張子は省略してはいけません。
+もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。</p>
+<div class="float">
+<img src="./Windows_extension.png" alt="Windowsの拡張子表示" />
+<div class="figcaption">Windowsの拡張子表示</div>
+</div>
+<p>上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。</p>
+<ol style="list-style-type: decimal">
+<li>ダウンロードしたファイルを作業ディレクトリ（working directory）に移動する。</li>
+<li>ダウンロードしたファイルへの絶対パスを指定する。</li>
+</ol>
+<p>そもそもの話として，<a href="https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">CUI</a> に慣れていない人は，このファイル操作の内容がさっぱり分からないかもしれません。
+現代のOSは，<a href="https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9" target="_blank">GUI</a> であるため，無理もない話です。
+そこで，ここで簡単にディレクトリ構造とファイル管理の話をしておきます。</p>
+</div>
+<div id="ディレクトリ構造とファイル管理の基礎" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> ディレクトリ構造とファイル管理の基礎<a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="ディレクトリ構造" class="section level3 hasAnchor" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> ディレクトリ構造<a href="3-ファイル操作.html#ディレクトリ構造" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まず，Windowsのディレクトリ構造について説明します。
+macOSもほぼ同じです。</p>
+<p>Rを起動した時，Rコンソールは次の場所（フォルダ）にいます。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  style doc fill:#f96,stroke:#333</code></pre>
+<p>「いる」というのは，Explorer（Windowsの場合）やFinder（macOSの場合）でその場所を開いていることと同じだと思ってください。
+Rは，この場所で作業をします。
+ここで，<code>ユーザ名</code> は今使っているパソコンにログインしているユーザ名のことで，パソコンにログインしているユーザよって異なります。
+OneDriveで同期していない人は，次の場所にいるかもしれません。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  style Documents fill:#f96,stroke:#333</code></pre>
+<p>以下では，OneDriveで同期していない人に限定した説明となっている場合がありますので，適宜読み替えてください。</p>
+<p>この図の線の部分を <code>/</code> で置き換えると，CUIで表現できます。
+つまり，上の図はCUIでは <code>C:/Users/ユーザ名/Documents</code> または <code>C:/Users/ユーザ名/OneDrive/ドキュメント</code> と表現します（Windowsの場合，<code>/</code> を <code>¥</code> や <code>\</code> で表現する場合もあります）。</p>
+<p>macOSの場合は，次の場所にいます。</p>
+<pre class="mermaid"><code>graph LR
+  / --- Users
+  Users --- username[ユーザ名]
+  style username fill:#f96,stroke:#333</code></pre>
+<p>macOSは，Windowsの <code>C:</code> のようなドライブレターが存在せず，ルートディレクトリ <code>/</code> から始まります。
+以下では，macOSの説明はしませんので，適宜読み替えてください。</p>
+<p>一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の <code>Downloads</code> にあるはずです。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- dow[Downloads]
+  style dow fill:#f96,stroke:#333</code></pre>
+<p><code>Downloads</code> はカタカナで <code>ダウンロード</code> という表記になっているかもしれません。</p>
+<p>以下の説明では，これらのことが理解できていることを前提としています。</p>
+</div>
+<div id="ファイル管理" class="section level3 hasAnchor" number="3.2.2">
+<h3><span class="header-section-number">3.2.2</span> ファイル管理<a href="3-ファイル操作.html#ファイル管理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>続いて，ファイル管理について説明します。
+これは，Rとは直接は関係ありません。
+パソコンの中のファイルの整理方法の説明です。</p>
+<p>人によってファイルの整理方法は異なります。
+このため，ここに書いてある通りにすべきということではありません。
+ただし，以下の説明はここに書いてあることを想定しています。</p>
+<p>自分で作ったWordやExcelのファイルだけでなく，インターネットからダウンロードしたファイルは，<code>ドキュメント</code> 以下の関連するフォルダに移動させることを強くおすすめします。
+そうしないと，<code>ダウンロード</code> フォルダが訳が分からない状態になってしまいます。</p>
+<p><code>ドキュメント</code> フォルダも同様で，何もルールを決めずにファイルを保存していると，何が何だか分からなくなってしまいます。
+そこで，<code>ドキュメント</code> の中にフォルダを作ります。
+フォルダの名前は自分で決めてください。
+そのフォルダに関連するファイルをフォルダの中に入れていきます。
+これらの作業は，Explorer（またはFinder）上で，マウスやトラックパッドを使って行ってください。
+そのフォルダの中に，新たなフォルダを作ります。
+このフォルダの名前も自分で決めてください。
+こうして作成したフォルダは，ツリー状に表現できます。</p>
+<p>前節の図の <code>ドキュメント</code> 以下のフォルダ構造の例を示すと，以下のようになります。</p>
+<pre class="mermaid"><code>flowchart LR
+  ドキュメント --- 大学
+  ドキュメント --- 就職活動
+  大学 --- 学部
+  大学 --- 大学院
+  学部 --- 1年
+  学部 --- 2年
+  学部 --- 3年
+  学部 --- 4年
+  4年 --- 授業科目A
+  4年 --- 授業科目B
+  授業科目A --- lastweek[2025年1月21日]
+  授業科目A --- today[2025年1月28日]
+  授業科目A --- data
+  授業科目B --- lastweek2[第1回]
+  授業科目B --- today2[第2回]
+  style lastweek fill:#f96,stroke:#333
+  style today fill:#f96,stroke:#333
+  style data fill:#f96,stroke:#333</code></pre>
+<p><code>就職活動</code> を <code>大学</code> の中に入れたい人やまったく別のフォルダ構造にしたい人もいるでしょう。
+自分の好きなようにしてください。
+ただし，以下の説明では，日付のフォルダに，Rスクリプトや授業に関連するファイルを入れ，<code>data</code> フォルダにダウンロードしたファイルを入れることを想定した説明をします。</p>
+<p>自分なりに分かりやすいフォルダを作って，ファイルを整理してください。</p>
+</div>
+</div>
+<div id="作業ディレクトリ" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> 作業ディレクトリ<a href="3-ファイル操作.html#作業ディレクトリ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>対処方法の1つ目は，Explorer（またはFinder）でのファイル操作を伴います。
+ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。
+ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。
+ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="3-ファイル操作.html#cb207-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p>ただし，このコマンドの返り値のディレクトリで<strong>本当に</strong>よいかは，その人によります。
+といっても分からないと思いますので，作業ディレクトリは次の方法で変更しましょう。</p>
+<p>Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。
+macOSの場合，メニューの[その他]→[作業ディレクトリの変更…]から作業ディレクトリを変更します。
+ここで，先ほどCSVファイルがダウンロードされたディレクトリを指定すればよいです。
+しかしながら，ここでは，<strong>作業ディレクトリをどこかに決める</strong>ことをおすすめします。
+作業ディレクトリはRを終了すると初期化されます（デフォルト値に戻る）ので，Rを起動するたびに毎回，この操作を行います。
+毎回同じ場所でもよいですし，通常は目的（プロジェクト，論文，授業など）ごとに変更すべきでしょう。
+どこを作業ディレクトリにするかは自分で決めてください。
+Rに関連するファイルしか存在しないディレクトリを作成しておくと，作業がしやすいです。</p>
+<p>例えば，<code>ドキュメント</code> ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。
+そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。</p>
+<div id="rのコードの保存" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Rのコードの保存<a href="3-ファイル操作.html#rのコードの保存" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。
+通常，コードはテキストエディタを使って書きます。
+文字を書くのにMicrosoft Wordしか使ったことがない人が多いので，テキストエディタと言われてもよくわからないと思います。</p>
+<p>テキストエディタは，Windowsの場合は <a href="https://hide.maruo.co.jp/software/hidemaru.html" target="_blank">秀丸エディタ</a> が有名で，おすすめです。
+秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（Windowsのメモ帳は改行コードに関連するバグを経験したことがあるため，あまりおすすめしません）。
+他に，<a href="https://sakura-editor.github.io/" target="_blank">サクラエディタ</a> や <a href="https://notepad-plus-plus.org/" target="_blank">Notepad++</a> などがあります。
+一方，macOSの場合はOS標準の テキストエディット.app がおすすめです。</p>
+<p>また，OSに関係なく，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> を使うのもよいかもしれません。
+Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。
+ただし，<a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> は多機能であるため，Rを直接実行できるのですが，Rに慣れないうちはRと <a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a> をコピー&amp;ペーストで行き来しながら，コードはRコンソールから実行するようにしてください。</p>
+<p>Rのコードが書かれたファイルは，拡張子を <code>R</code> として，文字コードがUTF-8のテキストファイルとして保存します。
+拡張子が <code>R</code> のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。
+OSで関連付けてもいいですし，毎回ファイルを右クリックして開くアプリケーションを選んだとしても，それほど苦ではないと思います。
+（この作業が苦痛な人にはRは向かないのではないでしょうか。）</p>
+</div>
+<div id="作業ディレクトリの変更" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> 作業ディレクトリの変更<a href="3-ファイル操作.html#作業ディレクトリの変更" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。
+次のコマンドを知っておくと便利です。</p>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="3-ファイル操作.html#cb208-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p>このコマンドの <code>""</code> の中には，自分のパソコンのディレクトリ構造の中のある特定の場所を指定します。
+この場所は，Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。
+このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。
+ここで行っているのは，作業ディレクトリの変更です。</p>
+<p>実際の使用時には，例えば，次のように書きます。</p>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="3-ファイル操作.html#cb209-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/OneDrive/ドキュメント&quot;</span>)</span></code></pre></div>
+<p>OneDriveで同期していない人は次のように書きます。</p>
+<div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="3-ファイル操作.html#cb210-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/Documents&quot;</span>)</span></code></pre></div>
+<p>これは，次のコマンドと同じです。</p>
+<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="3-ファイル操作.html#cb211-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<p><code>"~"</code> はホームディレクトリを意味します。</p>
+</div>
+</div>
+<div id="絶対パス" class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> 絶対パス<a href="3-ファイル操作.html#絶対パス" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。
+これは，次のコマンドによって実現します。</p>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="3-ファイル操作.html#cb212-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/ユーザ名/Downloads/addresses.csv&quot;</span>) <span class="co"># Windowsの例</span></span>
+<span id="cb212-2"><a href="3-ファイル操作.html#cb212-2" tabindex="-1"></a><span class="co"># read.csv(&quot;/Users/ユーザ名/Downloads/addresses.csv&quot;) # macOSの例</span></span></code></pre></div>
+<p>これは，次のファイルを読んでいることを意味します。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Downloads
+  Downloads --- file[addresses.csv]
+  style file fill:#f96,stroke-width:0px</code></pre>
+<p>Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。
+コピーした後，<code>read.csv("")</code> にある2つの <code>"</code> の間にペーストしてください。
+macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。
+絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。</p>
+<p>実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。
+なお，こうした煩雑さを緩和する目的で，<a href="https://CRAN.R-project.org/package=here" target="_blank">here</a> パッケージがありますので，知りたい人は調べてください。</p>
+</div>
+<div id="相対パス" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> 相対パス<a href="3-ファイル操作.html#相対パス" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。
+Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
+<p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。
+次のコードを実行する前に，Explorer（またはFinder）で作業ディレクトリを表示させておき，次のコードを実行することで起こる変化を注視してください。</p>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="3-ファイル操作.html#cb214-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./data&quot;</span>)</span>
+<span id="cb214-2"><a href="3-ファイル操作.html#cb214-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv&quot;</span>, <span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
+<span id="cb214-3"><a href="3-ファイル操作.html#cb214-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
+<span id="cb214-4"><a href="3-ファイル操作.html#cb214-4" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##                    John      Doe               X120.jefferson.st.   Riverside
+## 1                  Jack McGinnis                     220 hobo Av.       Phila
+## 2         John &quot;Da Man&quot;   Repici                120 Jefferson St.   Riverside
+## 3               Stephen    Tyler 7452 Terrace &quot;At the Plaza&quot; road    SomeTown
+## 4                       Blankman                                     SomeTown
+## 5 Joan &quot;the bone&quot;, Anne      Jet              9th, at Terrace plc Desert City
+##    NJ X08075
+## 1  PA   9119
+## 2  NJ   8075
+## 3  SD  91234
+## 4  SD    298
+## 5  CO    123</code></pre>
+<p>パスの先頭にある <code>.</code> は自分がいるディレクトリを意味する記号です。
+このことから，<code>./</code> は作業ディレクトリを指します。
+<code>./</code> はあってもなくても同じです。
+ただし，<code>"./data"</code> と <code>"data"</code> は同じ意味ですが，<code>"/data"</code> は意味が異なりますので注意してください。
+もし <code>dir.create("/data")</code> とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。</p>
+<p>上述のコードは，<code>dir.create()</code> でディレクトリを作成し，<code>download.file()</code> でファイルをダウンロードした後，<code>read.csv()</code> でダウンロードしたファイルを読み込みます。
+このことを図で表現すると，次のようになります。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  doc --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px</code></pre>
+<p>Rの作業ディレクトリは <code>ドキュメント</code> ですので，ここから<strong>相対的に</strong>ひとつ下に <code>data</code> というディレクトリを作成し，その中にダウンロードしたファイルを保存し，その保存したファイルを読み込んでいます。
+実際には，パソコンの <code>C:</code> の中にファイルはありますが，Rで読み込む際に <code>C:</code> から始める必要はありません。
+このことを図で表現すると，次のようになります。</p>
+<pre class="mermaid"><code>graph LR
+  dot[&quot;~&quot;] --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px</code></pre>
+<p><code>~</code> はホームディレクトリを意味する記号であり，OneDriveで同期している人は <code>"C:/Users/ユーザ名/OneDrive/ドキュメント"</code>，同期していない人は <code>"C:/Users/ユーザ名/Documents"</code> を指します。</p>
+<p>先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。
+これは，Rが1行目をヘッダーとして読み込んでいるという意味です。
+これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="3-ファイル操作.html#cb218-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/addresses.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb218-2"><a href="3-ファイル操作.html#cb218-2" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##                      V1       V2                               V3          V4
+## 1                  John      Doe                120 jefferson st.   Riverside
+## 2                  Jack McGinnis                     220 hobo Av.       Phila
+## 3         John &quot;Da Man&quot;   Repici                120 Jefferson St.   Riverside
+## 4               Stephen    Tyler 7452 Terrace &quot;At the Plaza&quot; road    SomeTown
+## 5                       Blankman                                     SomeTown
+## 6 Joan &quot;the bone&quot;, Anne      Jet              9th, at Terrace plc Desert City
+##    V5    V6
+## 1  NJ  8075
+## 2  PA  9119
+## 3  NJ  8075
+## 4  SD 91234
+## 5  SD   298
+## 6  CO   123</code></pre>
+<p>ヘッダーをどうすべきかはファイルによって異なります。
+例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="3-ファイル操作.html#cb220-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv&quot;</span>, <span class="st">&quot;data/airtravel.csv&quot;</span>)</span>
+<span id="cb220-2"><a href="3-ファイル操作.html#cb220-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb220-3"><a href="3-ファイル操作.html#cb220-3" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    Month X1958 X1959 X1960
+## 1    JAN   340   360   417
+## 2    FEB   318   342   391
+## 3    MAR   362   406   419
+## 4    APR   348   396   461
+## 5    MAY   363   420   472
+## 6    JUN   435   472   535
+## 7    JUL   491   548   622
+## 8    AUG   505   559   606
+## 9    SEP   404   463   508
+## 10   OCT   359   407   461
+## 11   NOV   310   362   390
+## 12   DEC   337   405   432</code></pre>
+<p>ヘッダーが数字で始まる場合，先頭に <code>X</code> が付き，文字列に変換されます。
+ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。</p>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="3-ファイル操作.html#cb222-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb222-2"><a href="3-ファイル操作.html#cb222-2" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##       V1   V2   V3   V4
+## 1  Month 1958 1959 1960
+## 2    JAN  340  360  417
+## 3    FEB  318  342  391
+## 4    MAR  362  406  419
+## 5    APR  348  396  461
+## 6    MAY  363  420  472
+## 7    JUN  435  472  535
+## 8    JUL  491  548  622
+## 9    AUG  505  559  606
+## 10   SEP  404  463  508
+## 11   OCT  359  407  461
+## 12   NOV  310  362  390
+## 13   DEC  337  405  432</code></pre>
+<p>正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。
+以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，<code>read.csv()</code> を使って何度も読み直すときに <code>download.file()</code> は必要ありません。
+これは，Explorer（またはFinder）における通常のファイル操作と同じです。</p>
+<p>ここでよくある例を挙げておきます。
+例えば，次のように別のCSVファイルを読み込んでください。</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb224-1"><a href="3-ファイル操作.html#cb224-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv&quot;</span>, <span class="st">&quot;data/biostats.csv&quot;</span>)</span>
+<span id="cb224-2"><a href="3-ファイル操作.html#cb224-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb224-3"><a href="3-ファイル操作.html#cb224-3" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    Name      Sex Age Height..in. Weight..lbs.
+## 1  Alex        M  41          74          170
+## 2  Bert        M  42          68          166
+## 3  Carl        M  32          70          155
+## 4  Dave        M  39          72          167
+## 5  Elly        F  30          66          124
+## 6  Fran        F  33          66          115
+## 7  Gwen        F  26          64          121
+## 8  Hank        M  30          71          158
+## 9  Ivan        M  53          72          175
+## 10 Jake        M  32          69          143
+## 11 Kate        F  47          69          139
+## 12 Luke        M  34          72          163
+## 13 Myra        F  23          62           98
+## 14 Neil        M  36          75          160
+## 15 Omar        M  38          70          145
+## 16 Page        F  31          67          135
+## 17 Quin        M  29          71          176
+## 18 Ruth        F  28          65          131</code></pre>
+<p><code>biostats.csv</code> を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。
+<code>()</code> とスペースが <code>.</code> に置き換わっていることが分かります。
+CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="3-ファイル操作.html#cb226-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb226-2"><a href="3-ファイル操作.html#cb226-2" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##    Name      Sex Age Height (in) Weight (lbs)
+## 1  Alex        M  41          74          170
+## 2  Bert        M  42          68          166
+## 3  Carl        M  32          70          155
+## 4  Dave        M  39          72          167
+## 5  Elly        F  30          66          124
+## 6  Fran        F  33          66          115
+## 7  Gwen        F  26          64          121
+## 8  Hank        M  30          71          158
+## 9  Ivan        M  53          72          175
+## 10 Jake        M  32          69          143
+## 11 Kate        F  47          69          139
+## 12 Luke        M  34          72          163
+## 13 Myra        F  23          62           98
+## 14 Neil        M  36          75          160
+## 15 Omar        M  38          70          145
+## 16 Page        F  31          67          135
+## 17 Quin        M  29          71          176
+## 18 Ruth        F  28          65          131</code></pre>
+<p>ここで，Explorer（またはFinder）から先ほど作成した <code>data</code> フォルダを削除しておいてください。</p>
+<p>なお，相対パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。
+これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。
+次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="3-ファイル操作.html#cb228-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
+<span id="cb228-2"><a href="3-ファイル操作.html#cb228-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
+<span id="cb228-3"><a href="3-ファイル操作.html#cb228-3" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
+<span id="cb228-4"><a href="3-ファイル操作.html#cb228-4" tabindex="-1"></a>}</span></code></pre></div>
+<p>これは次のようにやっても同じです。</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="3-ファイル操作.html#cb229-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
+<span id="cb229-2"><a href="3-ファイル操作.html#cb229-2" tabindex="-1"></a><span class="fu">dir.create</span>(outdir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="callout-caution" collapse="false" icon="true">
+<p>もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。
+もし実行してしまった場合は，Explorer（またはFinder）で作業ディレクトリと同じ階層にある <code>data</code> フォルダの中を確認し，何もファイルがなければ <code>data</code> フォルダを削除してください。
+ファイルがあれば，他のアプリケーションで使用している可能性があるため，<code>data</code> フォルダを削除せず，残しておいてください。</p>
+</div>
+<p>上記コードの2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味します。
+このコマンドを理解するには，条件分岐と <code>!</code> の意味を正しく理解できなければなりません。
+ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。
+後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。</p>
+<p><code>..</code> の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。
+作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="3-ファイル操作.html#cb230-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<p>Webブラウザを使って，<a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。
+このCSVファイルをRに読み込むには，どうすればよいでしょうか。
+図で考えると次の相対パスを考えることに他なりません。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  doc -- .. --&gt; OneDrive
+  OneDrive -- .. --&gt; ユーザ名
+  ユーザ名 --&gt; Downloads
+  Downloads --&gt; file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+  linkStyle 8 stroke:red
+  linkStyle 9 stroke:red</code></pre>
+<p>これをRのコマンドにすると次のようになります。</p>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="3-ファイル操作.html#cb232-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb232-2"><a href="3-ファイル操作.html#cb232-2" tabindex="-1"></a>df</span></code></pre></div>
+<p>なお，上述の <code>.</code> の説明を踏まえると，これは次のように書くこともできます。</p>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="3-ファイル操作.html#cb233-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./../../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb233-2"><a href="3-ファイル操作.html#cb233-2" tabindex="-1"></a>df</span></code></pre></div>
+<p>ただし，こういう場合に， <code>./</code> を書くのは冗長な印象を受けます。
+<code>./</code> はあってもなくても結果は同じですが，上の階層に行く場合は <code>..</code> から始めるべきでしょう。</p>
+<p>OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。</p>
+<pre class="mermaid"><code>graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  Documents == .. ==&gt; ユーザ名
+  ユーザ名 ==&gt; Downloads
+  Downloads ==&gt; file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 5 stroke:red
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red</code></pre>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="3-ファイル操作.html#cb235-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb235-2"><a href="3-ファイル操作.html#cb235-2" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##     LatD LatM LatS NS LonD LonM LonS EW                City State
+## 1     41    5   59  N   80   39    0  W          Youngstown    OH
+## 2     42   52   48  N   97   23   23  W             Yankton    SD
+## 3     46   35   59  N  120   30   36  W              Yakima    WA
+## 4     42   16   12  N   71   48    0  W           Worcester    MA
+## 5     43   37   48  N   89   46   11  W     Wisconsin Dells    WI
+## 6     36    5   59  N   80   15    0  W       Winston-Salem    NC
+## 7     49   52   48  N   97    9    0  W            Winnipeg    MB
+## 8     39   11   23  N   78    9   36  W          Winchester    VA
+## 9     34   14   24  N   77   55   11  W          Wilmington    NC
+## 10    39   45    0  N   75   33    0  W          Wilmington    DE
+## 11    48    9    0  N  103   37   12  W           Williston    ND
+## 12    41   15    0  N   77    0    0  W        Williamsport    PA
+## 13    37   40   48  N   82   16   47  W          Williamson    WV
+## 14    33   54    0  N   98   29   23  W       Wichita Falls    TX
+## 15    37   41   23  N   97   20   23  W             Wichita    KS
+## 16    40    4   11  N   80   43   12  W            Wheeling    WV
+## 17    26   43   11  N   80    3    0  W     West Palm Beach    FL
+## 18    47   25   11  N  120   19   11  W           Wenatchee    WA
+## 19    41   25   11  N  122   23   23  W                Weed    CA
+## 20    31   13   11  N   82   20   59  W            Waycross    GA
+## 21    44   57   35  N   89   38   23  W              Wausau    WI
+## 22    42   21   36  N   87   49   48  W            Waukegan    IL
+## 23    44   54    0  N   97    6   36  W           Watertown    SD
+## 24    43   58   47  N   75   55   11  W           Watertown    NY
+## 25    42   30    0  N   92   20   23  W            Waterloo    IA
+## 26    41   32   59  N   73    3    0  W           Waterbury    CT
+## 27    38   53   23  N   77    1   47  W          Washington    DC
+## 28    41   50   59  N   79    8   23  W              Warren    PA
+## 29    46    4   11  N  118   19   48  W         Walla Walla    WA
+## 30    31   32   59  N   97    8   23  W                Waco    TX
+## 31    38   40   48  N   87   31   47  W           Vincennes    IN
+## 32    28   48   35  N   97    0   36  W            Victoria    TX
+## 33    32   20   59  N   90   52   47  W           Vicksburg    MS
+## 34    49   16   12  N  123    7   12  W           Vancouver    BC
+## 35    46   55   11  N   98    0   36  W         Valley City    ND
+## 36    30   49   47  N   83   16   47  W            Valdosta    GA
+## 37    43    6   36  N   75   13   48  W               Utica    NY
+## 38    39   54    0  N   79   43   48  W           Uniontown    PA
+## 39    32   20   59  N   95   18    0  W               Tyler    TX
+## 40    42   33   36  N  114   28   12  W          Twin Falls    ID
+## 41    33   12   35  N   87   34   11  W          Tuscaloosa    AL
+## 42    34   15   35  N   88   42   35  W              Tupelo    MS
+## 43    36    9   35  N   95   54   36  W               Tulsa    OK
+## 44    32   13   12  N  110   58   12  W              Tucson    AZ
+## 45    37   10   11  N  104   30   36  W            Trinidad    CO
+## 46    40   13   47  N   74   46   11  W             Trenton    NJ
+## 47    44   45   35  N   85   37   47  W       Traverse City    MI
+## 48    43   39    0  N   79   22   47  W             Toronto    ON
+## 49    39    2   59  N   95   40   11  W              Topeka    KS
+## 50    41   39    0  N   83   32   24  W              Toledo    OH
+## 51    33   25   48  N   94    3    0  W           Texarkana    TX
+## 52    39   28   12  N   87   24   36  W         Terre Haute    IN
+## 53    27   57    0  N   82   26   59  W               Tampa    FL
+## 54    30   27    0  N   84   16   47  W         Tallahassee    FL
+## 55    47   14   24  N  122   25   48  W              Tacoma    WA
+## 56    43    2   59  N   76    9    0  W            Syracuse    NY
+## 57    32   35   59  N   82   20   23  W          Swainsboro    GA
+## 58    33   55   11  N   80   20   59  W              Sumter    SC
+## 59    40   59   24  N   75   11   24  W         Stroudsburg    PA
+## 60    37   57   35  N  121   17   24  W            Stockton    CA
+## 61    44   31   12  N   89   34   11  W       Stevens Point    WI
+## 62    40   21   36  N   80   37   12  W        Steubenville    OH
+## 63    40   37   11  N  103   13   12  W            Sterling    CO
+## 64    38    9    0  N   79    4   11  W            Staunton    VA
+## 65    39   55   11  N   83   48   35  W         Springfield    OH
+## 66    37   13   12  N   93   17   24  W         Springfield    MO
+## 67    42    5   59  N   72   35   23  W         Springfield    MA
+## 68    39   47   59  N   89   39    0  W         Springfield    IL
+## 69    47   40   11  N  117   24   36  W             Spokane    WA
+## 70    41   40   48  N   86   15    0  W          South Bend    IN
+## 71    43   32   24  N   96   43   48  W         Sioux Falls    SD
+## 72    42   29   24  N   96   23   23  W          Sioux City    IA
+## 73    32   30   35  N   93   45    0  W          Shreveport    LA
+## 74    33   38   23  N   96   36   36  W             Sherman    TX
+## 75    44   47   59  N  106   57   35  W            Sheridan    WY
+## 76    35   13   47  N   96   40   48  W            Seminole    OK
+## 77    32   25   11  N   87    1   11  W               Selma    AL
+## 78    38   42   35  N   93   13   48  W             Sedalia    MO
+## 79    47   35   59  N  122   19   48  W             Seattle    WA
+## 80    41   24   35  N   75   40   11  W            Scranton    PA
+## 81    41   52   11  N  103   39   36  W         Scottsbluff    NB
+## 82    42   49   11  N   73   56   59  W         Schenectady    NY
+## 83    32    4   48  N   81    5   23  W            Savannah    GA
+## 84    46   29   24  N   84   20   59  W  Sault Sainte Marie    MI
+## 85    27   20   24  N   82   31   47  W            Sarasota    FL
+## 86    38   26   23  N  122   43   12  W          Santa Rosa    CA
+## 87    35   40   48  N  105   56   59  W            Santa Fe    NM
+## 88    34   25   11  N  119   41   59  W       Santa Barbara    CA
+## 89    33   45   35  N  117   52   12  W           Santa Ana    CA
+## 90    37   20   24  N  121   52   47  W            San Jose    CA
+## 91    37   46   47  N  122   25   11  W       San Francisco    CA
+## 92    41   27    0  N   82   42   35  W            Sandusky    OH
+## 93    32   42   35  N  117    9    0  W           San Diego    CA
+## 94    34    6   36  N  117   18   35  W      San Bernardino    CA
+## 95    29   25   12  N   98   30    0  W         San Antonio    TX
+## 96    31   27   35  N  100   26   24  W          San Angelo    TX
+## 97    40   45   35  N  111   52   47  W      Salt Lake City    UT
+## 98    38   22   11  N   75   35   59  W           Salisbury    MD
+## 99    36   40   11  N  121   39    0  W             Salinas    CA
+## 100   38   50   24  N   97   36   36  W              Salina    KS
+##  [ reached &#39;max&#39; / getOption(&quot;max.print&quot;) -- omitted 28 rows ]</code></pre>
+<p>ここで，<code>..</code> という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っていることに注目してください。</p>
+<div id="tips-2" class="section level3 hasAnchor" number="3.5.1">
+<h3><span class="header-section-number">3.5.1</span> Tips<a href="3-ファイル操作.html#tips-2" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>パスの入力中に <code>Tabキー</code> を押すと，選択肢としてあり得る候補が現れ，<code>Enterキー</code> （または <code>Returnキー</code>）で入力補完されます。
+Windowsの場合，保管できる候補が複数ある場合は，<code>Tabキー</code> を2回連続で押すと，選択肢としてあり得るディレクトリがサジェストされます。</p>
+<p>このことを知っていると，パス入力の手間が省けます。
+また，パスを入力し間違っていると <code>Tabキー</code> を押しても反応がないため，入力ミスに気づきやすいです。</p>
+</div>
+</div>
+<div id="ファイル出力" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> ファイル出力<a href="3-ファイル操作.html#ファイル出力" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rコンソールがいる場所（ディレクトリ）がどこであるかを意識する必要があるのは，ファイル入出力のときです。
+これまで，ファイル入力のみを行ってきました。
+ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。</p>
+<p>Rの返り値をコンソールではなく，ファイルに出力する関数が <code>sink()</code> です。
+例えば，次のコードを実行するとどうなるでしょうか。</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="3-ファイル操作.html#cb237-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;test.txt&quot;</span>)</span>
+<span id="cb237-2"><a href="3-ファイル操作.html#cb237-2" tabindex="-1"></a>iris</span>
+<span id="cb237-3"><a href="3-ファイル操作.html#cb237-3" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
+<p>Rコンソールには何も表示されません。
+その代わりに，作業ディレクトリに <code>test.txt</code> というテキストファイルができているはずです。
+Explorer（またはFinder）で確認してください。</p>
+<p>この例のように，<code>sink()</code> の引数に保存したいファイル名を書きます。
+ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。
+また，ファイル出力が終わったら，必ず引数なしで <code>sink()</code> としてファイルを閉じてください。</p>
+<p>相対パスでディレクトリを書くと，その場所に保存されます。
+例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。</p>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="3-ファイル操作.html#cb238-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;../../Downloads/test.txt&quot;</span>) <span class="co"># OneDriveで同期している場合</span></span>
+<span id="cb238-2"><a href="3-ファイル操作.html#cb238-2" tabindex="-1"></a><span class="co"># sink(&quot;../Downloads/test.txt&quot;) # OneDriveで同期していない場合</span></span>
+<span id="cb238-3"><a href="3-ファイル操作.html#cb238-3" tabindex="-1"></a>cars</span>
+<span id="cb238-4"><a href="3-ファイル操作.html#cb238-4" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
+<p>OneDriveで同期していない人は，2行目の <code>#</code> の右側以降をRコンソールにコピーして，コードを実行してください。</p>
+</div>
+<div id="microsoft-365" class="section level2 hasAnchor" number="3.7">
+<h2><span class="header-section-number">3.7</span> Microsoft 365<a href="3-ファイル操作.html#microsoft-365" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://github.com/Azure/Microsoft365R" target="_blank">Microsoft365R</a> パッケージは，Microsoft 365 の R インターフェースです。</p>
+<p>大学のメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="3-ファイル操作.html#cb239-1" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb239-2"><a href="3-ファイル操作.html#cb239-2" tabindex="-1"></a>odb <span class="ot">&lt;-</span> <span class="fu">get_business_onedrive</span>()</span></code></pre></div>
+<p>プライベートなメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="3-ファイル操作.html#cb240-1" tabindex="-1"></a>od <span class="ot">&lt;-</span> <span class="fu">get_personal_onedrive</span>()</span></code></pre></div>
+<p>すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。
+指示に従うと，R から Microsoft 365 を操作できるようになります。
+例えば，次のようなことができます。</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="3-ファイル操作.html#cb241-1" tabindex="-1"></a><span class="co"># list files and folders</span></span>
+<span id="cb241-2"><a href="3-ファイル操作.html#cb241-2" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>()</span>
+<span id="cb241-3"><a href="3-ファイル操作.html#cb241-3" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>(<span class="st">&quot;ドキュメント&quot;</span>)</span>
+<span id="cb241-4"><a href="3-ファイル操作.html#cb241-4" tabindex="-1"></a></span>
+<span id="cb241-5"><a href="3-ファイル操作.html#cb241-5" tabindex="-1"></a><span class="co"># upload and download files</span></span>
+<span id="cb241-6"><a href="3-ファイル操作.html#cb241-6" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">upload_file</span>(<span class="st">&quot;somedata.xlsx&quot;</span>)</span>
+<span id="cb241-7"><a href="3-ファイル操作.html#cb241-7" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">download_file</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
+<span id="cb241-8"><a href="3-ファイル操作.html#cb241-8" tabindex="-1"></a></span>
+<span id="cb241-9"><a href="3-ファイル操作.html#cb241-9" tabindex="-1"></a><span class="co"># create a folder</span></span>
+<span id="cb241-10"><a href="3-ファイル操作.html#cb241-10" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">create_folder</span>(<span class="st">&quot;ドキュメント/newfolder&quot;</span>)</span>
+<span id="cb241-11"><a href="3-ファイル操作.html#cb241-11" tabindex="-1"></a></span>
+<span id="cb241-12"><a href="3-ファイル操作.html#cb241-12" tabindex="-1"></a><span class="co"># open a document for editing in Word Online</span></span>
+<span id="cb241-13"><a href="3-ファイル操作.html#cb241-13" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">open_item</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
+<span id="cb241-14"><a href="3-ファイル操作.html#cb241-14" tabindex="-1"></a></span>
+<span id="cb241-15"><a href="3-ファイル操作.html#cb241-15" tabindex="-1"></a><span class="co"># working with data frames and R objects</span></span>
+<span id="cb241-16"><a href="3-ファイル操作.html#cb241-16" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb241-17"><a href="3-ファイル操作.html#cb241-17" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">&quot;ドキュメント/iris.csv&quot;</span>)</span></code></pre></div>
+<p>ただし，便利かどうかは不明です。</p>
+</div>
+<div id="ロケールの変更" class="section level2 hasAnchor" number="3.8">
+<h2><span class="header-section-number">3.8</span> ロケールの変更<a href="3-ファイル操作.html#ロケールの変更" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。
+次のコマンドでロケールを知ることができます。</p>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="3-ファイル操作.html#cb242-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;locale&quot;</span>)</span></code></pre></div>
+<p>一般的に，このような結果が得られるはずです。</p>
+<pre><code>LANG=&quot;ja_JP.UTF-8&quot;
+LC_COLLATE=&quot;ja_JP.UTF-8&quot;
+LC_CTYPE=&quot;ja_JP.UTF-8&quot;
+LC_MESSAGES=&quot;ja_JP.UTF-8&quot;
+LC_MONETARY=&quot;ja_JP.UTF-8&quot;
+LC_NUMERIC=&quot;ja_JP.UTF-8&quot;
+LC_TIME=&quot;ja_JP.UTF-8&quot;
+LC_ALL=</code></pre>
+<p>または，次のような結果が得られるかもしれません。</p>
+<pre><code>LANG=&quot;en_US.UTF-8&quot;
+LC_COLLATE=&quot;en_US.UTF-8&quot;
+LC_CTYPE=&quot;en_US.UTF-8&quot;
+LC_MESSAGES=&quot;en_US.UTF-8&quot;
+LC_MONETARY=&quot;en_US.UTF-8&quot;
+LC_NUMERIC=&quot;en_US.UTF-8&quot;
+LC_TIME=&quot;en_US.UTF-8&quot;
+LC_ALL=</code></pre>
+<p>これらの場合は，日本語は正しく表示されるはずです。</p>
+<p>環境によっては，次のような結果が得られるかもしれません。</p>
+<pre><code>LANG=&quot;en_JP.UTF-8&quot;
+LC_COLLATE=&quot;C&quot;
+LC_CTYPE=&quot;C&quot;
+LC_MESSAGES=&quot;C&quot;
+LC_MONETARY=&quot;C&quot;
+LC_NUMERIC=&quot;C&quot;
+LC_TIME=&quot;C&quot;
+LC_ALL=</code></pre>
+<p>この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。</p>
+<p>日本語が表示される環境に設定したければ，次のようにします。</p>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="3-ファイル操作.html#cb246-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;defaults write org.R-project.R force.LANG ja_JP.UTF-8&quot;</span>)</span></code></pre></div>
+<p>おそらくこれはmacOSだけに対応しているはずです。
+Windowsでのロケールの変更方法は知りません。</p>
+</div>
+<div id="unicodeエスケープシーケンス" class="section level2 hasAnchor" number="3.9">
+<h2><span class="header-section-number">3.9</span> Unicodeエスケープシーケンス<a href="3-ファイル操作.html#unicodeエスケープシーケンス" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。
+そのとき，次のコマンドを使うことで対応します。</p>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="3-ファイル操作.html#cb247-1" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
+<span id="cb247-2"><a href="3-ファイル操作.html#cb247-2" tabindex="-1"></a></span>
+<span id="cb247-3"><a href="3-ファイル操作.html#cb247-3" tabindex="-1"></a><span class="fu">stri_escape_unicode</span>(<span class="st">&quot;日本語&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;\\u65e5\\u672c\\u8a9e&quot;</code></pre>
+<p>あるいは，次のようにしてもよいでしょう。</p>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="3-ファイル操作.html#cb249-1" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">u&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%04x&quot;</span>, <span class="fu">utf8ToInt</span>(<span class="st">&quot;日本語&quot;</span>)), <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;\\u65e5\\u672c\\u8a9e&quot;</code></pre>
+<p><code>\</code> が2つずつ連続していますが，Rコードで用いるときは <code>\</code> は1つで大丈夫です。</p>
+</div>
+<div id="練習問題-2" class="section level2 hasAnchor" number="3.10">
+<h2><span class="header-section-number">3.10</span> 練習問題<a href="3-ファイル操作.html#練習問題-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>未作成</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="2-基礎.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="4-比較演算.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

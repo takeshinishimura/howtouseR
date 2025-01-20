@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>4 比較演算 | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="4 比較演算 | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="4 比較演算 | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="3-ファイル操作.html"/>
+<link rel="next" href="5-作図.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Rの使い方</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
+<li class="chapter" data-level="1.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#基本操作"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#四則演算"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#変数"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#関数"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#ベクトル"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#パッケージ"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#練習問題"><i class="fa fa-check"></i><b>1.3</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-基礎.html"><a href="2-基礎.html"><i class="fa fa-check"></i><b>2</b> 基礎</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-基礎.html"><a href="2-基礎.html#データの型"><i class="fa fa-check"></i><b>2.1</b> データの型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2-基礎.html"><a href="2-基礎.html#数値"><i class="fa fa-check"></i><b>2.1.1</b> 数値</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-基礎.html"><a href="2-基礎.html#文字列"><i class="fa fa-check"></i><b>2.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-基礎.html"><a href="2-基礎.html#ファクター"><i class="fa fa-check"></i><b>2.1.3</b> ファクター</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-基礎.html"><a href="2-基礎.html#論理値"><i class="fa fa-check"></i><b>2.1.4</b> 論理値</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-基礎.html"><a href="2-基礎.html#データの構造"><i class="fa fa-check"></i><b>2.2</b> データの構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2-基礎.html"><a href="2-基礎.html#ベクトル-1"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-基礎.html"><a href="2-基礎.html#名前付きベクトル"><i class="fa fa-check"></i><b>2.2.2</b> 名前付きベクトル</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-基礎.html"><a href="2-基礎.html#行列"><i class="fa fa-check"></i><b>2.2.3</b> 行列</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-基礎.html"><a href="2-基礎.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-基礎.html"><a href="2-基礎.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-基礎.html"><a href="2-基礎.html#特殊記号"><i class="fa fa-check"></i><b>2.3</b> 特殊記号</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2-基礎.html"><a href="2-基礎.html#コメント"><i class="fa fa-check"></i><b>2.3.1</b> コメント</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-基礎.html"><a href="2-基礎.html#セミコロン"><i class="fa fa-check"></i><b>2.3.2</b> セミコロン</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-基礎.html"><a href="2-基礎.html#評価と同時に返り値を表示"><i class="fa fa-check"></i><b>2.3.3</b> 評価と同時に返り値を表示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-基礎.html"><a href="2-基礎.html#入門書"><i class="fa fa-check"></i><b>2.4</b> 入門書</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2-基礎.html"><a href="2-基礎.html#チートシート"><i class="fa fa-check"></i><b>2.4.1</b> チートシート</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-基礎.html"><a href="2-基礎.html#練習問題-1"><i class="fa fa-check"></i><b>2.5</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html"><i class="fa fa-check"></i><b>3</b> ファイル操作</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイルの読み込み"><i class="fa fa-check"></i><b>3.1</b> ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎"><i class="fa fa-check"></i><b>3.2</b> ディレクトリ構造とファイル管理の基礎</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造"><i class="fa fa-check"></i><b>3.2.1</b> ディレクトリ構造</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル管理"><i class="fa fa-check"></i><b>3.2.2</b> ファイル管理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
+<li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#tips-2"><i class="fa fa-check"></i><b>3.5.1</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル出力"><i class="fa fa-check"></i><b>3.6</b> ファイル出力</a></li>
+<li class="chapter" data-level="3.7" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#microsoft-365"><i class="fa fa-check"></i><b>3.7</b> Microsoft 365</a></li>
+<li class="chapter" data-level="3.8" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ロケールの変更"><i class="fa fa-check"></i><b>3.8</b> ロケールの変更</a></li>
+<li class="chapter" data-level="3.9" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#unicodeエスケープシーケンス"><i class="fa fa-check"></i><b>3.9</b> Unicodeエスケープシーケンス</a></li>
+<li class="chapter" data-level="3.10" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#練習問題-2"><i class="fa fa-check"></i><b>3.10</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-比較演算.html"><a href="4-比較演算.html"><i class="fa fa-check"></i><b>4</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-比較演算.html"><a href="4-比較演算.html#比較演算-1"><i class="fa fa-check"></i><b>4.1</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4-比較演算.html"><a href="4-比較演算.html#数値-1"><i class="fa fa-check"></i><b>4.1.1</b> 数値</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-比較演算.html"><a href="4-比較演算.html#文字列-1"><i class="fa fa-check"></i><b>4.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-比較演算.html"><a href="4-比較演算.html#正規表現"><i class="fa fa-check"></i><b>4.1.3</b> 正規表現</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-比較演算.html"><a href="4-比較演算.html#集合"><i class="fa fa-check"></i><b>4.1.4</b> 集合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-比較演算.html"><a href="4-比較演算.html#条件分岐"><i class="fa fa-check"></i><b>4.2</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.3" data-path="4-比較演算.html"><a href="4-比較演算.html#繰り返し処理"><i class="fa fa-check"></i><b>4.3</b> 繰り返し処理</a></li>
+<li class="chapter" data-level="4.4" data-path="4-比較演算.html"><a href="4-比較演算.html#データクリーニング"><i class="fa fa-check"></i><b>4.4</b> データ・クリーニング</a></li>
+<li class="chapter" data-level="4.5" data-path="4-比較演算.html"><a href="4-比較演算.html#関数の作成"><i class="fa fa-check"></i><b>4.5</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.6" data-path="4-比較演算.html"><a href="4-比較演算.html#練習問題-3"><i class="fa fa-check"></i><b>4.6</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-作図.html"><a href="5-作図.html"><i class="fa fa-check"></i><b>5</b> 作図</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-作図.html"><a href="5-作図.html#どんな図を作成できるのか"><i class="fa fa-check"></i><b>5.1</b> どんな図を作成できるのか</a></li>
+<li class="chapter" data-level="5.2" data-path="5-作図.html"><a href="5-作図.html#プロット"><i class="fa fa-check"></i><b>5.2</b> プロット</a></li>
+<li class="chapter" data-level="5.3" data-path="5-作図.html"><a href="5-作図.html#保存"><i class="fa fa-check"></i><b>5.3</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-tidyverse.html"><a href="6-tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#base-r"><i class="fa fa-check"></i><b>6.1</b> base R</a></li>
+<li class="chapter" data-level="6.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#tidyverse-1"><i class="fa fa-check"></i><b>6.2</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#データフレーム-1"><i class="fa fa-check"></i><b>6.2.1</b> データフレーム</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#よく使う関数"><i class="fa fa-check"></i><b>6.2.2</b> よく使う関数</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#どちらを使えばよいのか"><i class="fa fa-check"></i><b>6.2.3</b> どちらを使えばよいのか</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#練習問題-4"><i class="fa fa-check"></i><b>6.3</b> 練習問題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="比較演算" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">4</span> 比較演算<a href="4-比較演算.html#比較演算" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>今回は比較演算子の使い方を学びます。
+比較演算ができるようになれば，条件分岐と繰り返し処理の理解が進みます。</p>
+<div id="比較演算-1" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> 比較演算<a href="4-比較演算.html#比較演算-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>比較演算とは<strong>比較演算子</strong>を使った判定のことです。
+数値の比較はみなさんが日常的に行ってことですので，分かりやすいはずです。</p>
+<div id="数値-1" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> 数値<a href="4-比較演算.html#数値-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>比較演算子の1つに <code>==</code> があります。</p>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="4-比較演算.html#cb251-1" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">2000</span></span>
+<span id="cb251-2"><a href="4-比較演算.html#cb251-2" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="4-比較演算.html#cb253-1" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2001</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<p><code>=</code> は必ず2つ連続で使用します。
+<code>=</code> を1つしか使わない場合，関数の引数以外では，<code>&lt;-</code> と同じ意味になってしまいますので，注意が必要です。
+上のコマンドは，<code>==</code> の左側と右側が等しいかどうかを判定しています。
+比較演算の返り値は論理値です。</p>
+<p>また，ベクトルを比較演算子の左側に置いた場合，返り値は左側のベクトルと同じ長さのベクトルになります。</p>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="4-比較演算.html#cb255-1" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2010</span></span>
+<span id="cb255-2"><a href="4-比較演算.html#cb255-2" tabindex="-1"></a>year <span class="sc">==</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="4-比較演算.html#cb257-1" tabindex="-1"></a><span class="fu">length</span>(year)</span></code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="4-比較演算.html#cb259-1" tabindex="-1"></a><span class="fu">which</span>(year <span class="sc">==</span> <span class="dv">2000</span>)</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>ベクトルの各要素を表示し，返り値との対応関係が正しいことを確かめてください。</p>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="4-比較演算.html#cb261-1" tabindex="-1"></a>year</span></code></pre></div>
+<pre><code>##  [1] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
+## [16] 2005 2006 2007 2008 2009 2010</code></pre>
+<p>Rコンソールに表示されるベクトルが何行目で改行されるかは，そのベクトルによって異なります。
+このため，2行目がベクトルの何番目であるかはそのベクトルに依存します。
+左の <code>[]</code> 内に表示される数字がベクトルの何番目の要素であるかを示しています。</p>
+<p><code>==</code> のほかに，次のような比較演算子があります。
+これらの比較演算は直感的に理解できるはずです。</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="4-比較演算.html#cb263-1" tabindex="-1"></a>year <span class="sc">&gt;</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p>ここで，ベクトルの各要素1つずつに対して比較していることを理解してください。
+現在，<code>year</code> は次のようになっています。</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="4-比較演算.html#cb265-1" tabindex="-1"></a>year</span></code></pre></div>
+<pre><code>##  [1] 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 2000 2001 2002 2003 2004
+## [16] 2005 2006 2007 2008 2009 2010</code></pre>
+<p>このベクトルの1つ目の要素と <code>2000</code> を比較した結果が <code>year &gt; 2000</code> の返り値のベクトルの1つ目の要素 <code>FALSE</code> に対応しています。
+そして，このベクトルの12個目の要素と <code>2000</code> を比較した結果が <code>year &gt; 2000</code> の返り値のベクトルは12個目の要素 <code>TRUE</code> に対応しています。</p>
+<p>以下の比較演算子についても同様です。</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="4-比較演算.html#cb267-1" tabindex="-1"></a>year <span class="sc">&lt;</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="4-比較演算.html#cb269-1" tabindex="-1"></a>year <span class="sc">&gt;=</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="4-比較演算.html#cb271-1" tabindex="-1"></a>year <span class="sc">&lt;=</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p><code>&gt;=</code> は <code>=&gt;</code> とするとエラーが返ってきます。
+<code>&lt;=</code> も同様に <code>&lt;=</code> としてはいけません。
+ここでもベクトルの返り値がベクトルであることに注意してください。</p>
+<p>比較演算子の先頭に <code>!</code> をつけることができます。
+この <code>!</code> は否定を意味します。
+<code>==</code> の場合は，<code>!=</code> とすると <code>==</code> が真ではないものという意味になります。</p>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="4-比較演算.html#cb273-1" tabindex="-1"></a>year <span class="sc">!=</span> <span class="dv">2000</span></span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<p><code>!=</code> の返り値は， <code>==</code> のちょうど反対であることが分かるはずです。
+なお，<code>!&gt;</code> や <code>!&lt;</code> は使えません。
+<code>&gt;</code> の否定は <code>&lt;=</code> で表現できるため，これらのコマンドが使えなくてもとくに困りません。</p>
+<p>比較演算は，ベクトルや行列の一部を取り出すときによく使います。
+例えば，次のようにします。</p>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="4-比較演算.html#cb275-1" tabindex="-1"></a>year[year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span></code></pre></div>
+<pre><code>##  [1] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010</code></pre>
+<p>一見冗長な書き方のように見えますが，これで問題ありません。
+<code>[]</code> の内側は論理値のベクトルであり，<code>[]</code> の外側（ <code>year</code> ）のベクトルと長さが同じ（または，外側が内側の整数倍）でなければなりません。
+この場合は <code>[]</code> の外側と内側で同じ変数 <code>year</code> を使っているので，必ずベクトルの長さが同じになります。</p>
+<p><code>[]</code> の外側のベクトルに対して，内側のベクトルの長さが短い場合は，内側のベクトルを繰り返します。
+例えば，次のようにすると，<code>c(TRUE, FALSE, FALSE)</code> は7回繰り返され，返り値は7つの要素を持つベクトルになります。</p>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="4-比較演算.html#cb277-1" tabindex="-1"></a>year[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code></pre></div>
+<pre><code>## [1] 1990 1993 1996 1999 2002 2005 2008</code></pre>
+<p><code>length(year)</code> が 21 であり，これを <code>length(c(TRUE, FALSE, FALSE))</code> の 3 で割ると，7 になります。</p>
+<p><code>[]</code> の外側が内側の整数倍の長さのベクトルという性質を使うことはほとんどないため，このことを知らなくても困ることはほとんどないでしょう。
+むしろ，ベクトルの長さが違っていてもエラーにならない可能性があることから，思わぬバグに気づかないかもしれません。</p>
+<p>比較演算は，実際によく使います。
+例えば，次のような使い方をします。</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="4-比較演算.html#cb279-1" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2010</span></span>
+<span id="cb279-2"><a href="4-比較演算.html#cb279-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5040</span>, <span class="dv">2</span>)</span>
+<span id="cb279-3"><a href="4-比較演算.html#cb279-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> year, <span class="at">value =</span> y)</span>
+<span id="cb279-4"><a href="4-比較演算.html#cb279-4" tabindex="-1"></a><span class="fu">mean</span>(z[z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>, ]<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>## [1] 5031</code></pre>
+<p>最後の部分は次のようにしても同じです。</p>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="4-比較演算.html#cb281-1" tabindex="-1"></a><span class="fu">mean</span>(z<span class="sc">$</span>value[z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>])</span></code></pre></div>
+<pre><code>## [1] 5031</code></pre>
+<p>このことがいまいちピンとこない人は，次のように分解して考えてみてください。</p>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="4-比較演算.html#cb283-1" tabindex="-1"></a>(zd1 <span class="ot">&lt;-</span> z<span class="sc">$</span>year <span class="sc">&gt;</span> <span class="dv">2000</span>)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE
+## [13]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="4-比較演算.html#cb285-1" tabindex="-1"></a>(zd2 <span class="ot">&lt;-</span> z[zd1, ])</span></code></pre></div>
+<pre><code>##    year value
+## 12 2001  5022
+## 13 2002  5024
+## 14 2003  5026
+## 15 2004  5028
+## 16 2005  5030
+## 17 2006  5032
+## 18 2007  5034
+## 19 2008  5036
+## 20 2009  5038
+## 21 2010  5040</code></pre>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="4-比較演算.html#cb287-1" tabindex="-1"></a>(zd3 <span class="ot">&lt;-</span> zd2<span class="sc">$</span>value)</span></code></pre></div>
+<pre><code>##  [1] 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="4-比較演算.html#cb289-1" tabindex="-1"></a><span class="fu">mean</span>(zd3)</span></code></pre></div>
+<pre><code>## [1] 5031</code></pre>
+<p>これまでの説明で，返り値が論理値であることが混乱を招く原因になっているかもしれません。
+しかし，これは R の便利な特徴のひとつですので，必ず理解してください。
+もしかしたら，判定が真となる要素がベクトルの何番目の要素であるかを返す関数 <code>which()</code> の方が理解が容易でしょうか。</p>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="4-比較演算.html#cb291-1" tabindex="-1"></a><span class="fu">which</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>)</span></code></pre></div>
+<pre><code>##  [1] 11 12 13 14 15 16 17 18 19 20 21</code></pre>
+<p>このため，次のようにすることができます。</p>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="4-比較演算.html#cb293-1" tabindex="-1"></a>(zd <span class="ot">&lt;-</span> <span class="fu">which</span>(z<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>))</span></code></pre></div>
+<pre><code>##  [1] 11 12 13 14 15 16 17 18 19 20 21</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="4-比較演算.html#cb295-1" tabindex="-1"></a>z<span class="sc">$</span>value[zd]</span></code></pre></div>
+<pre><code>##  [1] 5020 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+<p>ただし，これは次のようにすることと同じです。</p>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="4-比較演算.html#cb297-1" tabindex="-1"></a>z<span class="sc">$</span>value[z<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span></code></pre></div>
+<pre><code>##  [1] 5020 5022 5024 5026 5028 5030 5032 5034 5036 5038 5040</code></pre>
+<p>返り値と関数の引数は異なります。
+このように，ベクトルを取り出すとき，何番目であるかを指定する方法と，論理値で指定する方法の2つがあることを知っておいてください。
+今後自分でコードを書くとき，このことが混乱の原因になるかもしれません。
+もし混乱した場合は，そのとき扱っている変数が数値なのか論理値なのかを考えると，頭の中が整理されるはずです。</p>
+<div id="na" class="section level4 hasAnchor" number="4.1.1.1">
+<h4><span class="header-section-number">4.1.1.1</span> <code>NA</code><a href="4-比較演算.html#na" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>ベクトルに <code>NA</code> が含まれるとき，<code>NA</code> のある場所では評価（比較演算）しません。</p>
+<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="4-比較演算.html#cb299-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb299-2"><a href="4-比較演算.html#cb299-2" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
+<span id="cb299-3"><a href="4-比較演算.html#cb299-3" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE    NA  TRUE</code></pre>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="4-比較演算.html#cb301-1" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1]  8  9 10 NA  6</code></pre>
+<p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。
+<code>NA</code> かどうかは次の関数で判定します。</p>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="4-比較演算.html#cb303-1" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="4-比較演算.html#cb305-1" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code></pre></div>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</code></pre>
+<p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="4-比較演算.html#cb307-1" tabindex="-1"></a><span class="fu">length</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span></code></pre></div>
+<pre><code>## [1] 9</code></pre>
+<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="4-比較演算.html#cb309-1" tabindex="-1"></a><span class="fu">length</span>(x)</span></code></pre></div>
+<pre><code>## [1] 10</code></pre>
+<p>このベクトルがデータフレームから取り出したものである場合，そのデータフレームに <code>NA</code> を取り除いたベクトルを戻すことはできません。
+行の対応関係が崩れるため当然ですが，勘違いしやすいので注意してください。
+<code>NA</code> が含まれる計算結果は <code>NA</code> となるため，<code>NA</code> を取り除きたくなるかもしれません。</p>
+<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="4-比較演算.html#cb311-1" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<p>この場合，関数の引数に <code>na.rm = TRUE</code> を入れて，一時的に <code>NA</code> を取り除いて計算してください。</p>
+<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="4-比較演算.html#cb313-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] 48</code></pre>
+<p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
+<p>判定の際に <code>NA</code> を取り除きたい場合は，次のようにします。</p>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="4-比較演算.html#cb315-1" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
+<pre><code>## [1]  8  9 10  6</code></pre>
+</div>
+<div id="論理積" class="section level4 hasAnchor" number="4.1.1.2">
+<h4><span class="header-section-number">4.1.1.2</span> 論理積<a href="4-比較演算.html#論理積" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>&amp;</code> は<strong>論理積</strong>と呼ばれるもので，英語の”and”，日本語の「かつ」という意味を持ち，判定の条件を増やすことを意味します。
+<code>NA</code> に限らず，複数の比較演算を使いたい場合は，論理積 <code>&amp;</code> を使います。
+もっと単純な例としては，以下のようなものがあります。</p>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="4-比較演算.html#cb317-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2005</span>]</span></code></pre></div>
+<pre><code>## [1] 2001 2002 2003 2004</code></pre>
+<p>論理積は以下のベン図で表現できます。
+<img src="index_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
+</div>
+<div id="論理和" class="section level4 hasAnchor" number="4.1.1.3">
+<h4><span class="header-section-number">4.1.1.3</span> 論理和<a href="4-比較演算.html#論理和" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>複数の比較演算のいずれかが真となるという条件式を書きたい場合は，論理和 <code>|</code> を使います。
+例えば，次のようにします。</p>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="4-比較演算.html#cb319-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2005</span> <span class="sc">|</span> year <span class="sc">&lt;</span> <span class="dv">1995</span>]</span></code></pre></div>
+<pre><code>##  [1] 1990 1991 1992 1993 1994 2006 2007 2008 2009 2010</code></pre>
+<p>論理和は以下のベン図で表現できます。
+<img src="index_files/figure-html/unnamed-chunk-190-1.png" width="672" />
+このケースでは，2つの条件のどちらも満たす <code>year</code> は存在しませんので，実際には重なりはありません。</p>
+<p>ここで，滅多に使わないですが，次の関係は知っておいてください。</p>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="4-比較演算.html#cb321-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">NA</span></span></code></pre></div>
+<pre><code>## [1] NA</code></pre>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="4-比較演算.html#cb323-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">|</span> <span class="cn">NA</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<p><code>NA</code> の取り扱いは難しいため，実際にコードを書くときには，コードを分解して，確実に意図通りの結果が得られていることを確かめながら，全体を完成させてください。</p>
+</div>
+</div>
+<div id="文字列-1" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> 文字列<a href="4-比較演算.html#文字列-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>文字列の比較演算子が使えます。
+文字列の比較演算は次のようにします。</p>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="4-比較演算.html#cb325-1" tabindex="-1"></a>prefecture <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;北海道&quot;</span>, <span class="st">&quot;青森県&quot;</span>, <span class="st">&quot;岩手県&quot;</span>, <span class="st">&quot;宮城県&quot;</span>, <span class="st">&quot;秋田県&quot;</span>, <span class="st">&quot;山形県&quot;</span>, <span class="st">&quot;福島県&quot;</span>,</span>
+<span id="cb325-2"><a href="4-比較演算.html#cb325-2" tabindex="-1"></a>                <span class="st">&quot;茨城県&quot;</span>, <span class="st">&quot;栃木県&quot;</span>, <span class="st">&quot;群馬県&quot;</span>, <span class="st">&quot;埼玉県&quot;</span>, <span class="st">&quot;千葉県&quot;</span>, <span class="st">&quot;東京都&quot;</span>, <span class="st">&quot;神奈川県&quot;</span>,</span>
+<span id="cb325-3"><a href="4-比較演算.html#cb325-3" tabindex="-1"></a>                <span class="st">&quot;新潟県&quot;</span>, <span class="st">&quot;富山県&quot;</span>, <span class="st">&quot;石川県&quot;</span>, <span class="st">&quot;福井県&quot;</span>, <span class="st">&quot;山梨県&quot;</span>, <span class="st">&quot;長野県&quot;</span>, <span class="st">&quot;岐阜県&quot;</span>, <span class="st">&quot;静岡県&quot;</span>, <span class="st">&quot;愛知県&quot;</span>,</span>
+<span id="cb325-4"><a href="4-比較演算.html#cb325-4" tabindex="-1"></a>                <span class="st">&quot;三重県&quot;</span>, <span class="st">&quot;滋賀県&quot;</span>, <span class="st">&quot;京都府&quot;</span>, <span class="st">&quot;大阪府&quot;</span>, <span class="st">&quot;兵庫県&quot;</span>, <span class="st">&quot;奈良県&quot;</span>, <span class="st">&quot;和歌山県&quot;</span>,</span>
+<span id="cb325-5"><a href="4-比較演算.html#cb325-5" tabindex="-1"></a>                <span class="st">&quot;鳥取県&quot;</span>, <span class="st">&quot;島根県&quot;</span>, <span class="st">&quot;岡山県&quot;</span>, <span class="st">&quot;広島県&quot;</span>, <span class="st">&quot;山口県&quot;</span>, <span class="st">&quot;徳島県&quot;</span>, <span class="st">&quot;香川県&quot;</span>, <span class="st">&quot;愛媛県&quot;</span>, <span class="st">&quot;高知県&quot;</span>,</span>
+<span id="cb325-6"><a href="4-比較演算.html#cb325-6" tabindex="-1"></a>                <span class="st">&quot;福岡県&quot;</span>, <span class="st">&quot;佐賀県&quot;</span>, <span class="st">&quot;長崎県&quot;</span>, <span class="st">&quot;熊本県&quot;</span>, <span class="st">&quot;大分県&quot;</span>, <span class="st">&quot;宮崎県&quot;</span>, <span class="st">&quot;鹿児島県&quot;</span>, <span class="st">&quot;沖縄県&quot;</span>)</span>
+<span id="cb325-7"><a href="4-比較演算.html#cb325-7" tabindex="-1"></a>prefecture[prefecture <span class="sc">==</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;愛媛県&quot;</code></pre>
+<p>数値と同じく，文字列の返り値も論理値です。
+文字列の場合，<code>==</code> は完全一致を意味します。
+<code>prefecture[prefecture == "愛媛県"]</code> の例はあまり意味がありません。
+しかし，<code>prefecture == "愛媛県"</code> の部分は重要です。
+次のコマンドの返り値がどうなるかをよく知っておいてください。</p>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="4-比較演算.html#cb327-1" tabindex="-1"></a>prefecture <span class="sc">==</span> <span class="st">&quot;愛媛県&quot;</span></span></code></pre></div>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [13] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [25] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+## [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<p>文字列の場合，大きさはないため，<code>&gt;</code> や <code>&lt;</code> といった比較演算子は使えないはずです。</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="4-比較演算.html#cb329-1" tabindex="-1"></a>prefecture[prefecture <span class="sc">&gt;</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
+<pre><code>##  [1] &quot;北海道&quot;   &quot;青森県&quot;   &quot;岩手県&quot;   &quot;宮城県&quot;   &quot;秋田県&quot;   &quot;山形県&quot;   &quot;福島県&quot;  
+##  [8] &quot;茨城県&quot;   &quot;栃木県&quot;   &quot;群馬県&quot;   &quot;埼玉県&quot;   &quot;千葉県&quot;   &quot;東京都&quot;   &quot;神奈川県&quot;
+## [15] &quot;新潟県&quot;   &quot;富山県&quot;   &quot;石川県&quot;   &quot;福井県&quot;   &quot;山梨県&quot;   &quot;長野県&quot;   &quot;岐阜県&quot;  
+## [22] &quot;静岡県&quot;   &quot;三重県&quot;   &quot;滋賀県&quot;   &quot;京都府&quot;   &quot;大阪府&quot;   &quot;兵庫県&quot;   &quot;奈良県&quot;  
+## [29] &quot;和歌山県&quot; &quot;鳥取県&quot;   &quot;島根県&quot;   &quot;岡山県&quot;   &quot;広島県&quot;   &quot;山口県&quot;   &quot;徳島県&quot;  
+## [36] &quot;香川県&quot;   &quot;高知県&quot;   &quot;福岡県&quot;   &quot;佐賀県&quot;   &quot;長崎県&quot;   &quot;熊本県&quot;   &quot;大分県&quot;  
+## [43] &quot;宮崎県&quot;   &quot;鹿児島県&quot; &quot;沖縄県&quot;</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="4-比較演算.html#cb331-1" tabindex="-1"></a>prefecture[prefecture <span class="sc">&lt;</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] &quot;愛知県&quot;</code></pre>
+<p>予想に反して，返り値はエラーではありません。
+これは，各文字列の文字コードを比較しています。
+このことは，次のコマンドでも確認できます。</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="4-比較演算.html#cb333-1" tabindex="-1"></a><span class="fu">factor</span>(prefecture)</span></code></pre></div>
+<pre><code>##  [1] 北海道   青森県   岩手県   宮城県   秋田県   山形県   福島県   茨城県  
+##  [9] 栃木県   群馬県   埼玉県   千葉県   東京都   神奈川県 新潟県   富山県  
+## [17] 石川県   福井県   山梨県   長野県   岐阜県   静岡県   愛知県   三重県  
+## [25] 滋賀県   京都府   大阪府   兵庫県   奈良県   和歌山県 鳥取県   島根県  
+## [33] 岡山県   広島県   山口県   徳島県   香川県   愛媛県   高知県   福岡県  
+## [41] 佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県 沖縄県  
+## 47 Levels: 愛知県 愛媛県 茨城県 岡山県 沖縄県 岩手県 岐阜県 宮崎県 ... 和歌山県</code></pre>
+<p><code>Levels</code> がおかしな並び順になっていることが確認できます。
+<strong>ここで <code>R</code> と <code>RStudio</code> では， <code>levels(prefecture)</code> が異なります。
+なぜなのか？どなたか説明いただければ幸いです。RStudio は何をしているのでしょうか？</strong></p>
+<p>こうした文字コードでの順序づけを回避するには，<code>levels()</code> を明示的に指定しなければなりません。</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="4-比較演算.html#cb335-1" tabindex="-1"></a>(prefecture_factor <span class="ot">&lt;-</span> <span class="fu">factor</span>(prefecture, <span class="at">levels =</span> prefecture, <span class="at">ordered =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>##  [1] 北海道   青森県   岩手県   宮城県   秋田県   山形県   福島県   茨城県  
+##  [9] 栃木県   群馬県   埼玉県   千葉県   東京都   神奈川県 新潟県   富山県  
+## [17] 石川県   福井県   山梨県   長野県   岐阜県   静岡県   愛知県   三重県  
+## [25] 滋賀県   京都府   大阪府   兵庫県   奈良県   和歌山県 鳥取県   島根県  
+## [33] 岡山県   広島県   山口県   徳島県   香川県   愛媛県   高知県   福岡県  
+## [41] 佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県 沖縄県  
+## 47 Levels: 北海道 &lt; 青森県 &lt; 岩手県 &lt; 宮城県 &lt; 秋田県 &lt; 山形県 &lt; ... &lt; 沖縄県</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="4-比較演算.html#cb337-1" tabindex="-1"></a>prefecture_factor[prefecture_factor <span class="sc">&gt;</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
+<pre><code>## [1] 高知県   福岡県   佐賀県   長崎県   熊本県   大分県   宮崎県   鹿児島県
+## [9] 沖縄県  
+## 47 Levels: 北海道 &lt; 青森県 &lt; 岩手県 &lt; 宮城県 &lt; 秋田県 &lt; 山形県 &lt; ... &lt; 沖縄県</code></pre>
+<p>このようなこともできますが，特別な理由がない限り，文字列の大小比較はしないでください。</p>
+<p>さて，文字列のベクトルの中から共通する要素を取り出したいことがあるかもしれません。
+例えば，都道府県の中から府のみを取り出したいときに，次のようにしても得たい結果は得られません。</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="4-比較演算.html#cb339-1" tabindex="-1"></a>prefecture[prefecture <span class="sc">==</span> <span class="st">&quot;府&quot;</span>]</span></code></pre></div>
+<pre><code>## character(0)</code></pre>
+<p>上述のように，<code>==</code> は完全一致を意味するからです。
+このとき，次のようにします。</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="4-比較演算.html#cb341-1" tabindex="-1"></a>prefecture[<span class="fu">grep</span>(<span class="st">&quot;府&quot;</span>, prefecture)]</span></code></pre></div>
+<pre><code>## [1] &quot;京都府&quot; &quot;大阪府&quot;</code></pre>
+<p>これは正規表現を使った抽出です。
+このコマンドはやや冗長で，本来なら次のようにすべきです。</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="4-比較演算.html#cb343-1" tabindex="-1"></a><span class="fu">grep</span>(<span class="st">&quot;府&quot;</span>, prefecture, <span class="at">value =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1] &quot;京都府&quot; &quot;大阪府&quot;</code></pre>
+<p><code>grep</code> は正規表現を使った処理ができる関数のひとつです。
+ただし，正規表現の理解は初学者には難しいでしょう。</p>
+</div>
+<div id="正規表現" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> 正規表現<a href="4-比較演算.html#正規表現" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>正規表現を知っているかどうかで，比較演算子の効率的な使い方が飛躍的に向上します。
+正規表現は，人間が考えるかのようにコンピュータに考えさせる記述方法です。
+しかし，非常にややこしいので，最初は覚える必要はありません。</p>
+<p>Rをある程度使えるようになったら，以下のWebページを確認してください。</p>
+<ul>
+<li><a href="http://www.okadajp.org/RWiki/?R+%E3%81%AB%E3%81%8A%E3%81%91%E3%82%8B%E6%AD%A3%E8%A6%8F%E8%A1%A8%E7%8F%BE" target="_blank">R における正規表現 - RjpWiki</a></li>
+</ul>
+</div>
+<div id="集合" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> 集合<a href="4-比較演算.html#集合" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>集合は次の関数で処理します。</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="4-比較演算.html#cb345-1" tabindex="-1"></a><span class="fu">union</span>(x, y)</span>
+<span id="cb345-2"><a href="4-比較演算.html#cb345-2" tabindex="-1"></a><span class="fu">intersect</span>(x, y)</span>
+<span id="cb345-3"><a href="4-比較演算.html#cb345-3" tabindex="-1"></a><span class="fu">setdiff</span>(x, y)</span>
+<span id="cb345-4"><a href="4-比較演算.html#cb345-4" tabindex="-1"></a><span class="fu">setequal</span>(x, y)</span></code></pre></div>
+<p>なぜか実践ではこれらの関数はほとんど使用されません。</p>
+<p>ただし，<code>%in%</code> を使う機会が多いです。
+例えば，インストールしていないパッケージ名を知りたいときは次のようにします。</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="4-比較演算.html#cb346-1" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">unname</span>(<span class="fu">installed.packages</span>()[, <span class="st">&quot;Package&quot;</span>])</span>
+<span id="cb346-2"><a href="4-比較演算.html#cb346-2" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">rownames</span>(<span class="fu">available.packages</span>())</span>
+<span id="cb346-3"><a href="4-比較演算.html#cb346-3" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(available, installed)</span></code></pre></div>
+<p>この最後の1行は，次のようにするのが一般的です。</p>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="4-比較演算.html#cb347-1" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> available[<span class="sc">!</span>available <span class="sc">%in%</span> installed]</span></code></pre></div>
+</div>
+</div>
+<div id="条件分岐" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> 条件分岐<a href="4-比較演算.html#条件分岐" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>条件分岐とは，「もし〜ならば」という条件「〜」を満たす場合に，指定の処理をする手続きのことです。</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="4-比較演算.html#cb348-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb348-2"><a href="4-比較演算.html#cb348-2" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb348-3"><a href="4-比較演算.html#cb348-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;正解です。&quot;</span>)</span>
+<span id="cb348-4"><a href="4-比較演算.html#cb348-4" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;正解です。&quot;</code></pre>
+<p>このように，<code>if</code> と <code>()</code> の間にスペースを入れます。
+また，<code>{}</code> の前後は改行し，<code>{}</code> の中は左にインデントを付けるようにしてください。
+インデントは，スペース2つが一般的です（スペースを4つ付ける人もいます）。</p>
+<p><code>if</code> 文は，「そうでなければ」ということを意味する <code>else</code> を伴うこともできます。</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="4-比較演算.html#cb350-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb350-2"><a href="4-比較演算.html#cb350-2" tabindex="-1"></a><span class="cf">if</span> (x <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb350-3"><a href="4-比較演算.html#cb350-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;正解です。&quot;</span>)</span>
+<span id="cb350-4"><a href="4-比較演算.html#cb350-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb350-5"><a href="4-比較演算.html#cb350-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;不正解です。&quot;</span>)</span>
+<span id="cb350-6"><a href="4-比較演算.html#cb350-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;正解です。&quot;</code></pre>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="4-比較演算.html#cb352-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>)</span>
+<span id="cb352-2"><a href="4-比較演算.html#cb352-2" tabindex="-1"></a><span class="cf">if</span> (x[<span class="dv">1</span>] <span class="sc">==</span> <span class="dv">1</span>) {</span>
+<span id="cb352-3"><a href="4-比較演算.html#cb352-3" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;正解です。&quot;</span>)</span>
+<span id="cb352-4"><a href="4-比較演算.html#cb352-4" tabindex="-1"></a>} <span class="cf">else</span> {</span>
+<span id="cb352-5"><a href="4-比較演算.html#cb352-5" tabindex="-1"></a>  <span class="fu">print</span>(<span class="st">&quot;不正解です。&quot;</span>)</span>
+<span id="cb352-6"><a href="4-比較演算.html#cb352-6" tabindex="-1"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;不正解です。&quot;</code></pre>
+<p><code>if</code> 文の <code>()</code> の中は，長さ1のベクトル（スカラーではない）かつ論理値でなければなりません。
+すなわち，<code>if</code> 文の <code>()</code> の中は <code>TRUE</code> か <code>FALSE</code> です。
+もしベクトルの要素1つずつ処理したい場合は，次に説明する繰り返し処理と組み合わせて使います。</p>
+</div>
+<div id="繰り返し処理" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> 繰り返し処理<a href="4-比較演算.html#繰り返し処理" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="4-比較演算.html#cb354-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb354-2"><a href="4-比較演算.html#cb354-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>) {</span>
+<span id="cb354-3"><a href="4-比較演算.html#cb354-3" tabindex="-1"></a>  x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span></span>
+<span id="cb354-4"><a href="4-比較演算.html#cb354-4" tabindex="-1"></a>}</span>
+<span id="cb354-5"><a href="4-比較演算.html#cb354-5" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 11</code></pre>
+<p>このように，<code>for</code> と <code>()</code> の間にスペースを入れます。
+また，<code>for</code> 文と同じように，<code>{}</code> の前後は改行し，<code>{}</code> の中は左にインデントを付けるようにしてください。</p>
+<p><code>for</code> 文を使うときは，必ずループから抜け出せるようにしてください。
+例えば，<code>for</code> の引数に <code>{}</code> の中で代入した場合，無限ループになることがあります。</p>
+<p>繰り返し処理には，<code>for</code> 文意外に <code>while</code> 文もあります。</p>
+</div>
+<div id="データクリーニング" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> データ・クリーニング<a href="4-比較演算.html#データクリーニング" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>よく使う関数に次のようなものがある。</p>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="4-比較演算.html#cb356-1" tabindex="-1"></a><span class="fu">table</span>()</span>
+<span id="cb356-2"><a href="4-比較演算.html#cb356-2" tabindex="-1"></a><span class="fu">unique</span>()</span>
+<span id="cb356-3"><a href="4-比較演算.html#cb356-3" tabindex="-1"></a><span class="fu">order</span>()</span>
+<span id="cb356-4"><a href="4-比較演算.html#cb356-4" tabindex="-1"></a><span class="fu">apply</span>()</span>
+<span id="cb356-5"><a href="4-比較演算.html#cb356-5" tabindex="-1"></a><span class="fu">sapply</span>()</span>
+<span id="cb356-6"><a href="4-比較演算.html#cb356-6" tabindex="-1"></a><span class="fu">lapply</span>()</span></code></pre></div>
+<p>例えば，次のように使う。</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="4-比較演算.html#cb357-1" tabindex="-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="4-比較演算.html#cb359-1" tabindex="-1"></a><span class="fu">unique</span>(iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## [1] setosa     versicolor virginica 
+## Levels: setosa versicolor virginica</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="4-比較演算.html#cb361-1" tabindex="-1"></a><span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142  77 113
+##  [20] 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117 148  52  75 112
+##  [39] 116 129 133 138  57  73  88 101 104 124 134 137 147  69  98 127 149  64  72
+##  [58]  74  92 128 135  63  79  84  86 120 139  62  71 150  15  68  83  93 102 115
+##  [77] 143  16  19  56  80  96  97 100 114  65  67  70  89  95 122  34  37  54  81
+##  [96]  82  90  91   6  11  17  21  32  85  49  28  29  33  60   1  18  20  22  24
+## [115]  40  45  47  99   5   8  26  27  36  41  44  50  61  94   2  10  35  38  58
+## [134] 107  12  13  25  31  46   3  30   4   7  23  48  42   9  39  43  14</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="4-比較演算.html#cb363-1" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ])</span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 132          7.9         3.8          6.4         2.0 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 106          7.6         3.0          6.6         2.1 virginica</code></pre>
+<p>論理式での数値は，<code>0</code> のみが <code>FALSE</code> として扱われ，それ以外は <code>TRUE</code> として扱われます。</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="4-比較演算.html#cb365-1" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">1</span>)</span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="4-比較演算.html#cb367-1" tabindex="-1"></a><span class="fu">as.logical</span>(<span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+</div>
+<div id="関数の作成" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> 関数の作成<a href="4-比較演算.html#関数の作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>関数を自分で作ることができます。</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="4-比較演算.html#cb369-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cf">function</span> (y) {</span>
+<span id="cb369-2"><a href="4-比較演算.html#cb369-2" tabindex="-1"></a>  <span class="fu">paste</span>(y, <span class="at">collapse =</span> <span class="st">&quot;/&quot;</span>)</span>
+<span id="cb369-3"><a href="4-比較演算.html#cb369-3" tabindex="-1"></a>}</span>
+<span id="cb369-4"><a href="4-比較演算.html#cb369-4" tabindex="-1"></a><span class="fu">x</span>(<span class="fu">c</span>(<span class="st">&quot;Apple&quot;</span>, <span class="st">&quot;Orange&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;Apple/Orange&quot;</code></pre>
+</div>
+<div id="練習問題-3" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> 練習問題<a href="4-比較演算.html#練習問題-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>次のデータフレーム <code>z</code> があるとする。<code>z</code> を使って，2000年以降の <code>value</code> の値の平均を求めなさい。<a href="basics.html">基礎</a>の練習問題と同じです。ただし，ここでは比較演算子を用いなさい。</li>
+</ol>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="4-比較演算.html#cb371-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2021</span></span>
+<span id="cb371-2"><a href="4-比較演算.html#cb371-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5030</span>, <span class="dv">2</span>)</span>
+<span id="cb371-3"><a href="4-比較演算.html#cb371-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li><p>九九（1から9までの整数同士の掛け算）のすべての組み合わせの答えを合計しなさい。</p></li>
+<li><p>「北海道」「青森」…「東京」…といった都道府県のベクトル <code>pref</code> があります。北海道には「道」の文字が付いていますが，都府県には「都」「府」「県」の文字が付いていません。そこで，都府県にも「都府県」を付けて，すべてのデータが「都道府県」で終わるように揃えたいとします。ただし，データの中には47都道府県がすべて含まれているかどうか，重複があるかどうかは分かりません。すべての文字列が「都道府県」で終わるように揃えなさい。</p></li>
+<li><p>ポケモンの中から，water タイプのポケモンをすべて挙げなさい。
+ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。</p></li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="3-ファイル操作.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="5-作図.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>1 まずは使ってみる | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="1 まずは使ってみる | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="1 まずは使ってみる | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="2-基礎.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Rの使い方</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
+<li class="chapter" data-level="1.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#基本操作"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#四則演算"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#変数"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#関数"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#ベクトル"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#パッケージ"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#練習問題"><i class="fa fa-check"></i><b>1.3</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-基礎.html"><a href="2-基礎.html"><i class="fa fa-check"></i><b>2</b> 基礎</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-基礎.html"><a href="2-基礎.html#データの型"><i class="fa fa-check"></i><b>2.1</b> データの型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2-基礎.html"><a href="2-基礎.html#数値"><i class="fa fa-check"></i><b>2.1.1</b> 数値</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-基礎.html"><a href="2-基礎.html#文字列"><i class="fa fa-check"></i><b>2.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-基礎.html"><a href="2-基礎.html#ファクター"><i class="fa fa-check"></i><b>2.1.3</b> ファクター</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-基礎.html"><a href="2-基礎.html#論理値"><i class="fa fa-check"></i><b>2.1.4</b> 論理値</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-基礎.html"><a href="2-基礎.html#データの構造"><i class="fa fa-check"></i><b>2.2</b> データの構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2-基礎.html"><a href="2-基礎.html#ベクトル-1"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-基礎.html"><a href="2-基礎.html#名前付きベクトル"><i class="fa fa-check"></i><b>2.2.2</b> 名前付きベクトル</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-基礎.html"><a href="2-基礎.html#行列"><i class="fa fa-check"></i><b>2.2.3</b> 行列</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-基礎.html"><a href="2-基礎.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-基礎.html"><a href="2-基礎.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-基礎.html"><a href="2-基礎.html#特殊記号"><i class="fa fa-check"></i><b>2.3</b> 特殊記号</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2-基礎.html"><a href="2-基礎.html#コメント"><i class="fa fa-check"></i><b>2.3.1</b> コメント</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-基礎.html"><a href="2-基礎.html#セミコロン"><i class="fa fa-check"></i><b>2.3.2</b> セミコロン</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-基礎.html"><a href="2-基礎.html#評価と同時に返り値を表示"><i class="fa fa-check"></i><b>2.3.3</b> 評価と同時に返り値を表示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-基礎.html"><a href="2-基礎.html#入門書"><i class="fa fa-check"></i><b>2.4</b> 入門書</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2-基礎.html"><a href="2-基礎.html#チートシート"><i class="fa fa-check"></i><b>2.4.1</b> チートシート</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-基礎.html"><a href="2-基礎.html#練習問題-1"><i class="fa fa-check"></i><b>2.5</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html"><i class="fa fa-check"></i><b>3</b> ファイル操作</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイルの読み込み"><i class="fa fa-check"></i><b>3.1</b> ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎"><i class="fa fa-check"></i><b>3.2</b> ディレクトリ構造とファイル管理の基礎</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造"><i class="fa fa-check"></i><b>3.2.1</b> ディレクトリ構造</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル管理"><i class="fa fa-check"></i><b>3.2.2</b> ファイル管理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
+<li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#tips-2"><i class="fa fa-check"></i><b>3.5.1</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル出力"><i class="fa fa-check"></i><b>3.6</b> ファイル出力</a></li>
+<li class="chapter" data-level="3.7" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#microsoft-365"><i class="fa fa-check"></i><b>3.7</b> Microsoft 365</a></li>
+<li class="chapter" data-level="3.8" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ロケールの変更"><i class="fa fa-check"></i><b>3.8</b> ロケールの変更</a></li>
+<li class="chapter" data-level="3.9" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#unicodeエスケープシーケンス"><i class="fa fa-check"></i><b>3.9</b> Unicodeエスケープシーケンス</a></li>
+<li class="chapter" data-level="3.10" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#練習問題-2"><i class="fa fa-check"></i><b>3.10</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-比較演算.html"><a href="4-比較演算.html"><i class="fa fa-check"></i><b>4</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-比較演算.html"><a href="4-比較演算.html#比較演算-1"><i class="fa fa-check"></i><b>4.1</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4-比較演算.html"><a href="4-比較演算.html#数値-1"><i class="fa fa-check"></i><b>4.1.1</b> 数値</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-比較演算.html"><a href="4-比較演算.html#文字列-1"><i class="fa fa-check"></i><b>4.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-比較演算.html"><a href="4-比較演算.html#正規表現"><i class="fa fa-check"></i><b>4.1.3</b> 正規表現</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-比較演算.html"><a href="4-比較演算.html#集合"><i class="fa fa-check"></i><b>4.1.4</b> 集合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-比較演算.html"><a href="4-比較演算.html#条件分岐"><i class="fa fa-check"></i><b>4.2</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.3" data-path="4-比較演算.html"><a href="4-比較演算.html#繰り返し処理"><i class="fa fa-check"></i><b>4.3</b> 繰り返し処理</a></li>
+<li class="chapter" data-level="4.4" data-path="4-比較演算.html"><a href="4-比較演算.html#データクリーニング"><i class="fa fa-check"></i><b>4.4</b> データ・クリーニング</a></li>
+<li class="chapter" data-level="4.5" data-path="4-比較演算.html"><a href="4-比較演算.html#関数の作成"><i class="fa fa-check"></i><b>4.5</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.6" data-path="4-比較演算.html"><a href="4-比較演算.html#練習問題-3"><i class="fa fa-check"></i><b>4.6</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-作図.html"><a href="5-作図.html"><i class="fa fa-check"></i><b>5</b> 作図</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-作図.html"><a href="5-作図.html#どんな図を作成できるのか"><i class="fa fa-check"></i><b>5.1</b> どんな図を作成できるのか</a></li>
+<li class="chapter" data-level="5.2" data-path="5-作図.html"><a href="5-作図.html#プロット"><i class="fa fa-check"></i><b>5.2</b> プロット</a></li>
+<li class="chapter" data-level="5.3" data-path="5-作図.html"><a href="5-作図.html#保存"><i class="fa fa-check"></i><b>5.3</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-tidyverse.html"><a href="6-tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#base-r"><i class="fa fa-check"></i><b>6.1</b> base R</a></li>
+<li class="chapter" data-level="6.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#tidyverse-1"><i class="fa fa-check"></i><b>6.2</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#データフレーム-1"><i class="fa fa-check"></i><b>6.2.1</b> データフレーム</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#よく使う関数"><i class="fa fa-check"></i><b>6.2.2</b> よく使う関数</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#どちらを使えばよいのか"><i class="fa fa-check"></i><b>6.2.3</b> どちらを使えばよいのか</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#練習問題-4"><i class="fa fa-check"></i><b>6.3</b> 練習問題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<!--bookdown:title:end-->
+<!--bookdown:title:start-->
+<div id="まずは使ってみる" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">1</span> まずは使ってみる<a href="1-まずは使ってみる.html#まずは使ってみる" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>このサイトに書かれていることを実行するためには，あなたのパソコンでRを使える環境を構築しなければなりません（ここでは，RというアプリケーションとR言語を区別することなく，Rと呼びます。区別する場合，前者を <code>R.app</code> と書くことがありますが，これはmacOSのファイル名に由来する慣習です）。
+スマートフォンには対応していないため，必ずパソコンを使ってください。</p>
+<div id="環境構築" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> 環境構築<a href="1-まずは使ってみる.html#環境構築" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rは <a href="https://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a> から自分のパソコンのOSに対応したものをダウンロードし，インストールしてください。</p>
+<p><a href="https://cran.r-project.org/" target="_blank">The Comprehensive R Archive Network</a> は，Googleなどで「<strong>CRAN</strong>」（読みは「シーラン」または「クラン」）と入力して検索すると，すぐに見つかるはずです。
+あなたのパソコンのOSがWindowsなら「Download R for Windows」をクリックし，macOSなら「Download R for macOS」をクリックしてください。
+Windowsの場合，次の画面で「base」をクリックするとインストーラをダウンロードするページが表示されるはずです。
+macOSの場合，自分のMacのCPUがApple siliconかIntelかで，ダウンロードするファイルが異なります。
+自分の環境（OSとCPU）に合ったファイルがダウンロードできたら，そのファイルを使ってRをインストールしてください。
+Rの準備はこれだけです。</p>
+<p>もしRStudioを使いたければ，インストールしても構いません。
+最初にRStudioをインストールするように指示する書籍やウェブサイトがあると思います。
+しかし，個人的にはRStudioの使用はおすすめしません。</p>
+<p>RStudioが何をするためのものかを知ってからインストールしても遅くありませんので，Rに慣れてから，Rではできないことをするために，RStudioをインストールすることをおすすめします。
+Rコマンダー等，他のソフトウェアもインストールする必要はありません。
+Rで何ができるか検索した先に，Rに関連するソフトウェア（パッケージではなく）をインストールするよう指示があった場合は，それが何であるのか理解し，本当に必要であることが分かってから，指示に従ってください。</p>
+</div>
+<div id="基本操作" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 基本操作<a href="1-まずは使ってみる.html#基本操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rを起動すると，<strong>Rコンソール</strong>が現れます。
+macOSの場合はRコンソールのみが表示され，Windowsの場合は全体のウィンドウの中の小さなウィンドウがRコンソールです。</p>
+<p>Rコンソールは下から上に流れていき，一番下がコマンドを入力する場所です。
+その場所に，<code>&gt;</code> という文字が表示されているはずです。
+<code>&gt;</code> のことを<strong>プロンプト</strong>と呼びます。
+ここにコマンドを入力するということを覚えてください。</p>
+<p>ここで言う<strong>コマンド</strong>とは，Rへの命令のことであり，その実態は<strong>関数</strong>であることが多く，一連のコマンドは<strong>コード</strong>や<strong>スクリプト</strong>として表現されます。
+これらの言葉の厳密な使い分けはできなくても問題ありません。</p>
+<p>終了するときは，通常のアプリケーションと同じように終了してください。
+ただし，Windowsでは「作業スペースを保存しますか？」，macOSでは「ワークスペースのイメージファイルを保存しますか？」と聞かれます。
+聞かれたら，「いいえ」または「保存しない」を選択してください。</p>
+<div id="四則演算" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> 四則演算<a href="1-まずは使ってみる.html#四則演算" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>さっそく，計算してみましょう。
+プロンプトに続けて，次のように入力してください。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="1-まずは使ってみる.html#cb1-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<p>ここで改行については何も書いていないですが，文字列 <code>1 + 1</code> を入力した後は，必ず <code>Enterキー</code> または <code>Returnキー</code> を押してください。
+この操作のことを「実行する」と言います。</p>
+<p><code>1 + 1</code> を実行すると，次のように表示されるはずです。</p>
+<pre><code>## [1] 2</code></pre>
+<p>コマンドを実行した結果表示されるオブジェクトのことを，「返り値」と呼びます。
+ここでは， <code>1 + 1</code> というコマンドの返り値が，<code>2</code> であることが分かります。</p>
+<p>それでは，<code>2</code> の前に表示されている <code>[1]</code> は何でしょうか。
+これは右に表示されている返り値が，ベクトルの何番目の要素であるかを示したものです（厳密には正しくないが，この理解で問題ない）。
+<code>2</code> はベクトルの1番目の要素（スカラーではない）に当たるため，1番目の <code>1</code> が <code>[]</code> の中に表示されます。
+ここではベクトルを扱いませんが，実際にベクトルを扱うときに思い出してください。</p>
+<p>四則演算は簡単にできます。
+いくつか例を挙げますので，他に思いつくまま，いくつでも実行してみてくだしあ。
+なお，実行する場合は，1行ずつにしてください。
+慣れてくると数行まとめて実行するようになります。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="1-まずは使ってみる.html#cb3-1" tabindex="-1"></a><span class="dv">1</span> <span class="sc">+</span> <span class="dv">3</span></span>
+<span id="cb3-2"><a href="1-まずは使ってみる.html#cb3-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">-</span> <span class="dv">2</span></span>
+<span id="cb3-3"><a href="1-まずは使ってみる.html#cb3-3" tabindex="-1"></a><span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span>
+<span id="cb3-4"><a href="1-まずは使ってみる.html#cb3-4" tabindex="-1"></a><span class="dv">4</span> <span class="sc">/</span> <span class="dv">2</span></span></code></pre></div>
+<p>これらの返り値が期待通りかを確かめてください。
+この例にあるように，かけ算は <code>*</code> で，割り算は <code>/</code> で表します。</p>
+<p>これまでのように，四則演算の記号の前後にはスペースを入力してください。
+例えば，次のようにスペースを入れなくても，正しい返り値が得られます。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="1-まずは使ってみる.html#cb4-1" tabindex="-1"></a><span class="dv">2</span><span class="sc">+</span><span class="dv">5</span></span>
+<span id="cb4-2"><a href="1-まずは使ってみる.html#cb4-2" tabindex="-1"></a><span class="dv">3</span><span class="sc">*</span><span class="fl">1.5</span></span>
+<span id="cb4-3"><a href="1-まずは使ってみる.html#cb4-3" tabindex="-1"></a><span class="dv">6</span><span class="sc">/</span><span class="dv">4</span></span>
+<span id="cb4-4"><a href="1-まずは使ってみる.html#cb4-4" tabindex="-1"></a><span class="dv">10</span><span class="sc">--</span><span class="dv">2</span></span></code></pre></div>
+<p>ただし，スペースを入れないと，人間にとっては見にくくなります。
+プログラミングをする場合，人間にとって読みやすいかどうかは重要です。
+このため，必ずスペースを入れるように習慣づけてください。</p>
+<p>ちなみに，上記の例の2つ目は，正しくは <code>10 - -2</code> と書くか，<code>10 - (-2)</code> と書いてください。
+マイナス符号の後にスペースを入れると見にくくなるため，入れないのが一般的です（スペースを入れても入れなくても，結果は変わりません）。
+読みやすさを優先して，適宜スペースを入れるようにしてください（このページの記述方法は標準的なものです。記述方法をチェックするために，<a href="https://github.com/r-lib/lintr" target="_blank">lintr</a> パッケージがあります。ここでは理解する必要はありません）。
+どうすれば読みやすくなるかは説明が難しく，たくさんのRコードを読むことで自然に身についていくものです。</p>
+<p>計算の順番を指定する場合は，<code>()</code> で括ってください。</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="1-まずは使ってみる.html#cb5-1" tabindex="-1"></a>((<span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span>) <span class="sc">+</span> <span class="dv">3</span>) <span class="sc">/</span> (<span class="dv">2</span> <span class="sc">*</span> <span class="fl">1.5</span>)</span></code></pre></div>
+<p>計算の順番を指定するのに，<code>{}</code> や <code>[]</code> は使ってはいけません。
+<code>()</code> は何回入れ子になっても構いません。</p>
+<p>ここで，読者のみなさんにお伺いします。
+ここまでで，このページに書かれていなかった計算を試してみたでしょうか。
+例えば，次の計算結果はどう表示されるのだろうか，と疑問を持ち，確認したでしょうか。</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="1-まずは使ってみる.html#cb6-1" tabindex="-1"></a><span class="fl">0.2</span> <span class="sc">*</span> <span class="dv">5</span></span>
+<span id="cb6-2"><a href="1-まずは使ってみる.html#cb6-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">/</span> <span class="dv">3</span></span>
+<span id="cb6-3"><a href="1-まずは使ってみる.html#cb6-3" tabindex="-1"></a><span class="dv">10</span> <span class="sc">/</span> <span class="dv">0</span></span>
+<span id="cb6-4"><a href="1-まずは使ってみる.html#cb6-4" tabindex="-1"></a><span class="dv">0</span> <span class="sc">/</span> <span class="dv">10</span></span></code></pre></div>
+<p>プログラミングの学習に重要なのは<strong>好奇心</strong>です。
+書かれていることをコピー&amp;ペーストするだけでは，プログラミングスキルを修得するのはおそらく不可能でしょう。
+自分で考えながら，書かれていること以上のことを学習していってください。
+いろいろ計算してみたという方は，その調子で学習を進めていってください。
+ある瞬間に突然理解が深まるはずです。</p>
+</div>
+<div id="変数" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> 変数<a href="1-まずは使ってみる.html#変数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rに値を記憶させるために，<strong>変数</strong>（より厳密には，<strong>オブジェクト</strong>）に値を代入すると便利です。
+例えば，変数 <code>x</code> に10を代入するには次のコマンドを実行します。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="1-まずは使ってみる.html#cb7-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">10</span></span></code></pre></div>
+<p>これは次のように書くこともできます。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="1-まずは使ってみる.html#cb8-1" tabindex="-1"></a>x <span class="ot">=</span> <span class="dv">10</span></span></code></pre></div>
+<p>これらは同じ処理をしています。
+ただし，R的な（R like）やり方は前者，<code>&lt;-</code> を使う方です。</p>
+<p>変数 <code>x</code> に値が入ったことは，次のようにして確認できます。</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="1-まずは使ってみる.html#cb9-1" tabindex="-1"></a>x</span></code></pre></div>
+<p>あるいは，次のコマンドでも同じ結果が得られます。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="1-まずは使ってみる.html#cb10-1" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<p>代入するものは値そのものでなくても，何らかの返り値を持つ数式でも構いません。
+また，代入する変数の名前は <code>x</code> である必要はありません。
+自分で自由に決められます。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="1-まずは使ってみる.html#cb11-1" tabindex="-1"></a>hensuu <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">3</span></span></code></pre></div>
+<p>変数の中身を確認したければ，次のようにします。</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="1-まずは使ってみる.html#cb12-1" tabindex="-1"></a>hensuu</span></code></pre></div>
+<p>また，変数を使って計算することもできます。</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="1-まずは使ってみる.html#cb13-1" tabindex="-1"></a>hensuu <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<p>変数名は何でも構いません。
+例えば，日本語でも大丈夫です。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="1-まずは使ってみる.html#cb14-1" tabindex="-1"></a>変数 <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="dv">10</span></span></code></pre></div>
+<p>ただし，日本語の変数名は思わぬトラブルを招く原因になり得ますので，特別な理由がない限り，積極的には使わないことをおすすめします。</p>
+<p>一方，数字で始まる変数名は使えません。
+例えば，次のコマンドを実行するとエラーが返ってきます。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="1-まずは使ってみる.html#cb15-1" tabindex="-1"></a><span class="dv">2</span> <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb15-2"><a href="1-まずは使ってみる.html#cb15-2" tabindex="-1"></a><span class="dv">2</span>x <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="sc">+</span> <span class="dv">2</span> <span class="sc">*</span> b</span></code></pre></div>
+<p>アルファベットで始まる変数名にしてください。</p>
+<p>アルファベットの場合，大文字より小文字が望ましく，意味のある名前だと分かりやすいです。
+変数名にはアルファベットと数字以外に <code>_</code> と <code>.</code> を含めることもよくあります。
+<code>_</code> は英単語の区切りとして使うと便利です（例：<code>newnames</code> よりも <code>new_names</code> の方が分かりやすい）。
+ただし，<code>_</code> から始まる変数名はエラーになります。
+<code>.</code> は特別な理由がない限り，使わない方がよいです（例：<code>new.names</code> といった変数名は扱うことはできるが，避ける方が無難）。
+<code>.</code> から始まる変数名は普通の変数ではないため，使わないようにしてください。</p>
+<p>作成した変数を削除する場合は，次のコマンドを実行します。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="1-まずは使ってみる.html#cb16-1" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<p>現在使っている変数名は次のコマンドを実行すると分かります。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="1-まずは使ってみる.html#cb17-1" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<p>また，特定の変数が存在するかは，次のコマンドを実行すると分かります。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="1-まずは使ってみる.html#cb18-1" tabindex="-1"></a><span class="fu">exists</span>()</span></code></pre></div>
+<p>いろいろな変数を作りすぎて混乱してしまうことがあるでしょう。
+その場合，いったんRを終了して，再びRを起動すると，これまでRコンソールで作成した変数はすべてなくなります。
+いったんRを終了したのとほぼ同じことは，次のコマンドでも実行できます。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="1-まずは使ってみる.html#cb19-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list =</span> <span class="fu">ls</span>())</span></code></pre></div>
+<p>このコマンドは，変数だけでなく，後述する関数を含む（ほぼ）すべてのオブジェクトが削除されます。</p>
+<div id="tips" class="section level4 hasAnchor" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> Tips<a href="1-まずは使ってみる.html#tips" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.</code> で始まる変数名は通常は作成しません。
+この変数は他の変数と若干異なります。
+例えば，次のようにしてみるとわかります。</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="1-まずは使ってみる.html#cb20-1" tabindex="-1"></a>.a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb20-2"><a href="1-まずは使ってみる.html#cb20-2" tabindex="-1"></a>.a</span>
+<span id="cb20-3"><a href="1-まずは使ってみる.html#cb20-3" tabindex="-1"></a><span class="fu">ls</span>()</span></code></pre></div>
+<p><code>.a</code> という名前の変数が存在するはずですが，一覧には表示されません。
+<code>.a</code> も含めて一覧を表示させるためには，次のようにします。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="1-まずは使ってみる.html#cb21-1" tabindex="-1"></a><span class="fu">ls</span>(<span class="at">all.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>こういう特殊な動きをするため，<code>.</code> で始まる変数名は特別な理由がない限り使わないでください。</p>
+</div>
+</div>
+<div id="関数" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> 関数<a href="1-まずは使ってみる.html#関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>先ほどのように文字の直後に <code>()</code> がくるオブジェクトを<strong>関数</strong>と呼びます。
+関数には以下の特徴があります。</p>
+<ul>
+<li>一般的に，関数はより複雑な処理（より長いコード）を簡略化したものである。</li>
+<li>関数名と <code>(</code> と <code>)</code> の3つでひとかたまりである。</li>
+<li>関数に続く <code>()</code> の中には，関数のオプションとなる引数（ひきすう）を書く。</li>
+<li><code>()</code>を付けずに，関数名だけを書くと，その関数の中身を見ることができる。</li>
+<li><code>?</code>に続けて関数名だけを書くと，その関数のヘルプを参照することができる。</li>
+</ul>
+<p>例を挙げましょう。
+<code>seq()</code> は数列を生成する関数です。</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="1-まずは使ってみる.html#cb22-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">10</span>, <span class="at">by =</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>このとき，<code>from = 1, to = 10, by = 1</code> の部分が引数です。
+この関数は，<code>from</code> から <code>by</code> ずつ <code>to</code> まで値を増やす数列を生成します。
+実際に <code>x</code> の中身を確認してみましょう。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="1-まずは使ってみる.html#cb23-1" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
+<p>関数の引数の名前は省略できます。
+例えば，上の記述は以下のように書いても同じです。</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="1-まずは使ってみる.html#cb25-1" tabindex="-1"></a><span class="fu">seq</span>(<span class="dv">1</span>, <span class="dv">10</span>, <span class="dv">1</span>)</span></code></pre></div>
+<p>引数の値だけを書いた場合，どの引数の値であるかはコンマで区切られた順番によって決まります。
+こうした引数の順番をどのようにして知ることができるでしょうか。
+後述する関数のヘルプを参照すると，引数の順番を知ることができます。
+また，関数のヘルプを参照すると，どのような引数が使えるかも分かります。
+ただし，引数の名前は省略できるのですが，自明な場合を除いて，引数の名前は省略しないことをおすすめします。</p>
+<p>ここで，上述した <code>by = 1</code> のときの <code>seq()</code> は以下のように単純化することができることは知っておく必要があります。</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="1-まずは使ってみる.html#cb26-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span></code></pre></div>
+<p>この表記は特殊です。
+この形はそのまま覚えておきましょう。</p>
+<p>これまでの知識を踏まえて，いろいろ試してください。
+<code>seq()</code> の引数の値を変更すると，違う結果が得られることが想像できるはずです。
+次のようにすると，<code>x2</code> と <code>x5</code> の中身がどうなるか想像し，実際に想像通りになるかを確かめてください。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="1-まずは使ってみる.html#cb27-1" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">2</span>)</span>
+<span id="cb27-2"><a href="1-まずは使ってみる.html#cb27-2" tabindex="-1"></a>x5 <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">5</span>)</span></code></pre></div>
+<p>一般的に，関数名は覚えなければなりません。
+ある関数の使い方については，ヘルプを参照すると分かります。
+ヘルプを参照するためには，次のように関数名の前に <code>?</code> を書きます。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="1-まずは使ってみる.html#cb28-1" tabindex="-1"></a>?seq</span></code></pre></div>
+<p>同じ結果は，次のようにしても得られます。</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="1-まずは使ってみる.html#cb29-1" tabindex="-1"></a><span class="fu">help</span>(seq)</span></code></pre></div>
+<p>これは <code>help</code> という関数を使って，関数のヘルプを参照しています。</p>
+</div>
+<div id="ベクトル" class="section level3 hasAnchor" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> ベクトル<a href="1-まずは使ってみる.html#ベクトル" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>次のコードで作成される変数 <code>x</code> はベクトルです。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="1-まずは使ってみる.html#cb30-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1</span>, <span class="at">to =</span> <span class="dv">100</span>, <span class="at">by =</span> <span class="dv">2</span>)</span></code></pre></div>
+<p><code>x</code> の中には 50 個の値が入っており，順番にも意味があります。
+このベクトルの2番目の要素は次のようにして取り出すことができます。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="1-まずは使ってみる.html#cb31-1" tabindex="-1"></a>x[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<p>長さは次のようにして得ることができます。</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="1-まずは使ってみる.html#cb33-1" tabindex="-1"></a><span class="fu">length</span>(x)</span></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<p>このベクトルを用いて，いろいろな計算ができます。
+合計を計算するには <code>sum()</code> を使います。</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="1-まずは使ってみる.html#cb35-1" tabindex="-1"></a><span class="fu">sum</span>(x)</span></code></pre></div>
+<pre><code>## [1] 2500</code></pre>
+<p>これはExcelの関数として使ったことがあるのではないでしょうか。</p>
+<p>平均は次のようにして計算します。</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="1-まずは使ってみる.html#cb37-1" tabindex="-1"></a><span class="fu">mean</span>(x)</span></code></pre></div>
+<pre><code>## [1] 50</code></pre>
+<p>こうした関数を数式に含めることもできます。</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="1-まずは使ってみる.html#cb39-1" tabindex="-1"></a>x <span class="sc">-</span> <span class="fu">mean</span>(x)</span></code></pre></div>
+<pre><code>##  [1] -49 -47 -45 -43 -41 -39 -37 -35 -33 -31 -29 -27 -25 -23 -21 -19 -17 -15 -13
+## [20] -11  -9  -7  -5  -3  -1   1   3   5   7   9  11  13  15  17  19  21  23  25
+## [39]  27  29  31  33  35  37  39  41  43  45  47  49</code></pre>
+<p>上では変数名は何でもよいとしましたが，すでに定義されている予約語は使用してはいけません。
+次のコマンドを実行することで，予約語を知ることができます。</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="1-まずは使ってみる.html#cb41-1" tabindex="-1"></a>?reserved</span></code></pre></div>
+<p>予約語ではない変数名にするように心掛けましょう。</p>
+</div>
+<div id="パッケージ" class="section level3 hasAnchor" number="1.2.5">
+<h3><span class="header-section-number">1.2.5</span> パッケージ<a href="1-まずは使ってみる.html#パッケージ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Rをインストールした素の状態で使える関数は限られています。
+Rユーザーが有益な関数を作成し，他のユーザーと共有しているものがあります。
+これらの関数は，パッケージとしてCRANに公開されており，それを自分のパソコンにインストールできます。</p>
+<div id="パッケージのインストール" class="section level4 hasAnchor" number="1.2.5.1">
+<h4><span class="header-section-number">1.2.5.1</span> パッケージのインストール<a href="1-まずは使ってみる.html#パッケージのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>例えば，Microsoft Excelで作成されたファイルを効率的に読むことができる <code>readxl</code> パッケージを使う場合を考えます。
+このパッケージを初めて使う場合のみ，自分のパソコンにパッケージをインストールする必要があります（Rのバージョンが変わったときにもパッケージをインストールする必要があります）。
+以下のコマンドを実行すれば，目的のパッケージがインストールされます。</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="1-まずは使ってみる.html#cb42-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<p>このコマンドは一度実行すれば，Rを終了しても，また，パソコンの電源を切ったとしても，再度実行する必要はありません。
+実行してもエラーにはならないので，不安なら実行して構いませんが，一度インストールしたパッケージはパソコンの中に残ります。</p>
+<p>さて，<code>readxl</code> パッケージの中の関数 <code>read_excel()</code> を使ってみましょう。
+使い方を知るために，ヘルプを見てみます。</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="1-まずは使ってみる.html#cb43-1" tabindex="-1"></a>?read_excel</span></code></pre></div>
+<pre><code>## 指定されたパッケージやライブラリ中には &#39;read_excel&#39; に対するドキュメントはありません
+## &#39;??read_excel&#39; を使えたかもしれません</code></pre>
+<p>おや，ヘルプのウィンドウではなく，何かメッセージが出てきました。</p>
+<p>メッセージに従って，次のコマンドを実行してみます。</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="1-まずは使ってみる.html#cb45-1" tabindex="-1"></a>??read_excel</span></code></pre></div>
+<p>どうなりましたか？
+ウェブブラウザが開き，次の文字が表示されたはずです。</p>
+<ul>
+<li>readxl::read_excel Read xls and xlsx files</li>
+</ul>
+<p>ここに書いてあることを理解しましょう。
+左にあるのが，パッケージ名と関数名で，それぞれが <code>::</code> で結ばれています。
+ここでは，<code>readxl</code> というパッケージの中に関数 <code>read_excel()</code> があるということを意味しています。
+右側には，その関数がどのようなものかが書かれています。
+この記述により，<code>readxl</code> というパッケージの中の関数 <code>read_excel()</code> は，xlsとxlsx（Excelファイルの拡張子）を読む関数であることがわかります。</p>
+<p>ちなみに，この例の <code>readxl::</code> の部分を<strong>名前空間</strong>と呼びますが，通常知らなくてよいです。
+（<code>::</code> の前に記述されている）パッケージの中の（<code>::</code> の後に記述されている）関数というように，関数の由来を明示したいときにこのような表記をします。
+めったにないことですが，異なるパッケージで同じ関数があるときに，どちらの関数を使うのかを明示する必要があります。
+初心者のうちは，自らこういった書き方をする必要はありません。</p>
+</div>
+<div id="パッケージのロード" class="section level4 hasAnchor" number="1.2.5.2">
+<h4><span class="header-section-number">1.2.5.2</span> パッケージのロード<a href="1-まずは使ってみる.html#パッケージのロード" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>インストールしたパッケージをRで使えるようにするためには，目的のパッケージをRにロードする必要があります。
+パッケージをロードするには，次のコマンドを用います。</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="1-まずは使ってみる.html#cb46-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<p>このとき，以下のようにしても構いません。</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="1-まずは使ってみる.html#cb47-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;readxl&quot;</span>)</span></code></pre></div>
+<p>つまり，<code>install.packages()</code> のときは，<code>""</code> で括らなければなりませんが，<code>library()</code> の場合はどちらでも構いません。</p>
+<p>ちなみに，何もしなくても最初からロードされているパッケージがいくつかあります。
+その場合，そのパッケージをロードしなくても，そのパッケージに含まれる関数を使うことができます。
+どういったパッケージが最初からロードされているかは，使っているうちに理解できると思います。</p>
+<p>インストールしたパッケージの関数を使う場合，いま仮に <code>"sample.xlsx"</code> という名前のExcelファイルがあるとすると，以下のコマンドを実行します。</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="1-まずは使ってみる.html#cb48-1" tabindex="-1"></a><span class="fu">read_excel</span>(<span class="st">&quot;sample.xlsx&quot;</span>)</span></code></pre></div>
+<p>このコマンドは，次のように名前空間を付けて書くこともできますが，多くの場合，そうする必要はありません。</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="1-まずは使ってみる.html#cb49-1" tabindex="-1"></a>readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;sample.xlsx&quot;</span>)</span></code></pre></div>
+</div>
+<div id="cran以外からのパッケージのインストール" class="section level4 hasAnchor" number="1.2.5.3">
+<h4><span class="header-section-number">1.2.5.3</span> CRAN以外からのパッケージのインストール<a href="1-まずは使ってみる.html#cran以外からのパッケージのインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>CRANに登録されていないパッケージもインストールできる場合があります。
+例えば，日本語形態素解析器MeCabのRラッパーである <code>RMeCab</code> パッケージをインストールする方法は次のリンク先に書かれています。</p>
+<ul>
+<li><a href="https://github.com/IshidaMotohiro/RMeCab" target="_blank">RMeCab: Interface to MeCab</a></li>
+</ul>
+<p>その他にも GitHub からパッケージをインストールできることもあります。
+CRAN以外からのパッケージのインストール方法については，各パッケージの説明に従ってください。</p>
+</div>
+<div id="パッケージのアップデート" class="section level4 hasAnchor" number="1.2.5.4">
+<h4><span class="header-section-number">1.2.5.4</span> パッケージのアップデート<a href="1-まずは使ってみる.html#パッケージのアップデート" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>パッケージにはバージョンがあり，常に最新のバージョンを使うべきです。
+古いバージョンにはバグがあったり，正しい結果が得られない場合があります。
+インストールされているパッケージは自動でアップデートされないため，定期的に次のコマンドを実行するように心掛けましょう。</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="1-まずは使ってみる.html#cb50-1" tabindex="-1"></a><span class="fu">update.packages</span>(<span class="at">ask =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>なお，アップデートはマウス（またはトラックパッド）だけでも操作できます。
+Windowsの場合は，メニューの「パッケージ」から「パッケージの更新…」を選択します。
+macOSの場合は，メニューの「パッケージとデータ」から「パッケージインストーラ」を選択し，「すべてアップデート」を選択します。
+いずれのOSでも，CRANのミラーサイトの選択画面が出たときは，選択肢の中からどれか1つのサイトを選択してください。
+どれを選べばよいかわからない場合は，日本のサイトを選択することをおすすめします。</p>
+</div>
+<div id="パッケージの一覧表示" class="section level4 hasAnchor" number="1.2.5.5">
+<h4><span class="header-section-number">1.2.5.5</span> パッケージの一覧表示<a href="1-まずは使ってみる.html#パッケージの一覧表示" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>インストールされているパッケージの一覧は次のコマンドで得られます。</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="1-まずは使ってみる.html#cb51-1" tabindex="-1"></a><span class="fu">.packages</span>(<span class="at">all.available =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>ただし，これは知らなくてもよいです。
+また，パッケージがどこにインストールされているかを知りたい場合は，次のコマンドを実行します。</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="1-まずは使ってみる.html#cb52-1" tabindex="-1"></a><span class="fu">searchpaths</span>()</span></code></pre></div>
+<p>これも知らなくてよいです。</p>
+<p>もし何らかの理由で，CRANに公開されているパッケージをすべてインストールしたい場合は，以下のコマンドを実行します。</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="1-まずは使ってみる.html#cb53-1" tabindex="-1"></a>installed <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">installed.packages</span>())</span>
+<span id="cb53-2"><a href="1-まずは使ってみる.html#cb53-2" tabindex="-1"></a>available <span class="ot">&lt;-</span> <span class="fu">row.names</span>(<span class="fu">available.packages</span>())</span>
+<span id="cb53-3"><a href="1-まずは使ってみる.html#cb53-3" tabindex="-1"></a>uninstalled <span class="ot">&lt;-</span> available[<span class="sc">!</span>available <span class="sc">%in%</span> installed]</span>
+<span id="cb53-4"><a href="1-まずは使ってみる.html#cb53-4" tabindex="-1"></a><span class="fu">install.packages</span>(uninstalled)</span></code></pre></div>
+<p>ただし，来週から数ヶ月間インターネット環境のない場所に行くといった特別な理由がない限り，このような操作は必要ありません。
+非常に時間がかかりますし，SSDも大量に消費します。</p>
+</div>
+<div id="パッケージのアンインストール" class="section level4 hasAnchor" number="1.2.5.6">
+<h4><span class="header-section-number">1.2.5.6</span> パッケージのアンインストール<a href="1-まずは使ってみる.html#パッケージのアンインストール" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>なお，これも使う機会はないと思いますが，特定のパッケージをアンインストールしたい場合は，以下のコマンドを実行します。</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="1-まずは使ってみる.html#cb54-1" tabindex="-1"></a><span class="fu">remove.packages</span>(<span class="st">&quot;パッケージ名&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="練習問題" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 練習問題<a href="1-まずは使ってみる.html#練習問題" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>1から10までの数字を足し算するといくらになるか計算しなさい。</li>
+<li>1から10までの数字の平均を求めなさい。</li>
+<li>1000以上2000以下のうち，偶数の値を合計しなさい。</li>
+<li>1から15までの数列の累積和を計算し、それぞれの値を表示しなさい。累積和とは、数列の各位置までの合計を計算した結果です。</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="2-基礎.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

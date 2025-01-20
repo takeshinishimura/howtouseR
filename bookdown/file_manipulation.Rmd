@@ -1,0 +1,634 @@
+# ファイル操作
+
+今回は，Rにおけるファイル操作について学びます。
+とくにRのコンソールがいまどこにいるかを意識していないと，ファイルの読み書きに支障を来します。
+コマンドラインに不慣れな人はこのあたりで躓く可能性があります。
+
+
+## ファイルの読み込み
+
+[CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"} から，任意のCSVファイルをダウンロードします。
+これをRに読み込んでみましょう。
+例えば，`addresses.csv`をダウンロードした場合，次のコマンドで読み込めます。
+```{r}
+#| eval: false
+read.csv("addresses.csv")
+```
+`read.csv("")` にある2つの `"` の間に，ダウンロードしたファイルの名前を入れます。
+拡張子は省略してはいけません。
+もし拡張子を非表示にするようにパソコンが設定されている場合は，**必ず**表示する設定に変更してください。
+
+![Windowsの拡張子表示](./Windows_extension.png)
+
+上のコマンドを実行したとき，ファイルが見つからないというエラーが返ってくる場合，対処方法は2つあります。
+
+1. ダウンロードしたファイルを作業ディレクトリ（working directory）に移動する。
+1. ダウンロードしたファイルへの絶対パスを指定する。
+
+そもそもの話として，[CUI](https://ja.wikipedia.org/wiki/%E3%82%AD%E3%83%A3%E3%83%A9%E3%82%AF%E3%82%BF%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9){target="_blank"} に慣れていない人は，このファイル操作の内容がさっぱり分からないかもしれません。
+現代のOSは，[GUI](https://ja.wikipedia.org/wiki/%E3%82%B0%E3%83%A9%E3%83%95%E3%82%A3%E3%82%AB%E3%83%AB%E3%83%A6%E3%83%BC%E3%82%B6%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%95%E3%82%A7%E3%83%BC%E3%82%B9){target="_blank"} であるため，無理もない話です。
+そこで，ここで簡単にディレクトリ構造とファイル管理の話をしておきます。
+
+
+## ディレクトリ構造とファイル管理の基礎
+
+### ディレクトリ構造
+
+まず，Windowsのディレクトリ構造について説明します。
+macOSもほぼ同じです。
+
+Rを起動した時，Rコンソールは次の場所（フォルダ）にいます。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  style doc fill:#f96,stroke:#333
+```
+「いる」というのは，Explorer（Windowsの場合）やFinder（macOSの場合）でその場所を開いていることと同じだと思ってください。
+Rは，この場所で作業をします。
+ここで，`ユーザ名` は今使っているパソコンにログインしているユーザ名のことで，パソコンにログインしているユーザよって異なります。
+OneDriveで同期していない人は，次の場所にいるかもしれません。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  style Documents fill:#f96,stroke:#333
+```
+以下では，OneDriveで同期していない人に限定した説明となっている場合がありますので，適宜読み替えてください。
+
+この図の線の部分を `/` で置き換えると，CUIで表現できます。
+つまり，上の図はCUIでは `C:/Users/ユーザ名/Documents` または `C:/Users/ユーザ名/OneDrive/ドキュメント` と表現します（Windowsの場合，`/` を `¥` や `\` で表現する場合もあります）。
+
+macOSの場合は，次の場所にいます。
+```{mermaid}
+graph LR
+  / --- Users
+  Users --- username[ユーザ名]
+  style username fill:#f96,stroke:#333
+```
+macOSは，Windowsの `C:` のようなドライブレターが存在せず，ルートディレクトリ `/` から始まります。
+以下では，macOSの説明はしませんので，適宜読み替えてください。
+
+一方，Webブラウザを使ってダウンロードしたファイルは，デフォルトでは次の図の `Downloads` にあるはずです。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- dow[Downloads]
+  style dow fill:#f96,stroke:#333
+```
+`Downloads` はカタカナで `ダウンロード` という表記になっているかもしれません。
+
+以下の説明では，これらのことが理解できていることを前提としています。
+
+### ファイル管理
+
+続いて，ファイル管理について説明します。
+これは，Rとは直接は関係ありません。
+パソコンの中のファイルの整理方法の説明です。
+
+人によってファイルの整理方法は異なります。
+このため，ここに書いてある通りにすべきということではありません。
+ただし，以下の説明はここに書いてあることを想定しています。
+
+自分で作ったWordやExcelのファイルだけでなく，インターネットからダウンロードしたファイルは，`ドキュメント` 以下の関連するフォルダに移動させることを強くおすすめします。
+そうしないと，`ダウンロード` フォルダが訳が分からない状態になってしまいます。
+
+`ドキュメント` フォルダも同様で，何もルールを決めずにファイルを保存していると，何が何だか分からなくなってしまいます。
+そこで，`ドキュメント` の中にフォルダを作ります。
+フォルダの名前は自分で決めてください。
+そのフォルダに関連するファイルをフォルダの中に入れていきます。
+これらの作業は，Explorer（またはFinder）上で，マウスやトラックパッドを使って行ってください。
+そのフォルダの中に，新たなフォルダを作ります。
+このフォルダの名前も自分で決めてください。
+こうして作成したフォルダは，ツリー状に表現できます。
+
+前節の図の `ドキュメント` 以下のフォルダ構造の例を示すと，以下のようになります。
+```{mermaid}
+flowchart LR
+  ドキュメント --- 大学
+  ドキュメント --- 就職活動
+  大学 --- 学部
+  大学 --- 大学院
+  学部 --- 1年
+  学部 --- 2年
+  学部 --- 3年
+  学部 --- 4年
+  4年 --- 授業科目A
+  4年 --- 授業科目B
+  授業科目A --- lastweek[2025年1月21日]
+  授業科目A --- today[2025年1月28日]
+  授業科目A --- data
+  授業科目B --- lastweek2[第1回]
+  授業科目B --- today2[第2回]
+  style lastweek fill:#f96,stroke:#333
+  style today fill:#f96,stroke:#333
+  style data fill:#f96,stroke:#333
+```
+`就職活動` を `大学` の中に入れたい人やまったく別のフォルダ構造にしたい人もいるでしょう。
+自分の好きなようにしてください。
+ただし，以下の説明では，日付のフォルダに，Rスクリプトや授業に関連するファイルを入れ，`data` フォルダにダウンロードしたファイルを入れることを想定した説明をします。
+
+自分なりに分かりやすいフォルダを作って，ファイルを整理してください。
+
+
+## 作業ディレクトリ
+
+対処方法の1つ目は，Explorer（またはFinder）でのファイル操作を伴います。
+ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。
+ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。
+ファイルの移動先は，以下のコマンドの返り値が指す**ディレクトリ**です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。
+```{r}
+#| eval: false
+getwd()
+```
+ただし，このコマンドの返り値のディレクトリで**本当に**よいかは，その人によります。
+といっても分からないと思いますので，作業ディレクトリは次の方法で変更しましょう。
+
+Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。
+macOSの場合，メニューの[その他]→[作業ディレクトリの変更…]から作業ディレクトリを変更します。
+ここで，先ほどCSVファイルがダウンロードされたディレクトリを指定すればよいです。
+しかしながら，ここでは，**作業ディレクトリをどこかに決める**ことをおすすめします。
+作業ディレクトリはRを終了すると初期化されます（デフォルト値に戻る）ので，Rを起動するたびに毎回，この操作を行います。
+毎回同じ場所でもよいですし，通常は目的（プロジェクト，論文，授業など）ごとに変更すべきでしょう。
+どこを作業ディレクトリにするかは自分で決めてください。
+Rに関連するファイルしか存在しないディレクトリを作成しておくと，作業がしやすいです。
+
+例えば，`ドキュメント` ディレクトリの中に授業のディレクトリを作成し，その中に授業の回数ごとにディレクトリを作成する方法が考えられます。
+そこでは，Rのプログラムに関するファイルを作成しておくとよいでしょう。
+
+### Rのコードの保存
+
+Rのプログラムが書かれたもの（関数やコマンドのかたまり）を，コードと言ったり，スクリプトと言ったりします。
+通常，コードはテキストエディタを使って書きます。
+文字を書くのにMicrosoft Wordしか使ったことがない人が多いので，テキストエディタと言われてもよくわからないと思います。
+
+テキストエディタは，Windowsの場合は [秀丸エディタ](https://hide.maruo.co.jp/software/hidemaru.html){target="_blank"} が有名で，おすすめです。
+秀丸エディタは有料ですが，学生は支払いが免除されるはずでし，支払わなくても警告が出たときにその警告を閉じれば作業できます（Windowsのメモ帳は改行コードに関連するバグを経験したことがあるため，あまりおすすめしません）。
+他に，[サクラエディタ](https://sakura-editor.github.io/){target="_blank"} や [Notepad++](https://notepad-plus-plus.org/){target="_blank"} などがあります。
+一方，macOSの場合はOS標準の テキストエディット.app がおすすめです。
+
+また，OSに関係なく，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} を使うのもよいかもしれません。
+Rのスクリプトに書かれたコードを必要な部分だけコピーして，Rコンソールにペーストしてから，実行してください。
+ただし，[Visual Studio Code](https://code.visualstudio.com/){target="_blank"} は多機能であるため，Rを直接実行できるのですが，Rに慣れないうちはRと [Visual Studio Code](https://code.visualstudio.com/){target="_blank"} をコピー&ペーストで行き来しながら，コードはRコンソールから実行するようにしてください。
+
+Rのコードが書かれたファイルは，拡張子を `R` として，文字コードがUTF-8のテキストファイルとして保存します。
+拡張子が `R` のファイルは，ダブルクリックして開いても構いませんが，テキストエディタで開くことをおすすめします。
+OSで関連付けてもいいですし，毎回ファイルを右クリックして開くアプリケーションを選んだとしても，それほど苦ではないと思います。
+（この作業が苦痛な人にはRは向かないのではないでしょうか。）
+
+### 作業ディレクトリの変更
+
+上記のようなマウス操作をしない方法もあり，操作をRコンソール内で完結させることができます。
+次のコマンドを知っておくと便利です。
+```{r}
+#| eval: false
+setwd("")
+```
+このコマンドの `""` の中には，自分のパソコンのディレクトリ構造の中のある特定の場所を指定します。
+この場所は，Windowsなら `C:` から始まり，macOSなら `/` から始まる階層構造における位置のことで，パスと呼びます。
+このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。
+ここで行っているのは，作業ディレクトリの変更です。
+
+実際の使用時には，例えば，次のように書きます。
+```{r}
+#| eval: false
+setwd("C:/Users/ユーザ名/OneDrive/ドキュメント")
+```
+OneDriveで同期していない人は次のように書きます。
+```{r}
+#| eval: false
+setwd("C:/Users/ユーザ名/Documents")
+```
+これは，次のコマンドと同じです。
+```{r}
+#| eval: false
+setwd("~")
+```
+`"~"` はホームディレクトリを意味します。
+
+
+## 絶対パス
+
+エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。
+これは，次のコマンドによって実現します。
+```{r}
+#| label: comment
+#| eval: false
+read.csv("C:/Users/ユーザ名/Downloads/addresses.csv") # Windowsの例
+# read.csv("/Users/ユーザ名/Downloads/addresses.csv") # macOSの例
+```
+これは，次のファイルを読んでいることを意味します。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Downloads
+  Downloads --- file[addresses.csv]
+  style file fill:#f96,stroke-width:0px
+```
+Windowsの場合（おそらくWindows 11以降），ダウンロードしたファイルを右クリックして，「パスのコピー」をクリックすると，クリップボードにそのファイルの絶対パスがコピーされます。
+コピーした後，`read.csv("")` にある2つの `"` の間にペーストしてください。
+macOSの場合，Terminal.appを起動して，そのウィンドウにダウンロードしたファイルをドラッグ＆ドロップすれば，絶対パスが表示されます。
+絶対パス正しければ，上のコマンドでCSVファイルの中身が表示されるはずです。
+
+実際には，Rを起動した直後に作業ディレクトリを一度変更し，その後は相対パスを変更しながら，ファイルの読み書きをすることになるはずです。
+なお，こうした煩雑さを緩和する目的で，[here](https://CRAN.R-project.org/package=here){target="_blank"} パッケージがありますので，知りたい人は調べてください。
+
+
+## 相対パス
+
+相対パスは現在の作業ディレクトリを起点として，相対的にどこのファイルを読み書きするかを指定する考え方です。
+Rによるディレクトリの作成と合わせて考えると非常に便利です。
+
+例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。
+次のコードを実行する前に，Explorer（またはFinder）で作業ディレクトリを表示させておき，次のコードを実行することで起こる変化を注視してください。
+```{r}
+#| eval: false
+dir.create("./data")
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", "./data/addresses.csv")
+df <- read.csv("./data/addresses.csv")
+df
+```
+```{r}
+#| echo: false
+#| warning: false
+destfile <- "../data/addresses.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv", destfile)
+}
+df <- read.csv(destfile)
+df
+```
+パスの先頭にある `.` は自分がいるディレクトリを意味する記号です。
+このことから，`./` は作業ディレクトリを指します。
+`./` はあってもなくても同じです。
+ただし，`"./data"` と `"data"` は同じ意味ですが，`"/data"` は意味が異なりますので注意してください。
+もし `dir.create("/data")` とした場合は，作業ディレクトリではなく，ルートディレクトリに新たなディレクトリが作成されます（こうした操作はOSにとって脅威となりますので，絶対にやらないでください）。
+
+上述のコードは，`dir.create()` でディレクトリを作成し，`download.file()` でファイルをダウンロードした後，`read.csv()` でダウンロードしたファイルを読み込みます。
+このことを図で表現すると，次のようになります。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  doc --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+```
+Rの作業ディレクトリは `ドキュメント` ですので，ここから**相対的に**ひとつ下に `data` というディレクトリを作成し，その中にダウンロードしたファイルを保存し，その保存したファイルを読み込んでいます。
+実際には，パソコンの `C:` の中にファイルはありますが，Rで読み込む際に `C:` から始める必要はありません。
+このことを図で表現すると，次のようになります。
+```{mermaid}
+graph LR
+  dot["~"] --- data
+  data --- file[addresses.csv]
+  style data fill:#f96,stroke:#333
+  style file fill:#f96,stroke-width:0px
+```
+`~` はホームディレクトリを意味する記号であり，OneDriveで同期している人は `"C:/Users/ユーザ名/OneDrive/ドキュメント"`，同期していない人は `"C:/Users/ユーザ名/Documents"` を指します。
+
+先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。
+これは，Rが1行目をヘッダーとして読み込んでいるという意味です。
+これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。
+```{r}
+#| eval: false
+df <- read.csv("data/addresses.csv", header = FALSE)
+df
+```
+```{r}
+#| echo: false
+df <- read.csv("../data/addresses.csv", header = FALSE)
+df
+```
+ヘッダーをどうすべきかはファイルによって異なります。
+例えば，次の例では，ヘッダーを `TRUE` にすべきです（省略時のヘッダーは `TRUE` であるため，省略してもよい）。 
+```{r}
+#| eval: false
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", "data/airtravel.csv")
+df <- read.csv("data/airtravel.csv", header = TRUE)
+df
+```
+```{r}
+#| echo: false
+destfile <- "../data/airtravel.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv", destfile)
+}
+df <- read.csv(destfile)
+df
+```
+ヘッダーが数字で始まる場合，先頭に `X` が付き，文字列に変換されます。
+ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。
+```{r}
+#| eval: false
+df <- read.csv("data/airtravel.csv", header = FALSE)
+df
+```
+```{r}
+#| echo: false
+df <- read.csv("../data/airtravel.csv", header = FALSE)
+df
+```
+
+正しく読み込めたかどうかは，Rの表示と元のCSVファイル（テキストエディタやMicrosoft Excelを使って表示）を比較して確かめてください。
+以上の例のように，一度ダウンロードしたファイルは自分のパソコンに残っているため，`read.csv()` を使って何度も読み直すときに `download.file()` は必要ありません。
+これは，Explorer（またはFinder）における通常のファイル操作と同じです。
+
+ここでよくある例を挙げておきます。
+例えば，次のように別のCSVファイルを読み込んでください。
+```{r}
+#| eval: false
+download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", "data/biostats.csv")
+df <- read.csv("data/biostats.csv", header = TRUE)
+df
+```
+```{r}
+#| echo: false
+destfile <- "../data/biostats.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv", destfile)
+}
+df <- read.csv(destfile, header = TRUE)
+df
+```
+`biostats.csv` を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。
+`()` とスペースが `.` に置き換わっていることが分かります。
+CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。
+```{r}
+#| eval: false
+df <- read.csv("data/biostats.csv", check.names = FALSE)
+df
+```
+```{r}
+#| echo: false
+df <- read.csv("../data/biostats.csv", check.names = FALSE)
+df
+```
+
+ここで，Explorer（またはFinder）から先ほど作成した `data` フォルダを削除しておいてください。
+
+なお，相対パスの先頭に `..` または `../` を書くこともできます。
+これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。
+次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。
+```{r}
+#| eval: false
+outdir <- "../data"
+if (!file.exists(outdir)) {
+  dir.create(outdir)
+}
+```
+これは次のようにやっても同じです。
+```{r}
+#| eval: false
+outdir <- "../data"
+dir.create(outdir, showWarnings = FALSE)
+```
+::: {.callout-caution collapse="false" icon="true"}
+もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。
+もし実行してしまった場合は，Explorer（またはFinder）で作業ディレクトリと同じ階層にある `data` フォルダの中を確認し，何もファイルがなければ `data` フォルダを削除してください。
+ファイルがあれば，他のアプリケーションで使用している可能性があるため，`data` フォルダを削除せず，残しておいてください。
+:::
+上記コードの2行目と4行目は，すでにそのディレクトリがある場合は，何もしないことを意味します。
+このコマンドを理解するには，条件分岐と `!` の意味を正しく理解できなければなりません。
+ここで，outdirという名前の変数を作っているのは，それ以降に同じ記述が2回登場するためです。
+後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。
+
+`..` の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。
+作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。
+```{r}
+#| eval: false
+setwd("~")
+```
+Webブラウザを使って，[CSV Files](https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html){target="_blank"} から，任意のCSVファイルをダウンロードしてください。
+このCSVファイルをRに読み込むには，どうすればよいでしょうか。
+図で考えると次の相対パスを考えることに他なりません。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- OneDrive
+  OneDrive --- doc[ドキュメント]
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  doc -- .. --> OneDrive
+  OneDrive -- .. --> ユーザ名
+  ユーザ名 --> Downloads
+  Downloads --> file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+  linkStyle 8 stroke:red
+  linkStyle 9 stroke:red
+```
+これをRのコマンドにすると次のようになります。
+```{r}
+#| eval: false
+df <- read.csv("../../Downloads/cities.csv")
+df
+```
+なお，上述の `.` の説明を踏まえると，これは次のように書くこともできます。
+```{r}
+#| eval: false
+df <- read.csv("./../../Downloads/cities.csv")
+df
+```
+ただし，こういう場合に， `./` を書くのは冗長な印象を受けます。
+`./` はあってもなくても結果は同じですが，上の階層に行く場合は `..` から始めるべきでしょう。
+
+OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。
+```{mermaid}
+graph LR
+  C[C:] --- Users
+  Users --- ユーザ名
+  ユーザ名 --- Documents
+  ユーザ名 --- Downloads
+  Downloads --- file[cities.csv]
+  Documents == .. ==> ユーザ名
+  ユーザ名 ==> Downloads
+  Downloads ==> file
+  style file fill:#f96,stroke-width:0px
+  linkStyle 5 stroke:red
+  linkStyle 6 stroke:red
+  linkStyle 7 stroke:red
+```
+```{r}
+#| eval: false
+df <- read.csv("../Downloads/cities.csv")
+df
+```
+```{r}
+#| echo: false
+destfile <- "../data/cities.csv"
+if (!file.exists(destfile)) {
+  download.file("https://people.sc.fsu.edu/~jburkardt/data/csv/cities.csv", destfile)
+}
+df <- read.csv(destfile)
+df
+```
+
+ここで，`..` という記号は，そのディレクトリがどのような名前であるかは気にすることなく，ひとつ上の階層のディレクトリを指定できることができるという非常に便利な性質を持っていることに注目してください。
+
+### Tips
+
+パスの入力中に `Tabキー` を押すと，選択肢としてあり得る候補が現れ，`Enterキー` （または `Returnキー`）で入力補完されます。
+Windowsの場合，保管できる候補が複数ある場合は，`Tabキー` を2回連続で押すと，選択肢としてあり得るディレクトリがサジェストされます。
+
+このことを知っていると，パス入力の手間が省けます。
+また，パスを入力し間違っていると `Tabキー` を押しても反応がないため，入力ミスに気づきやすいです。
+
+
+## ファイル出力
+
+Rコンソールがいる場所（ディレクトリ）がどこであるかを意識する必要があるのは，ファイル入出力のときです。
+これまで，ファイル入力のみを行ってきました。
+ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。
+
+Rの返り値をコンソールではなく，ファイルに出力する関数が `sink()` です。
+例えば，次のコードを実行するとどうなるでしょうか。
+```{r}
+#| eval: false
+sink("test.txt")
+iris
+sink()
+```
+Rコンソールには何も表示されません。
+その代わりに，作業ディレクトリに `test.txt` というテキストファイルができているはずです。
+Explorer（またはFinder）で確認してください。
+
+この例のように，`sink()` の引数に保存したいファイル名を書きます。
+ここでは，ファイル名だけで，ディレクトリを書いていないので，作業ディレクトリに保存されました。
+また，ファイル出力が終わったら，必ず引数なしで `sink()` としてファイルを閉じてください。
+
+相対パスでディレクトリを書くと，その場所に保存されます。
+例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。
+```{r}
+#| eval: false
+sink("../../Downloads/test.txt") # OneDriveで同期している場合
+# sink("../Downloads/test.txt") # OneDriveで同期していない場合
+cars
+sink()
+```
+ OneDriveで同期していない人は，2行目の `#` の右側以降をRコンソールにコピーして，コードを実行してください。
+
+
+## Microsoft 365
+
+[Microsoft365R](https://github.com/Azure/Microsoft365R){target="_blank"} パッケージは，Microsoft 365 の R インターフェースです。
+
+大学のメールアドレスで OneDrive を使用している場合は，次のコードを実行します。
+```{R}
+#| eval: false
+library(Microsoft365R)
+odb <- get_business_onedrive()
+```
+プライベートなメールアドレスで OneDrive を使用している場合は，次のコードを実行します。
+```{R}
+#| eval: false
+od <- get_personal_onedrive()
+```
+すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。
+指示に従うと，R から Microsoft 365 を操作できるようになります。
+例えば，次のようなことができます。
+```{R}
+#| eval: false
+# list files and folders
+odb$list_items()
+odb$list_items("ドキュメント")
+
+# upload and download files
+odb$upload_file("somedata.xlsx")
+odb$download_file("ドキュメント/myfile.docx")
+
+# create a folder
+odb$create_folder("ドキュメント/newfolder")
+
+# open a document for editing in Word Online
+odb$open_item("ドキュメント/myfile.docx")
+
+# working with data frames and R objects
+library(readr)
+odb$save_dataframe(iris, "ドキュメント/iris.csv")
+```
+ただし，便利かどうかは不明です。
+
+
+## ロケールの変更
+
+Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。
+次のコマンドでロケールを知ることができます。
+```{R}
+system("locale")
+```
+一般的に，このような結果が得られるはずです。
+```
+LANG="ja_JP.UTF-8"
+LC_COLLATE="ja_JP.UTF-8"
+LC_CTYPE="ja_JP.UTF-8"
+LC_MESSAGES="ja_JP.UTF-8"
+LC_MONETARY="ja_JP.UTF-8"
+LC_NUMERIC="ja_JP.UTF-8"
+LC_TIME="ja_JP.UTF-8"
+LC_ALL=
+```
+または，次のような結果が得られるかもしれません。
+```
+LANG="en_US.UTF-8"
+LC_COLLATE="en_US.UTF-8"
+LC_CTYPE="en_US.UTF-8"
+LC_MESSAGES="en_US.UTF-8"
+LC_MONETARY="en_US.UTF-8"
+LC_NUMERIC="en_US.UTF-8"
+LC_TIME="en_US.UTF-8"
+LC_ALL=
+```
+これらの場合は，日本語は正しく表示されるはずです。
+
+環境によっては，次のような結果が得られるかもしれません。
+```
+LANG="en_JP.UTF-8"
+LC_COLLATE="C"
+LC_CTYPE="C"
+LC_MESSAGES="C"
+LC_MONETARY="C"
+LC_NUMERIC="C"
+LC_TIME="C"
+LC_ALL=
+```
+この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。
+
+日本語が表示される環境に設定したければ，次のようにします。
+```{R}
+system("defaults write org.R-project.R force.LANG ja_JP.UTF-8")
+```
+おそらくこれはmacOSだけに対応しているはずです。
+Windowsでのロケールの変更方法は知りません。
+
+
+## Unicodeエスケープシーケンス
+
+日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。
+そのとき，次のコマンドを使うことで対応します。
+```{R}
+library(stringi)
+
+stri_escape_unicode("日本語")
+```
+あるいは，次のようにしてもよいでしょう。
+```{R}
+paste0("\\u", sprintf("%04x", utf8ToInt("日本語")), collapse = "")
+```
+`\` が2つずつ連続していますが，Rコードで用いるときは `\` は1つで大丈夫です。
+
+
+## 練習問題
+
+未作成

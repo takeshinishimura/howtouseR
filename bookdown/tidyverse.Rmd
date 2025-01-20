@@ -1,0 +1,297 @@
+# tidyverse
+
+これまでは base R を使ってきました。
+近年，Rの中でも [tidyverse](https://www.tidyverse.org){target="_blank"} を使うケースが一般的になりました。
+
+base R は伝統的な R の使い方で，R 3.x あたりで tidyverse が登場しました。
+tidyverse が登場した後，これまでの伝統的な R のコードは base R と呼ばれるようになりました。
+それでは，base R とは何でしょうか，tidyverse とは何でしょうか。
+これらを説明するのはやや難しいです。
+しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。
+
+ここでは，base R と tidyverse の違いについて，実践的に学びます。
+
+## base R
+
+まず，次のようなデータがあるとします。
+```{r}
+year <- 1990:2025
+x1 <- 100 * 1:length(year)
+x2 <- 100 * length(year):1
+df　<- data.frame(year = year, 南 = x1, 北 = x2)
+```
+
+このデータフレーム `df` の中から2000年代以降のデータを取り出して，`南` 列の平均を計算する場合，次のようなコードになります。
+```{r}
+minami2000 <- df[df$year >= 2000, "南"]
+mean(minami2000)
+```
+また，同じことは次のようにしても実行できます。
+```{r}
+minami2000 <- df$南[df$year >= 2000]
+mean(minami2000)
+```
+
+もしこの後に，`北` 列の合計を計算したい場合は，次のようなコードにした方がいいかもしれません。
+```{r}
+df2000 <- df[df$year >= 2000, ]
+mean(df2000$南)
+sum(df2000$北)
+```
+
+上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。
+コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。
+こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。
+どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，`tmp` とか `df2` や `df3` といった変数名にしがちですが，どの場合も後々に見て意味がわかりにくいです。
+
+そこで，例えば，次のようにすることもあります。
+```{r}
+mean(df[df$year >= 2000, "南"])
+sum(df[df$year >= 2000, "北"])
+```
+ただし，これらのコードの問題は，人間が見てわかりにくいということです。
+これは，右から左に解釈していくためです。
+右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。
+そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。
+
+
+## tidyverse
+
+パイプ演算 `%>%` は `magrittr` パッケージをロードすると使えるようになります。
+```{r, message = FALSE}
+library(magrittr)
+library(dplyr)
+
+df %>%
+  filter(year >= 2000) %>%
+  pull(南) %>%
+  mean()
+```
+`filter()` と `pull()` は `dplyr` パッケージの関数です。
+
+パイプ演算子があまりにも便利なため，R は 4.1 で公式にパイプ演算子を採用しました。
+R 公式のパイプ演算子は `|>` です。
+```{r}
+df |>
+  filter(year >= 2000) |>
+  pull(南) |>
+  mean()
+```
+`%>%` と `|>` はどちらを使っても同じ場合が多いですが，`%>%` の方が機能が多いため，完全に同じではありません。
+大きな違いはプレイスホルダー `.` の扱いです。
+置き換え可能な場合は，`|>` を使うことをおすすめします。
+
+パイプ演算子は base R の関数と組み合わせて使うことができます。
+```{r}
+df |>
+  filter(year >= 2000) |>
+  head()
+```
+
+**パイプ演算子を使うと，その前のデータが次に書く関数の最初の引数として自動的に渡されます。**
+この文章の意味が理解できるまで，知っている関数をいろいろ使ってみてください。
+
+処理結果を新しい変数に代入する場合は，base R の作法に従います。
+```{r}
+df2000 <- df |>
+  filter(year >= 2000)
+```
+ちなみに，次のようにすることもできますが，このようなコードはあまり見ません。
+```{r}
+df |>
+  filter(year >= 2000) -> df2000
+```
+
+tidyverse とは `dplyr` のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。
+tidyverse を構成するパッケージは[ここ](https://www.tidyverse.org/packages/){target="_blank"} で確認できます。
+
+### データフレーム
+
+tidyverse で使われるデータフレームは [tibble](https://tibble.tidyverse.org/){target="_blank"} です。
+普通のデータフレームと `tibble` は互換性がありますので，特に意識する必要はありません。
+どちらもデータフレームと呼びます。
+
+ただし，データフレームの形には，ワイドとロングがあり，これらの違いを意識する必要があります。
+ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータフレームのことです。
+一方，ロングは縦に長いデータフレームです。
+
+ロングとワイドは [tidyr](https://tidyr.tidyverse.org/){target="_blank"} の関数を使って簡単に変換することができます。
+まず，ワイドは次のようなデータフレームです。
+```{r}
+head(df)
+dim(df)
+```
+これをロングに変換すると次のようなデータフレームになります。
+```{r}
+df_long <- tidyr::pivot_longer(df, cols = -year)
+df_long
+```
+tidyverse で作成したデータフレームは `tibble` になります。
+`tibble` の便利な点は，`head()` や `dim()` をわざわざ実行しなくても，データフレームの概要がわかります。
+
+また，`ggplot2` パッケージの `ggplot()` で図を描く場合，ロングの方がデータを扱いやすいです。
+一方，`lm()` などの回帰分析にはワイドのデータが向いています。
+
+先ほどの変換は次のようにしても同じです。
+```{r}
+df_long <- tidyr::pivot_longer(df, cols = c("南", "北"))
+df_long <- tidyr::pivot_longer(df, cols = 南:北)
+```
+
+ロングからワイドへの変換は次のようにします。
+```{r}
+df_wide <- tidyr::pivot_wider(df_long, names_from = name)
+df_wide
+```
+なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に `tidyr::spread()` と `tidyr::gather()` を使用しているケースがあります。
+これらの関数は `superseded` になっています。
+古い関数ですので，覚える必要はありません。
+
+
+### よく使う関数
+
+次に `iris` を使って base R と tidyverse の違いを確認しておきます。
+以下では名前空間（`dplyr::` の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。
+
+#### filter()
+
+`filter()` で条件を満たす列を抽出します。
+```{r}
+iris[iris$Sepal.Length > 7, ]
+iris |>
+  dplyr::filter(Sepal.Length > 7)
+head(iris[iris$Species == "setosa", ])
+iris |>
+  dplyr::filter(Species == "setosa") |>
+  head()
+```
+
+tidyverse が常にわかりやすいとは限りません。
+例えば，次の2つのコードを比較してみてください。
+```{r}
+head(iris[iris$Sepal.Length > mean(iris$Sepal.Length), ])
+iris |>
+  dplyr::filter(Sepal.Length > iris |>
+                  dplyr::summarise(mean_length = mean(Sepal.Length)) |>
+                  dplyr::pull(mean_length)) |>
+  head()
+```
+後者のようなコードを書きたい場合は，次のように，tidyverse と base R を組み合わせるのがよいでしょう。
+```{r}
+iris |>
+  dplyr::filter(Sepal.Length > mean(Sepal.Length)) |>
+  head()
+```
+
+#### select()
+
+`select()` で必要な列のみを取り出します。
+```{r}
+head(iris["Species"])
+iris |>
+  dplyr::select(Species) |>
+  head()
+```
+
+#### pull()
+
+列をベクトルで取り出したい場合は，`pull()` を使います。
+```{r}
+head(iris$Species)
+iris |>
+  dplyr::pull(Species) |>
+  head()
+```
+
+#### mutate()
+
+`mutate()` で新しい列を作成します。
+その前に，`iris` を変更したくないので，`iris` のコピーを作成して，それをいじることにします。
+```{r}
+iris2 <- iris
+iris2$new_species <- iris2$Species
+head(iris2)
+iris |>
+  dplyr::mutate(new_species = Species) |>
+  head()
+```
+
+また，既存の列を修正するのにも `mutate()` を使用します。
+```{r}
+iris2$Sepal.Length <- iris2$Sepal.Length * 100
+head(iris2)
+iris |>
+  dplyr::mutate(Sepal.Length = Sepal.Length * 100) |>
+  head()
+```
+
+#### count()
+
+```{r}
+table(iris$Species)
+iris |>
+  dplyr::count(Species)
+```
+
+#### arrange()
+
+```{r}
+iris2 <- iris[order(iris$Sepal.Length, decreasing = TRUE), ]
+head(iris2)
+iris |>
+  dplyr::arrange(dplyr::desc(Sepal.Length)) |>
+  head()
+```
+
+#### summarise()
+
+```{r}
+sapply(split(iris$Sepal.Length, iris$Species), mean)
+iris |>
+  dplyr::summarize(value = mean(Sepal.Length), .by = Species)
+```
+
+
+### どちらを使えばよいのか
+
+base R と tidyverse の違いがわかったところで，次に考えるべきは「どちらを使うべきか」という問題です。
+結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。
+
+ここで「使いやすい」という言葉には，次の2つの側面が含まれています。
+
+1. 自分がコードを理解しやすいこと。
+2. 他人がコードを理解しやすいこと。
+
+個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。
+一方で，常に最適とは限りません。
+例えば、`map()` 関数を使用するケースでは，base R で書いた方がわかりやすくなることもあります。
+
+コードの可読性には重要な意味があります。
+理解しにくいコードはバグが発生しやすくなる一方で，可読性の高いコードは必ずしも処理速度が最速ではない場合があります。
+このトレードオフを考慮して選択する必要があります。
+
+また，個人的な感覚としては，tidyverse は柔軟性が高くモダンなイメージがあり，base R には伝統的で安定感のあるイメージがあります。
+ただし，いずれを選ぶ場合でも，冗長で無駄の多いコードは避けるべきです。
+効率的で簡潔な記述を心がけることが大切です。
+
+
+## 練習問題
+
+1. 次のデータフレーム `z` があるとする。`z` を使って，2000年以降の `value` の値の平均を求めなさい。ただし，ここでは tidyverse を用いなさい。
+```{r}
+#| eval: false
+x <- 1990:2021
+y <- seq(5000, 5030, 2)
+z <- data.frame(year = x, value = y)
+```
+
+2. ポケモンの中から，tidyverse を用いて，water タイプのポケモンをすべて挙げなさい。
+ただし，ポケモンのデータセットは，`d3po` パッケージの `pokemon` を使いなさい。
+```{r}
+#| eval: false
+#| include: false
+library(d3po)
+pokemon |>
+  filter(type_1 == "water" | type_2 == "water") |>
+  pull(name)
+```

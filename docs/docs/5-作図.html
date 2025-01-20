@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>5 作図 | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="5 作図 | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="5 作図 | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="4-比較演算.html"/>
+<link rel="next" href="6-tidyverse.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Rの使い方</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
+<li class="chapter" data-level="1.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#基本操作"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#四則演算"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#変数"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#関数"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#ベクトル"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#パッケージ"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#練習問題"><i class="fa fa-check"></i><b>1.3</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-基礎.html"><a href="2-基礎.html"><i class="fa fa-check"></i><b>2</b> 基礎</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-基礎.html"><a href="2-基礎.html#データの型"><i class="fa fa-check"></i><b>2.1</b> データの型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2-基礎.html"><a href="2-基礎.html#数値"><i class="fa fa-check"></i><b>2.1.1</b> 数値</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-基礎.html"><a href="2-基礎.html#文字列"><i class="fa fa-check"></i><b>2.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-基礎.html"><a href="2-基礎.html#ファクター"><i class="fa fa-check"></i><b>2.1.3</b> ファクター</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-基礎.html"><a href="2-基礎.html#論理値"><i class="fa fa-check"></i><b>2.1.4</b> 論理値</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-基礎.html"><a href="2-基礎.html#データの構造"><i class="fa fa-check"></i><b>2.2</b> データの構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2-基礎.html"><a href="2-基礎.html#ベクトル-1"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-基礎.html"><a href="2-基礎.html#名前付きベクトル"><i class="fa fa-check"></i><b>2.2.2</b> 名前付きベクトル</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-基礎.html"><a href="2-基礎.html#行列"><i class="fa fa-check"></i><b>2.2.3</b> 行列</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-基礎.html"><a href="2-基礎.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-基礎.html"><a href="2-基礎.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-基礎.html"><a href="2-基礎.html#特殊記号"><i class="fa fa-check"></i><b>2.3</b> 特殊記号</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2-基礎.html"><a href="2-基礎.html#コメント"><i class="fa fa-check"></i><b>2.3.1</b> コメント</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-基礎.html"><a href="2-基礎.html#セミコロン"><i class="fa fa-check"></i><b>2.3.2</b> セミコロン</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-基礎.html"><a href="2-基礎.html#評価と同時に返り値を表示"><i class="fa fa-check"></i><b>2.3.3</b> 評価と同時に返り値を表示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-基礎.html"><a href="2-基礎.html#入門書"><i class="fa fa-check"></i><b>2.4</b> 入門書</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2-基礎.html"><a href="2-基礎.html#チートシート"><i class="fa fa-check"></i><b>2.4.1</b> チートシート</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-基礎.html"><a href="2-基礎.html#練習問題-1"><i class="fa fa-check"></i><b>2.5</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html"><i class="fa fa-check"></i><b>3</b> ファイル操作</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイルの読み込み"><i class="fa fa-check"></i><b>3.1</b> ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎"><i class="fa fa-check"></i><b>3.2</b> ディレクトリ構造とファイル管理の基礎</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造"><i class="fa fa-check"></i><b>3.2.1</b> ディレクトリ構造</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル管理"><i class="fa fa-check"></i><b>3.2.2</b> ファイル管理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
+<li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#tips-2"><i class="fa fa-check"></i><b>3.5.1</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル出力"><i class="fa fa-check"></i><b>3.6</b> ファイル出力</a></li>
+<li class="chapter" data-level="3.7" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#microsoft-365"><i class="fa fa-check"></i><b>3.7</b> Microsoft 365</a></li>
+<li class="chapter" data-level="3.8" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ロケールの変更"><i class="fa fa-check"></i><b>3.8</b> ロケールの変更</a></li>
+<li class="chapter" data-level="3.9" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#unicodeエスケープシーケンス"><i class="fa fa-check"></i><b>3.9</b> Unicodeエスケープシーケンス</a></li>
+<li class="chapter" data-level="3.10" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#練習問題-2"><i class="fa fa-check"></i><b>3.10</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-比較演算.html"><a href="4-比較演算.html"><i class="fa fa-check"></i><b>4</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-比較演算.html"><a href="4-比較演算.html#比較演算-1"><i class="fa fa-check"></i><b>4.1</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4-比較演算.html"><a href="4-比較演算.html#数値-1"><i class="fa fa-check"></i><b>4.1.1</b> 数値</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-比較演算.html"><a href="4-比較演算.html#文字列-1"><i class="fa fa-check"></i><b>4.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-比較演算.html"><a href="4-比較演算.html#正規表現"><i class="fa fa-check"></i><b>4.1.3</b> 正規表現</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-比較演算.html"><a href="4-比較演算.html#集合"><i class="fa fa-check"></i><b>4.1.4</b> 集合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-比較演算.html"><a href="4-比較演算.html#条件分岐"><i class="fa fa-check"></i><b>4.2</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.3" data-path="4-比較演算.html"><a href="4-比較演算.html#繰り返し処理"><i class="fa fa-check"></i><b>4.3</b> 繰り返し処理</a></li>
+<li class="chapter" data-level="4.4" data-path="4-比較演算.html"><a href="4-比較演算.html#データクリーニング"><i class="fa fa-check"></i><b>4.4</b> データ・クリーニング</a></li>
+<li class="chapter" data-level="4.5" data-path="4-比較演算.html"><a href="4-比較演算.html#関数の作成"><i class="fa fa-check"></i><b>4.5</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.6" data-path="4-比較演算.html"><a href="4-比較演算.html#練習問題-3"><i class="fa fa-check"></i><b>4.6</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-作図.html"><a href="5-作図.html"><i class="fa fa-check"></i><b>5</b> 作図</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-作図.html"><a href="5-作図.html#どんな図を作成できるのか"><i class="fa fa-check"></i><b>5.1</b> どんな図を作成できるのか</a></li>
+<li class="chapter" data-level="5.2" data-path="5-作図.html"><a href="5-作図.html#プロット"><i class="fa fa-check"></i><b>5.2</b> プロット</a></li>
+<li class="chapter" data-level="5.3" data-path="5-作図.html"><a href="5-作図.html#保存"><i class="fa fa-check"></i><b>5.3</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-tidyverse.html"><a href="6-tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#base-r"><i class="fa fa-check"></i><b>6.1</b> base R</a></li>
+<li class="chapter" data-level="6.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#tidyverse-1"><i class="fa fa-check"></i><b>6.2</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#データフレーム-1"><i class="fa fa-check"></i><b>6.2.1</b> データフレーム</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#よく使う関数"><i class="fa fa-check"></i><b>6.2.2</b> よく使う関数</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#どちらを使えばよいのか"><i class="fa fa-check"></i><b>6.2.3</b> どちらを使えばよいのか</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#練習問題-4"><i class="fa fa-check"></i><b>6.3</b> 練習問題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="作図" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">5</span> 作図<a href="5-作図.html#作図" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Rの得意な作業のひとつが作図です。</p>
+<div id="どんな図を作成できるのか" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> どんな図を作成できるのか<a href="5-作図.html#どんな図を作成できるのか" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rには最初から関数やパッケージの使用例があります。</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="5-作図.html#cb372-1" tabindex="-1"></a><span class="fu">example</span>(plot)</span></code></pre></div>
+<pre><code>## 
+## plot&gt; Speed &lt;- cars$speed
+## 
+## plot&gt; Distance &lt;- cars$dist
+## 
+## plot&gt; plot(Speed, Distance, panel.first = grid(8, 8),
+## plot+      pch = 0, cex = 1.2, col = &quot;blue&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; plot(Speed, Distance,
+## plot+      panel.first = lines(stats::lowess(Speed, Distance), lty = &quot;dashed&quot;),
+## plot+      pch = 0, cex = 1.2, col = &quot;blue&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-213-2.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; ## Show the different plot types
+## plot&gt; x &lt;- 0:12
+## 
+## plot&gt; y &lt;- sin(pi/5 * x)
+## 
+## plot&gt; op &lt;- par(mfrow = c(3,3), mar = .1+ c(2,2,3,1))
+## 
+## plot&gt; for (tp in c(&quot;p&quot;,&quot;l&quot;,&quot;b&quot;,  &quot;c&quot;,&quot;o&quot;,&quot;h&quot;,  &quot;s&quot;,&quot;S&quot;,&quot;n&quot;)) {
+## plot+    plot(y ~ x, type = tp, main = paste0(&quot;plot(*, type = \&quot;&quot;, tp, &quot;\&quot;)&quot;))
+## plot+    if(tp == &quot;S&quot;) {
+## plot+       lines(x, y, type = &quot;s&quot;, col = &quot;red&quot;, lty = 2)
+## plot+       mtext(&quot;lines(*, type = \&quot;s\&quot;, ...)&quot;, col = &quot;red&quot;, cex = 0.8)
+## plot+    }
+## plot+ }</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-213-3.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; par(op)
+## 
+## plot&gt; ##--- Log-Log Plot  with  custom axes
+## plot&gt; lx &lt;- seq(1, 5, length.out = 41)
+## 
+## plot&gt; yl &lt;- expression(e^{-frac(1,2) * {log[10](x)}^2})
+## 
+## plot&gt; y &lt;- exp(-.5*lx^2)
+## 
+## plot&gt; op &lt;- par(mfrow = c(2,1), mar = par(&quot;mar&quot;)-c(1,0,2,0), mgp = c(2, .7, 0))
+## 
+## plot&gt; plot(10^lx, y, log = &quot;xy&quot;, type = &quot;l&quot;, col = &quot;purple&quot;,
+## plot+      main = &quot;Log-Log plot&quot;, ylab = yl, xlab = &quot;x&quot;)</code></pre>
+<pre><code>## 
+## plot&gt; plot(10^lx, y, log = &quot;xy&quot;, type = &quot;o&quot;, pch = &quot;.&quot;, col = &quot;forestgreen&quot;,
+## plot+      main = &quot;Log-Log plot with custom axes&quot;, ylab = yl, xlab = &quot;x&quot;,
+## plot+      axes = FALSE, frame.plot = TRUE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-213-4.png" width="672" /></p>
+<pre><code>## 
+## plot&gt; my.at &lt;- 10^(1:5)
+## 
+## plot&gt; axis(1, at = my.at, labels = formatC(my.at, format = &quot;fg&quot;))
+## 
+## plot&gt; e.y &lt;- -5:-1 ; at.y &lt;- 10^e.y
+## 
+## plot&gt; axis(2, at = at.y, col.axis = &quot;red&quot;, las = 1,
+## plot+      labels = as.expression(lapply(e.y, function(E) bquote(10^.(E)))))
+## 
+## plot&gt; par(op)</code></pre>
+<p><code>Enterキー</code> または <code>Returnキー</code> を押すと次々と図が表示されます。
+同時に，コンソールには，作図に用いたコードが表示されます。</p>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="5-作図.html#cb379-1" tabindex="-1"></a><span class="fu">demo</span>(graphics)</span></code></pre></div>
+<pre><code>## 
+## 
+##  demo(graphics)
+##  ---- ~~~~~~~~
+## 
+## &gt; #  Copyright (C) 1997-2009 The R Core Team
+## &gt; 
+## &gt; require(datasets)
+## 
+## &gt; require(grDevices); require(graphics)
+## 
+## &gt; ## Here is some code which illustrates some of the differences between
+## &gt; ## R and S graphics capabilities.  Note that colors are generally specified
+## &gt; ## by a character string name (taken from the X11 rgb.txt file) and that line
+## &gt; ## textures are given similarly.  The parameter &quot;bg&quot; sets the background
+## &gt; ## parameter for the plot and there is also an &quot;fg&quot; parameter which sets
+## &gt; ## the foreground color.
+## &gt; 
+## &gt; 
+## &gt; x &lt;- stats::rnorm(50)
+## 
+## &gt; opar &lt;- par(bg = &quot;white&quot;)
+## 
+## &gt; plot(x, ann = FALSE, type = &quot;n&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<pre><code>## 
+## &gt; abline(h = 0, col = gray(.90))
+## 
+## &gt; lines(x, col = &quot;green4&quot;, lty = &quot;dotted&quot;)
+## 
+## &gt; points(x, bg = &quot;limegreen&quot;, pch = 21)
+## 
+## &gt; title(main = &quot;Simple Use of Color In a Plot&quot;,
+## +       xlab = &quot;Just a Whisper of a Label&quot;,
+## +       col.main = &quot;blue&quot;, col.lab = gray(.8),
+## +       cex.main = 1.2, cex.lab = 1.0, font.main = 4, font.lab = 3)
+## 
+## &gt; ## A little color wheel.    This code just plots equally spaced hues in
+## &gt; ## a pie chart.    If you have a cheap SVGA monitor (like me) you will
+## &gt; ## probably find that numerically equispaced does not mean visually
+## &gt; ## equispaced.  On my display at home, these colors tend to cluster at
+## &gt; ## the RGB primaries.  On the other hand on the SGI Indy at work the
+## &gt; ## effect is near perfect.
+## &gt; 
+## &gt; par(bg = &quot;gray&quot;)
+## 
+## &gt; pie(rep(1,24), col = rainbow(24), radius = 0.9)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-2.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main = &quot;A Sample Color Wheel&quot;, cex.main = 1.4, font.main = 3)
+## 
+## &gt; title(xlab = &quot;(Use this as a test of monitor linearity)&quot;,
+## +       cex.lab = 0.8, font.lab = 3)
+## 
+## &gt; ## We have already confessed to having these.  This is just showing off X11
+## &gt; ## color names (and the example (from the postscript manual) is pretty &quot;cute&quot;.
+## &gt; 
+## &gt; pie.sales &lt;- c(0.12, 0.3, 0.26, 0.16, 0.04, 0.12)
+## 
+## &gt; names(pie.sales) &lt;- c(&quot;Blueberry&quot;, &quot;Cherry&quot;,
+## +              &quot;Apple&quot;, &quot;Boston Cream&quot;, &quot;Other&quot;, &quot;Vanilla Cream&quot;)
+## 
+## &gt; pie(pie.sales,
+## +     col = c(&quot;purple&quot;,&quot;violetred1&quot;,&quot;green3&quot;,&quot;cornsilk&quot;,&quot;cyan&quot;,&quot;white&quot;))</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-3.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main = &quot;January Pie Sales&quot;, cex.main = 1.8, font.main = 1)
+## 
+## &gt; title(xlab = &quot;(Don&#39;t try this at home kids)&quot;, cex.lab = 0.8, font.lab = 3)
+## 
+## &gt; ## Boxplots:  I couldn&#39;t resist the capability for filling the &quot;box&quot;.
+## &gt; ## The use of color seems like a useful addition, it focuses attention
+## &gt; ## on the central bulk of the data.
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; n &lt;- 10
+## 
+## &gt; g &lt;- gl(n, 100, n*100)
+## 
+## &gt; x &lt;- rnorm(n*100) + sqrt(as.numeric(g))
+## 
+## &gt; boxplot(split(x,g), col=&quot;lavender&quot;, notch=TRUE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-4.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main=&quot;Notched Boxplots&quot;, xlab=&quot;Group&quot;, font.main=4, font.lab=1)
+## 
+## &gt; ## An example showing how to fill between curves.
+## &gt; 
+## &gt; par(bg=&quot;white&quot;)
+## 
+## &gt; n &lt;- 100
+## 
+## &gt; x &lt;- c(0,cumsum(rnorm(n)))
+## 
+## &gt; y &lt;- c(0,cumsum(rnorm(n)))
+## 
+## &gt; xx &lt;- c(0:n, n:0)
+## 
+## &gt; yy &lt;- c(x, rev(y))
+## 
+## &gt; plot(xx, yy, type=&quot;n&quot;, xlab=&quot;Time&quot;, ylab=&quot;Distance&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-5.png" width="672" /></p>
+<pre><code>## 
+## &gt; polygon(xx, yy, col=&quot;gray&quot;)
+## 
+## &gt; title(&quot;Distance Between Brownian Motions&quot;)
+## 
+## &gt; ## Colored plot margins, axis labels and titles.    You do need to be
+## &gt; ## careful with these kinds of effects.    It&#39;s easy to go completely
+## &gt; ## over the top and you can end up with your lunch all over the keyboard.
+## &gt; ## On the other hand, my market research clients love it.
+## &gt; 
+## &gt; x &lt;- c(0.00, 0.40, 0.86, 0.85, 0.69, 0.48, 0.54, 1.09, 1.11, 1.73, 2.05, 2.02)
+## 
+## &gt; par(bg=&quot;lightgray&quot;)
+## 
+## &gt; plot(x, type=&quot;n&quot;, axes=FALSE, ann=FALSE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-6.png" width="672" /></p>
+<pre><code>## 
+## &gt; usr &lt;- par(&quot;usr&quot;)
+## 
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;cornsilk&quot;, border=&quot;black&quot;)
+## 
+## &gt; lines(x, col=&quot;blue&quot;)
+## 
+## &gt; points(x, pch=21, bg=&quot;lightcyan&quot;, cex=1.25)
+## 
+## &gt; axis(2, col.axis=&quot;blue&quot;, las=1)
+## 
+## &gt; axis(1, at=1:12, lab=month.abb, col.axis=&quot;blue&quot;)
+## 
+## &gt; box()
+## 
+## &gt; title(main= &quot;The Level of Interest in R&quot;, font.main=4, col.main=&quot;red&quot;)
+## 
+## &gt; title(xlab= &quot;1996&quot;, col.lab=&quot;red&quot;)
+## 
+## &gt; ## A filled histogram, showing how to change the font used for the
+## &gt; ## main title without changing the other annotation.
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; x &lt;- rnorm(1000)
+## 
+## &gt; hist(x, xlim=range(-4, 4, x), col=&quot;lavender&quot;, main=&quot;&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-7.png" width="672" /></p>
+<pre><code>## 
+## &gt; title(main=&quot;1000 Normal Random Variates&quot;, font.main=3)
+## 
+## &gt; ## A scatterplot matrix
+## &gt; ## The good old Iris data (yet again)
+## &gt; 
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, font.main=4, pch=19)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-8.png" width="672" /></p>
+<pre><code>## 
+## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, pch=21,
+## +       bg = c(&quot;red&quot;, &quot;green3&quot;, &quot;blue&quot;)[unclass(iris$Species)])</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-9.png" width="672" /></p>
+<pre><code>## 
+## &gt; ## Contour plotting
+## &gt; ## This produces a topographic map of one of Auckland&#39;s many volcanic &quot;peaks&quot;.
+## &gt; 
+## &gt; x &lt;- 10*1:nrow(volcano)
+## 
+## &gt; y &lt;- 10*1:ncol(volcano)
+## 
+## &gt; lev &lt;- pretty(range(volcano), 10)
+## 
+## &gt; par(bg = &quot;lightcyan&quot;)
+## 
+## &gt; pin &lt;- par(&quot;pin&quot;)
+## 
+## &gt; xdelta &lt;- diff(range(x))
+## 
+## &gt; ydelta &lt;- diff(range(y))
+## 
+## &gt; xscale &lt;- pin[1]/xdelta
+## 
+## &gt; yscale &lt;- pin[2]/ydelta
+## 
+## &gt; scale &lt;- min(xscale, yscale)
+## 
+## &gt; xadd &lt;- 0.5*(pin[1]/scale - xdelta)
+## 
+## &gt; yadd &lt;- 0.5*(pin[2]/scale - ydelta)
+## 
+## &gt; plot(numeric(0), numeric(0),
+## +      xlim = range(x)+c(-1,1)*xadd, ylim = range(y)+c(-1,1)*yadd,
+## +      type = &quot;n&quot;, ann = FALSE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-10.png" width="672" /></p>
+<pre><code>## 
+## &gt; usr &lt;- par(&quot;usr&quot;)
+## 
+## &gt; rect(usr[1], usr[3], usr[2], usr[4], col=&quot;green3&quot;)
+## 
+## &gt; contour(x, y, volcano, levels = lev, col=&quot;yellow&quot;, lty=&quot;solid&quot;, add=TRUE)
+## 
+## &gt; box()
+## 
+## &gt; title(&quot;A Topographic Map of Maunga Whau&quot;, font= 4)
+## 
+## &gt; title(xlab = &quot;Meters North&quot;, ylab = &quot;Meters West&quot;, font= 3)
+## 
+## &gt; mtext(&quot;10 Meter Contour Spacing&quot;, side=3, line=0.35, outer=FALSE,
+## +       at = mean(par(&quot;usr&quot;)[1:2]), cex=0.7, font=3)
+## 
+## &gt; ## Conditioning plots
+## &gt; 
+## &gt; par(bg=&quot;cornsilk&quot;)
+## 
+## &gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = &quot;green3&quot;)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-11.png" width="672" /></p>
+<pre><code>## 
+## &gt; par(opar)</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="5-作図.html#cb392-1" tabindex="-1"></a><span class="fu">demo</span>(image)</span></code></pre></div>
+<pre><code>## 
+## 
+##  demo(image)
+##  ---- ~~~~~
+## 
+## &gt; #  Copyright (C) 1997-2009 The R Core Team
+## &gt; 
+## &gt; require(datasets)
+## 
+## &gt; require(grDevices); require(graphics)
+## 
+## &gt; x &lt;- 10*(1:nrow(volcano)); x.at &lt;- seq(100, 800, by=100)
+## 
+## &gt; y &lt;- 10*(1:ncol(volcano)); y.at &lt;- seq(100, 600, by=100)
+## 
+## &gt;                    # Using Terrain Colors
+## &gt; 
+## &gt; image(x, y, volcano, col=terrain.colors(100),axes=FALSE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-12.png" width="672" /></p>
+<pre><code>## 
+## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;brown&quot;)
+## 
+## &gt; axis(1, at=x.at)
+## 
+## &gt; axis(2, at=y.at)
+## 
+## &gt; box()
+## 
+## &gt; title(main=&quot;Maunga Whau Volcano&quot;, sub = &quot;col=terrain.colors(100)&quot;, font.main=4)
+## 
+## &gt;                    # Using Heat Colors
+## &gt; 
+## &gt; image(x, y, volcano, col=heat.colors(100), axes=FALSE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-13.png" width="672" /></p>
+<pre><code>## 
+## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;brown&quot;)
+## 
+## &gt; axis(1, at=x.at)
+## 
+## &gt; axis(2, at=y.at)
+## 
+## &gt; box()
+## 
+## &gt; title(main=&quot;Maunga Whau Volcano&quot;, sub = &quot;col=heat.colors(100)&quot;, font.main=4)
+## 
+## &gt;                    # Using Gray Scale
+## &gt; 
+## &gt; image(x, y, volcano, col=gray(100:200/200), axes=FALSE)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-14.png" width="672" /></p>
+<pre><code>## 
+## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;black&quot;)
+## 
+## &gt; axis(1, at=x.at)
+## 
+## &gt; axis(2, at=y.at)
+## 
+## &gt; box()
+## 
+## &gt; title(main=&quot;Maunga Whau Volcano \n col=gray(100:200/200)&quot;, font.main=4)
+## 
+## &gt; ## Filled Contours are even nicer sometimes :
+## &gt; example(filled.contour)
+## 
+## flld.c&gt; require(&quot;grDevices&quot;) # for colours
+## 
+## flld.c&gt; filled.contour(volcano, asp = 1) # simple</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-15.png" width="672" /></p>
+<pre><code>## 
+## flld.c&gt; x &lt;- 10*1:nrow(volcano)
+## 
+## flld.c&gt; y &lt;- 10*1:ncol(volcano)
+## 
+## flld.c&gt; filled.contour(x, y, volcano,
+## flld.c+     color.palette = function(n) hcl.colors(n, &quot;terrain&quot;),
+## flld.c+     plot.title = title(main = &quot;The Topography of Maunga Whau&quot;,
+## flld.c+     xlab = &quot;Meters North&quot;, ylab = &quot;Meters West&quot;),
+## flld.c+     plot.axes = { axis(1, seq(100, 800, by = 100))
+## flld.c+                   axis(2, seq(100, 600, by = 100)) },
+## flld.c+     key.title = title(main = &quot;Height\n(meters)&quot;),
+## flld.c+     key.axes = axis(4, seq(90, 190, by = 10)))  # maybe also asp = 1</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-16.png" width="672" /></p>
+<pre><code>## 
+## flld.c&gt; mtext(paste(&quot;filled.contour(.) from&quot;, R.version.string),
+## flld.c+       side = 1, line = 4, adj = 1, cex = .66)
+## 
+## flld.c&gt; # Annotating a filled contour plot
+## flld.c&gt; a &lt;- expand.grid(1:20, 1:20)
+## 
+## flld.c&gt; b &lt;- matrix(a[,1] + a[,2], 20)
+## 
+## flld.c&gt; filled.contour(x = 1:20, y = 1:20, z = b,
+## flld.c+                plot.axes = { axis(1); axis(2); points(10, 10) })</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-17.png" width="672" /></p>
+<pre><code>## 
+## flld.c&gt; ## Persian Rug Art:
+## flld.c&gt; x &lt;- y &lt;- seq(-4*pi, 4*pi, length.out = 27)
+## 
+## flld.c&gt; r &lt;- sqrt(outer(x^2, y^2, `+`))
+## 
+## flld.c&gt; ## &quot;minimal&quot;
+## flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), axes = FALSE, key.border=NA)</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-18.png" width="672" /></p>
+<pre><code>## 
+## flld.c&gt; ## rather, the key *should* be labeled (but axes still not):
+## flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), frame.plot = FALSE,
+## flld.c+                plot.axes = {})</code></pre>
+<p><img src="index_files/figure-html/unnamed-chunk-214-19.png" width="672" /></p>
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="5-作図.html#cb401-1" tabindex="-1"></a><span class="co"># demo(persp)</span></span>
+<span id="cb401-2"><a href="5-作図.html#cb401-2" tabindex="-1"></a><span class="co"># demo(colors)</span></span>
+<span id="cb401-3"><a href="5-作図.html#cb401-3" tabindex="-1"></a><span class="co"># demo(lm.glm)</span></span>
+<span id="cb401-4"><a href="5-作図.html#cb401-4" tabindex="-1"></a><span class="co"># demo(nlm)</span></span>
+<span id="cb401-5"><a href="5-作図.html#cb401-5" tabindex="-1"></a><span class="co"># demo(smooth)</span></span></code></pre></div>
+<p>次のコマンドにより，デモの一覧を見ることができる。</p>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="5-作図.html#cb402-1" tabindex="-1"></a><span class="fu">demo</span>()</span></code></pre></div>
+</div>
+<div id="プロット" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> プロット<a href="5-作図.html#プロット" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>さっそく，プロットしてみよう。</p>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="5-作図.html#cb403-1" tabindex="-1"></a><span class="fu">plot</span>(x)</span>
+<span id="cb403-2"><a href="5-作図.html#cb403-2" tabindex="-1"></a><span class="fu">hist</span>(x)</span></code></pre></div>
+<p>作図ウィンドウを明示的に閉じる場合，次のようにします。</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="5-作図.html#cb404-1" tabindex="-1"></a><span class="fu">def.off</span>()</span></code></pre></div>
+</div>
+<div id="保存" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> 保存<a href="5-作図.html#保存" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>PDF，PNG，SVGのいずれかの形式でファイルに保存するのが一般的です。</p>
+<p>書くのが面倒なので，書かないかもしれません。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="4-比較演算.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="6-tidyverse.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

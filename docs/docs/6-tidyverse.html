@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>6 tidyverse | index.knit</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="6 tidyverse | index.knit" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="6 tidyverse | index.knit" />
+  
+  
+  
+
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="5-作図.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Rの使い方</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
+<li class="chapter" data-level="1.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#基本操作"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#四則演算"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
+<li class="chapter" data-level="1.2.2" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#変数"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#関数"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
+<li class="chapter" data-level="1.2.4" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#ベクトル"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
+<li class="chapter" data-level="1.2.5" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#パッケージ"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#練習問題"><i class="fa fa-check"></i><b>1.3</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="2-基礎.html"><a href="2-基礎.html"><i class="fa fa-check"></i><b>2</b> 基礎</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="2-基礎.html"><a href="2-基礎.html#データの型"><i class="fa fa-check"></i><b>2.1</b> データの型</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="2-基礎.html"><a href="2-基礎.html#数値"><i class="fa fa-check"></i><b>2.1.1</b> 数値</a></li>
+<li class="chapter" data-level="2.1.2" data-path="2-基礎.html"><a href="2-基礎.html#文字列"><i class="fa fa-check"></i><b>2.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="2.1.3" data-path="2-基礎.html"><a href="2-基礎.html#ファクター"><i class="fa fa-check"></i><b>2.1.3</b> ファクター</a></li>
+<li class="chapter" data-level="2.1.4" data-path="2-基礎.html"><a href="2-基礎.html#論理値"><i class="fa fa-check"></i><b>2.1.4</b> 論理値</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="2-基礎.html"><a href="2-基礎.html#データの構造"><i class="fa fa-check"></i><b>2.2</b> データの構造</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="2-基礎.html"><a href="2-基礎.html#ベクトル-1"><i class="fa fa-check"></i><b>2.2.1</b> ベクトル</a></li>
+<li class="chapter" data-level="2.2.2" data-path="2-基礎.html"><a href="2-基礎.html#名前付きベクトル"><i class="fa fa-check"></i><b>2.2.2</b> 名前付きベクトル</a></li>
+<li class="chapter" data-level="2.2.3" data-path="2-基礎.html"><a href="2-基礎.html#行列"><i class="fa fa-check"></i><b>2.2.3</b> 行列</a></li>
+<li class="chapter" data-level="2.2.4" data-path="2-基礎.html"><a href="2-基礎.html#データフレーム"><i class="fa fa-check"></i><b>2.2.4</b> データフレーム</a></li>
+<li class="chapter" data-level="2.2.5" data-path="2-基礎.html"><a href="2-基礎.html#リスト"><i class="fa fa-check"></i><b>2.2.5</b> リスト</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="2-基礎.html"><a href="2-基礎.html#特殊記号"><i class="fa fa-check"></i><b>2.3</b> 特殊記号</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="2-基礎.html"><a href="2-基礎.html#コメント"><i class="fa fa-check"></i><b>2.3.1</b> コメント</a></li>
+<li class="chapter" data-level="2.3.2" data-path="2-基礎.html"><a href="2-基礎.html#セミコロン"><i class="fa fa-check"></i><b>2.3.2</b> セミコロン</a></li>
+<li class="chapter" data-level="2.3.3" data-path="2-基礎.html"><a href="2-基礎.html#評価と同時に返り値を表示"><i class="fa fa-check"></i><b>2.3.3</b> 評価と同時に返り値を表示</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="2-基礎.html"><a href="2-基礎.html#入門書"><i class="fa fa-check"></i><b>2.4</b> 入門書</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="2-基礎.html"><a href="2-基礎.html#チートシート"><i class="fa fa-check"></i><b>2.4.1</b> チートシート</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="2-基礎.html"><a href="2-基礎.html#練習問題-1"><i class="fa fa-check"></i><b>2.5</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html"><i class="fa fa-check"></i><b>3</b> ファイル操作</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイルの読み込み"><i class="fa fa-check"></i><b>3.1</b> ファイルの読み込み</a></li>
+<li class="chapter" data-level="3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造とファイル管理の基礎"><i class="fa fa-check"></i><b>3.2</b> ディレクトリ構造とファイル管理の基礎</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ディレクトリ構造"><i class="fa fa-check"></i><b>3.2.1</b> ディレクトリ構造</a></li>
+<li class="chapter" data-level="3.2.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル管理"><i class="fa fa-check"></i><b>3.2.2</b> ファイル管理</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
+<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
+<li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#tips-2"><i class="fa fa-check"></i><b>3.5.1</b> Tips</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ファイル出力"><i class="fa fa-check"></i><b>3.6</b> ファイル出力</a></li>
+<li class="chapter" data-level="3.7" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#microsoft-365"><i class="fa fa-check"></i><b>3.7</b> Microsoft 365</a></li>
+<li class="chapter" data-level="3.8" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#ロケールの変更"><i class="fa fa-check"></i><b>3.8</b> ロケールの変更</a></li>
+<li class="chapter" data-level="3.9" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#unicodeエスケープシーケンス"><i class="fa fa-check"></i><b>3.9</b> Unicodeエスケープシーケンス</a></li>
+<li class="chapter" data-level="3.10" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#練習問題-2"><i class="fa fa-check"></i><b>3.10</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="4-比較演算.html"><a href="4-比較演算.html"><i class="fa fa-check"></i><b>4</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="4-比較演算.html"><a href="4-比較演算.html#比較演算-1"><i class="fa fa-check"></i><b>4.1</b> 比較演算</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="4-比較演算.html"><a href="4-比較演算.html#数値-1"><i class="fa fa-check"></i><b>4.1.1</b> 数値</a></li>
+<li class="chapter" data-level="4.1.2" data-path="4-比較演算.html"><a href="4-比較演算.html#文字列-1"><i class="fa fa-check"></i><b>4.1.2</b> 文字列</a></li>
+<li class="chapter" data-level="4.1.3" data-path="4-比較演算.html"><a href="4-比較演算.html#正規表現"><i class="fa fa-check"></i><b>4.1.3</b> 正規表現</a></li>
+<li class="chapter" data-level="4.1.4" data-path="4-比較演算.html"><a href="4-比較演算.html#集合"><i class="fa fa-check"></i><b>4.1.4</b> 集合</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="4-比較演算.html"><a href="4-比較演算.html#条件分岐"><i class="fa fa-check"></i><b>4.2</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.3" data-path="4-比較演算.html"><a href="4-比較演算.html#繰り返し処理"><i class="fa fa-check"></i><b>4.3</b> 繰り返し処理</a></li>
+<li class="chapter" data-level="4.4" data-path="4-比較演算.html"><a href="4-比較演算.html#データクリーニング"><i class="fa fa-check"></i><b>4.4</b> データ・クリーニング</a></li>
+<li class="chapter" data-level="4.5" data-path="4-比較演算.html"><a href="4-比較演算.html#関数の作成"><i class="fa fa-check"></i><b>4.5</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.6" data-path="4-比較演算.html"><a href="4-比較演算.html#練習問題-3"><i class="fa fa-check"></i><b>4.6</b> 練習問題</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="5-作図.html"><a href="5-作図.html"><i class="fa fa-check"></i><b>5</b> 作図</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="5-作図.html"><a href="5-作図.html#どんな図を作成できるのか"><i class="fa fa-check"></i><b>5.1</b> どんな図を作成できるのか</a></li>
+<li class="chapter" data-level="5.2" data-path="5-作図.html"><a href="5-作図.html#プロット"><i class="fa fa-check"></i><b>5.2</b> プロット</a></li>
+<li class="chapter" data-level="5.3" data-path="5-作図.html"><a href="5-作図.html#保存"><i class="fa fa-check"></i><b>5.3</b> 保存</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="6-tidyverse.html"><a href="6-tidyverse.html"><i class="fa fa-check"></i><b>6</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#base-r"><i class="fa fa-check"></i><b>6.1</b> base R</a></li>
+<li class="chapter" data-level="6.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#tidyverse-1"><i class="fa fa-check"></i><b>6.2</b> tidyverse</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="6-tidyverse.html"><a href="6-tidyverse.html#データフレーム-1"><i class="fa fa-check"></i><b>6.2.1</b> データフレーム</a></li>
+<li class="chapter" data-level="6.2.2" data-path="6-tidyverse.html"><a href="6-tidyverse.html#よく使う関数"><i class="fa fa-check"></i><b>6.2.2</b> よく使う関数</a></li>
+<li class="chapter" data-level="6.2.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#どちらを使えばよいのか"><i class="fa fa-check"></i><b>6.2.3</b> どちらを使えばよいのか</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="6-tidyverse.html"><a href="6-tidyverse.html#練習問題-4"><i class="fa fa-check"></i><b>6.3</b> 練習問題</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="tidyverse" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> tidyverse<a href="6-tidyverse.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>これまでは base R を使ってきました。
+近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
+<p>base R は伝統的な R の使い方で，R 3.x あたりで tidyverse が登場しました。
+tidyverse が登場した後，これまでの伝統的な R のコードは base R と呼ばれるようになりました。
+それでは，base R とは何でしょうか，tidyverse とは何でしょうか。
+これらを説明するのはやや難しいです。
+しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。</p>
+<p>ここでは，base R と tidyverse の違いについて，実践的に学びます。</p>
+<div id="base-r" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> base R<a href="6-tidyverse.html#base-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>まず，次のようなデータがあるとします。</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="6-tidyverse.html#cb405-1" tabindex="-1"></a>year <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2025</span></span>
+<span id="cb405-2"><a href="6-tidyverse.html#cb405-2" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(year)</span>
+<span id="cb405-3"><a href="6-tidyverse.html#cb405-3" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="sc">*</span> <span class="fu">length</span>(year)<span class="sc">:</span><span class="dv">1</span></span>
+<span id="cb405-4"><a href="6-tidyverse.html#cb405-4" tabindex="-1"></a>df　<span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> year, 南 <span class="ot">=</span> x1, 北 <span class="ot">=</span> x2)</span></code></pre></div>
+<p>このデータフレーム <code>df</code> の中から2000年代以降のデータを取り出して，<code>南</code> 列の平均を計算する場合，次のようなコードになります。</p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="6-tidyverse.html#cb406-1" tabindex="-1"></a>minami2000 <span class="ot">&lt;-</span> df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;南&quot;</span>]</span>
+<span id="cb406-2"><a href="6-tidyverse.html#cb406-2" tabindex="-1"></a><span class="fu">mean</span>(minami2000)</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<p>また，同じことは次のようにしても実行できます。</p>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="6-tidyverse.html#cb408-1" tabindex="-1"></a>minami2000 <span class="ot">&lt;-</span> df<span class="sc">$</span>南[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>]</span>
+<span id="cb408-2"><a href="6-tidyverse.html#cb408-2" tabindex="-1"></a><span class="fu">mean</span>(minami2000)</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<p>もしこの後に，<code>北</code> 列の合計を計算したい場合は，次のようなコードにした方がいいかもしれません。</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="6-tidyverse.html#cb410-1" tabindex="-1"></a>df2000 <span class="ot">&lt;-</span> df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, ]</span>
+<span id="cb410-2"><a href="6-tidyverse.html#cb410-2" tabindex="-1"></a><span class="fu">mean</span>(df2000<span class="sc">$</span>南)</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="6-tidyverse.html#cb412-1" tabindex="-1"></a><span class="fu">sum</span>(df2000<span class="sc">$</span>北)</span></code></pre></div>
+<pre><code>## [1] 35100</code></pre>
+<p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。
+コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。
+こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。
+どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味がわかりにくいです。</p>
+<p>そこで，例えば，次のようにすることもあります。</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="6-tidyverse.html#cb414-1" tabindex="-1"></a><span class="fu">mean</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;南&quot;</span>])</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="6-tidyverse.html#cb416-1" tabindex="-1"></a><span class="fu">sum</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;北&quot;</span>])</span></code></pre></div>
+<pre><code>## [1] 35100</code></pre>
+<p>ただし，これらのコードの問題は，人間が見てわかりにくいということです。
+これは，右から左に解釈していくためです。
+右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。
+そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。</p>
+</div>
+<div id="tidyverse-1" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> tidyverse<a href="6-tidyverse.html#tidyverse-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>パイプ演算 <code>%&gt;%</code> は <code>magrittr</code> パッケージをロードすると使えるようになります。</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="6-tidyverse.html#cb418-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
+<span id="cb418-2"><a href="6-tidyverse.html#cb418-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb418-3"><a href="6-tidyverse.html#cb418-3" tabindex="-1"></a></span>
+<span id="cb418-4"><a href="6-tidyverse.html#cb418-4" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb418-5"><a href="6-tidyverse.html#cb418-5" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb418-6"><a href="6-tidyverse.html#cb418-6" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
+<span id="cb418-7"><a href="6-tidyverse.html#cb418-7" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。</p>
+<p>パイプ演算子があまりにも便利なため，R は 4.1 で公式にパイプ演算子を採用しました。
+R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="6-tidyverse.html#cb420-1" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb420-2"><a href="6-tidyverse.html#cb420-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb420-3"><a href="6-tidyverse.html#cb420-3" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">|&gt;</span></span>
+<span id="cb420-4"><a href="6-tidyverse.html#cb420-4" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
+<pre><code>## [1] 2350</code></pre>
+<p><code>%&gt;%</code> と <code>|&gt;</code> はどちらを使っても同じ場合が多いですが，<code>%&gt;%</code> の方が機能が多いため，完全に同じではありません。
+大きな違いはプレイスホルダー <code>.</code> の扱いです。
+置き換え可能な場合は，<code>|&gt;</code> を使うことをおすすめします。</p>
+<p>パイプ演算子は base R の関数と組み合わせて使うことができます。</p>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="6-tidyverse.html#cb422-1" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb422-2"><a href="6-tidyverse.html#cb422-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">|&gt;</span></span>
+<span id="cb422-3"><a href="6-tidyverse.html#cb422-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   year   南   北
+## 1 2000 1100 2600
+## 2 2001 1200 2500
+## 3 2002 1300 2400
+## 4 2003 1400 2300
+## 5 2004 1500 2200
+## 6 2005 1600 2100</code></pre>
+<p><strong>パイプ演算子を使うと，その前のデータが次に書く関数の最初の引数として自動的に渡されます。</strong>
+この文章の意味が理解できるまで，知っている関数をいろいろ使ってみてください。</p>
+<p>処理結果を新しい変数に代入する場合は，base R の作法に従います。</p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="6-tidyverse.html#cb424-1" tabindex="-1"></a>df2000 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
+<span id="cb424-2"><a href="6-tidyverse.html#cb424-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>)</span></code></pre></div>
+<p>ちなみに，次のようにすることもできますが，このようなコードはあまり見ません。</p>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="6-tidyverse.html#cb425-1" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
+<span id="cb425-2"><a href="6-tidyverse.html#cb425-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="ot">-&gt;</span> df2000</span></code></pre></div>
+<p>tidyverse とは <code>dplyr</code> のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。
+tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a> で確認できます。</p>
+<div id="データフレーム-1" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> データフレーム<a href="6-tidyverse.html#データフレーム-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>tidyverse で使われるデータフレームは <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> です。
+普通のデータフレームと <code>tibble</code> は互換性がありますので，特に意識する必要はありません。
+どちらもデータフレームと呼びます。</p>
+<p>ただし，データフレームの形には，ワイドとロングがあり，これらの違いを意識する必要があります。
+ワイドはMicrosoft Excelでよく見る，複数の列がある表のようなデータフレームのことです。
+一方，ロングは縦に長いデータフレームです。</p>
+<p>ロングとワイドは <a href="https://tidyr.tidyverse.org/" target="_blank">tidyr</a> の関数を使って簡単に変換することができます。
+まず，ワイドは次のようなデータフレームです。</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="6-tidyverse.html#cb426-1" tabindex="-1"></a><span class="fu">head</span>(df)</span></code></pre></div>
+<pre><code>##   year  南   北
+## 1 1990 100 3600
+## 2 1991 200 3500
+## 3 1992 300 3400
+## 4 1993 400 3300
+## 5 1994 500 3200
+## 6 1995 600 3100</code></pre>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="6-tidyverse.html#cb428-1" tabindex="-1"></a><span class="fu">dim</span>(df)</span></code></pre></div>
+<pre><code>## [1] 36  3</code></pre>
+<p>これをロングに変換すると次のようなデータフレームになります。</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="6-tidyverse.html#cb430-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="sc">-</span>year)</span>
+<span id="cb430-2"><a href="6-tidyverse.html#cb430-2" tabindex="-1"></a>df_long</span></code></pre></div>
+<pre><code>## # A tibble: 72 × 3
+##     year name  value
+##    &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+##  1  1990 南      100
+##  2  1990 北     3600
+##  3  1991 南      200
+##  4  1991 北     3500
+##  5  1992 南      300
+##  6  1992 北     3400
+##  7  1993 南      400
+##  8  1993 北     3300
+##  9  1994 南      500
+## 10  1994 北     3200
+## # ℹ 62 more rows</code></pre>
+<p>tidyverse で作成したデータフレームは <code>tibble</code> になります。
+<code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
+<p>また，<code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。
+一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
+<p>先ほどの変換は次のようにしても同じです。</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="6-tidyverse.html#cb432-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;南&quot;</span>, <span class="st">&quot;北&quot;</span>))</span>
+<span id="cb432-2"><a href="6-tidyverse.html#cb432-2" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> 南<span class="sc">:</span>北)</span></code></pre></div>
+<p>ロングからワイドへの変換は次のようにします。</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="6-tidyverse.html#cb433-1" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(df_long, <span class="at">names_from =</span> name)</span>
+<span id="cb433-2"><a href="6-tidyverse.html#cb433-2" tabindex="-1"></a>df_wide</span></code></pre></div>
+<pre><code>## # A tibble: 36 × 3
+##     year    南    北
+##    &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt;
+##  1  1990   100  3600
+##  2  1991   200  3500
+##  3  1992   300  3400
+##  4  1993   400  3300
+##  5  1994   500  3200
+##  6  1995   600  3100
+##  7  1996   700  3000
+##  8  1997   800  2900
+##  9  1998   900  2800
+## 10  1999  1000  2700
+## # ℹ 26 more rows</code></pre>
+<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> と <code>tidyr::gather()</code> を使用しているケースがあります。
+これらの関数は <code>superseded</code> になっています。
+古い関数ですので，覚える必要はありません。</p>
+</div>
+<div id="よく使う関数" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> よく使う関数<a href="6-tidyverse.html#よく使う関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>次に <code>iris</code> を使って base R と tidyverse の違いを確認しておきます。
+以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。</p>
+<div id="filter" class="section level4 hasAnchor" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> filter()<a href="6-tidyverse.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>filter()</code> で条件を満たす列を抽出します。</p>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="6-tidyverse.html#cb435-1" tabindex="-1"></a>iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="dv">7</span>, ]</span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 103          7.1         3.0          5.9         2.1 virginica
+## 106          7.6         3.0          6.6         2.1 virginica
+## 108          7.3         2.9          6.3         1.8 virginica
+## 110          7.2         3.6          6.1         2.5 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 126          7.2         3.2          6.0         1.8 virginica
+## 130          7.2         3.0          5.8         1.6 virginica
+## 131          7.4         2.8          6.1         1.9 virginica
+## 132          7.9         3.8          6.4         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica</code></pre>
+<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb437-1"><a href="6-tidyverse.html#cb437-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb437-2"><a href="6-tidyverse.html#cb437-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1           7.1         3.0          5.9         2.1 virginica
+## 2           7.6         3.0          6.6         2.1 virginica
+## 3           7.3         2.9          6.3         1.8 virginica
+## 4           7.2         3.6          6.1         2.5 virginica
+## 5           7.7         3.8          6.7         2.2 virginica
+## 6           7.7         2.6          6.9         2.3 virginica
+## 7           7.7         2.8          6.7         2.0 virginica
+## 8           7.2         3.2          6.0         1.8 virginica
+## 9           7.2         3.0          5.8         1.6 virginica
+## 10          7.4         2.8          6.1         1.9 virginica
+## 11          7.9         3.8          6.4         2.0 virginica
+## 12          7.7         3.0          6.1         2.3 virginica</code></pre>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="6-tidyverse.html#cb439-1" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>, ])</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="6-tidyverse.html#cb441-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb441-2"><a href="6-tidyverse.html#cb441-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb441-3"><a href="6-tidyverse.html#cb441-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          5.1         3.5          1.4         0.2  setosa
+## 2          4.9         3.0          1.4         0.2  setosa
+## 3          4.7         3.2          1.3         0.2  setosa
+## 4          4.6         3.1          1.5         0.2  setosa
+## 5          5.0         3.6          1.4         0.2  setosa
+## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
+<p>tidyverse が常にわかりやすいとは限りません。
+例えば，次の2つのコードを比較してみてください。</p>
+<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="6-tidyverse.html#cb443-1" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length), ])</span></code></pre></div>
+<pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 51          7.0         3.2          4.7         1.4 versicolor
+## 52          6.4         3.2          4.5         1.5 versicolor
+## 53          6.9         3.1          4.9         1.5 versicolor
+## 55          6.5         2.8          4.6         1.5 versicolor
+## 57          6.3         3.3          4.7         1.6 versicolor
+## 59          6.6         2.9          4.6         1.3 versicolor</code></pre>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="6-tidyverse.html#cb445-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb445-2"><a href="6-tidyverse.html#cb445-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> iris <span class="sc">|&gt;</span></span>
+<span id="cb445-3"><a href="6-tidyverse.html#cb445-3" tabindex="-1"></a>                  dplyr<span class="sc">::</span><span class="fu">summarise</span>(<span class="at">mean_length =</span> <span class="fu">mean</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb445-4"><a href="6-tidyverse.html#cb445-4" tabindex="-1"></a>                  dplyr<span class="sc">::</span><span class="fu">pull</span>(mean_length)) <span class="sc">|&gt;</span></span>
+<span id="cb445-5"><a href="6-tidyverse.html#cb445-5" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1          7.0         3.2          4.7         1.4 versicolor
+## 2          6.4         3.2          4.5         1.5 versicolor
+## 3          6.9         3.1          4.9         1.5 versicolor
+## 4          6.5         2.8          4.6         1.5 versicolor
+## 5          6.3         3.3          4.7         1.6 versicolor
+## 6          6.6         2.9          4.6         1.3 versicolor</code></pre>
+<p>後者のようなコードを書きたい場合は，次のように，tidyverse と base R を組み合わせるのがよいでしょう。</p>
+<div class="sourceCode" id="cb447"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb447-1"><a href="6-tidyverse.html#cb447-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb447-2"><a href="6-tidyverse.html#cb447-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb447-3"><a href="6-tidyverse.html#cb447-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
+## 1          7.0         3.2          4.7         1.4 versicolor
+## 2          6.4         3.2          4.5         1.5 versicolor
+## 3          6.9         3.1          4.9         1.5 versicolor
+## 4          6.5         2.8          4.6         1.5 versicolor
+## 5          6.3         3.3          4.7         1.6 versicolor
+## 6          6.6         2.9          4.6         1.3 versicolor</code></pre>
+</div>
+<div id="select" class="section level4 hasAnchor" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> select()<a href="6-tidyverse.html#select" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>select()</code> で必要な列のみを取り出します。</p>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="6-tidyverse.html#cb449-1" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="st">&quot;Species&quot;</span>])</span></code></pre></div>
+<pre><code>##   Species
+## 1  setosa
+## 2  setosa
+## 3  setosa
+## 4  setosa
+## 5  setosa
+## 6  setosa</code></pre>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="6-tidyverse.html#cb451-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb451-2"><a href="6-tidyverse.html#cb451-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb451-3"><a href="6-tidyverse.html#cb451-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Species
+## 1  setosa
+## 2  setosa
+## 3  setosa
+## 4  setosa
+## 5  setosa
+## 6  setosa</code></pre>
+</div>
+<div id="pull" class="section level4 hasAnchor" number="6.2.2.3">
+<h4><span class="header-section-number">6.2.2.3</span> pull()<a href="6-tidyverse.html#pull" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>列をベクトルで取り出したい場合は，<code>pull()</code> を使います。</p>
+<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb453-1"><a href="6-tidyverse.html#cb453-1" tabindex="-1"></a><span class="fu">head</span>(iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## [1] setosa setosa setosa setosa setosa setosa
+## Levels: setosa versicolor virginica</code></pre>
+<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="6-tidyverse.html#cb455-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb455-2"><a href="6-tidyverse.html#cb455-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">pull</span>(Species) <span class="sc">|&gt;</span></span>
+<span id="cb455-3"><a href="6-tidyverse.html#cb455-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## [1] setosa setosa setosa setosa setosa setosa
+## Levels: setosa versicolor virginica</code></pre>
+</div>
+<div id="mutate" class="section level4 hasAnchor" number="6.2.2.4">
+<h4><span class="header-section-number">6.2.2.4</span> mutate()<a href="6-tidyverse.html#mutate" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>mutate()</code> で新しい列を作成します。
+その前に，<code>iris</code> を変更したくないので，<code>iris</code> のコピーを作成して，それをいじることにします。</p>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="6-tidyverse.html#cb457-1" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris</span>
+<span id="cb457-2"><a href="6-tidyverse.html#cb457-2" tabindex="-1"></a>iris2<span class="sc">$</span>new_species <span class="ot">&lt;-</span> iris2<span class="sc">$</span>Species</span>
+<span id="cb457-3"><a href="6-tidyverse.html#cb457-3" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+## 1          5.1         3.5          1.4         0.2  setosa      setosa
+## 2          4.9         3.0          1.4         0.2  setosa      setosa
+## 3          4.7         3.2          1.3         0.2  setosa      setosa
+## 4          4.6         3.1          1.5         0.2  setosa      setosa
+## 5          5.0         3.6          1.4         0.2  setosa      setosa
+## 6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
+<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb459-1"><a href="6-tidyverse.html#cb459-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb459-2"><a href="6-tidyverse.html#cb459-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">new_species =</span> Species) <span class="sc">|&gt;</span></span>
+<span id="cb459-3"><a href="6-tidyverse.html#cb459-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+## 1          5.1         3.5          1.4         0.2  setosa      setosa
+## 2          4.9         3.0          1.4         0.2  setosa      setosa
+## 3          4.7         3.2          1.3         0.2  setosa      setosa
+## 4          4.6         3.1          1.5         0.2  setosa      setosa
+## 5          5.0         3.6          1.4         0.2  setosa      setosa
+## 6          5.4         3.9          1.7         0.4  setosa      setosa</code></pre>
+<p>また，既存の列を修正するのにも <code>mutate()</code> を使用します。</p>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="6-tidyverse.html#cb461-1" tabindex="-1"></a>iris2<span class="sc">$</span>Sepal.Length <span class="ot">&lt;-</span> iris2<span class="sc">$</span>Sepal.Length <span class="sc">*</span> <span class="dv">100</span></span>
+<span id="cb461-2"><a href="6-tidyverse.html#cb461-2" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species new_species
+## 1          510         3.5          1.4         0.2  setosa      setosa
+## 2          490         3.0          1.4         0.2  setosa      setosa
+## 3          470         3.2          1.3         0.2  setosa      setosa
+## 4          460         3.1          1.5         0.2  setosa      setosa
+## 5          500         3.6          1.4         0.2  setosa      setosa
+## 6          540         3.9          1.7         0.4  setosa      setosa</code></pre>
+<div class="sourceCode" id="cb463"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb463-1"><a href="6-tidyverse.html#cb463-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb463-2"><a href="6-tidyverse.html#cb463-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Sepal.Length =</span> Sepal.Length <span class="sc">*</span> <span class="dv">100</span>) <span class="sc">|&gt;</span></span>
+<span id="cb463-3"><a href="6-tidyverse.html#cb463-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width Species
+## 1          510         3.5          1.4         0.2  setosa
+## 2          490         3.0          1.4         0.2  setosa
+## 3          470         3.2          1.3         0.2  setosa
+## 4          460         3.1          1.5         0.2  setosa
+## 5          500         3.6          1.4         0.2  setosa
+## 6          540         3.9          1.7         0.4  setosa</code></pre>
+</div>
+<div id="count" class="section level4 hasAnchor" number="6.2.2.5">
+<h4><span class="header-section-number">6.2.2.5</span> count()<a href="6-tidyverse.html#count" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb465"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb465-1"><a href="6-tidyverse.html#cb465-1" tabindex="-1"></a><span class="fu">table</span>(iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>## 
+##     setosa versicolor  virginica 
+##         50         50         50</code></pre>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="6-tidyverse.html#cb467-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb467-2"><a href="6-tidyverse.html#cb467-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">count</span>(Species)</span></code></pre></div>
+<pre><code>##      Species  n
+## 1     setosa 50
+## 2 versicolor 50
+## 3  virginica 50</code></pre>
+</div>
+<div id="arrange" class="section level4 hasAnchor" number="6.2.2.6">
+<h4><span class="header-section-number">6.2.2.6</span> arrange()<a href="6-tidyverse.html#arrange" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="6-tidyverse.html#cb469-1" tabindex="-1"></a>iris2 <span class="ot">&lt;-</span> iris[<span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ]</span>
+<span id="cb469-2"><a href="6-tidyverse.html#cb469-2" tabindex="-1"></a><span class="fu">head</span>(iris2)</span></code></pre></div>
+<pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 132          7.9         3.8          6.4         2.0 virginica
+## 118          7.7         3.8          6.7         2.2 virginica
+## 119          7.7         2.6          6.9         2.3 virginica
+## 123          7.7         2.8          6.7         2.0 virginica
+## 136          7.7         3.0          6.1         2.3 virginica
+## 106          7.6         3.0          6.6         2.1 virginica</code></pre>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="6-tidyverse.html#cb471-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb471-2"><a href="6-tidyverse.html#cb471-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">arrange</span>(dplyr<span class="sc">::</span><span class="fu">desc</span>(Sepal.Length)) <span class="sc">|&gt;</span></span>
+<span id="cb471-3"><a href="6-tidyverse.html#cb471-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
+## 1          7.9         3.8          6.4         2.0 virginica
+## 2          7.7         3.8          6.7         2.2 virginica
+## 3          7.7         2.6          6.9         2.3 virginica
+## 4          7.7         2.8          6.7         2.0 virginica
+## 5          7.7         3.0          6.1         2.3 virginica
+## 6          7.6         3.0          6.6         2.1 virginica</code></pre>
+</div>
+<div id="summarise" class="section level4 hasAnchor" number="6.2.2.7">
+<h4><span class="header-section-number">6.2.2.7</span> summarise()<a href="6-tidyverse.html#summarise" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="6-tidyverse.html#cb473-1" tabindex="-1"></a><span class="fu">sapply</span>(<span class="fu">split</span>(iris<span class="sc">$</span>Sepal.Length, iris<span class="sc">$</span>Species), mean)</span></code></pre></div>
+<pre><code>##     setosa versicolor  virginica 
+##      5.006      5.936      6.588</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="6-tidyverse.html#cb475-1" tabindex="-1"></a>iris <span class="sc">|&gt;</span></span>
+<span id="cb475-2"><a href="6-tidyverse.html#cb475-2" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">value =</span> <span class="fu">mean</span>(Sepal.Length), <span class="at">.by =</span> Species)</span></code></pre></div>
+<pre><code>##      Species value
+## 1     setosa 5.006
+## 2 versicolor 5.936
+## 3  virginica 6.588</code></pre>
+</div>
+</div>
+<div id="どちらを使えばよいのか" class="section level3 hasAnchor" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> どちらを使えばよいのか<a href="6-tidyverse.html#どちらを使えばよいのか" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>base R と tidyverse の違いがわかったところで，次に考えるべきは「どちらを使うべきか」という問題です。
+結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。</p>
+<p>ここで「使いやすい」という言葉には，次の2つの側面が含まれています。</p>
+<ol style="list-style-type: decimal">
+<li>自分がコードを理解しやすいこと。</li>
+<li>他人がコードを理解しやすいこと。</li>
+</ol>
+<p>個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。
+一方で，常に最適とは限りません。
+例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方がわかりやすくなることもあります。</p>
+<p>コードの可読性には重要な意味があります。
+理解しにくいコードはバグが発生しやすくなる一方で，可読性の高いコードは必ずしも処理速度が最速ではない場合があります。
+このトレードオフを考慮して選択する必要があります。</p>
+<p>また，個人的な感覚としては，tidyverse は柔軟性が高くモダンなイメージがあり，base R には伝統的で安定感のあるイメージがあります。
+ただし，いずれを選ぶ場合でも，冗長で無駄の多いコードは避けるべきです。
+効率的で簡潔な記述を心がけることが大切です。</p>
+</div>
+</div>
+<div id="練習問題-4" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 練習問題<a href="6-tidyverse.html#練習問題-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>次のデータフレーム <code>z</code> があるとする。<code>z</code> を使って，2000年以降の <code>value</code> の値の平均を求めなさい。ただし，ここでは tidyverse を用いなさい。</li>
+</ol>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="6-tidyverse.html#cb477-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1990</span><span class="sc">:</span><span class="dv">2021</span></span>
+<span id="cb477-2"><a href="6-tidyverse.html#cb477-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="dv">5000</span>, <span class="dv">5030</span>, <span class="dv">2</span>)</span>
+<span id="cb477-3"><a href="6-tidyverse.html#cb477-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year =</span> x, <span class="at">value =</span> y)</span></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>ポケモンの中から，tidyverse を用いて，water タイプのポケモンをすべて挙げなさい。
+ただし，ポケモンのデータセットは，<code>d3po</code> パッケージの <code>pokemon</code> を使いなさい。</li>
+</ol>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="5-作図.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+},
+"toolbar": {
+"position": "static"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
