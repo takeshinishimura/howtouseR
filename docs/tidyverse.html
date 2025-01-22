@@ -126,8 +126,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<p>これまでは base R を使ってきました。 近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
-<p>base R は伝統的な R の使い方で，R 3.x あたりで tidyverse が登場しました。 tidyverse が登場した後，これまでの伝統的な R のコードは base R と呼ばれるようになりました。 それでは，base R とは何でしょうか，tidyverse とは何でしょうか。 これらを説明するのはやや難しいです。 しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。</p>
+<p>これまでは base R を使ってきました。 しかし，近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
+<p>伝統的な R の使い方である base R に対して，tidyverse は R 3.x あたりで登場しました。 tidyverse が登場して以降，これまでの伝統的な R のコードは base R と呼ばれるようになりました。 それでは，base R とは何でしょうか，tidyverse とは何でしょうか。 これらを説明するのはやや難しいです。 しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。</p>
 <p>ここでは，base R と tidyverse の違いについて，実践的に学びます。</p>
 <section id="base-r" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="base-r"><span class="header-section-number">1</span> base R</h2>
@@ -166,7 +166,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 35100</code></pre>
 </div>
 </div>
-<p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。 コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。 こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。 どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味がわかりにくいです。</p>
+<p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。 コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。 こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。 どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味が分かりにくいです。</p>
 <p>そこで，例えば，次のようにすることもあります。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">"南"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -178,7 +178,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <pre><code>[1] 35100</code></pre>
 </div>
 </div>
-<p>ただし，これらのコードの問題は，人間が見てわかりにくいということです。 これは，右から左に解釈していくためです。 右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。 そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。</p>
+<p>ただし，これらのコードの問題は，人間が見て分かりにくいということです。 これは，右から左に解釈していくためです。 右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。 そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。</p>
 </section>
 <section id="tidyverse" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">2</span> tidyverse</h2>
@@ -234,7 +234,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="ot">-&gt;</span> df2000</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>tidyverse とは <code>dplyr</code> のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。 tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a> で確認できます。</p>
+<p>tidyverse とは <code>dplyr</code> のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。 tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a>から確認できます。</p>
 <section id="データフレーム" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="データフレーム"><span class="header-section-number">2.1</span> データフレーム</h3>
 <p>tidyverse で使われるデータフレームは <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> です。 普通のデータフレームと <code>tibble</code> は互換性がありますので，特に意識する必要はありません。 どちらもデータフレームと呼びます。</p>
@@ -278,14 +278,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 <p>関数 <code>pivot_longer()</code> の引数 <code>cols</code> では，ピボットする列を指定します。 ここでは，<code>year</code> を除く列を使ってロングにしたいため，<code>year</code> にマイナスを付けて <code>-year</code> としています。</p>
-<p>なお，tidyverse で作成したデータフレームは <code>tibble</code> になります。 <code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
-<p>また，<code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。 一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
-<p>先ほどの変換は次のようにしても同じです。</p>
+<p>上のコードは次のようにしても同じ結果が得られます。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(南, 北))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> 南<span class="sc">:</span>北)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>このように，tidyverse で列名を指定するときは，<code>""</code> は必要ありません。 ただし，付けてもエラーにはなりません。</p>
+<p>なお，tidyverse で作成したデータフレームは <code>tibble</code> になります。 <code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要が分かることです。</p>
+<p><code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。 一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
 <p>ロングからワイドへの変換は次のようにします。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(df_long, <span class="at">names_from =</span> name)</span>
@@ -307,11 +307,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 26 more rows</code></pre>
 </div>
 </div>
-<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> と <code>tidyr::gather()</code> を使用しているケースがあります。 これらの関数は <code>superseded</code> になっています。 古い関数ですので，覚える必要はありません。</p>
+<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> や <code>tidyr::gather()</code> などが使用されているケースがあります。 これらの関数は <code>superseded</code> になっています。 古い関数ですので，覚える必要はありません。</p>
 </section>
 <section id="よく使う関数" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="よく使う関数"><span class="header-section-number">2.2</span> よく使う関数</h3>
-<p>次に <code>iris</code> を使って base R と tidyverse の違いを確認しておきます。 以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。</p>
+<p>次に <code>iris</code> を使って base R と tidyverse の違いを確認しておきます。 以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。 ここでは，分かりやすさを優先して書いています。</p>
 <section id="filter" class="level4" data-number="2.2.1">
 <h4 data-number="2.2.1" class="anchored" data-anchor-id="filter"><span class="header-section-number">2.2.1</span> filter()</h4>
 <p><code>filter()</code> で条件を満たす列を抽出します。</p>
@@ -372,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 6          5.4         3.9          1.7         0.4  setosa</code></pre>
 </div>
 </div>
-<p>tidyverse が常にわかりやすいとは限りません。 例えば，次の2つのコードを比較してみてください。</p>
+<p>tidyverse が常に分かりやすいとは限りません。 例えば，次の2つのコードを比較してみてください。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length), ])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -585,13 +585,13 @@ Levels: setosa versicolor virginica</code></pre>
 </section>
 <section id="どちらを使えばよいのか" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="どちらを使えばよいのか"><span class="header-section-number">2.3</span> どちらを使えばよいのか</h3>
-<p>base R と tidyverse の違いがわかったところで，次に考えるべきは「どちらを使うべきか」という問題です。 結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。</p>
+<p>base R と tidyverse の違いが分かったところで，次に考えるべきは「どちらを使うべきか」という問題です。 結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。</p>
 <p>ここで「使いやすい」という言葉には，次の2つの側面が含まれています。</p>
 <ol type="1">
 <li>自分がコードを理解しやすいこと。</li>
 <li>他人がコードを理解しやすいこと。</li>
 </ol>
-<p>個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。 一方で，常に最適とは限りません。 例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方がわかりやすくなることもあります。</p>
+<p>個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。 一方で，常に最適とは限りません。 例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方が分かりやすくなることもあります。</p>
 <p>コードの可読性には重要な意味があります。 理解しにくいコードはバグが発生しやすくなる一方で，可読性の高いコードは必ずしも処理速度が最速ではない場合があります。 このトレードオフを考慮して選択する必要があります。</p>
 <p>また，個人的な感覚としては，tidyverse は柔軟性が高くモダンなイメージがあり，base R には伝統的で安定感のあるイメージがあります。 ただし，いずれを選ぶ場合でも，冗長で無駄の多いコードは避けるべきです。 効率的で簡潔な記述を心がけることが大切です。</p>
 </section>
