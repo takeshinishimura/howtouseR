@@ -389,16 +389,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="4-比較演算.html#cb299-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
 <span id="cb299-2"><a href="4-比較演算.html#cb299-2" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb299-3"><a href="4-比較演算.html#cb299-3" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE  TRUE FALSE  TRUE FALSE FALSE  TRUE    NA  TRUE</code></pre>
+<pre><code>##  [1]  TRUE FALSE FALSE  TRUE FALSE    NA  TRUE  TRUE FALSE  TRUE</code></pre>
 <div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="4-比較演算.html#cb301-1" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  8  9 10 NA  6</code></pre>
+<pre><code>## [1]  7 10 NA  9  6  8</code></pre>
 <p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 <code>NA</code> かどうかは次の関数で判定します。</p>
 <div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="4-比較演算.html#cb303-1" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
 <div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="4-比較演算.html#cb305-1" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</code></pre>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
 <div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="4-比較演算.html#cb307-1" tabindex="-1"></a><span class="fu">length</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
@@ -411,11 +411,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] NA</code></pre>
 <p>この場合，関数の引数に <code>na.rm = TRUE</code> を入れて，一時的に <code>NA</code> を取り除いて計算してください。</p>
 <div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="4-比較演算.html#cb313-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 48</code></pre>
+<pre><code>## [1] 51</code></pre>
 <p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
 <p>判定の際に <code>NA</code> を取り除きたい場合は，次のようにします。</p>
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="4-比較演算.html#cb315-1" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  8  9 10  6</code></pre>
+<pre><code>## [1]  7 10  9  6  8</code></pre>
 </div>
 <div id="論理積" class="section level4 hasAnchor" number="4.1.1.2">
 <h4><span class="header-section-number">4.1.1.2</span> 論理積<a href="4-比較演算.html#論理積" class="anchor-section" aria-label="Anchor link to header"></a></h4>
