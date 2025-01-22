@@ -76,6 +76,7 @@ sum(df[df$year >= 2000, "北"])
 ```{r, message = FALSE}
 library(magrittr)
 library(dplyr)
+library(tidyr)
 
 df %>%
   filter(year >= 2000) %>%
@@ -83,6 +84,7 @@ df %>%
   mean()
 ```
 `filter()` と `pull()` は `dplyr` パッケージの関数です。
+ここでは，`library(tidyr)` は関係ありませんが，後で出てくるため，ここでロードしています。
 
 パイプ演算子があまりにも便利なため，R は 4.1.0 で公式にパイプ演算子を採用しました。
 R 公式のパイプ演算子は `|>` です。
@@ -141,7 +143,10 @@ dim(df)
 df_long <- tidyr::pivot_longer(df, cols = -year)
 df_long
 ```
-tidyverse で作成したデータフレームは `tibble` になります。
+関数 `pivot_longer()` の引数 `cols` では，ピボットする列を指定します。
+ここでは，`year` を除く列を使ってロングにしたいため，`year` にマイナスを付けて `-year` としています。
+
+なお，tidyverse で作成したデータフレームは `tibble` になります。
 `tibble` の便利な点は，`head()` や `dim()` をわざわざ実行しなくても，データフレームの概要がわかります。
 
 また，`ggplot2` パッケージの `ggplot()` で図を描く場合，ロングの方がデータを扱いやすいです。
@@ -149,9 +154,11 @@ tidyverse で作成したデータフレームは `tibble` になります。
 
 先ほどの変換は次のようにしても同じです。
 ```{r}
-df_long <- tidyr::pivot_longer(df, cols = c("南", "北"))
+df_long <- tidyr::pivot_longer(df, cols = c(南, 北))
 df_long <- tidyr::pivot_longer(df, cols = 南:北)
 ```
+このように，tidyverse で列名を指定するときは，`""` は必要ありません。
+ただし，付けてもエラーにはなりません。
 
 ロングからワイドへの変換は次のようにします。
 ```{r}

@@ -186,16 +186,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
-<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 2350</code></pre>
 </div>
 </div>
-<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。</p>
+<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。 ここでは，<code>library(tidyr)</code> は関係ありませんが，後で出てくるため，ここでロードしています。</p>
 <p>パイプ演算子があまりにも便利なため，R は 4.1.0 で公式にパイプ演算子を採用しました。 R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
@@ -276,13 +277,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 # ℹ 62 more rows</code></pre>
 </div>
 </div>
-<p>tidyverse で作成したデータフレームは <code>tibble</code> になります。 <code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
+<p>関数 <code>pivot_longer()</code> の引数 <code>cols</code> では，ピボットする列を指定します。 ここでは，<code>year</code> を除く列を使ってロングにしたいため，<code>year</code> にマイナスを付けて <code>-year</code> としています。</p>
+<p>なお，tidyverse で作成したデータフレームは <code>tibble</code> になります。 <code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
 <p>また，<code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。 一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
 <p>先ほどの変換は次のようにしても同じです。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">"南"</span>, <span class="st">"北"</span>))</span>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(南, 北))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> 南<span class="sc">:</span>北)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>このように，tidyverse で列名を指定するときは，<code>""</code> は必要ありません。 ただし，付けてもエラーにはなりません。</p>
 <p>ロングからワイドへの変換は次のようにします。</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(df_long, <span class="at">names_from =</span> name)</span>
