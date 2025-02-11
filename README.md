@@ -11,15 +11,16 @@
 
 ## はじめてのR
 
-- [まずは使ってみる](https://takeshinishimura.github.io/howtouseR/letsgetstarted.html)
-- [基礎](https://takeshinishimura.github.io/howtouseR/basics.html)
-- [ファイル操作](https://takeshinishimura.github.io/howtouseR/file_manipulation.html)
-- [比較演算](https://takeshinishimura.github.io/howtouseR/comparison.html)
-- [tidyverse](https://takeshinishimura.github.io/howtouseR/tidyverse.html)
-- [図](https://takeshinishimura.github.io/howtouseR/plot.html)
-- ggplot2
-- 統計分析
-- 表
+- [はじめてのR](https://takeshinishimura.github.io/howtouseR/)
+- ~~[まずは使ってみる](https://takeshinishimura.github.io/howtouseR/letsgetstarted.html)~~
+- ~~[基礎](https://takeshinishimura.github.io/howtouseR/basics.html)~~
+- ~~[ファイル操作](https://takeshinishimura.github.io/howtouseR/file_manipulation.html)~~
+- ~~[比較演算](https://takeshinishimura.github.io/howtouseR/comparison.html)~~
+- ~~[tidyverse](https://takeshinishimura.github.io/howtouseR/tidyverse.html)~~
+- ~~[図](https://takeshinishimura.github.io/howtouseR/plot.html)~~
+- ~~ggplot2~~
+- ~~統計分析~~
+- ~~表~~
 
 ## 雑記
 

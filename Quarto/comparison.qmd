@@ -426,10 +426,10 @@ as.logical(0)
 
 関数を自分で作ることができます。
 ```{r}
-x <- function (y) {
+connect_with_slash <- function (y) {
   paste(y, collapse = "/")
 }
-x(c("Apple", "Orange"))
+connect_with_slash(c("Apple", "Orange"))
 ```
 
 

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 tidyverse | index.knit</title>
-  <meta name="description" content="" />
+  <title>6 tidyverse | Rの使い方</title>
+  <meta name="description" content="6 tidyverse | Rの使い方" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 tidyverse | index.knit" />
+  <meta property="og:title" content="6 tidyverse | Rの使い方" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 tidyverse | index.knit" />
+  <meta name="twitter:title" content="6 tidyverse | Rの使い方" />
   
   
   
@@ -137,6 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Rの使い方</a></li>
 
 <li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はしがき</a></li>
 <li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
@@ -244,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rの使い方</a>
           </h1>
         </div>
 
@@ -255,9 +256,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="tidyverse" class="section level1 hasAnchor" number="6">
 <h1><span class="header-section-number">6</span> tidyverse<a href="6-tidyverse.html#tidyverse" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>これまでは base R を使ってきました。
-近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
-<p>base R は伝統的な R の使い方で，R 3.x あたりで tidyverse が登場しました。
-tidyverse が登場した後，これまでの伝統的な R のコードは base R と呼ばれるようになりました。
+しかし，近年，Rの中でも <a href="https://www.tidyverse.org" target="_blank">tidyverse</a> を使うケースが一般的になりました。</p>
+<p>伝統的な R の使い方である base R に対して，tidyverse は R 3.x あたりで登場しました。
+tidyverse が登場して以降，これまでの伝統的な R のコードは base R と呼ばれるようになりました。
 それでは，base R とは何でしょうか，tidyverse とは何でしょうか。
 これらを説明するのはやや難しいです。
 しかし，感覚的な違いがありますので，この感覚を身に付けることを目指しましょう。</p>
@@ -286,13 +287,13 @@ tidyverse が登場した後，これまでの伝統的な R のコードは bas
 <p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。
 コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。
 こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。
-どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味がわかりにくいです。</p>
+どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味が分かりにくいです。</p>
 <p>そこで，例えば，次のようにすることもあります。</p>
 <div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="6-tidyverse.html#cb414-1" tabindex="-1"></a><span class="fu">mean</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;南&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] 2350</code></pre>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="6-tidyverse.html#cb416-1" tabindex="-1"></a><span class="fu">sum</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;北&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] 35100</code></pre>
-<p>ただし，これらのコードの問題は，人間が見てわかりにくいということです。
+<p>ただし，これらのコードの問題は，人間が見て分かりにくいということです。
 これは，右から左に解釈していくためです。
 右から左ではなく，左から右に処理が進む方が人間（日本語や英語話者）にとって理解しやすいです。
 そこで，他の多くの言語にあるパイプ演算子の機能が R にも備わるようになりました。</p>
@@ -302,13 +303,15 @@ tidyverse が登場した後，これまでの伝統的な R のコードは bas
 <p>パイプ演算 <code>%&gt;%</code> は <code>magrittr</code> パッケージをロードすると使えるようになります。</p>
 <div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="6-tidyverse.html#cb418-1" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span>
 <span id="cb418-2"><a href="6-tidyverse.html#cb418-2" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb418-3"><a href="6-tidyverse.html#cb418-3" tabindex="-1"></a></span>
-<span id="cb418-4"><a href="6-tidyverse.html#cb418-4" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
-<span id="cb418-5"><a href="6-tidyverse.html#cb418-5" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb418-6"><a href="6-tidyverse.html#cb418-6" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
-<span id="cb418-7"><a href="6-tidyverse.html#cb418-7" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
+<span id="cb418-3"><a href="6-tidyverse.html#cb418-3" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb418-4"><a href="6-tidyverse.html#cb418-4" tabindex="-1"></a></span>
+<span id="cb418-5"><a href="6-tidyverse.html#cb418-5" tabindex="-1"></a>df <span class="sc">%&gt;%</span></span>
+<span id="cb418-6"><a href="6-tidyverse.html#cb418-6" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb418-7"><a href="6-tidyverse.html#cb418-7" tabindex="-1"></a>  <span class="fu">pull</span>(南) <span class="sc">%&gt;%</span></span>
+<span id="cb418-8"><a href="6-tidyverse.html#cb418-8" tabindex="-1"></a>  <span class="fu">mean</span>()</span></code></pre></div>
 <pre><code>## [1] 2350</code></pre>
-<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。</p>
+<p><code>filter()</code> と <code>pull()</code> は <code>dplyr</code> パッケージの関数です。
+ここでは，<code>library(tidyr)</code> は関係ありませんが，後で出てくるため，ここでロードしています。</p>
 <p>パイプ演算子があまりにも便利なため，R は 4.1.0 で公式にパイプ演算子を採用しました。
 R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
 <div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="6-tidyverse.html#cb420-1" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
@@ -339,7 +342,7 @@ R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
 <div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="6-tidyverse.html#cb425-1" tabindex="-1"></a>df <span class="sc">|&gt;</span></span>
 <span id="cb425-2"><a href="6-tidyverse.html#cb425-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>) <span class="ot">-&gt;</span> df2000</span></code></pre></div>
 <p>tidyverse とは <code>dplyr</code> のような，パイプ演算子を使うことを前提に考えられた（正確には少し違う）パッケージ群のことです。
-tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a> で確認できます。</p>
+tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/packages/" target="_blank">ここ</a>から確認できます。</p>
 <div id="データフレーム-1" class="section level3 hasAnchor" number="6.2.1">
 <h3><span class="header-section-number">6.2.1</span> データフレーム<a href="6-tidyverse.html#データフレーム-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>tidyverse で使われるデータフレームは <a href="https://tibble.tidyverse.org/" target="_blank">tibble</a> です。
@@ -377,13 +380,17 @@ tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/pa
 ##  9  1994 南      500
 ## 10  1994 北     3200
 ## # ℹ 62 more rows</code></pre>
-<p>tidyverse で作成したデータフレームは <code>tibble</code> になります。
-<code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要がわかります。</p>
-<p>また，<code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。
-一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
-<p>先ほどの変換は次のようにしても同じです。</p>
-<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="6-tidyverse.html#cb432-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(<span class="st">&quot;南&quot;</span>, <span class="st">&quot;北&quot;</span>))</span>
+<p>関数 <code>pivot_longer()</code> の引数 <code>cols</code> では，ピボットする列を指定します。
+ここでは，<code>year</code> を除く列を使ってロングにしたいため，<code>year</code> にマイナスを付けて <code>-year</code> としています。</p>
+<p>上のコードは次のようにしても同じ結果が得られます。</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="6-tidyverse.html#cb432-1" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> <span class="fu">c</span>(南, 北))</span>
 <span id="cb432-2"><a href="6-tidyverse.html#cb432-2" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(df, <span class="at">cols =</span> 南<span class="sc">:</span>北)</span></code></pre></div>
+<p>このように，tidyverse で列名を指定するときは，<code>""</code> は必要ありません。
+ただし，付けてもエラーにはなりません。</p>
+<p>なお，tidyverse で作成したデータフレームは <code>tibble</code> になります。
+<code>tibble</code> の便利な点は，<code>head()</code> や <code>dim()</code> をわざわざ実行しなくても，データフレームの概要が分かることです。</p>
+<p><code>ggplot2</code> パッケージの <code>ggplot()</code> で図を描く場合，ロングの方がデータを扱いやすいです。
+一方，<code>lm()</code> などの回帰分析にはワイドのデータが向いています。</p>
 <p>ロングからワイドへの変換は次のようにします。</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="6-tidyverse.html#cb433-1" tabindex="-1"></a>df_wide <span class="ot">&lt;-</span> tidyr<span class="sc">::</span><span class="fu">pivot_wider</span>(df_long, <span class="at">names_from =</span> name)</span>
 <span id="cb433-2"><a href="6-tidyverse.html#cb433-2" tabindex="-1"></a>df_wide</span></code></pre></div>
@@ -401,14 +408,15 @@ tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/pa
 ##  9  1998   900  2800
 ## 10  1999  1000  2700
 ## # ℹ 26 more rows</code></pre>
-<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> と <code>tidyr::gather()</code> を使用しているケースがあります。
+<p>なお，Google検索したり，古い文献を見ると，ロングとワイドの変換に <code>tidyr::spread()</code> や <code>tidyr::gather()</code> などが使用されているケースがあります。
 これらの関数は <code>superseded</code> になっています。
 古い関数ですので，覚える必要はありません。</p>
 </div>
 <div id="よく使う関数" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> よく使う関数<a href="6-tidyverse.html#よく使う関数" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>次に <code>iris</code> を使って base R と tidyverse の違いを確認しておきます。
-以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。</p>
+以下では名前空間（<code>dplyr::</code> の部分）をわざわざ書いていますが，実際にコードを書くときは書かなくてもよいです。
+ここでは，分かりやすさを優先して書いています。</p>
 <div id="filter" class="section level4 hasAnchor" number="6.2.2.1">
 <h4><span class="header-section-number">6.2.2.1</span> filter()<a href="6-tidyverse.html#filter" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><code>filter()</code> で条件を満たす列を抽出します。</p>
@@ -459,7 +467,7 @@ tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/pa
 ## 4          4.6         3.1          1.5         0.2  setosa
 ## 5          5.0         3.6          1.4         0.2  setosa
 ## 6          5.4         3.9          1.7         0.4  setosa</code></pre>
-<p>tidyverse が常にわかりやすいとは限りません。
+<p>tidyverse が常に分かりやすいとは限りません。
 例えば，次の2つのコードを比較してみてください。</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="6-tidyverse.html#cb443-1" tabindex="-1"></a><span class="fu">head</span>(iris[iris<span class="sc">$</span>Sepal.Length <span class="sc">&gt;</span> <span class="fu">mean</span>(iris<span class="sc">$</span>Sepal.Length), ])</span></code></pre></div>
 <pre><code>##    Sepal.Length Sepal.Width Petal.Length Petal.Width    Species
@@ -622,7 +630,7 @@ tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/pa
 </div>
 <div id="どちらを使えばよいのか" class="section level3 hasAnchor" number="6.2.3">
 <h3><span class="header-section-number">6.2.3</span> どちらを使えばよいのか<a href="6-tidyverse.html#どちらを使えばよいのか" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>base R と tidyverse の違いがわかったところで，次に考えるべきは「どちらを使うべきか」という問題です。
+<p>base R と tidyverse の違いが分かったところで，次に考えるべきは「どちらを使うべきか」という問題です。
 結論から言えば，「自分にとって使いやすい方を選ぶ」のが適切です。</p>
 <p>ここで「使いやすい」という言葉には，次の2つの側面が含まれています。</p>
 <ol style="list-style-type: decimal">
@@ -631,7 +639,7 @@ tidyverse を構成するパッケージは<a href="https://www.tidyverse.org/pa
 </ol>
 <p>個人的な印象として，tidyverse は操作が直感的で，コードが簡潔かつ読みやすくなることが多いです。
 一方で，常に最適とは限りません。
-例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方がわかりやすくなることもあります。</p>
+例えば、<code>map()</code> 関数を使用するケースでは，base R で書いた方が分かりやすくなることもあります。</p>
 <p>コードの可読性には重要な意味があります。
 理解しにくいコードはバグが発生しやすくなる一方で，可読性の高いコードは必ずしも処理速度が最速ではない場合があります。
 このトレードオフを考慮して選択する必要があります。</p>

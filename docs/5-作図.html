@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>5 作図 | index.knit</title>
-  <meta name="description" content="" />
+  <title>5 作図 | Rの使い方</title>
+  <meta name="description" content="5 作図 | Rの使い方" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="5 作図 | index.knit" />
+  <meta property="og:title" content="5 作図 | Rの使い方" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="5 作図 | index.knit" />
+  <meta name="twitter:title" content="5 作図 | Rの使い方" />
   
   
   
@@ -137,6 +137,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Rの使い方</a></li>
 
 <li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はしがき</a></li>
 <li class="chapter" data-level="1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html"><i class="fa fa-check"></i><b>1</b> まずは使ってみる</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="1-まずは使ってみる.html"><a href="1-まずは使ってみる.html#環境構築"><i class="fa fa-check"></i><b>1.1</b> 環境構築</a></li>
@@ -244,7 +245,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rの使い方</a>
           </h1>
         </div>
 
@@ -266,12 +267,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## plot&gt; plot(Speed, Distance, panel.first = grid(8, 8),
 ## plot+      pch = 0, cex = 1.2, col = &quot;blue&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-213-1.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; plot(Speed, Distance,
 ## plot+      panel.first = lines(stats::lowess(Speed, Distance), lty = &quot;dashed&quot;),
 ## plot+      pch = 0, cex = 1.2, col = &quot;blue&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-213-2.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-213-2.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; ## Show the different plot types
 ## plot&gt; x &lt;- 0:12
@@ -287,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## plot+       mtext(&quot;lines(*, type = \&quot;s\&quot;, ...)&quot;, col = &quot;red&quot;, cex = 0.8)
 ## plot+    }
 ## plot+ }</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-213-3.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-213-3.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; par(op)
 ## 
@@ -306,7 +307,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## plot&gt; plot(10^lx, y, log = &quot;xy&quot;, type = &quot;o&quot;, pch = &quot;.&quot;, col = &quot;forestgreen&quot;,
 ## plot+      main = &quot;Log-Log plot with custom axes&quot;, ylab = yl, xlab = &quot;x&quot;,
 ## plot+      axes = FALSE, frame.plot = TRUE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-213-4.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-213-4.png" width="672" /></p>
 <pre><code>## 
 ## plot&gt; my.at &lt;- 10^(1:5)
 ## 
@@ -345,7 +346,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; opar &lt;- par(bg = &quot;white&quot;)
 ## 
 ## &gt; plot(x, ann = FALSE, type = &quot;n&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-1.png" width="672" /></p>
 <pre><code>## 
 ## &gt; abline(h = 0, col = gray(.90))
 ## 
@@ -368,7 +369,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; par(bg = &quot;gray&quot;)
 ## 
 ## &gt; pie(rep(1,24), col = rainbow(24), radius = 0.9)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-2.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-2.png" width="672" /></p>
 <pre><code>## 
 ## &gt; title(main = &quot;A Sample Color Wheel&quot;, cex.main = 1.4, font.main = 3)
 ## 
@@ -385,7 +386,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## &gt; pie(pie.sales,
 ## +     col = c(&quot;purple&quot;,&quot;violetred1&quot;,&quot;green3&quot;,&quot;cornsilk&quot;,&quot;cyan&quot;,&quot;white&quot;))</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-3.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-3.png" width="672" /></p>
 <pre><code>## 
 ## &gt; title(main = &quot;January Pie Sales&quot;, cex.main = 1.8, font.main = 1)
 ## 
@@ -404,7 +405,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; x &lt;- rnorm(n*100) + sqrt(as.numeric(g))
 ## 
 ## &gt; boxplot(split(x,g), col=&quot;lavender&quot;, notch=TRUE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-4.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-4.png" width="672" /></p>
 <pre><code>## 
 ## &gt; title(main=&quot;Notched Boxplots&quot;, xlab=&quot;Group&quot;, font.main=4, font.lab=1)
 ## 
@@ -423,7 +424,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; yy &lt;- c(x, rev(y))
 ## 
 ## &gt; plot(xx, yy, type=&quot;n&quot;, xlab=&quot;Time&quot;, ylab=&quot;Distance&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-5.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-5.png" width="672" /></p>
 <pre><code>## 
 ## &gt; polygon(xx, yy, col=&quot;gray&quot;)
 ## 
@@ -439,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; par(bg=&quot;lightgray&quot;)
 ## 
 ## &gt; plot(x, type=&quot;n&quot;, axes=FALSE, ann=FALSE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-6.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-6.png" width="672" /></p>
 <pre><code>## 
 ## &gt; usr &lt;- par(&quot;usr&quot;)
 ## 
@@ -467,7 +468,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; x &lt;- rnorm(1000)
 ## 
 ## &gt; hist(x, xlim=range(-4, 4, x), col=&quot;lavender&quot;, main=&quot;&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-7.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-7.png" width="672" /></p>
 <pre><code>## 
 ## &gt; title(main=&quot;1000 Normal Random Variates&quot;, font.main=3)
 ## 
@@ -475,11 +476,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; ## The good old Iris data (yet again)
 ## &gt; 
 ## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, font.main=4, pch=19)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-8.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-8.png" width="672" /></p>
 <pre><code>## 
 ## &gt; pairs(iris[1:4], main=&quot;Edgar Anderson&#39;s Iris Data&quot;, pch=21,
 ## +       bg = c(&quot;red&quot;, &quot;green3&quot;, &quot;blue&quot;)[unclass(iris$Species)])</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-9.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-9.png" width="672" /></p>
 <pre><code>## 
 ## &gt; ## Contour plotting
 ## &gt; ## This produces a topographic map of one of Auckland&#39;s many volcanic &quot;peaks&quot;.
@@ -511,7 +512,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; plot(numeric(0), numeric(0),
 ## +      xlim = range(x)+c(-1,1)*xadd, ylim = range(y)+c(-1,1)*yadd,
 ## +      type = &quot;n&quot;, ann = FALSE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-10.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-10.png" width="672" /></p>
 <pre><code>## 
 ## &gt; usr &lt;- par(&quot;usr&quot;)
 ## 
@@ -533,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt; par(bg=&quot;cornsilk&quot;)
 ## 
 ## &gt; coplot(lat ~ long | depth, data = quakes, pch = 21, bg = &quot;green3&quot;)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-11.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-11.png" width="672" /></p>
 <pre><code>## 
 ## &gt; par(opar)</code></pre>
 <div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="5-作図.html#cb392-1" tabindex="-1"></a><span class="fu">demo</span>(image)</span></code></pre></div>
@@ -555,7 +556,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt;                    # Using Terrain Colors
 ## &gt; 
 ## &gt; image(x, y, volcano, col=terrain.colors(100),axes=FALSE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-12.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-12.png" width="672" /></p>
 <pre><code>## 
 ## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;brown&quot;)
 ## 
@@ -570,7 +571,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt;                    # Using Heat Colors
 ## &gt; 
 ## &gt; image(x, y, volcano, col=heat.colors(100), axes=FALSE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-13.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-13.png" width="672" /></p>
 <pre><code>## 
 ## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;brown&quot;)
 ## 
@@ -585,7 +586,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## &gt;                    # Using Gray Scale
 ## &gt; 
 ## &gt; image(x, y, volcano, col=gray(100:200/200), axes=FALSE)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-14.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-14.png" width="672" /></p>
 <pre><code>## 
 ## &gt; contour(x, y, volcano, levels=seq(90, 200, by=5), add=TRUE, col=&quot;black&quot;)
 ## 
@@ -603,7 +604,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## flld.c&gt; require(&quot;grDevices&quot;) # for colours
 ## 
 ## flld.c&gt; filled.contour(volcano, asp = 1) # simple</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-15.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-15.png" width="672" /></p>
 <pre><code>## 
 ## flld.c&gt; x &lt;- 10*1:nrow(volcano)
 ## 
@@ -617,7 +618,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## flld.c+                   axis(2, seq(100, 600, by = 100)) },
 ## flld.c+     key.title = title(main = &quot;Height\n(meters)&quot;),
 ## flld.c+     key.axes = axis(4, seq(90, 190, by = 10)))  # maybe also asp = 1</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-16.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-16.png" width="672" /></p>
 <pre><code>## 
 ## flld.c&gt; mtext(paste(&quot;filled.contour(.) from&quot;, R.version.string),
 ## flld.c+       side = 1, line = 4, adj = 1, cex = .66)
@@ -629,7 +630,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## flld.c&gt; filled.contour(x = 1:20, y = 1:20, z = b,
 ## flld.c+                plot.axes = { axis(1); axis(2); points(10, 10) })</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-17.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-17.png" width="672" /></p>
 <pre><code>## 
 ## flld.c&gt; ## Persian Rug Art:
 ## flld.c&gt; x &lt;- y &lt;- seq(-4*pi, 4*pi, length.out = 27)
@@ -638,12 +639,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 
 ## flld.c&gt; ## &quot;minimal&quot;
 ## flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), axes = FALSE, key.border=NA)</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-18.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-18.png" width="672" /></p>
 <pre><code>## 
 ## flld.c&gt; ## rather, the key *should* be labeled (but axes still not):
 ## flld.c&gt; filled.contour(cos(r^2)*exp(-r/(2*pi)), frame.plot = FALSE,
 ## flld.c+                plot.axes = {})</code></pre>
-<p><img src="index_files/figure-html/unnamed-chunk-214-19.png" width="672" /></p>
+<p><img src="R_files/figure-html/unnamed-chunk-214-19.png" width="672" /></p>
 <div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="5-作図.html#cb401-1" tabindex="-1"></a><span class="co"># demo(persp)</span></span>
 <span id="cb401-2"><a href="5-作図.html#cb401-2" tabindex="-1"></a><span class="co"># demo(colors)</span></span>
 <span id="cb401-3"><a href="5-作図.html#cb401-3" tabindex="-1"></a><span class="co"># demo(lm.glm)</span></span>

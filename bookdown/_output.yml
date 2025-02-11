@@ -5,7 +5,7 @@ bookdown::gitbook:
       position: static
     toc:
       before: |
-        <li><a href="./">Rの使い方</a></li>
+        <li><a href="./">はじめてのR</a></li>
 bookdown::pdf_book:
   keep_tex: yes
 bookdown::html_book:
