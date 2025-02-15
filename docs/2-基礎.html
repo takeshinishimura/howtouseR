@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>2 基礎 | Rの使い方</title>
-  <meta name="description" content="2 基礎 | Rの使い方" />
+  <title>2 基礎 | はじめてのR</title>
+  <meta name="description" content="2 基礎 | はじめてのR" />
   <meta name="generator" content="bookdown 0.42 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="2 基礎 | Rの使い方" />
+  <meta property="og:title" content="2 基礎 | はじめてのR" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="2 基礎 | Rの使い方" />
+  <meta name="twitter:title" content="2 基礎 | はじめてのR" />
   
   
   
@@ -50,6 +50,19 @@
 <link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.5.0/mermaid.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    mermaid.initialize({ startOnLoad: true });
+    document.querySelectorAll("pre.mermaid").forEach(function(element) {
+      var code = element.textContent;
+      var newElement = document.createElement("div");
+      newElement.classList.add("mermaid");
+      newElement.innerHTML = code;
+      element.replaceWith(newElement);
+    });
+  });
+</script>
 
 
 <style type="text/css">
@@ -134,7 +147,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./">Rの使い方</a></li>
+<li><a href="./">はじめてのR</a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はしがき</a></li>
@@ -191,7 +204,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリ"><i class="fa fa-check"></i><b>3.3</b> 作業ディレクトリ</a>
 <ul>
 <li class="chapter" data-level="3.3.1" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#rのコードの保存"><i class="fa fa-check"></i><b>3.3.1</b> Rのコードの保存</a></li>
-<li class="chapter" data-level="3.3.2" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#作業ディレクトリの変更"><i class="fa fa-check"></i><b>3.3.2</b> 作業ディレクトリの変更</a></li>
 </ul></li>
 <li class="chapter" data-level="3.4" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#絶対パス"><i class="fa fa-check"></i><b>3.4</b> 絶対パス</a></li>
 <li class="chapter" data-level="3.5" data-path="3-ファイル操作.html"><a href="3-ファイル操作.html#相対パス"><i class="fa fa-check"></i><b>3.5</b> 相対パス</a>
@@ -245,7 +257,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rの使い方</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">はじめてのR</a>
           </h1>
         </div>
 
@@ -1444,7 +1456,8 @@ gitbook.start({
 },
 "toolbar": {
 "position": "static"
-}
+},
+"mermaid": ["sequence", "flow"]
 });
 });
 </script>

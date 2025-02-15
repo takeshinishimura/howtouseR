@@ -1,11 +1,14 @@
 bookdown::gitbook:
   split_by: chapter+number
+  includes:
+    in_header: mermaid_header.html
   config:
     toolbar:
       position: static
     toc:
       before: |
         <li><a href="./">はじめてのR</a></li>
+    mermaid: ["sequence", "flow"]
 bookdown::pdf_book:
   keep_tex: yes
 bookdown::html_book:
