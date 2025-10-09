@@ -8,8 +8,14 @@ bookdown::gitbook:
     toc:
       before: |
         <li><a href="./">はじめてのR</a></li>
-    mermaid: ["sequence", "flow"]
+      collapse: section
+    sharing: no
+
 bookdown::pdf_book:
-  keep_tex: yes
+  keep_tex: true
+  latex_engine: uplatex
+  includes:
+    in_header: preamble.tex
+
 bookdown::html_book:
   css: toc.css

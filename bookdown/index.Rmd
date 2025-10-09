@@ -1,7 +1,7 @@
 --- 
 title: "はじめてのR"
-site: bookdown::bookdown_site
-documentclass: book
+author: "愛媛大学大学院農学研究科　西村武司"
+date: "最終更新日：`r Sys.Date()`"
 ---
 
 # はしがき {-}

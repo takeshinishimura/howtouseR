@@ -20,6 +20,7 @@
   
   
 
+<meta name="author" content="愛媛大学大学院農学研究科　西村武司" />
 
 
 
@@ -279,6 +280,10 @@ Windowsの場合，次の画面で「base」をクリックするとインスト
 macOSの場合，自分のMacのCPUがApple siliconかIntelかで，ダウンロードするファイルが異なります。
 自分の環境（OSとCPU）に合ったファイルがダウンロードできたら，そのファイルを使ってRをインストールしてください。
 Rの準備はこれだけです。</p>
+<p>もしあなたのパソコンに古いバージョンのRがインストールされている場合は，必ず最新バージョンにアップデートしてください。
+Rのバージョンは，Rを起動したときに表示されるメッセージで確認できます。
+なお，Windowsの場合，新しいバージョンのRをインストールした後に，古いバージョンのRをアンインストールしてください。
+macOSの場合は，古いバージョンのRは上書きされるため，わざわざアンインストールする必要はありません。</p>
 <p>もしRStudioを使いたければ，インストールしても構いません。
 最初にRStudioをインストールするように指示する書籍やウェブサイトがあると思います。
 しかし，個人的にはRStudioの使用はおすすめしません。</p>
@@ -651,17 +656,7 @@ macOSの場合は，メニューの「パッケージとデータ」から「パ
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
+  "sharing": false,
   "fontsettings": {
     "theme": "white",
     "family": "sans",
@@ -685,12 +680,11 @@ gitbook.start({
     "options": null
   },
   "toc": {
-    "collapse": "subsection"
+    "collapse": "section"
   },
   "toolbar": {
     "position": "static"
-  },
-  "mermaid": ["sequence", "flow"]
+  }
 });
 });
 </script>

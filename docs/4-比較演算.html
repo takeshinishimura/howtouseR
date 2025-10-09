@@ -20,6 +20,7 @@
   
   
 
+<meta name="author" content="愛媛大学大学院農学研究科　西村武司" />
 
 
 
@@ -403,16 +404,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="4-比較演算.html#cb322-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
 <span id="cb322-2"><a href="4-比較演算.html#cb322-2" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb322-3"><a href="4-比較演算.html#cb322-3" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
-<pre><code>##  [1]  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE    NA  TRUE</code></pre>
+<pre><code>##  [1] FALSE  TRUE  TRUE FALSE  TRUE    NA FALSE FALSE  TRUE  TRUE</code></pre>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="4-比較演算.html#cb324-1" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  9 10  8  6 NA  7</code></pre>
+<pre><code>## [1]  6  8 10 NA  9  7</code></pre>
 <p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 <code>NA</code> かどうかは次の関数で判定します。</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="4-比較演算.html#cb326-1" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE</code></pre>
+<pre><code>##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE</code></pre>
 <p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
 <div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="4-比較演算.html#cb328-1" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE</code></pre>
+<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
 <div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="4-比較演算.html#cb330-1" tabindex="-1"></a><span class="fu">length</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
@@ -425,11 +426,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] NA</code></pre>
 <p>この場合，関数の引数に <code>na.rm = TRUE</code> を入れて，一時的に <code>NA</code> を取り除いて計算してください。</p>
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="4-比較演算.html#cb336-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 52</code></pre>
+<pre><code>## [1] 54</code></pre>
 <p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
 <p>判定の際に <code>NA</code> を取り除きたい場合は，次のようにします。</p>
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="4-比較演算.html#cb338-1" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  9 10  8  6  7</code></pre>
+<pre><code>## [1]  6  8 10  9  7</code></pre>
 </div>
 <div id="論理積" class="section level4 hasAnchor" number="4.1.1.2">
 <h4><span class="header-section-number">4.1.1.2</span> 論理積<a href="#%E8%AB%96%E7%90%86%E7%A9%8D" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -439,7 +440,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="4-比較演算.html#cb340-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2005</span>]</span></code></pre></div>
 <pre><code>## [1] 2001 2002 2003 2004</code></pre>
 <p>論理積は以下のベン図で表現できます。
-<img src="R_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<img src="4_comparison_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
 </div>
 <div id="論理和" class="section level4 hasAnchor" number="4.1.1.3">
 <h4><span class="header-section-number">4.1.1.3</span> 論理和<a href="#%E8%AB%96%E7%90%86%E5%92%8C" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -448,7 +449,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="4-比較演算.html#cb342-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2005</span> <span class="sc">|</span> year <span class="sc">&lt;</span> <span class="dv">1995</span>]</span></code></pre></div>
 <pre><code>##  [1] 1990 1991 1992 1993 1994 2006 2007 2008 2009 2010</code></pre>
 <p>論理和は以下のベン図で表現できます。
-<img src="R_files/figure-html/unnamed-chunk-208-1.png" width="672" />
+<img src="4_comparison_files/figure-html/unnamed-chunk-26-1.png" width="672" />
 このケースでは，2つの条件のどちらも満たす <code>year</code> は存在しませんので，実際には重なりはありません。</p>
 <p>ここで，滅多に使わないですが，次の関係は知っておいてください。</p>
 <div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="4-比較演算.html#cb344-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">NA</span></span></code></pre></div>
@@ -482,12 +483,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [37] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>文字列の場合，大きさはないため，<code>&gt;</code> や <code>&lt;</code> といった比較演算子は使えないはずです。</p>
 <div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="4-比較演算.html#cb352-1" tabindex="-1"></a>prefecture[prefecture <span class="sc">&gt;</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
-<pre><code>##  [1] &quot;北海道&quot;   &quot;青森県&quot;   &quot;岩手県&quot;   &quot;宮城県&quot;   &quot;秋田県&quot;   &quot;山形県&quot;   &quot;福島県&quot;  
-##  [8] &quot;茨城県&quot;   &quot;栃木県&quot;   &quot;群馬県&quot;   &quot;埼玉県&quot;   &quot;千葉県&quot;   &quot;東京都&quot;   &quot;神奈川県&quot;
-## [15] &quot;新潟県&quot;   &quot;富山県&quot;   &quot;石川県&quot;   &quot;福井県&quot;   &quot;山梨県&quot;   &quot;長野県&quot;   &quot;岐阜県&quot;  
-## [22] &quot;静岡県&quot;   &quot;三重県&quot;   &quot;滋賀県&quot;   &quot;京都府&quot;   &quot;大阪府&quot;   &quot;兵庫県&quot;   &quot;奈良県&quot;  
-## [29] &quot;和歌山県&quot; &quot;鳥取県&quot;   &quot;島根県&quot;   &quot;岡山県&quot;   &quot;広島県&quot;   &quot;山口県&quot;   &quot;徳島県&quot;  
-## [36] &quot;香川県&quot;   &quot;高知県&quot;   &quot;福岡県&quot;   &quot;佐賀県&quot;   &quot;長崎県&quot;   &quot;熊本県&quot;   &quot;大分県&quot;  
+<pre><code>##  [1] &quot;北海道&quot;   &quot;青森県&quot;   &quot;岩手県&quot;   &quot;宮城県&quot;   &quot;秋田県&quot;   &quot;山形県&quot;  
+##  [7] &quot;福島県&quot;   &quot;茨城県&quot;   &quot;栃木県&quot;   &quot;群馬県&quot;   &quot;埼玉県&quot;   &quot;千葉県&quot;  
+## [13] &quot;東京都&quot;   &quot;神奈川県&quot; &quot;新潟県&quot;   &quot;富山県&quot;   &quot;石川県&quot;   &quot;福井県&quot;  
+## [19] &quot;山梨県&quot;   &quot;長野県&quot;   &quot;岐阜県&quot;   &quot;静岡県&quot;   &quot;三重県&quot;   &quot;滋賀県&quot;  
+## [25] &quot;京都府&quot;   &quot;大阪府&quot;   &quot;兵庫県&quot;   &quot;奈良県&quot;   &quot;和歌山県&quot; &quot;鳥取県&quot;  
+## [31] &quot;島根県&quot;   &quot;岡山県&quot;   &quot;広島県&quot;   &quot;山口県&quot;   &quot;徳島県&quot;   &quot;香川県&quot;  
+## [37] &quot;高知県&quot;   &quot;福岡県&quot;   &quot;佐賀県&quot;   &quot;長崎県&quot;   &quot;熊本県&quot;   &quot;大分県&quot;  
 ## [43] &quot;宮崎県&quot;   &quot;鹿児島県&quot; &quot;沖縄県&quot;</code></pre>
 <div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="4-比較演算.html#cb354-1" tabindex="-1"></a>prefecture[prefecture <span class="sc">&lt;</span> <span class="st">&quot;愛媛県&quot;</span>]</span></code></pre></div>
 <pre><code>## [1] &quot;愛知県&quot;</code></pre>
@@ -623,14 +625,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] setosa     versicolor virginica 
 ## Levels: setosa versicolor virginica</code></pre>
 <div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="4-比較演算.html#cb384-1" tabindex="-1"></a><span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142  77 113
-##  [20] 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117 148  52  75 112
-##  [39] 116 129 133 138  57  73  88 101 104 124 134 137 147  69  98 127 149  64  72
-##  [58]  74  92 128 135  63  79  84  86 120 139  62  71 150  15  68  83  93 102 115
-##  [77] 143  16  19  56  80  96  97 100 114  65  67  70  89  95 122  34  37  54  81
-##  [96]  82  90  91   6  11  17  21  32  85  49  28  29  33  60   1  18  20  22  24
-## [115]  40  45  47  99   5   8  26  27  36  41  44  50  61  94   2  10  35  38  58
-## [134] 107  12  13  25  31  46   3  30   4   7  23  48  42   9  39  43  14</code></pre>
+<pre><code>##   [1] 132 118 119 123 136 106 131 108 110 126 130 103  51  53 121 140 142  77
+##  [19] 113 144  66  78  87 109 125 141 145 146  59  76  55 105 111 117 148  52
+##  [37]  75 112 116 129 133 138  57  73  88 101 104 124 134 137 147  69  98 127
+##  [55] 149  64  72  74  92 128 135  63  79  84  86 120 139  62  71 150  15  68
+##  [73]  83  93 102 115 143  16  19  56  80  96  97 100 114  65  67  70  89  95
+##  [91] 122  34  37  54  81  82  90  91   6  11  17  21  32  85  49  28  29  33
+## [109]  60   1  18  20  22  24  40  45  47  99   5   8  26  27  36  41  44  50
+## [127]  61  94   2  10  35  38  58 107  12  13  25  31  46   3  30   4   7  23
+## [145]  48  42   9  39  43  14</code></pre>
 <div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="4-比較演算.html#cb386-1" tabindex="-1"></a><span class="fu">head</span>(iris[<span class="fu">order</span>(iris<span class="sc">$</span>Sepal.Length, <span class="at">decreasing =</span> <span class="cn">TRUE</span>), ])</span></code></pre></div>
 <pre><code>##     Sepal.Length Sepal.Width Petal.Length Petal.Width   Species
 ## 132          7.9         3.8          6.4         2.0 virginica
@@ -691,17 +694,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
-  "sharing": {
-    "github": false,
-    "facebook": true,
-    "twitter": true,
-    "linkedin": false,
-    "weibo": false,
-    "instapaper": false,
-    "vk": false,
-    "whatsapp": false,
-    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
-  },
+  "sharing": false,
   "fontsettings": {
     "theme": "white",
     "family": "sans",
@@ -725,12 +718,11 @@ gitbook.start({
     "options": null
   },
   "toc": {
-    "collapse": "subsection"
+    "collapse": "section"
   },
   "toolbar": {
     "position": "static"
-  },
-  "mermaid": ["sequence", "flow"]
+  }
 });
 });
 </script>
