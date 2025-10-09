@@ -1,4 +1,3 @@
-intro
 id_1_letsgetstarted
 環境構築
 基本操作
