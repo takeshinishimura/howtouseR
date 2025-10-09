@@ -4,7 +4,7 @@ bookdown::gitbook:
     in_header: mermaid_header.html
   config:
     toolbar:
-      position: static
+      position: none
     toc:
       before: |
         <li><a href="./">はじめてのR</a></li>

@@ -1,4 +1,4 @@
-# tidyverse
+# tidyverse {#ch6}
 
 これまでは base R を使ってきました。
 しかし，近年，Rの中でも [tidyverse](https://www.tidyverse.org){target="_blank"} を使うケースが一般的になりました。

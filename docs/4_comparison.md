@@ -1,4 +1,4 @@
-# 比較演算
+# 比較演算 {#ch4}
 
 今回は比較演算子の使い方を学びます。
 比較演算ができるようになれば，条件分岐と繰り返し処理の理解が進みます。
@@ -297,7 +297,7 @@ x > 5
 ```
 
 ```
-##  [1] FALSE  TRUE  TRUE FALSE  TRUE    NA FALSE FALSE  TRUE  TRUE
+##  [1] FALSE FALSE FALSE  TRUE  TRUE FALSE  TRUE    NA  TRUE  TRUE
 ```
 
 ``` r
@@ -305,7 +305,7 @@ x[x > 5]
 ```
 
 ```
-## [1]  6  8 10 NA  9  7
+## [1] 10  6  9 NA  7  8
 ```
 `NA` を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 `NA` かどうかは次の関数で判定します。
@@ -315,7 +315,7 @@ is.na(x)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE
+##  [1] FALSE FALSE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE
 ```
 実践では，`NA` 以外を取り出したい場合は，否定の `!` が使えます。
 
@@ -324,7 +324,7 @@ is.na(x)
 ```
 
 ```
-##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE
+##  [1]  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE
 ```
 `NA` を取り除くと，ベクトルの要素の数が減ることに注意してください。
 
@@ -372,7 +372,7 @@ x[!is.na(x) & x > 5]
 ```
 
 ```
-## [1]  6  8 10  9  7
+## [1] 10  6  9  7  8
 ```
 
 #### 論理積
