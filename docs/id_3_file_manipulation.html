@@ -278,7 +278,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードします。
 これをRに読み込んでみましょう。
 例えば，<code>addresses.csv</code>をダウンロードした場合，次のコマンドで読み込めます。</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="id_3_file_manipulation.html#cb231-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;addresses.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="id_3_file_manipulation.html#cb218-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;addresses.csv&quot;</span>)</span></code></pre></div>
 <p><code>read.csv("")</code> にある2つの <code>"</code> の間に，ダウンロードしたファイルの名前を入れます。
 拡張子は省略してはいけません。
 もし拡張子を非表示にするようにパソコンが設定されている場合は，<strong>必ず</strong>表示する設定に変更してください。</p>
@@ -402,21 +402,21 @@ CUIでは <code>/Users/ユーザ名</code> と表現します。
 ダウンロードしたCSVファイルがどこにあるか分からない場合は，Webブラウザの設定を確認してください。
 ダウンロードしたCSVファイルがどこにあるかは分かったとして，そのファイルをどこに移動すればよいでしょうか。
 ファイルの移動先は，以下のコマンドの返り値が指す<strong>ディレクトリ</strong>です（ディレクトリはフォルダと同じ意味です。正式にはディレクトリと呼び，GUIを使うときはフォルダと呼ぶことが多いです）。</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="id_3_file_manipulation.html#cb238-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="id_3_file_manipulation.html#cb225-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <p>ただし，このコマンドの返り値のディレクトリで<strong>本当に</strong>よいかは，その人によります。
 といっても分からないと思います。
 作業ディレクトリは次の方法で変更できるということを覚えておいてください。</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="id_3_file_manipulation.html#cb239-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="id_3_file_manipulation.html#cb226-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <p>この <code>""</code> の間に，相対パスまたは絶対パスでディレクトリ名を入れます。
 Windowsなら <code>C:</code> から始まり，macOSなら <code>/</code> から始まる階層構造における位置のことで，パスと呼びます。
 このパスはファイル名ではなく，ディレクトリ名で終わることに注意してください。
 ここで行っているのは，作業ディレクトリの変更です。</p>
 <p>実際の使用時には，例えば，次のように書きます。</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="id_3_file_manipulation.html#cb240-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/OneDrive/ドキュメント&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="id_3_file_manipulation.html#cb227-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/OneDrive/ドキュメント&quot;</span>)</span></code></pre></div>
 <p>OneDriveで同期していない人は次のように書きます。</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="id_3_file_manipulation.html#cb241-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/Documents&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="id_3_file_manipulation.html#cb228-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;C:/Users/ユーザ名/Documents&quot;</span>)</span></code></pre></div>
 <p>これは，次のコマンドと同じです。</p>
-<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="id_3_file_manipulation.html#cb242-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="id_3_file_manipulation.html#cb229-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
 <p><code>"~"</code> はホームディレクトリを意味します。</p>
 <p>CUIに慣れないうちは，GUIを使うことをおすすめします。
 Windowsの場合，メニューの[ファイル]→[ディレクトリの変更…]から作業ディレクトリを変更します。
@@ -451,8 +451,8 @@ OSで関連付けてもいいですし，毎回ファイルを右クリックし
 <h2><span class="header-section-number">3.4</span> 絶対パス<a href="id_3_file_manipulation.html#%E7%B5%B6%E5%AF%BE%E3%83%91%E3%82%B9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>エラーへの対処方法の2つ目は，Rコンソールの場所は移動せずに，コマンド実行時に絶対パスを指定する方法です。
 これは，次のコマンドによって実現します。</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="id_3_file_manipulation.html#cb243-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/ユーザ名/Downloads/addresses.csv&quot;</span>) <span class="co"># Windowsの例</span></span>
-<span id="cb243-2"><a href="id_3_file_manipulation.html#cb243-2" tabindex="-1"></a><span class="co"># read.csv(&quot;/Users/ユーザ名/Downloads/addresses.csv&quot;) # macOSの例</span></span></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="id_3_file_manipulation.html#cb230-1" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;C:/Users/ユーザ名/Downloads/addresses.csv&quot;</span>) <span class="co"># Windowsの例</span></span>
+<span id="cb230-2"><a href="id_3_file_manipulation.html#cb230-2" tabindex="-1"></a><span class="co"># read.csv(&quot;/Users/ユーザ名/Downloads/addresses.csv&quot;) # macOSの例</span></span></code></pre></div>
 <p>これは，次のファイルを読んでいることを意味します。</p>
 <pre class="mermaid"><code>graph LR
   C[C:] --- Users
@@ -473,10 +473,10 @@ macOSの場合，Terminal.appを起動して，そのウィンドウにダウン
 Rによるディレクトリの作成と合わせて考えると非常に便利です。</p>
 <p>例えば，作業ディレクトリの下に新たなディレクトリを作成し，そこにファイルをダウンロードした後に，そのファイルを読むには次のようにします。
 次のコードを実行する前に，Explorer（またはFinder）で作業ディレクトリを表示させておき，次のコードを実行することで起こる変化を注視してください。</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="id_3_file_manipulation.html#cb245-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./data&quot;</span>)</span>
-<span id="cb245-2"><a href="id_3_file_manipulation.html#cb245-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv&quot;</span>, <span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
-<span id="cb245-3"><a href="id_3_file_manipulation.html#cb245-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
-<span id="cb245-4"><a href="id_3_file_manipulation.html#cb245-4" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="id_3_file_manipulation.html#cb232-1" tabindex="-1"></a><span class="fu">dir.create</span>(<span class="st">&quot;./data&quot;</span>)</span>
+<span id="cb232-2"><a href="id_3_file_manipulation.html#cb232-2" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/addresses.csv&quot;</span>, <span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
+<span id="cb232-3"><a href="id_3_file_manipulation.html#cb232-3" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/addresses.csv&quot;</span>)</span>
+<span id="cb232-4"><a href="id_3_file_manipulation.html#cb232-4" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##                    John      Doe               X120.jefferson.st.   Riverside
 ## 1                  Jack McGinnis                     220 hobo Av.       Phila
 ## 2         John &quot;Da Man&quot;   Repici                120 Jefferson St.   Riverside
@@ -517,8 +517,8 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 <p>先ほどの結果を見て，1行目の左側に数字がついておらず，2行目が1，6行目が6となっています。
 これは，Rが1行目をヘッダーとして読み込んでいるという意味です。
 これで正しい場合もありますが，この例は1行目もレコードなので，次のようにしなければなりません。</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="id_3_file_manipulation.html#cb249-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/addresses.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb249-2"><a href="id_3_file_manipulation.html#cb249-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="id_3_file_manipulation.html#cb236-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/addresses.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb236-2"><a href="id_3_file_manipulation.html#cb236-2" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##                      V1       V2                               V3          V4
 ## 1                  John      Doe                120 jefferson st.   Riverside
 ## 2                  Jack McGinnis                     220 hobo Av.       Phila
@@ -535,9 +535,9 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 ## 6  CO   123</code></pre>
 <p>ヘッダーをどうすべきかはファイルによって異なります。
 例えば，次の例では，ヘッダーを <code>TRUE</code> にすべきです（省略時のヘッダーは <code>TRUE</code> であるため，省略してもよい）。</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="id_3_file_manipulation.html#cb251-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv&quot;</span>, <span class="st">&quot;data/airtravel.csv&quot;</span>)</span>
-<span id="cb251-2"><a href="id_3_file_manipulation.html#cb251-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb251-3"><a href="id_3_file_manipulation.html#cb251-3" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="id_3_file_manipulation.html#cb238-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/airtravel.csv&quot;</span>, <span class="st">&quot;data/airtravel.csv&quot;</span>)</span>
+<span id="cb238-2"><a href="id_3_file_manipulation.html#cb238-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb238-3"><a href="id_3_file_manipulation.html#cb238-3" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    Month X1958 X1959 X1960
 ## 1    JAN   340   360   417
 ## 2    FEB   318   342   391
@@ -553,8 +553,8 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 ## 12   DEC   337   405   432</code></pre>
 <p>ヘッダーが数字で始まる場合，先頭に <code>X</code> が付き，文字列に変換されます。
 ここで，次のようにあえて間違った読み方をして，結果がどうなるかを確認してください。</p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="id_3_file_manipulation.html#cb253-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb253-2"><a href="id_3_file_manipulation.html#cb253-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="id_3_file_manipulation.html#cb240-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/airtravel.csv&quot;</span>, <span class="at">header =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb240-2"><a href="id_3_file_manipulation.html#cb240-2" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##       V1   V2   V3   V4
 ## 1  Month 1958 1959 1960
 ## 2    JAN  340  360  417
@@ -574,9 +574,9 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 これは，Explorer（またはFinder）における通常のファイル操作と同じです。</p>
 <p>ここでよくある例を挙げておきます。
 例えば，次のように別のCSVファイルを読み込んでください。</p>
-<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="id_3_file_manipulation.html#cb255-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv&quot;</span>, <span class="st">&quot;data/biostats.csv&quot;</span>)</span>
-<span id="cb255-2"><a href="id_3_file_manipulation.html#cb255-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb255-3"><a href="id_3_file_manipulation.html#cb255-3" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="id_3_file_manipulation.html#cb242-1" tabindex="-1"></a><span class="fu">download.file</span>(<span class="st">&quot;https://people.sc.fsu.edu/~jburkardt/data/csv/biostats.csv&quot;</span>, <span class="st">&quot;data/biostats.csv&quot;</span>)</span>
+<span id="cb242-2"><a href="id_3_file_manipulation.html#cb242-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">header =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb242-3"><a href="id_3_file_manipulation.html#cb242-3" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    Name      Sex Age Height..in. Weight..lbs.
 ## 1  Alex        M  41          74          170
 ## 2  Bert        M  42          68          166
@@ -599,8 +599,8 @@ Rによるディレクトリの作成と合わせて考えると非常に便利�
 <p><code>biostats.csv</code> を読み込むと，元のファイルと比較してヘッダーがおかしくなっています。
 <code>()</code> とスペースが <code>.</code> に置き換わっていることが分かります。
 CSVファイルのヘッダーを変更せずにそのまま読むには，次のようにします。</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="id_3_file_manipulation.html#cb257-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb257-2"><a href="id_3_file_manipulation.html#cb257-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb244-1"><a href="id_3_file_manipulation.html#cb244-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/biostats.csv&quot;</span>, <span class="at">check.names =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb244-2"><a href="id_3_file_manipulation.html#cb244-2" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##    Name      Sex Age Height (in) Weight (lbs)
 ## 1  Alex        M  41          74          170
 ## 2  Bert        M  42          68          166
@@ -624,13 +624,13 @@ CSVファイルのヘッダーを変更せずにそのまま読むには，次�
 <p>なお，相対パスの先頭に <code>..</code> または <code>../</code> を書くこともできます。
 これらの記号は，作業ディレクトリのひとつ上の階層のディレクトリを意味します。
 次のコードは，Rの作業ディレクトリの1つ上の階層に，dataという名前のディレクトリを作成するもので，ファイルの出力先を指定する際に頻繁に使います。</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="id_3_file_manipulation.html#cb259-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
-<span id="cb259-2"><a href="id_3_file_manipulation.html#cb259-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
-<span id="cb259-3"><a href="id_3_file_manipulation.html#cb259-3" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
-<span id="cb259-4"><a href="id_3_file_manipulation.html#cb259-4" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="id_3_file_manipulation.html#cb246-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
+<span id="cb246-2"><a href="id_3_file_manipulation.html#cb246-2" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">file.exists</span>(outdir)) {</span>
+<span id="cb246-3"><a href="id_3_file_manipulation.html#cb246-3" tabindex="-1"></a>  <span class="fu">dir.create</span>(outdir)</span>
+<span id="cb246-4"><a href="id_3_file_manipulation.html#cb246-4" tabindex="-1"></a>}</span></code></pre></div>
 <p>これは次のようにやっても同じです。</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="id_3_file_manipulation.html#cb260-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
-<span id="cb260-2"><a href="id_3_file_manipulation.html#cb260-2" tabindex="-1"></a><span class="fu">dir.create</span>(outdir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="id_3_file_manipulation.html#cb247-1" tabindex="-1"></a>outdir <span class="ot">&lt;-</span> <span class="st">&quot;../data&quot;</span></span>
+<span id="cb247-2"><a href="id_3_file_manipulation.html#cb247-2" tabindex="-1"></a><span class="fu">dir.create</span>(outdir, <span class="at">showWarnings =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div class="callout-caution" collapse="false" icon="true">
 <p>もし作業ディレクトリがホームディレクトリにある場合（Rを起動してから作業ディレクトリを変更していない場合）は，このコードは実行しないでください。
 もし実行してしまった場合は，Explorer（またはFinder）で作業ディレクトリと同じ階層にある <code>data</code> フォルダの中を確認し，何もファイルがなければ <code>data</code> フォルダを削除してください。
@@ -642,7 +642,7 @@ CSVファイルのヘッダーを変更せずにそのまま読むには，次�
 後になって，もしディレクトリを変更したくなった場合，2箇所修正するよりも1箇所修正する方が間違いが少なくてすみます。</p>
 <p><code>..</code> の知識を踏まえると，Webブラウザを使ってダウンロードしたファイルを，ホームディレクトリから読み込むことができます。
 作業ディレクトリを確実にホームディレクトリにするために，次のコマンドを実行してください。</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="id_3_file_manipulation.html#cb261-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="id_3_file_manipulation.html#cb248-1" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;~&quot;</span>)</span></code></pre></div>
 <p>Webブラウザを使って，<a href="https://people.sc.fsu.edu/~jburkardt/data/csv/csv.html" target="_blank">CSV Files</a> から，任意のCSVファイルをダウンロードしてください。
 このCSVファイルをRに読み込むには，どうすればよいでしょうか。
 図で考えると次の相対パスを考えることに他なりません。</p>
@@ -663,11 +663,11 @@ CSVファイルのヘッダーを変更せずにそのまま読むには，次�
   linkStyle 8 stroke:red
   linkStyle 9 stroke:red</code></pre>
 <p>これをRのコマンドにすると次のようになります。</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="id_3_file_manipulation.html#cb263-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../../Downloads/cities.csv&quot;</span>)</span>
-<span id="cb263-2"><a href="id_3_file_manipulation.html#cb263-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="id_3_file_manipulation.html#cb250-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb250-2"><a href="id_3_file_manipulation.html#cb250-2" tabindex="-1"></a>df</span></code></pre></div>
 <p>なお，上述の <code>.</code> の説明を踏まえると，これは次のように書くこともできます。</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="id_3_file_manipulation.html#cb264-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./../../Downloads/cities.csv&quot;</span>)</span>
-<span id="cb264-2"><a href="id_3_file_manipulation.html#cb264-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="id_3_file_manipulation.html#cb251-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./../../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb251-2"><a href="id_3_file_manipulation.html#cb251-2" tabindex="-1"></a>df</span></code></pre></div>
 <p>ただし，こういう場合に， <code>./</code> を書くのは冗長な印象を受けます。
 <code>./</code> はあってもなくても結果は同じですが，上の階層に行く場合は <code>..</code> から始めるべきでしょう。</p>
 <p>OneDriveで同期していない人は，ディレクトリをひとつ上がるパスが1つ減ります。</p>
@@ -684,8 +684,8 @@ CSVファイルのヘッダーを変更せずにそのまま読むには，次�
   linkStyle 5 stroke:red
   linkStyle 6 stroke:red
   linkStyle 7 stroke:red</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="id_3_file_manipulation.html#cb266-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../Downloads/cities.csv&quot;</span>)</span>
-<span id="cb266-2"><a href="id_3_file_manipulation.html#cb266-2" tabindex="-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="id_3_file_manipulation.html#cb253-1" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;../Downloads/cities.csv&quot;</span>)</span>
+<span id="cb253-2"><a href="id_3_file_manipulation.html#cb253-2" tabindex="-1"></a>df</span></code></pre></div>
 <pre><code>##     LatD LatM LatS NS LonD LonM LonS EW                City State
 ## 1     41    5   59  N   80   39    0  W          Youngstown    OH
 ## 2     42   52   48  N   97   23   23  W             Yankton    SD
@@ -831,9 +831,9 @@ Windowsの場合，保管できる候補が複数ある場合は，<code>Tabキ�
 ここで，ファイル出力を経験することにより，作業ディレクトリの重要性を理解しましょう。</p>
 <p>Rの返り値をコンソールではなく，ファイルに出力する関数が <code>sink()</code> です。
 例えば，次のコードを実行するとどうなるでしょうか。</p>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="id_3_file_manipulation.html#cb268-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;test.txt&quot;</span>)</span>
-<span id="cb268-2"><a href="id_3_file_manipulation.html#cb268-2" tabindex="-1"></a>iris</span>
-<span id="cb268-3"><a href="id_3_file_manipulation.html#cb268-3" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="id_3_file_manipulation.html#cb255-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;test.txt&quot;</span>)</span>
+<span id="cb255-2"><a href="id_3_file_manipulation.html#cb255-2" tabindex="-1"></a>iris</span>
+<span id="cb255-3"><a href="id_3_file_manipulation.html#cb255-3" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
 <p>Rコンソールには何も表示されません。
 その代わりに，作業ディレクトリに <code>test.txt</code> というテキストファイルができているはずです。
 Explorer（またはFinder）で確認してください。</p>
@@ -842,47 +842,47 @@ Explorer（またはFinder）で確認してください。</p>
 また，ファイル出力が終わったら，必ず引数なしで <code>sink()</code> としてファイルを閉じてください。</p>
 <p>相対パスでディレクトリを書くと，その場所に保存されます。
 例えば次のようにすると，どうなるか予想し，予想どおりになっていることを確かめてください。</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="id_3_file_manipulation.html#cb269-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;../../Downloads/test.txt&quot;</span>) <span class="co"># OneDriveで同期している場合</span></span>
-<span id="cb269-2"><a href="id_3_file_manipulation.html#cb269-2" tabindex="-1"></a><span class="co"># sink(&quot;../Downloads/test.txt&quot;) # OneDriveで同期していない場合</span></span>
-<span id="cb269-3"><a href="id_3_file_manipulation.html#cb269-3" tabindex="-1"></a>cars</span>
-<span id="cb269-4"><a href="id_3_file_manipulation.html#cb269-4" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="id_3_file_manipulation.html#cb256-1" tabindex="-1"></a><span class="fu">sink</span>(<span class="st">&quot;../../Downloads/test.txt&quot;</span>) <span class="co"># OneDriveで同期している場合</span></span>
+<span id="cb256-2"><a href="id_3_file_manipulation.html#cb256-2" tabindex="-1"></a><span class="co"># sink(&quot;../Downloads/test.txt&quot;) # OneDriveで同期していない場合</span></span>
+<span id="cb256-3"><a href="id_3_file_manipulation.html#cb256-3" tabindex="-1"></a>cars</span>
+<span id="cb256-4"><a href="id_3_file_manipulation.html#cb256-4" tabindex="-1"></a><span class="fu">sink</span>()</span></code></pre></div>
 <p>OneDriveで同期していない人は，2行目の <code>#</code> の右側以降をRコンソールにコピーして，コードを実行してください。</p>
 </div>
 <div id="microsoft-365" class="section level2 hasAnchor" number="3.7">
 <h2><span class="header-section-number">3.7</span> Microsoft 365<a href="id_3_file_manipulation.html#microsoft-365" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><a href="https://github.com/Azure/Microsoft365R" target="_blank">Microsoft365R</a> パッケージは，Microsoft 365 の R インターフェースです。</p>
 <p>大学のメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="id_3_file_manipulation.html#cb270-1" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
-<span id="cb270-2"><a href="id_3_file_manipulation.html#cb270-2" tabindex="-1"></a>odb <span class="ot">&lt;-</span> <span class="fu">get_business_onedrive</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="id_3_file_manipulation.html#cb257-1" tabindex="-1"></a><span class="fu">library</span>(Microsoft365R)</span>
+<span id="cb257-2"><a href="id_3_file_manipulation.html#cb257-2" tabindex="-1"></a>odb <span class="ot">&lt;-</span> <span class="fu">get_business_onedrive</span>()</span></code></pre></div>
 <p>プライベートなメールアドレスで OneDrive を使用している場合は，次のコードを実行します。</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="id_3_file_manipulation.html#cb271-1" tabindex="-1"></a>od <span class="ot">&lt;-</span> <span class="fu">get_personal_onedrive</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="id_3_file_manipulation.html#cb258-1" tabindex="-1"></a>od <span class="ot">&lt;-</span> <span class="fu">get_personal_onedrive</span>()</span></code></pre></div>
 <p>すると，Webブラウザが起動し，Microsoft 365 へのログインが促された後，「コードの入力」ウィンドウで，「モバイル デバイスの Microsoft Authenticator アプリに表示されているコードを入力してください​」と表示されます。
 指示に従うと，R から Microsoft 365 を操作できるようになります。
 例えば，次のようなことができます。</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="id_3_file_manipulation.html#cb272-1" tabindex="-1"></a><span class="co"># list files and folders</span></span>
-<span id="cb272-2"><a href="id_3_file_manipulation.html#cb272-2" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>()</span>
-<span id="cb272-3"><a href="id_3_file_manipulation.html#cb272-3" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>(<span class="st">&quot;ドキュメント&quot;</span>)</span>
-<span id="cb272-4"><a href="id_3_file_manipulation.html#cb272-4" tabindex="-1"></a></span>
-<span id="cb272-5"><a href="id_3_file_manipulation.html#cb272-5" tabindex="-1"></a><span class="co"># upload and download files</span></span>
-<span id="cb272-6"><a href="id_3_file_manipulation.html#cb272-6" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">upload_file</span>(<span class="st">&quot;somedata.xlsx&quot;</span>)</span>
-<span id="cb272-7"><a href="id_3_file_manipulation.html#cb272-7" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">download_file</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
-<span id="cb272-8"><a href="id_3_file_manipulation.html#cb272-8" tabindex="-1"></a></span>
-<span id="cb272-9"><a href="id_3_file_manipulation.html#cb272-9" tabindex="-1"></a><span class="co"># create a folder</span></span>
-<span id="cb272-10"><a href="id_3_file_manipulation.html#cb272-10" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">create_folder</span>(<span class="st">&quot;ドキュメント/newfolder&quot;</span>)</span>
-<span id="cb272-11"><a href="id_3_file_manipulation.html#cb272-11" tabindex="-1"></a></span>
-<span id="cb272-12"><a href="id_3_file_manipulation.html#cb272-12" tabindex="-1"></a><span class="co"># open a document for editing in Word Online</span></span>
-<span id="cb272-13"><a href="id_3_file_manipulation.html#cb272-13" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">open_item</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
-<span id="cb272-14"><a href="id_3_file_manipulation.html#cb272-14" tabindex="-1"></a></span>
-<span id="cb272-15"><a href="id_3_file_manipulation.html#cb272-15" tabindex="-1"></a><span class="co"># working with data frames and R objects</span></span>
-<span id="cb272-16"><a href="id_3_file_manipulation.html#cb272-16" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
-<span id="cb272-17"><a href="id_3_file_manipulation.html#cb272-17" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">&quot;ドキュメント/iris.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="id_3_file_manipulation.html#cb259-1" tabindex="-1"></a><span class="co"># list files and folders</span></span>
+<span id="cb259-2"><a href="id_3_file_manipulation.html#cb259-2" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>()</span>
+<span id="cb259-3"><a href="id_3_file_manipulation.html#cb259-3" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">list_items</span>(<span class="st">&quot;ドキュメント&quot;</span>)</span>
+<span id="cb259-4"><a href="id_3_file_manipulation.html#cb259-4" tabindex="-1"></a></span>
+<span id="cb259-5"><a href="id_3_file_manipulation.html#cb259-5" tabindex="-1"></a><span class="co"># upload and download files</span></span>
+<span id="cb259-6"><a href="id_3_file_manipulation.html#cb259-6" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">upload_file</span>(<span class="st">&quot;somedata.xlsx&quot;</span>)</span>
+<span id="cb259-7"><a href="id_3_file_manipulation.html#cb259-7" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">download_file</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
+<span id="cb259-8"><a href="id_3_file_manipulation.html#cb259-8" tabindex="-1"></a></span>
+<span id="cb259-9"><a href="id_3_file_manipulation.html#cb259-9" tabindex="-1"></a><span class="co"># create a folder</span></span>
+<span id="cb259-10"><a href="id_3_file_manipulation.html#cb259-10" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">create_folder</span>(<span class="st">&quot;ドキュメント/newfolder&quot;</span>)</span>
+<span id="cb259-11"><a href="id_3_file_manipulation.html#cb259-11" tabindex="-1"></a></span>
+<span id="cb259-12"><a href="id_3_file_manipulation.html#cb259-12" tabindex="-1"></a><span class="co"># open a document for editing in Word Online</span></span>
+<span id="cb259-13"><a href="id_3_file_manipulation.html#cb259-13" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">open_item</span>(<span class="st">&quot;ドキュメント/myfile.docx&quot;</span>)</span>
+<span id="cb259-14"><a href="id_3_file_manipulation.html#cb259-14" tabindex="-1"></a></span>
+<span id="cb259-15"><a href="id_3_file_manipulation.html#cb259-15" tabindex="-1"></a><span class="co"># working with data frames and R objects</span></span>
+<span id="cb259-16"><a href="id_3_file_manipulation.html#cb259-16" tabindex="-1"></a><span class="fu">library</span>(readr)</span>
+<span id="cb259-17"><a href="id_3_file_manipulation.html#cb259-17" tabindex="-1"></a>odb<span class="sc">$</span><span class="fu">save_dataframe</span>(iris, <span class="st">&quot;ドキュメント/iris.csv&quot;</span>)</span></code></pre></div>
 <p>ただし，便利かどうかは不明です。</p>
 </div>
 <div id="ロケールの変更" class="section level2 hasAnchor" number="3.8">
 <h2><span class="header-section-number">3.8</span> ロケールの変更<a href="id_3_file_manipulation.html#%E3%83%AD%E3%82%B1%E3%83%BC%E3%83%AB%E3%81%AE%E5%A4%89%E6%9B%B4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Rコンソールがどの文字コードを使っているかを知りたいことがあるかもしれません（通常，これは知る必要はありません）。
 次のコマンドでロケールを知ることができます。</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="id_3_file_manipulation.html#cb273-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;locale&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="id_3_file_manipulation.html#cb260-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;locale&quot;</span>)</span></code></pre></div>
 <p>一般的に，このような結果が得られるはずです。</p>
 <pre><code>LANG=&quot;ja_JP.UTF-8&quot;
 LC_COLLATE=&quot;ja_JP.UTF-8&quot;
@@ -913,7 +913,7 @@ LC_TIME=&quot;C&quot;
 LC_ALL=</code></pre>
 <p>この場合，日本語の表示はおかしいですが，任意の日本語を含むコードは正しく処理されるはずです。</p>
 <p>日本語が表示される環境に設定したければ，次のようにします。</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="id_3_file_manipulation.html#cb277-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;defaults write org.R-project.R force.LANG ja_JP.UTF-8&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="id_3_file_manipulation.html#cb264-1" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;defaults write org.R-project.R force.LANG ja_JP.UTF-8&quot;</span>)</span></code></pre></div>
 <p>おそらくこれはmacOSだけに対応しているはずです。
 Windowsでのロケールの変更方法は知りません。</p>
 </div>
@@ -921,12 +921,12 @@ Windowsでのロケールの変更方法は知りません。</p>
 <h2><span class="header-section-number">3.9</span> Unicodeエスケープシーケンス<a href="id_3_file_manipulation.html#unicode%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E3%82%B7%E3%83%BC%E3%82%B1%E3%83%B3%E3%82%B9" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>日本語を扱いたいにもかかわらず，もし何らかの制約があり，RコードにはASCII文字しか使えない場合があるかもしれません。
 そのとき，次のコマンドを使うことで対応します。</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="id_3_file_manipulation.html#cb278-1" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
-<span id="cb278-2"><a href="id_3_file_manipulation.html#cb278-2" tabindex="-1"></a></span>
-<span id="cb278-3"><a href="id_3_file_manipulation.html#cb278-3" tabindex="-1"></a><span class="fu">stri_escape_unicode</span>(<span class="st">&quot;日本語&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="id_3_file_manipulation.html#cb265-1" tabindex="-1"></a><span class="fu">library</span>(stringi)</span>
+<span id="cb265-2"><a href="id_3_file_manipulation.html#cb265-2" tabindex="-1"></a></span>
+<span id="cb265-3"><a href="id_3_file_manipulation.html#cb265-3" tabindex="-1"></a><span class="fu">stri_escape_unicode</span>(<span class="st">&quot;日本語&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;\\u65e5\\u672c\\u8a9e&quot;</code></pre>
 <p>あるいは，次のようにしてもよいでしょう。</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="id_3_file_manipulation.html#cb280-1" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">u&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%04x&quot;</span>, <span class="fu">utf8ToInt</span>(<span class="st">&quot;日本語&quot;</span>)), <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="id_3_file_manipulation.html#cb267-1" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">u&quot;</span>, <span class="fu">sprintf</span>(<span class="st">&quot;%04x&quot;</span>, <span class="fu">utf8ToInt</span>(<span class="st">&quot;日本語&quot;</span>)), <span class="at">collapse =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;\\u65e5\\u672c\\u8a9e&quot;</code></pre>
 <p><code>\</code> が2つずつ連続していますが，Rコードで用いるときは <code>\</code> は1つで大丈夫です。</p>
 </div>
