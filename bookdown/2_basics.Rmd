@@ -641,6 +641,89 @@ x
 - [rstudio/cheatsheets](https://github.com/rstudio/cheatsheets/tree/main/translations/japanese){target="_blank"}
 
 
+## 今回出てきた関数の整理
+
+型の確認
+```{r}
+#| eval: false
+typeof()
+mode()
+class()
+```
+
+数値
+```{r}
+#| eval: false
+is.numeric()# 数値かどうか
+is.double()# 数値かどうか
+is.integer()# 整数かどうか
+as.numeric()# 数値に変換
+as.double()# 数値に変換
+as.integer()# 整数に変換
+```
+
+文字列
+```{r}
+#| eval: false
+is.character()# 文字列かどうか
+as.character()# 文字列に変換
+paste()# 文字列をくっつける。文字列でないば場合は文字列に変換してからくっつける
+paste0()# paste() の引数が sep = ""
+```
+
+ファクター
+```{r}
+#| eval: false
+is.factor()# ファクターかどうか
+as.factor()# ファクターに変換。引数 levels や ordered は指定できない
+factor()# ファクターを作成
+levels()# ファクターの水準を取り出す
+```
+
+行列
+```{r}
+#| eval: false
+is.matrix()# 行列かどうか
+as.matrix()# 行列に変換
+matrix()# 行列を作成
+```
+
+データフレーム
+```{r}
+#| eval: false
+is.data.frame()# データフレームかどうか
+as.data.frame()# データフレームに変換
+data.frame()# データフレームを作成
+str()# データフレームの構造を確認
+head()# データフレームの最初の数行を表示
+tail()# データフレームの最後の数行を表示
+nrow()# 行数を取得
+ncol()# 列数を取得
+dim()# 行数と列数を取得
+names()# 列名を取得
+colnames()# names()と同じ
+rownames()# 列名を取得
+row.names()# rownames()と同じ
+```
+
+リスト
+```{r}
+#| eval: false
+is.list()# リストかどうか
+list()# リストを作成
+unlist()# リストを解体
+```
+
+その他
+```{r}
+#| eval: false
+t()# 転置
+table()# 出現回数を数える
+split()# データフレームをファクターに従って分割
+View()# データフレームをExcelのように表示。普通は使わない
+```
+
+
 ## 練習問題
 
 1. 次の変数 `x` を文字列に変換しなさい。
@@ -652,7 +735,11 @@ x <- 2015:2025
 2. 次の変数 `x` をファクターに変換しなさい。
 ```{r}
 #| eval: false
-x <- c("松山市", "今治市", "宇和島市", "八幡浜市", "新居浜市", "西条市", "大洲市", "伊予市", "四国中央市", "西予市", "東温市")
+x <- c(
+  "松山市", "今治市", "宇和島市", "八幡浜市",
+  "新居浜市", "西条市", "大洲市", "伊予市",
+  "四国中央市", "西予市", "東温市"
+)
 ```
 
 3. 次の変数 `y` を数値に変換しなさい。
