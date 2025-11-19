@@ -583,6 +583,11 @@ x[[1]]
 x[["virginica"]]
 ```
 
+リストは，Excelファイルにたとえることもできます。
+Excelの1つのファイルの中に複数のシートがありますよね。
+Rのリストも同じように，複数のオブジェクト（Excelのシートのようなもの）が入っていると考えると理解しやすいです。
+リストの中には，データフレームだけでなく，ベクトルや行列，さらには他のリストも入れることができます。
+
 
 ## 特殊記号
 
@@ -638,18 +643,23 @@ x
 
 ## 入門書
 
+### 無料
+
 奥村先生による [統計・データ解析](https://okumuralab.org/~okumura/stat/){target="_blank"} は大変参考になります。
 時間をかけてじっくり読むとともに，自分のパソコンで同じようにできるか確かめてください。
 
 また，Posit Cloud にある [Posit Primers](https://posit.cloud/learn/primers){target="_blank"} は時間をかけて読む価値がありそうです。
-
-### チートシート
 
 [Posit Cheat Sheets](https://posit.cloud/learn/cheat-sheets){target="_blank"}
 
 チートシートの日本語訳がここからダウンロードできます（ページ右側の Downloadボタンをクリック）。
 
 - [rstudio/cheatsheets](https://github.com/rstudio/cheatsheets/tree/main/translations/japanese){target="_blank"}
+
+### 有料
+
+J.D. Long and Paul Teetor（2020）[『Rクックブック 第2版』](https://www.oreilly.co.jp/books/9784873118857/){target="_blank"}オライリー・ジャパンは，Rの基本的な使い方が分かりやすく説明されています。
+情報量が多いため，じっくり読む価値があります。
 
 
 ## 今回出てきた関数の整理
