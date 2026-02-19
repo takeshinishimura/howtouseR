@@ -33,14 +33,14 @@ lang: ja
 #| eval: false
 library(sf)
 
-ehime_map0 <- read_sf("N03-20250101_38_GML/N03-20250101_38.shp", options = "ENCODING=CP932")
-office_map0 <- read_sf("P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
+ehime_map0 <- read_sf("N03-20250101_38_GML/N03-20250101_38.shp", options = "ENCODING=UTF-8")
+office_map0 <- read_sf("P34-14_38_GML/P34-14_38.shp", options = "ENCODING=UTF-8")
 ```
 ```{r}
 #| include: false
 library(sf)
 
-ehime_map0 <- read_sf("../data/N03-20250101_38_GML/N03-20250101_38.shp", options = "ENCODING=CP932")
+ehime_map0 <- read_sf("../data/N03-20250101_38_GML/N03-20250101_38.shp", options = "ENCODING=UTF-8")
 office_map0 <- read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENCODING=CP932")
 ```
 
@@ -50,7 +50,7 @@ office_map0 <- read_sf("../data/P34-14_38_GML/P34-14_38.shp", options = "ENCODIN
 #| eval: false
 library(kokudosuuchi)
 
-ehime_map <- readKSJData("N03-20250101_38_GML.zip")
+ehime_map <- readKSJData("N03-20250101_38_GML.zip", encoding = "UTF-8")
 office_map <- readKSJData("P34-14_38_GML.zip") |>
   translateKSJData()
 ```
@@ -58,7 +58,7 @@ office_map <- readKSJData("P34-14_38_GML.zip") |>
 #| include: false
 library(kokudosuuchi)
 
-ehime_map <- readKSJData("../data/N03-20250101_38_GML.zip")
+ehime_map <- readKSJData("../data/N03-20250101_38_GML.zip", encoding = "UTF-8")
 office_map <- readKSJData("../data/P34-14_38_GML.zip") |>
   translateKSJData()
 ```
@@ -101,6 +101,20 @@ plot(st_geometry(office_map[[1]]), pch = 16, col = "orange", add = TRUE)
 ただし，たかしくんは [ggplot2](https://ggplot2.tidyverse.org){target="_blank"}  を用いた図の方が好みである。
 
 ```{r}
+#| eval: false
+library(ggplot2)
+# カラーパレット
+library(viridis)
+
+ggplot(ehime_map[[1]]) +
+  geom_sf(aes(fill = N03_004)) +
+  geom_sf(data = office_map[[1]], colour = "orange") +
+  scale_fill_viridis_d(option = "mako", direction = 1) + 
+  guides(fill = guide_legend(title = "市町名")) +
+  theme_void()
+```
+```{r}
+#| echo: false
 #| message: false
 library(ggplot2)
 # カラーパレット
