@@ -1,0 +1,83 @@
+---
+project:
+  type: website
+  output-dir: docs
+title: "MeCab"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 4
+    number-sections: true
+    theme: simplex
+    mermaid:
+      theme: neutral
+lang: ja
+---
+
+## Windows での MeCab のインストール方法
+
+MeCabは [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](https://taku910.github.io/mecab/){target="_blank"} からファイルをダウンロードして，インストールするのが公式の方法です。
+しかし，現在はダウンロードするファイル `mecab-0.996.exe` がなくなっており，ダウンロードできません。
+このため，インストールには若干工夫が必要です。
+
+### MeCab をインストールする
+
+まず，MeCab をダウンロードし，インストールします。
+
+手順は次のとおりです。
+
+- [Release MeCab 0.996 64bit version · ikegami-yukino/mecab · GitHub](https://github.com/ikegami-yukino/mecab){target="_blank"} を開く。
+- 右側に「Releases」という表記を見つけ，その下にある「MeCab 0.996 64bit version」をクリックする。
+- 「Assets」の中にある `.exe` で終わるファイルをダウンロードする（現時点では，`mecab-64-0.996.2.exe` というファイル名になっている）。
+- ダウンロードしたファイルをダブルクリックして，Windows にインストールする。
+- インストーラーの起動直後に「辞書の文字コードの選択」という画面が現れるので，「UTF-8」を選択して次に進む。
+- 「同意する」以外は何も変更せずに進み，インストールを完了させる。
+
+### Path を通す
+
+次に，先ほどインストールした MeCab の実行ファイルがある場所に Path を通す必要があります。
+
+手順は次のとおりです。
+
+- Windows のタスクバーの検索ボックスに `env` と入力して，エンターキーを押す。
+- 「システムのプロパティ」ウィンドウが表示されるので，その中の「環境変数」ボタンをクリックする。
+- 「環境変数」ウィンドウの「システム環境変数」の中の「Path」をクリックし，その下にある「編集」ボタンをクリックする。
+- 「環境変数名の編集」ウィンドウが表示された状態にしておく。
+- Windows のエクスプローラーを使って，「Windows (C:)」→「Program Files」→「mecab」→「bin」と進む。
+- エクスプローラーの上部に横長の表示があり，その中の「bin」の右隣をクリックすると，表示が `C:¥Program Files¥MeCab¥bin` に変わるので，それらの文字を選択してコピーする。
+- 「環境変数名の編集」ウィンドウに戻り，「新規」ボタンをクリックして，先ほどコピーした文字列を貼り付ける。
+- 「OK」ボタンを3回押して，設定を終了する。
+
+### MeCab を使えるようになっているかを確認する
+
+続いて，MeCab を使えるようになっているか（インストールして，Path を通すことができたか）を確認します。
+
+手順は次のとおりです。
+
+- Windows のタスクバーの検索ボックスに `cmd` と入力して，エンターキーを押す。
+- コマンド プロンプトが起動し，`C:¥Users¥ユーザー名` の右に「>」があり，それに続けてカーソルが点滅していることを確認する。
+- 「>」に続けて，`mecab -v`と入力し，エンターキーを押す。
+- 「mecab of 0.996」と表示されれば正しくインストールされています。
+
+また，次のようにすることで使用感を確かめることができます。
+
+- 「>」に続けて，`chcp 65001` と入力し，エンターキーを押すと，コマンド プロンプトが再起動します（解説：コマンドプロンプトをUTF-8に変更します）。
+- 「>」に続けて，`echo すもももももももものうち | mecab` と入力し，エンターキーを押す。
+
+## R から MeCab を使えるようにする方法
+
+R を開いて，次のコードを実行します。
+```{r}
+#| eval: false
+install.packages("RMeCab", repos = "http://rmecab.jp/R")
+```
+
+実際に使えるかどうかを確認するには，次のコードを実行します。
+```{r}
+#| eval: false
+library(RMeCab)
+RMeCabC("すもももももももものうち")
+```
