@@ -152,6 +152,7 @@ leaflet(office_map[[1]]) |>
 みきゃんだ。
 
 ```{r}
+#| warning: false
 library(mapview)
 
 mapview(ehime_map[[1]], zcol = "N03_004", layer.name = "市町名") +
