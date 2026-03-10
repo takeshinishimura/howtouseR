@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MeCab</title>
+<title>日本語のテキストマイニング</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -82,13 +82,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#windows-での-mecab-のインストール方法" id="toc-windows-での-mecab-のインストール方法" class="nav-link active" data-scroll-target="#windows-での-mecab-のインストール方法"><span class="header-section-number">1</span> Windows での MeCab のインストール方法</a>
+  <li><a href="#windows-での-mecab-のインストール" id="toc-windows-での-mecab-のインストール" class="nav-link active" data-scroll-target="#windows-での-mecab-のインストール"><span class="header-section-number">1</span> Windows での MeCab のインストール</a>
   <ul>
   <li><a href="#mecab-をインストールする" id="toc-mecab-をインストールする" class="nav-link" data-scroll-target="#mecab-をインストールする"><span class="header-section-number">1.1</span> MeCab をインストールする</a></li>
   <li><a href="#path-を通す" id="toc-path-を通す" class="nav-link" data-scroll-target="#path-を通す"><span class="header-section-number">1.2</span> Path を通す</a></li>
   <li><a href="#mecab-を使えるようになっているかを確認する" id="toc-mecab-を使えるようになっているかを確認する" class="nav-link" data-scroll-target="#mecab-を使えるようになっているかを確認する"><span class="header-section-number">1.3</span> MeCab を使えるようになっているかを確認する</a></li>
   </ul></li>
-  <li><a href="#r-から-mecab-を使えるようにする方法" id="toc-r-から-mecab-を使えるようにする方法" class="nav-link" data-scroll-target="#r-から-mecab-を使えるようにする方法"><span class="header-section-number">2</span> R から MeCab を使えるようにする方法</a></li>
+  <li><a href="#r-から-mecab-を使えるようにする" id="toc-r-から-mecab-を使えるようにする" class="nav-link" data-scroll-target="#r-から-mecab-を使えるようにする"><span class="header-section-number">2</span> R から MeCab を使えるようにする</a></li>
+  <li><a href="#日本語テキストの形態素解析入門" id="toc-日本語テキストの形態素解析入門" class="nav-link" data-scroll-target="#日本語テキストの形態素解析入門"><span class="header-section-number">3</span> 日本語テキストの形態素解析入門</a>
+  <ul>
+  <li><a href="#形態素解析とは" id="toc-形態素解析とは" class="nav-link" data-scroll-target="#形態素解析とは"><span class="header-section-number">3.1</span> 形態素解析とは</a></li>
+  <li><a href="#形態素解析の実行" id="toc-形態素解析の実行" class="nav-link" data-scroll-target="#形態素解析の実行"><span class="header-section-number">3.2</span> 形態素解析の実行</a></li>
+  <li><a href="#ストップワード" id="toc-ストップワード" class="nav-link" data-scroll-target="#ストップワード"><span class="header-section-number">3.3</span> ストップワード</a></li>
+  </ul></li>
+  <li><a href="#青空文庫の使用例" id="toc-青空文庫の使用例" class="nav-link" data-scroll-target="#青空文庫の使用例"><span class="header-section-number">4</span> 青空文庫の使用例</a></li>
   </ul>
 </nav>
 </div>
@@ -96,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">MeCab</h1>
+<h1 class="title">日本語のテキストマイニング</h1>
 </div>
 
 
@@ -107,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2026年2月19日</p>
+      <p class="date">2026年3月10日</p>
     </div>
   </div>
   
@@ -119,8 +126,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="windows-での-mecab-のインストール方法" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="windows-での-mecab-のインストール方法"><span class="header-section-number">1</span> Windows での MeCab のインストール方法</h2>
+<section id="windows-での-mecab-のインストール" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="windows-での-mecab-のインストール"><span class="header-section-number">1</span> Windows での MeCab のインストール</h2>
 <p>MeCabは <a href="https://taku910.github.io/mecab/" target="_blank">MeCab: Yet Another Part-of-Speech and Morphological Analyzer</a> からファイルをダウンロードして，インストールするのが公式の方法です。 しかし，現在はダウンロードするファイル <code>mecab-0.996.exe</code> がなくなっており，ダウンロードできません。 このため，インストールには若干工夫が必要です。</p>
 <section id="mecab-をインストールする" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="mecab-をインストールする"><span class="header-section-number">1.1</span> MeCab をインストールする</h3>
@@ -167,8 +174,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 </section>
 </section>
-<section id="r-から-mecab-を使えるようにする方法" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="r-から-mecab-を使えるようにする方法"><span class="header-section-number">2</span> R から MeCab を使えるようにする方法</h2>
+<section id="r-から-mecab-を使えるようにする" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="r-から-mecab-を使えるようにする"><span class="header-section-number">2</span> R から MeCab を使えるようにする</h2>
 <p>R を開いて，次のコードを実行します。</p>
 <div class="cell">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"RMeCab"</span>, <span class="at">repos =</span> <span class="st">"http://rmecab.jp/R"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
@@ -178,6 +185,133 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RMeCabC</span>(<span class="st">"すもももももももものうち"</span>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
+</section>
+<section id="日本語テキストの形態素解析入門" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="日本語テキストの形態素解析入門"><span class="header-section-number">3</span> 日本語テキストの形態素解析入門</h2>
+<section id="形態素解析とは" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="形態素解析とは"><span class="header-section-number">3.1</span> 形態素解析とは</h3>
+<p>日本語の文章は英語のように単語の間にスペースがありません。</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>私はキウイフルーツが好きです</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<p>この文章をそのままでは単語として扱えないため，</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>私 / は / キウイフルーツ / が / 好き / です</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<p>のように単語単位に分割する処理を行います。 これを形態素解析といいます。</p>
+<p>RMeCab は MeCab という形態素解析エンジンをRから使えるようにしたパッケージです。</p>
+<p>次に，形態素解析の練習として，試しにワードクラウドを作成してみましょう。</p>
+</section>
+<section id="形態素解析の実行" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="形態素解析の実行"><span class="header-section-number">3.2</span> 形態素解析の実行</h3>
+<p>ワードクラウドの作成には次のパッケージを使います。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMeCab)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(wordcloud)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>パッケージがないというエラーが出る場合は，<code>install.packages()</code> を使って，該当パッケージをインストールしてください。</p>
+<p>次に，解析する文章を用意します。 ここでは例として簡単な文章を作ります。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">&lt;-</span> <span class="st">"キウイフルーツはニュージーランドで発展した果物です。</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="st">日本でも多くの地域で栽培されています。</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="st">キウイフルーツはビタミンCが豊富で健康によい果物です。"</span></span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p><code>RMeCabC()</code> を使うと，文章を単語ごとに分割できます。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>res <span class="ot">&lt;-</span> <span class="fu">RMeCabC</span>(text)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>結果を確認します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(res)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[1]]
+    名詞 
+"キウイ" 
+
+[[2]]
+      名詞 
+"フルーツ" 
+
+[[3]]
+助詞 
+"は" 
+
+[[4]]
+              名詞 
+"ニュージーランド" 
+
+[[5]]
+助詞 
+"で" 
+
+[[6]]
+  名詞 
+"発展" </code></pre>
+</div>
+</div>
+<p><code>RMeCabC()</code> はリストで返ってくるため，リストを解除してから，それぞれの形態素の頻度を計算します</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="fu">unlist</span>(res))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>次に，この結果を使ってワードクラウドを作成します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">names</span>(freq),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  freq,</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale =</span> <span class="fu">c</span>(<span class="dv">4</span>, <span class="fl">0.5</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">min.freq =</span> <span class="dv">1</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">random.order =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>)</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="mecab_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="ストップワード" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="ストップワード"><span class="header-section-number">3.3</span> ストップワード</h3>
+<p>句読点や「です」「ます」など，どの文章にも登場するようなあまり意味のない単語を削除すると，元の文章の特徴がより明確になります。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>ures <span class="ot">&lt;-</span> <span class="fu">unlist</span>(res)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>stop_words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"。"</span>, <span class="st">"です"</span>, <span class="st">"ます"</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> ures[<span class="sc">!</span>(ures <span class="sc">%in%</span> stop_words)]</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(res2)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>先ほどのワードクラウドを作成したコードを実行してみてください。</p>
+<p>最初とは違うワードクラウドが作成できました。 しかし，助詞なども残っているので，文章の意味とは関係のない文字も大きく表示されています。 これらに効率的に削除するためには，使用する品詞を指定するのがよいでしょう。</p>
+<p>例えば，名詞のみ使用したい場合は次のコードを実行します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> ures[<span class="fu">names</span>(ures) <span class="sc">==</span> <span class="st">"名詞"</span>]</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(res2)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>再びワードクラウドを作成すると，今度は元の文章の特徴を的確に表した図になっていると思います。</p>
+<p>名詞だけでなく，名詞と動詞といった複数の品詞を残したい場合は，次のように残したい品詞をベクトルで追加します。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>res2 <span class="ot">&lt;-</span> ures[<span class="fu">names</span>(ures) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"名詞"</span>, <span class="st">"動詞"</span>)]</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>freq <span class="ot">&lt;-</span> <span class="fu">table</span>(res2)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+</section>
+<section id="青空文庫の使用例" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="青空文庫の使用例"><span class="header-section-number">4</span> 青空文庫の使用例</h2>
+<p>初心者にとって，<a href="https://www.oreilly.co.jp/pub/9784873118307/appa.html" target="_blank">付録1　RMeCabを用いた日本語テキストマイニング</a> に従って，コードを実行してみることはテキストマイニングのイメージをつかむのによいでしょう。 このWebサイトは，Julia Silge, David Robinson（2018）<a href="https://www.oreilly.co.jp/books/9784873118307/" target="_blank">『Rによるテキストマイニング』</a>オライリー・ジャパンの付録として公開されているものです。</p>
+<p>このWebサイトの記載どおりに進めると，<code>ggplot()</code> のところでエラーになります。 このエラーが出ないようにするには，次のコードを実行して ggplot2 パッケージをロードしておく必要があります。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>また，ワードクラウドの作成で何も表示されない場合は，フォントファミリー指定の引数を削除するとうまくいくでしょう。</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(glove4<span class="sc">$</span>Term, glove4<span class="sc">$</span>Freq, <span class="at">min.freq=</span><span class="dv">4</span>, <span class="at">color=</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wordcloud</span>(gon4<span class="sc">$</span>Term, gon4<span class="sc">$</span>Freq, <span class="at">min.freq=</span><span class="dv">4</span>, <span class="at">color=</span><span class="fu">brewer.pal</span>(<span class="dv">8</span>, <span class="st">"Dark2"</span>))</span></code></pre></div><button title="コピー" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>なお，このWebサイトの説明通りにコードを実行すると，作業ディレクトリに <code>NORUBY</code> という名前のフォルダ（ディレクトリ）が作成されます。 このフォルダはこのWebサイトのためだけに必要なものですので，適宜削除してください。</p>
 </section>
 
 </main>

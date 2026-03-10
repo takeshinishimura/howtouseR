@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>6 tidyverse | はじめてのR</title>
   <meta name="description" content="6 tidyverse | はじめてのR" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="6 tidyverse | はじめてのR" />
   <meta property="og:type" content="book" />
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%9B%9B%E5%89%87%E6%BC%94%E7%AE%97"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
-<li class="chapter" data-level="1.2.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%A4%89%E6%95%B0"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-check"></i><b>1.2.2</b> オブジェクト</a></li>
 <li class="chapter" data-level="1.2.3" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E9%96%A2%E6%95%B0"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
 <li class="chapter" data-level="1.2.4" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
 <li class="chapter" data-level="1.2.5" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
@@ -309,10 +309,10 @@ tidyverse が登場して以降，これまでの伝統的な R のコードは 
 <pre><code>## [1] 2350</code></pre>
 <div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="id_6_tidyverse.html#cb431-1" tabindex="-1"></a><span class="fu">sum</span>(df2000<span class="sc">$</span>北)</span></code></pre></div>
 <pre><code>## [1] 35100</code></pre>
-<p>上に示したコードのいずれにも共通するのが，新たな変数を作成している点です。
-コードを書くようになると，作業途中に必要な変数の名前を考えるのが面倒になってきます。
-こうした変数が少ない場合は特に問題となりませんが，多くなってくると意味のある変数名がなかなか思い浮かびません。
-どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といった変数名にしがちですが，どの場合も後々に見て意味が分かりにくいです。</p>
+<p>上に示したコードのいずれにも共通するのが，新たなオブジェクトを作成している点です。
+コードを書くようになると，作業途中に必要なオブジェクトの名前を考えるのが面倒になってきます。
+こうしたオブジェクトが少ない場合は特に問題となりませんが，多くなってくると意味のあるオブジェクト名がなかなか思い浮かびません。
+どうすればよいか正解があるわけではないし，いちいち考えるのが面倒なので，<code>tmp</code> とか <code>df2</code> や <code>df3</code> といったオブジェクト名にしがちですが，どの場合も後々に見て意味が分かりにくいです。</p>
 <p>そこで，例えば，次のようにすることもあります。</p>
 <div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="id_6_tidyverse.html#cb433-1" tabindex="-1"></a><span class="fu">mean</span>(df[df<span class="sc">$</span>year <span class="sc">&gt;=</span> <span class="dv">2000</span>, <span class="st">&quot;南&quot;</span>])</span></code></pre></div>
 <pre><code>## [1] 2350</code></pre>
@@ -360,7 +360,7 @@ R 公式のパイプ演算子は <code>|&gt;</code> です。</p>
 ## 6 2005 1600 2100</code></pre>
 <p><strong>パイプ演算子を使うと，その前のデータが次に書く関数の最初の引数として自動的に渡されます。</strong>
 この文章の意味が理解できるまで，知っている関数をいろいろ使ってみてください。</p>
-<p>処理結果を新しい変数に代入する場合は，base R の作法に従います。</p>
+<p>処理結果を新しいオブジェクトに代入する場合は，base R の作法に従います。</p>
 <div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb443-1"><a href="id_6_tidyverse.html#cb443-1" tabindex="-1"></a>df2000 <span class="ot">&lt;-</span> df <span class="sc">|&gt;</span></span>
 <span id="cb443-2"><a href="id_6_tidyverse.html#cb443-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">&gt;=</span> <span class="dv">2000</span>)</span></code></pre></div>
 <p>ちなみに，次のようにすることもできますが，このようなコードはあまり見ません。</p>

@@ -160,7 +160,7 @@ year[year >= 2000]
 ```
 一見冗長な書き方のように見えますが，これで問題ありません。
 `[]` の内側は論理値のベクトルであり，`[]` の外側（ `year` ）のベクトルと長さが同じ（または，外側が内側の整数倍）でなければなりません。
-この場合は `[]` の外側と内側で同じ変数 `year` を使っているので，必ずベクトルの長さが同じになります。
+この場合は `[]` の外側と内側で同じオブジェクト `year` を使っているので，必ずベクトルの長さが同じになります。
 
 `[]` の外側のベクトルに対して，内側のベクトルの長さが短い場合は，内側のベクトルを繰り返します。
 例えば，次のようにすると，`c(TRUE, FALSE, FALSE)` は7回繰り返され，返り値は7つの要素を持つベクトルになります。
@@ -284,7 +284,7 @@ z$value[z$year >= 2000]
 返り値と関数の引数は異なります。
 このように，ベクトルを取り出すとき，何番目であるかを指定する方法と，論理値で指定する方法の2つがあることを知っておいてください。
 今後自分でコードを書くとき，このことが混乱の原因になるかもしれません。
-もし混乱した場合は，そのとき扱っている変数が数値なのか論理値なのかを考えると，頭の中が整理されるはずです。
+もし混乱した場合は，そのとき扱っているオブジェクトが数値なのか論理値なのかを考えると，頭の中が整理されるはずです。
 
 #### `NA`
 
@@ -297,7 +297,7 @@ x > 5
 ```
 
 ```
-##  [1] FALSE FALSE  TRUE  TRUE    NA FALSE FALSE  TRUE FALSE  TRUE
+##  [1]    NA FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
 ```
 
 ``` r
@@ -305,7 +305,7 @@ x[x > 5]
 ```
 
 ```
-## [1]  8 10 NA  9  7
+## [1] NA  7  9  6 10
 ```
 `NA` を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 `NA` かどうかは次の関数で判定します。
@@ -315,7 +315,7 @@ is.na(x)
 ```
 
 ```
-##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE
+##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 実践では，`NA` 以外を取り出したい場合は，否定の `!` が使えます。
 
@@ -324,7 +324,7 @@ is.na(x)
 ```
 
 ```
-##  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ```
 `NA` を取り除くと，ベクトルの要素の数が減ることに注意してください。
 
@@ -361,7 +361,7 @@ sum(x, na.rm = TRUE)
 ```
 
 ```
-## [1] 49
+## [1] 47
 ```
 この場合，`x[!is.na(x)]` のように，ベクトルからわざわざ `NA` を取り除く必要はありません。
 
@@ -372,7 +372,7 @@ x[!is.na(x) & x > 5]
 ```
 
 ```
-## [1]  8 10  9  7
+## [1]  7  9  6 10
 ```
 
 #### 論理積
@@ -389,7 +389,7 @@ year[year > 2000 & year < 2005]
 ## [1] 2001 2002 2003 2004
 ```
 論理積は以下のベン図で表現できます。
-<img src="4_comparison_files/figure-html/unnamed-chunk-24-1.png" width="672" />
+<img src="4_comparison_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" />
 
 #### 論理和
 
@@ -404,7 +404,7 @@ year[year > 2005 | year < 1995]
 ##  [1] 1990 1991 1992 1993 1994 2006 2007 2008 2009 2010
 ```
 論理和は以下のベン図で表現できます。
-<img src="4_comparison_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="4_comparison_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
 このケースでは，2つの条件のどちらも満たす `year` は存在しませんので，実際には重なりはありません。
 
 ここで，滅多に使わないですが，次の関係は知っておいてください。

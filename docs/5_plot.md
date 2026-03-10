@@ -21,7 +21,7 @@ example(plot)
 ## plot+      pch = 0, cex = 1.2, col = "blue")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-1-1.png" alt="" width="672" />
 
 ```
 ## 
@@ -30,7 +30,7 @@ example(plot)
 ## plot+      pch = 0, cex = 1.2, col = "blue")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-1-2.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-1-2.png" alt="" width="672" />
 
 ```
 ## 
@@ -50,7 +50,7 @@ example(plot)
 ## plot+ }
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-1-3.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-1-3.png" alt="" width="672" />
 
 ```
 ## 
@@ -76,7 +76,7 @@ example(plot)
 ## plot+      axes = FALSE, frame.plot = TRUE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-1-4.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-1-4.png" alt="" width="672" />
 
 ```
 ## 
@@ -126,7 +126,7 @@ demo(graphics)
 ## > plot(x, ann = FALSE, type = "n")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-1.png" alt="" width="672" />
 
 ```
 ## 
@@ -153,7 +153,7 @@ demo(graphics)
 ## > pie(rep(1,24), col = rainbow(24), radius = 0.9)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-2.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-2.png" alt="" width="672" />
 
 ```
 ## 
@@ -174,7 +174,7 @@ demo(graphics)
 ## +     col = c("purple","violetred1","green3","cornsilk","cyan","white"))
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-3.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-3.png" alt="" width="672" />
 
 ```
 ## 
@@ -197,7 +197,7 @@ demo(graphics)
 ## > boxplot(split(x,g), col="lavender", notch=TRUE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-4.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-4.png" alt="" width="672" />
 
 ```
 ## 
@@ -220,7 +220,7 @@ demo(graphics)
 ## > plot(xx, yy, type="n", xlab="Time", ylab="Distance")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-5.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-5.png" alt="" width="672" />
 
 ```
 ## 
@@ -240,7 +240,7 @@ demo(graphics)
 ## > plot(x, type="n", axes=FALSE, ann=FALSE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-6.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-6.png" alt="" width="672" />
 
 ```
 ## 
@@ -272,7 +272,7 @@ demo(graphics)
 ## > hist(x, xlim=range(-4, 4, x), col="lavender", main="")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-7.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-7.png" alt="" width="672" />
 
 ```
 ## 
@@ -284,7 +284,7 @@ demo(graphics)
 ## > pairs(iris[1:4], main="Edgar Anderson's Iris Data", font.main=4, pch=19)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-8.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-8.png" alt="" width="672" />
 
 ```
 ## 
@@ -292,7 +292,7 @@ demo(graphics)
 ## +       bg = c("red", "green3", "blue")[unclass(iris$Species)])
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-9.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-9.png" alt="" width="672" />
 
 ```
 ## 
@@ -328,7 +328,7 @@ demo(graphics)
 ## +      type = "n", ann = FALSE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-10.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-10.png" alt="" width="672" />
 
 ```
 ## 
@@ -354,7 +354,7 @@ demo(graphics)
 ## > coplot(lat ~ long | depth, data = quakes, pch = 21, bg = "green3")
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-11.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-11.png" alt="" width="672" />
 
 ```
 ## 
@@ -386,7 +386,7 @@ demo(image)
 ## > image(x, y, volcano, col=terrain.colors(100),axes=FALSE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-12.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-12.png" alt="" width="672" />
 
 ```
 ## 
@@ -405,7 +405,7 @@ demo(image)
 ## > image(x, y, volcano, col=heat.colors(100), axes=FALSE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-13.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-13.png" alt="" width="672" />
 
 ```
 ## 
@@ -424,7 +424,7 @@ demo(image)
 ## > image(x, y, volcano, col=gray(100:200/200), axes=FALSE)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-14.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-14.png" alt="" width="672" />
 
 ```
 ## 
@@ -446,7 +446,7 @@ demo(image)
 ## flld.c> filled.contour(volcano, asp = 1) # simple
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-15.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-15.png" alt="" width="672" />
 
 ```
 ## 
@@ -464,7 +464,7 @@ demo(image)
 ## flld.c+     key.axes = axis(4, seq(90, 190, by = 10)))  # maybe also asp = 1
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-16.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-16.png" alt="" width="672" />
 
 ```
 ## 
@@ -480,7 +480,7 @@ demo(image)
 ## flld.c+                plot.axes = { axis(1); axis(2); points(10, 10) })
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-17.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-17.png" alt="" width="672" />
 
 ```
 ## 
@@ -493,7 +493,7 @@ demo(image)
 ## flld.c> filled.contour(cos(r^2)*exp(-r/(2*pi)), axes = FALSE, key.border=NA)
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-18.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-18.png" alt="" width="672" />
 
 ```
 ## 
@@ -502,7 +502,7 @@ demo(image)
 ## flld.c+                plot.axes = {})
 ```
 
-<img src="5_plot_files/figure-html/unnamed-chunk-2-19.png" width="672" />
+<img src="5_plot_files/figure-html/unnamed-chunk-2-19.png" alt="" width="672" />
 
 ``` r
 # demo(persp)

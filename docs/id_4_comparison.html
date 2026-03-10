@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>4 比較演算 | はじめてのR</title>
   <meta name="description" content="4 比較演算 | はじめてのR" />
-  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
 
   <meta property="og:title" content="4 比較演算 | はじめてのR" />
   <meta property="og:type" content="book" />
@@ -159,7 +159,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><i class="fa fa-check"></i><b>1.2</b> 基本操作</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%9B%9B%E5%89%87%E6%BC%94%E7%AE%97"><i class="fa fa-check"></i><b>1.2.1</b> 四則演算</a></li>
-<li class="chapter" data-level="1.2.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E5%A4%89%E6%95%B0"><i class="fa fa-check"></i><b>1.2.2</b> 変数</a></li>
+<li class="chapter" data-level="1.2.2" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%82%AA%E3%83%96%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88"><i class="fa fa-check"></i><b>1.2.2</b> オブジェクト</a></li>
 <li class="chapter" data-level="1.2.3" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E9%96%A2%E6%95%B0"><i class="fa fa-check"></i><b>1.2.3</b> 関数</a></li>
 <li class="chapter" data-level="1.2.4" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%83%99%E3%82%AF%E3%83%88%E3%83%AB"><i class="fa fa-check"></i><b>1.2.4</b> ベクトル</a></li>
 <li class="chapter" data-level="1.2.5" data-path="id_1_letsgetstarted.html"><a href="id_1_letsgetstarted.html#%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8"><i class="fa fa-check"></i><b>1.2.5</b> パッケージ</a></li>
@@ -353,7 +353,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>##  [1] 2000 2001 2002 2003 2004 2005 2006 2007 2008 2009 2010</code></pre>
 <p>一見冗長な書き方のように見えますが，これで問題ありません。
 <code>[]</code> の内側は論理値のベクトルであり，<code>[]</code> の外側（ <code>year</code> ）のベクトルと長さが同じ（または，外側が内側の整数倍）でなければなりません。
-この場合は <code>[]</code> の外側と内側で同じ変数 <code>year</code> を使っているので，必ずベクトルの長さが同じになります。</p>
+この場合は <code>[]</code> の外側と内側で同じオブジェクト <code>year</code> を使っているので，必ずベクトルの長さが同じになります。</p>
 <p><code>[]</code> の外側のベクトルに対して，内側のベクトルの長さが短い場合は，内側のベクトルを繰り返します。
 例えば，次のようにすると，<code>c(TRUE, FALSE, FALSE)</code> は7回繰り返され，返り値は7つの要素を持つベクトルになります。</p>
 <div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="id_4_comparison.html#cb296-1" tabindex="-1"></a>year[<span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">FALSE</span>)]</span></code></pre></div>
@@ -407,23 +407,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>返り値と関数の引数は異なります。
 このように，ベクトルを取り出すとき，何番目であるかを指定する方法と，論理値で指定する方法の2つがあることを知っておいてください。
 今後自分でコードを書くとき，このことが混乱の原因になるかもしれません。
-もし混乱した場合は，そのとき扱っている変数が数値なのか論理値なのかを考えると，頭の中が整理されるはずです。</p>
+もし混乱した場合は，そのとき扱っているオブジェクトが数値なのか論理値なのかを考えると，頭の中が整理されるはずです。</p>
 <div id="na" class="section level4 hasAnchor" number="4.1.1.1">
 <h4><span class="header-section-number">4.1.1.1</span> <code>NA</code><a href="id_4_comparison.html#na" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>ベクトルに <code>NA</code> が含まれるとき，<code>NA</code> のある場所では評価（比較演算）しません。</p>
 <div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="id_4_comparison.html#cb318-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">10</span>)</span>
 <span id="cb318-2"><a href="id_4_comparison.html#cb318-2" tabindex="-1"></a>x[<span class="fu">sample</span>(<span class="dv">10</span>, <span class="dv">1</span>)] <span class="ot">&lt;-</span> <span class="cn">NA</span></span>
 <span id="cb318-3"><a href="id_4_comparison.html#cb318-3" tabindex="-1"></a>x <span class="sc">&gt;</span> <span class="dv">5</span></span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE  TRUE  TRUE    NA FALSE FALSE  TRUE FALSE  TRUE</code></pre>
+<pre><code>##  [1]    NA FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 <div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="id_4_comparison.html#cb320-1" tabindex="-1"></a>x[x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  8 10 NA  9  7</code></pre>
+<pre><code>## [1] NA  7  9  6 10</code></pre>
 <p><code>NA</code> を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 <code>NA</code> かどうかは次の関数で判定します。</p>
 <div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="id_4_comparison.html#cb322-1" tabindex="-1"></a><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1] FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE</code></pre>
+<pre><code>##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE</code></pre>
 <p>実践では，<code>NA</code> 以外を取り出したい場合は，否定の <code>!</code> が使えます。</p>
 <div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="id_4_comparison.html#cb324-1" tabindex="-1"></a><span class="sc">!</span><span class="fu">is.na</span>(x)</span></code></pre></div>
-<pre><code>##  [1]  TRUE  TRUE  TRUE  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
+<pre><code>##  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE</code></pre>
 <p><code>NA</code> を取り除くと，ベクトルの要素の数が減ることに注意してください。</p>
 <div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="id_4_comparison.html#cb326-1" tabindex="-1"></a><span class="fu">length</span>(x[<span class="sc">!</span><span class="fu">is.na</span>(x)])</span></code></pre></div>
 <pre><code>## [1] 9</code></pre>
@@ -436,11 +436,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## [1] NA</code></pre>
 <p>この場合，関数の引数に <code>na.rm = TRUE</code> を入れて，一時的に <code>NA</code> を取り除いて計算してください。</p>
 <div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="id_4_comparison.html#cb332-1" tabindex="-1"></a><span class="fu">sum</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<pre><code>## [1] 49</code></pre>
+<pre><code>## [1] 47</code></pre>
 <p>この場合，<code>x[!is.na(x)]</code> のように，ベクトルからわざわざ <code>NA</code> を取り除く必要はありません。</p>
 <p>判定の際に <code>NA</code> を取り除きたい場合は，次のようにします。</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="id_4_comparison.html#cb334-1" tabindex="-1"></a>x[<span class="sc">!</span><span class="fu">is.na</span>(x) <span class="sc">&amp;</span> x <span class="sc">&gt;</span> <span class="dv">5</span>]</span></code></pre></div>
-<pre><code>## [1]  8 10  9  7</code></pre>
+<pre><code>## [1]  7  9  6 10</code></pre>
 </div>
 <div id="論理積" class="section level4 hasAnchor" number="4.1.1.2">
 <h4><span class="header-section-number">4.1.1.2</span> 論理積<a href="id_4_comparison.html#%E8%AB%96%E7%90%86%E7%A9%8D" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -450,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="id_4_comparison.html#cb336-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2000</span> <span class="sc">&amp;</span> year <span class="sc">&lt;</span> <span class="dv">2005</span>]</span></code></pre></div>
 <pre><code>## [1] 2001 2002 2003 2004</code></pre>
 <p>論理積は以下のベン図で表現できます。
-<img src="4_comparison_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<img src="4_comparison_files/figure-html/unnamed-chunk-24-1.png" alt="" width="672" /></p>
 </div>
 <div id="論理和" class="section level4 hasAnchor" number="4.1.1.3">
 <h4><span class="header-section-number">4.1.1.3</span> 論理和<a href="id_4_comparison.html#%E8%AB%96%E7%90%86%E5%92%8C" class="anchor-section" aria-label="Anchor link to header"></a></h4>
@@ -459,7 +459,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="id_4_comparison.html#cb338-1" tabindex="-1"></a>year[year <span class="sc">&gt;</span> <span class="dv">2005</span> <span class="sc">|</span> year <span class="sc">&lt;</span> <span class="dv">1995</span>]</span></code></pre></div>
 <pre><code>##  [1] 1990 1991 1992 1993 1994 2006 2007 2008 2009 2010</code></pre>
 <p>論理和は以下のベン図で表現できます。
-<img src="4_comparison_files/figure-html/unnamed-chunk-26-1.png" width="672" />
+<img src="4_comparison_files/figure-html/unnamed-chunk-26-1.png" alt="" width="672" />
 このケースでは，2つの条件のどちらも満たす <code>year</code> は存在しませんので，実際には重なりはありません。</p>
 <p>ここで，滅多に使わないですが，次の関係は知っておいてください。</p>
 <div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="id_4_comparison.html#cb340-1" tabindex="-1"></a><span class="cn">TRUE</span> <span class="sc">&amp;</span> <span class="cn">NA</span></span></code></pre></div>

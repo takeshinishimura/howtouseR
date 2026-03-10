@@ -28,7 +28,7 @@
 - [時系列データ](https://takeshinishimura.github.io/howtouseR/ts.html)
 - [単純な巡回セールスマン問題](https://takeshinishimura.github.io/howtouseR/tsp.html)
 - [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> 🎉 CRANに公開 [fude: Utilities for Fude Polygon](https://CRAN.R-project.org/package=fude)
-- [MeCab](https://takeshinishimura.github.io/howtouseR/mecab.html)
+- [日本語のテキストマイニング](https://takeshinishimura.github.io/howtouseR/mecab.html)
 
 ## 遺物
 

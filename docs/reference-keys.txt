@@ -2,7 +2,7 @@ id_1_letsgetstarted
 環境構築
 基本操作
 四則演算
-変数
+オブジェクト
 tips
 関数
 ベクトル
