@@ -297,7 +297,7 @@ x > 5
 ```
 
 ```
-##  [1]    NA FALSE  TRUE FALSE  TRUE  TRUE FALSE FALSE  TRUE FALSE
+##  [1]  TRUE    NA FALSE  TRUE  TRUE FALSE  TRUE  TRUE FALSE FALSE
 ```
 
 ``` r
@@ -305,7 +305,7 @@ x[x > 5]
 ```
 
 ```
-## [1] NA  7  9  6 10
+## [1]  6 NA  7 10  8  9
 ```
 `NA` を取り除きたい場合は，条件をもう1つ追加しなければなりません。
 `NA` かどうかは次の関数で判定します。
@@ -315,7 +315,7 @@ is.na(x)
 ```
 
 ```
-##  [1]  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
+##  [1] FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE
 ```
 実践では，`NA` 以外を取り出したい場合は，否定の `!` が使えます。
 
@@ -324,7 +324,7 @@ is.na(x)
 ```
 
 ```
-##  [1] FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+##  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
 ```
 `NA` を取り除くと，ベクトルの要素の数が減ることに注意してください。
 
@@ -361,7 +361,7 @@ sum(x, na.rm = TRUE)
 ```
 
 ```
-## [1] 47
+## [1] 50
 ```
 この場合，`x[!is.na(x)]` のように，ベクトルからわざわざ `NA` を取り除く必要はありません。
 
@@ -372,7 +372,7 @@ x[!is.na(x) & x > 5]
 ```
 
 ```
-## [1]  7  9  6 10
+## [1]  6  7 10  8  9
 ```
 
 #### 論理積
