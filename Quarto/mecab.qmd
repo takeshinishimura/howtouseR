@@ -199,7 +199,19 @@ freq <- table(res2)
 library(ggplot2)
 ```
 
-また，ワードクラウドの作成で何も表示されない場合は，フォントファミリー指定の引数を削除するとうまくいくでしょう。
+また，棒グラフやワードクラウドを作成したとき，文字が表示されない場合は，フォントファミリー指定の引数を削除するとうまくいくはずです。
+
+```{r}
+#| eval: false
+glove4 %>%
+     filter(Freq >=6) %>%
+     mutate(Term=reorder(Term, Freq)) %>%
+     ggplot(aes(Term,Freq)) +
+     geom_col() +
+     theme_gray() +
+     coord_flip()
+```
+
 ```{r}
 #| eval: false
 wordcloud(glove4$Term, glove4$Freq, min.freq=4, color=brewer.pal(8, "Dark2"))
