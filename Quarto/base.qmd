@@ -1,7 +1,4 @@
 ---
-project:
-  type: website
-  output-dir: docs
 title: "baseに関するメモ"
 format:
   html:

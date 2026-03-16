@@ -1,9 +1,5 @@
 ---
-project:
-  type: website
-  output-dir: docs
-title: "日本語のテキストマイニング"
-date: "`r format(Sys.time(), '%Y-%m-%d')`"
+title: "MeCab（日本語のテキストマイニング）"
 format:
   html:
     toc: true
@@ -46,7 +42,7 @@ MeCabは [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](https://
 - 「システムのプロパティ」ウィンドウが表示されるので，その中の「環境変数」ボタンをクリックする。
 - 「環境変数」ウィンドウの「システム環境変数」の中の「Path」をクリックし，その下にある「編集」ボタンをクリックする。
 - 「環境変数名の編集」ウィンドウが表示された状態にしておく。
-- Windows のエクスプローラーを使って，「PC」→「ハードディスクの名前 (C:)」→「Program Files」→「mecab」→「bin」と進む（※ハードディスクの名前はパソコンによって異なります）。
+- Windows のエクスプローラーを使って，「PC」→「SSDの名前 (C:)」→「Program Files」→「mecab」→「bin」と進む（※SSDの名前はパソコンによって異なります）。
 - エクスプローラーの上部に横長の表示があり，その中の「bin」の右隣をクリックすると，表示が `C:¥Program Files¥MeCab¥bin` に変わるので，それらの文字を選択してコピーする。
 - 「環境変数名の編集」ウィンドウに戻り，「新規」ボタンをクリックして，先ほどコピーした文字列を貼り付ける。
 - 「OK」ボタンを3回押して，設定を終了する。

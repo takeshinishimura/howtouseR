@@ -1,9 +1,5 @@
 ---
-project:
-  type: website
-  output-dir: docs
 title: "テキスト分析"
-date: "`r format(Sys.time(), '%Y-%m-%d')`"
 format:
   html:
     toc: true
@@ -38,22 +34,22 @@ lang: ja
 前処理は，形態素解析の前に行います。
 
 環境によっては文字コードを変換する必要がある場合もあります。
-文字コードがUTF-8でない場合にUTF-8に変換するようにすればよいでしょう。
-```{R}
+文字コードが UTF-8 でない場合に UTF-8 に変換するようにすればよいでしょう。
+```{r}
 #| eval: false
 iconv(textdata, from = "CP932", to = "UTF-8")
 ```
 
-表記揺れの修正は日本語のテキストマイニングにおいて重要でしょう。
+また，表記揺れの修正は日本語のテキストマイニングにおいて重要です。
 例えば，次のようにします。
-```{R}
+```{r}
 #| eval: false
 textdata <- gsub("子供", "子ども", textdata)
 ```
 
-もう少し汎用的な処理は正規化と呼ばれる。
+もう少し汎用的な処理は正規化と呼ばれます。
 例えば，全角と半角を統一することが考えられます。
-```{R}
+```{r}
 #| eval: false
 zenkaku <- "０１２３４５６７８９ａｂｃｄｅｆｇｈｉｊｋｌｍｎｏｐｑｒｓｔｕｖｗｘｙｚＡＢＣＤＥＦＧＨＩＪＫＬＭＮＯＰＱＲＳＴＵＶＷＸＹＺ"
 hankaku <- "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
@@ -87,8 +83,8 @@ for (i in names(df)) {
   }
 }
 ```
-濁点と半濁点以外の正規化は，次のコマンドでできるようである（詳細な確認はしていない）。
-```{R}
+濁点と半濁点以外の正規化は，次のコマンドでできるようです（詳細な確認はしていません）。
+```{r}
 #| eval: false
 library(audubon)
 audubon::strj_normalize(textdata)
@@ -100,11 +96,11 @@ audubon::strj_normalize(textdata)
 最初に，形態素解析エンジン MeCab をパソコンにインストールします。
 [MeCab: Yet Another Part-of-Speech and Morphological Analyzer](http://taku910.github.io/mecab/){target="_blank"} から，MeCab本体とMeCab用の辞書（IPA辞書）をダウンロードしてください。
 続いて，ダウンロードしたファイルをインストールします。
-Windowsの場合，インストール時に辞書の文字コードを選択する画面が表示されます。
-迷ったら，URF-8でよいでしょう。
-macOSの場合はSourceをダウンロードして，UNIXと同じ方法でインストールしてください。
+Windows の場合，インストール時に辞書の文字コードを選択する画面が表示されます。
+迷ったら，URF-8 でよいでしょう。
+macOS の場合は Source をダウンロードして，UNIX と同じ方法でインストールしてください。
 
-以下では，Rから MeCab を使うための複数の方法を紹介します。
+以下では，R から MeCab を使うための複数の方法を紹介します。
 
 ### テキストデータ
 
@@ -116,48 +112,50 @@ library(rvest)
 library(stringr)
 library(dplyr)
 
-process_book <- function(url, bookname){
+process_book <- function(url, bookname) {
   temp_file <- paste0(bookname, ".html")
-  download.file(url, destfile = temp_file)
+  download.file(url, destfile = temp_file, mode = "wb")
 
-  text <- rvest::read_html(temp_file) %>%
-    rvest::html_nodes(xpath = "//div[@class='main_text']") %>%
+  text <- rvest::read_html(temp_file, encoding = "Shift_JIS") |>
+    rvest::html_nodes(xpath = "//div[@class='main_text']") |>
     rvest::html_text()
 
   unlink(temp_file)
 
   text <- trimws(text)
-  text_norubi <- gsub("（.*?）", "\\1", text)
-  paragraphs <- stringr::str_split(text_norubi, "\r\n")
-  df <- tibble::tibble(text = unlist(paragraphs), book = bookname)
+  text_norubi <- gsub("（[^）]*）", "", text)
+  paragraphs <- str_split(text_norubi, "\n")
+
+  df <- tibble(text = unlist(paragraphs), book = bookname)
 
   return(df)
 }
 
 # 坊ちゃん
-url <- "https://www.aozora.gr.jp/cards/000148/files/752_14964.html"
-botchan_df <- process_book(url, "坊ちゃん")
+botchan_df <- process_book(
+  "https://www.aozora.gr.jp/cards/000148/files/752_14964.html",
+  "坊ちゃん"
+)
 
 # 羅生門
-url <- "https://www.aozora.gr.jp/cards/000879/files/127_15260.html"
-rashomon_df <- process_book(url, "羅生門")
+rashomon_df <- process_book(
+  "https://www.aozora.gr.jp/cards/000879/files/127_15260.html",
+  "羅生門"
+)
 
-textdata <- bind_rows(botchan_df, rashomon_df)
-textdata
+(textdata <- bind_rows(botchan_df, rashomon_df))
 ```
 後ほど，テキストデータをファイルから読み込む場合に対応するために，ここで，テキストファイルとして保存しておきます。
-自分のパソコンで以下のコマンドを実行する場合，ファイルパスに注意し，自分の環境に合ったものに変更してください。
+自分のパソコンで以下のコマンドを実行する場合，ファイルパスに注意し，自分の環境に合ったパスに変更してください。
 ```{r}
 #| message: false
 library(readr)
 
-dirname <- "./data/sample_text"
-if (!file.exists(dirname)) {
-  dir.create(dirname)
-}
+txtdir <- "../data/sample_text"
+dir.create(txtdir, showWarnings = FALSE)
 
-readr::write_lines(botchan_df$text, file.path(dirname, "坊ちゃん.txt"))
-readr::write_lines(rashomon_df$text, file.path(dirname, "羅生門.txt"))
+readr::write_lines(botchan_df$text, file.path(txtdir, "坊ちゃん.txt"))
+readr::write_lines(rashomon_df$text, file.path(txtdir, "羅生門.txt"))
 ```
 
 ### RMecab
@@ -175,27 +173,28 @@ install.packages("RMeCab", repos = "http://rmecab.jp/R")
 library(RMeCab)
 
 wagahai <- "吾輩は猫である。名前はまだ無い。"
+
 out <- RMeCabC(wagahai)
 unlist(out)
 ```
 正常に動作することが確認できたら，ファイルを読み込んでみます。
 ```{r}
 #| message: false
-filename <- file.path(dirname, "坊ちゃん.txt")
+filename <- file.path(txtdir, "坊ちゃん.txt")
 
-text_freq <- RMeCab::RMeCabFreq(filename)
+text_freq <- RMeCabFreq(filename)
 head(text_freq)
 unique(text_freq$Info1)
 unique(text_freq$Info2)
 ```
 続いて，細かい設定の例を示します。
 ```{r}
-library(dplyr)
-
 sorted_text_freq <- text_freq |>
-  dplyr::arrange(desc(Freq)) |>
-  filter(!Info1 %in% c("記号", "助詞", "助動詞") |
-         !Info2 %in% "非自立")
+  arrange(desc(Freq)) |>
+  filter(
+    !Info1 %in% c("記号", "助詞", "助動詞") |
+    !Info2 %in% "非自立"
+  )
 
 head(sorted_text_freq)
 ```
@@ -203,17 +202,13 @@ head(sorted_text_freq)
 次に，テキストファイルから単語文書行列の作成を試みます。
 `docMatrix()` の最初の引数には，テキストファイルのあるディレクトリを指定します。
 ```{r}
-tdm <- RMeCab::docMatrix(dirname, pos = c("名詞", "形容詞", "副詞", "動詞"), weight = "")
+tdm <- docMatrix(txtdir, pos = c("名詞", "形容詞", "副詞", "動詞"), weight = "")
+head(tdm)
 
 tdm <- as.data.frame.matrix(tdm)
 tdm <- tdm[rownames(tdm) != "[[LESS-THAN-1]]", , drop = FALSE]
 tdm <- tdm[rownames(tdm) != "[[TOTAL-TOKENS]]", , drop = FALSE]
 colnames(tdm) <- sub("\\.txt", "", colnames(tdm))
-
-# quoted_rows <- grep("\"", row.names(tdm))
-# if (length(quoted_rows) > 0) {
-#   tdm <- tdm[-quoted_rows, , drop = FALSE]
-# }
 
 tdm <- tdm[order(rowSums(tdm), decreasing = TRUE), , drop = FALSE]
 word_freqs <- data.frame(freq = rowSums(tdm))
@@ -228,7 +223,13 @@ library(RColorBrewer)
 word_freqs_20 <- word_freqs[word_freqs$freq > 19, , drop = FALSE]
 word_freqs_top300 <- head(word_freqs, 300)
 
-wordcloud(word = row.names(word_freqs_20), freq = word_freqs_20$freq, random.order = FALSE, rot.per = 0, colors = brewer.pal(8, "Dark2"))
+wordcloud(
+  word = row.names(word_freqs_20),
+  freq = word_freqs_20$freq,
+  random.order = FALSE,
+  rot.per = 0,
+  colors = brewer.pal(8, "Dark2")
+)
 ```
 一部の目立つ単語は，ストップワードを削除することで対応します。
 
@@ -237,32 +238,35 @@ wordcloud(word = row.names(word_freqs_20), freq = word_freqs_20$freq, random.ord
 テキスト分析に有益なパッケージとして古くからある [tm](https://CRAN.R-project.org/package=tm){target="_blank"} パッケージでは，`DocumentTermMatrix` オブジェクトが定義されています。
 `RMeCab` パッケージのデータを `DocumentTermMatrix` オブジェクトとして扱うには，次のようにします。
 ```{r}
-textdata2 <- textdata %>%
-  group_by(book) %>%
-  summarise(text = paste0(text, collapse = " ")) %>%
-  ungroup()
-textdata2
+textdata_two <- textdata |>
+  summarise(text = paste0(text, collapse = " "), .by = book)
+
+textdata_two
 
 library(tm)
 
-word_list <- RMeCab::RMeCabC(textdata2$text[1])
+word_list <- RMeCabC(textdata_two$text[1])
 corp <- tm::Corpus(VectorSource(word_list))
-dtm <- tm::DocumentTermMatrix(corp)
-
-dtm
+(dtm <- tm::DocumentTermMatrix(corp))
 
 word_freqs <- colSums(as.matrix(dtm))
-df <- data.frame(term = names(word_freqs), freq = word_freqs)
 
-df |>
-  with(wordcloud(words = term, freq = freq,
-                 min.freq = 20, random.order = FALSE, rot.per = 0,
-                 colors = brewer.pal(8, "Dark2")))
+data.frame(term = names(word_freqs), freq = word_freqs) |>
+  with(
+    wordcloud(
+      words = term,
+      freq = freq,
+      min.freq = 20,
+      random.order = FALSE,
+      rot.per = 0,
+      colors = brewer.pal(8, "Dark2")
+    )
+  )
 ```
 
 #### MeCabで参照する辞書の追加
 
-macOSの場合，`added.csv` を UTF-8 で作成し，"~/Documents" に保存します。
+macOS の場合，`added.csv` を UTF-8 で作成し，"~/Documents" に保存します。
 `Terminal.app` を起動し，次のコードを実行します。
 ```
 $ cd ~/Documents
@@ -275,11 +279,11 @@ $ vi ~/.mecabrc
 userdic = /Users/username/Documents/added.dic
 ```
 
-Windowsの場合，`added.csv` を（Shift-JIS）で作成し，"C:\Program Files (x86)\MeCab\dic\ipadic" に保存します。
+Windows の場合，`added.csv` を UTF-8 で作成し，"C:\Program Files (x86)\MeCab\dic\ipadic" に保存します。
 `cmd.exe` を起動し，次のコードを実行します。
 ```
 > cd C:\Program Files (x86)\MeCab\bin
-> mecab-dict-index -d "C:\Program Files (x86)\MeCab\dic\ipadic" -f shift-jis -t shift-jis
+> mecab-dict-index -d "C:\Program Files (x86)\MeCab\dic\ipadic" -f utf-8 -t utf-8
 ```
 以下のファイルが生成されます。
 ```
@@ -299,7 +303,7 @@ unk.dic
 開発版の方がいいかもしれません。
 ```{r}
 #| eval: false
-install_github("junhewk/RcppMeCab")
+devtools::install_github("junhewk/RcppMeCab")
 ```
 
 正しくインストールできた場合，以下のようにすると，意図した結果が得られます。
@@ -312,32 +316,22 @@ RcppMeCab::pos(wagahai, format = "data.frame")
 
 保存したファイルから，テキストデータを読み込みます。
 ```{r}
-#| warning: false
-filenames <- list.files(dirname, full.names = TRUE)
-textdata3 <- list()
-for (i in filenames) {
-  textdata3[basename(i)] <- paste(readLines(i), collapse = "")
-}
-textdata3 <- unlist(textdata3)
-textdata3
-```
-これを最近流行の方法で書くと，次のようになります。
-```{r}
 library(purrr)
-library(readr)
-library(tidyr)
 
-textdata3 <- tibble::tibble(filenames = list.files(dirname, full.names = TRUE)) |>
-  dplyr::mutate(
+textdata_3 <- tibble(filenames = list.files(txtdir, full.names = TRUE)) |>
+  mutate(
     .keep = "none", 
     text = purrr::map(filenames, readr::read_lines),
-    id = basename(filenames)) |>
+    id = basename(filenames)
+  ) |>
   tidyr::unnest(text)
-textdata3
+
+textdata_3
 ```
 形態素解析は次のようにやります。
 ```{r}
-text_pos <- RcppMeCab::pos(textdata3$text, format = "data.frame")
+#| eval: false
+text_pos <- RcppMeCab::pos(textdata_3$text, format = "data.frame")
 text_pos[3:23, ]
 ```
 
@@ -357,12 +351,15 @@ gibasa::dictionary_info()
 ```
 それっぽいものが返ってくれば，gibasa が使えます。
 
+macOS で辞書の場所が見つからないというエラーが出る場合，`Sys.setenv(MECABRC = "/opt/homebrew/etc/mecabrc")` を実行してみるとよいかもしれません。
+もしこれで上手くいくようなら，`usethis::edit_r_environ()` を実行して，開いたファイルに `MECABRC=/opt/homebrew/etc/mecabrc` という1行を追加します。
+
 形態素解析は次のようなコマンドを実行します。
 ```{r}
 gibasa::tokenize(wagahai)
 ```
 
-ここで，macOSだと次のエラーメッセージとともにエラーが返ってくることがある。
+ここで，macOS だと次のエラーメッセージとともにエラーが返ってくることがある。
 ```
  *** caught segfault ***
 address 0x9ffffffe7, cause 'invalid permissions'
@@ -372,57 +369,65 @@ address 0x9ffffffe7, cause 'invalid permissions'
 このコマンドを R で実行するにはどうすべきか，今のところ分からない。
 
 ```{r}
-textdata4 <- textdata |>
-  dplyr::filter(book == "坊ちゃん") |>
-  dplyr::mutate(doc_id = seq_along(text) |> as.character()) |>
-  dplyr::mutate(text = audubon::strj_normalize(text))
+textdata_ja <- textdata |>
+  filter(book == "坊ちゃん") |>
+  mutate(
+    doc_id = seq_along(text) |> as.character(),
+    text = audubon::strj_normalize(text)
+  )
 
-text_token <- gibasa::tokenize(textdata4, text, doc_id)
+text_token <- gibasa::tokenize(textdata_ja, text, doc_id)
 
 reactable::reactable(text_token, compact = TRUE)
 
 text_token |>
   gibasa::prettify(col_select = c("POS1", "Original")) |>
-  dplyr::filter(POS1 %in% c("名詞", "形容詞", "副詞", "動詞"))
+  filter(POS1 %in% c("名詞", "形容詞", "副詞", "動詞"))
 ```
 
 トークンをまとめて新しいトークンにすることができる。
 ```{r}
-reactable::reactable(gibasa::prettify(text_token, col_select = c("POS1", "POS2", "POS3")), compact = TRUE)
-reactable::reactable(gibasa::prettify(text_token, col_select = c("POS1", "POS2", "POS3")), compact = FALSE)
+reactable::reactable(
+  gibasa::prettify(text_token, col_select = c("POS1", "POS2", "POS3")),
+  compact = TRUE
+)
+reactable::reactable(
+  gibasa::prettify(text_token, col_select = c("POS1", "POS2", "POS3")),
+  compact = FALSE
+)
 
 text_token |>
   gibasa::prettify(col_select = c("POS1", "POS2", "POS3", "Original")) |>
   gibasa::collapse_tokens(
-    (POS1 %in% c("名詞", "形容詞", "副詞", "動詞") & !stringr::str_detect(token, "^[あ-ン]+$")) |
+    (POS1 %in% c("名詞", "形容詞", "副詞", "動詞") & !str_detect(token, "^[あ-ン]+$")) |
     (POS1 %in% c("名詞", "形容詞") & POS2 %in% c("自立", "接尾", "数接続"))
   )
 ```
-これは非常に便利であるが，どうしてこうした結果が得られるのか，今のところ理解できていない。
+これは非常に便利である。
 
 ```{r}
 dat_count <- text_token |>
   gibasa::prettify(col_select = c("POS1", "POS2", "POS3", "Original")) |>
   gibasa::collapse_tokens(
-    (POS1 %in% c("名詞", "形容詞", "副詞", "動詞") & !stringr::str_detect(token, "^[ァ-ヴ\\s]+$")) |
+    (POS1 %in% c("名詞", "形容詞", "副詞", "動詞") & !str_detect(token, "^[ァ-ヴ\\s]+$")) |
     (POS1 %in% c("名詞", "形容詞") & POS2 %in% c("自立", "接尾", "数接続"))
   ) |>
-  dplyr::mutate(
+  mutate(
     doc_id = forcats::fct_drop(doc_id),
     token = token
   ) |>
-  dplyr::count(doc_id, token)
+  count(doc_id, token)
 
 dat_count
 ```
 
 文書単語行列は次のように作成する。
 ```{r}
-#| eval: false
 dtm <- dat_count |>
   tidytext::cast_sparse(doc_id, token, n)
 
-dtm[, 1:7]
+dim(dtm)
+head(dtm[, 1:7])
 ```
 
 
@@ -441,13 +446,14 @@ dtm[, 1:7]
 
 ここで，以下の説明に使うサンプルテキストを用意しておきます。
 ```{R}
-path <- "../data/sampleEN"
+path <- "../data/sample_text_en"
 filenames <- list.files(path, full.names = TRUE)
-textEN <- list()
+text_en <- list()
 for (i in filenames) {
-  textEN[[sub(paste0(path, "/"), "", i)]] <- readLines(i)
+  text_en[[sub(paste0(path, "/"), "", i)]] <- readLines(i)
 }
-textdata <- paste0(unlist(textEN), collapse = "")
+
+textdata_en <- paste(unlist(text_en), collapse = "")
 ```
 
 ### トークン化
@@ -457,54 +463,56 @@ textdata <- paste0(unlist(textEN), collapse = "")
 トークンとして，単語（words），文字（characters），ステム，センテンス，段落などを指定できます。
 ```{R}
 library(tokenizers)
-tokenize_words(textdata)[[1]]
+tokenize_words(textdata_en)[[1]]
 ```
 
 テキスト分析では，ストップワードを削除する必要があります。
 ストップワードとは，出現頻度が高すぎる動詞などであり，分析に役に立たないばかりか，分析結果をつまらないものにします。
 `tidytext` のデフォルトのストップワードは以下に挙げるものです。
 ```{r}
+library(tidytext)
+
 tidytext::stop_words
 ```
-ストップワードを辞書ごとに `filter()` することも可能である。
+ストップワードを辞書ごとに `filter()` することも可能です。
 ```{r}
 table(tidytext::stop_words$lexicon)
 ```
+
 他にストップワードを追加してもよいです。
 ストップワードの追加は，`unnest_tokens()` の返り値に対して，次のようにします。
 ```{r}
-text_token <- textdata4 |>
+text_df <- tibble(text = unlist(text_en))
+
+text_token <- text_df |>
   tidytext::unnest_tokens(output = token, input = text)
 
-mystopwords <- tibble::tibble(token = c("eq", "co", "rc", "ac", "ak", "bn", "fig"))
-new_textdata <- anti_join(text_token, mystopwords, by = "token")
-```
-ただし，次のようにパイプ処理の中で削除するのが，現代的かもしれません。
-```{r}
-#| eval: false
-tidy_books <- dplyr::tibble(text = unlist(textEN))
+mystopwords <- tibble(
+  word = c("eq", "co", "rc", "ac", "ak", "bn", "fig"),
+  lexicon = "me"
+)
 
-tidy_books <- tidy_books |>
-  dplyr::anti_join(tidytext::stop_words)
+new_text_token <- text_token |>
+  anti_join(
+    tidytext::stop_words |> bind_rows(mystopwords),
+    by = c("token" = "word")
+  )
 ```
 
+`unnest_tokens()` では句読点，記号は削除され，小文字に変換されます。
 ```{r}
 text <- c("This is a pen.", "That are pens.", "This car is white.")
 
-library(dplyr)
-library(tidytext)
-
 text_df <- text |>
-  dplyr::tibble(line = seq_along(text))
+  tibble(line = seq_along(text))
+
 text_df |>
   tidytext::unnest_tokens(word, text)
 ```
-`unnest_tokens()` では句読点，記号は削除され，小文字に変換される。
-
 
 ```{R}
 #| eval: false
-book_words %>%
+book_words |>
   bind_tf_idf(word, book, n)
 ```
 
@@ -522,12 +530,13 @@ table(tidytext::sentiments$sentiment)
 
 ```{r}
 #| eval: false
-tidy_books %>%
-  dplyr::anti_join(tidytext::stop_words) %>%
-  dplyr::count(word) %>%
-  with(wordcloud(word, n, max.words = 100))
+tidy_books |>
+  anti_join(tidytext::stop_words) |>
+  count(word) |>
+  with(
+    wordcloud(word, n, max.words = 100)
+  )
 ```
-
 
 ### 整理テキスト -> DTM
 
@@ -542,6 +551,7 @@ tidytext::tidy()
 #| eval: false
 tidytext::tidy()
 ```
+
 
 ## quanteda
 
