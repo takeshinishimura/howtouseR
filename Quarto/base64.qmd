@@ -1,0 +1,64 @@
+---
+title: "メール"
+format:
+  html:
+    toc: true
+    toc-title: 目次
+    toc_float: true
+    toc-depth: 3
+    number-sections: true
+    theme: journal
+lang: ja
+---
+
+日本語を送信する場合に変換されたメールを読みたいときに役立つ情報を以下に示す。
+
+## base64デコード
+
+```
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: base64
+44GC44GE44GG44GI44GKCuOBi+OBjeOBj+OBkeOBkw==
+```
+例えば，上のような文字列だった場合，次のコードを実行するとよい。
+
+```{r}
+#| eval: false
+x <- "44GC44GE44GG44GI44GKCuOBi+OBjeOBj+OBkeOBkw=="
+cat(rawToChar(openssl::base64_decode(x)))
+```
+
+## base64エンコード
+
+逆に，base64でエンコードしたい場合は，次のようにする。
+
+```{r}
+#| eval: false
+openssl::base64_encode(charToRaw("あいうえお\nかきくけこ"))
+```
+
+## quoted-printable
+
+quoted-printable形式でエンコードされている場合は，次の関数でデコードできる。
+
+```{r}
+#| eval: false
+decode_quoted_printable <- function(x) {
+  x <- gsub("=\r?\n", "", x)
+  
+  parts <- strsplit(x, "(=[0-9A-Fa-f]{2})", perl = TRUE)[[1]]
+  codes <- regmatches(x, gregexpr("=[0-9A-Fa-f]{2}", x, perl = TRUE))[[1]]
+  
+  out <- character(length(parts) + length(codes))
+  out[c(TRUE, FALSE)] <- parts
+  
+  if (length(codes) > 0) {
+    decoded <- vapply(codes, function(z) {
+      rawToChar(as.raw(strtoi(sub("^=", "", z), 16L)))
+    }, character(1))
+    out[c(FALSE, TRUE)][seq_along(decoded)] <- decoded
+  }
+  
+  enc2utf8(paste0(out, collapse = ""))
+}
+```

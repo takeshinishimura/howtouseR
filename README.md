@@ -30,6 +30,7 @@
 - [農地の区画情報（筆ポリゴン）](https://takeshinishimura.github.io/howtouseR/fude_polygon.html) -> 🎉 CRANに公開 [fude: Utilities for Fude Polygon](https://CRAN.R-project.org/package=fude)
 - [テキスト分析](https://takeshinishimura.github.io/howtouseR/textmining.html)
 - [MeCab（日本語のテキストマイニング）](https://takeshinishimura.github.io/howtouseR/mecab.html)
+- [メール](https://takeshinishimura.github.io/howtouseR/base64.html)
 
 ## 遺物
 
